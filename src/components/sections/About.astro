@@ -28,22 +28,16 @@ const t = useTranslations(lang);
           ></span>
         </div>
 
-        <h2 class="h1-display mb-12" style="color: var(--color-bone);">
-          {t('about.title.l1')}
-          <span class="serif-accent" style="color: var(--color-cinnabar);"
-            >{t('about.title.l1b')}</span
-          >
-          {t('about.title.l1c')}<br />
-          {t('about.title.l2')}<br />
-          <span class="serif-accent" style="color: var(--color-gold);"
-            >{t('about.title.l3')}</span
-          >{t('about.title.l3b')}
-        </h2>
+        <h2
+          class="h1-display mb-12"
+          style="color: var(--color-bone);"
+          set:html={t('about.title')}
+        />
 
-        <p class="body-lg-v2 mb-7" style="max-width: 520px;">
+        <p class="body-lg-v2 mb-7">
           {t('about.body1')}
         </p>
-        <p class="body-md-v2 mb-14" style="max-width: 520px;">
+        <p class="body-md-v2 mb-14">
           {t('about.body2')}
         </p>
 
@@ -76,88 +70,257 @@ const t = useTranslations(lang);
         </div>
       </div>
 
-      <!-- Right — asymmetric portrait grid -->
-      <div class="mx-about-portrait relative" style="height: 700px;">
-        <!-- Vertical CJK -->
-        <div
-          class="cjk-vert absolute flex items-center"
-          style="right: -8px; top: 0; bottom: 0;"
+      <!-- Right — Digital blueprint visual: grid + axes + Gamania logo + outlined "30" -->
+      <div class="mx-about-visual">
+        <!-- Layer 1: 1px digital grid -->
+        <div class="about-grid"></div>
+
+        <!-- Layer 2: 3D reference axes -->
+        <svg
+          class="about-axes"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+          aria-hidden="true"
         >
+          <!-- Center cross (dashed) -->
+          <line
+            x1="0" y1="50" x2="100" y2="50"
+            stroke="rgba(255,100,0,0.12)"
+            stroke-width="0.06"
+            stroke-dasharray="0.6 1.2"
+          />
+          <line
+            x1="50" y1="0" x2="50" y2="100"
+            stroke="rgba(255,100,0,0.12)"
+            stroke-width="0.06"
+            stroke-dasharray="0.6 1.2"
+          />
+          <!-- Perspective lines: corners → center -->
+          <line x1="0" y1="0" x2="48" y2="48" stroke="rgba(255,100,0,0.18)" stroke-width="0.05" />
+          <line x1="100" y1="0" x2="52" y2="48" stroke="rgba(255,100,0,0.18)" stroke-width="0.05" />
+          <line x1="0" y1="100" x2="48" y2="52" stroke="rgba(255,100,0,0.18)" stroke-width="0.05" />
+          <line x1="100" y1="100" x2="52" y2="52" stroke="rgba(255,100,0,0.18)" stroke-width="0.05" />
+          <!-- Concentric measurement rings (very faint) -->
+          <circle cx="50" cy="50" r="22" fill="none" stroke="rgba(255,100,0,0.08)" stroke-width="0.04" stroke-dasharray="0.4 0.8" />
+          <circle cx="50" cy="50" r="34" fill="none" stroke="rgba(255,100,0,0.05)" stroke-width="0.04" />
+          <!-- Center marker -->
+          <circle cx="50" cy="50" r="0.5" fill="rgba(255,100,0,0.8)" />
+        </svg>
+
+        <!-- Layer 3: Composition (30 + Gamania logo) -->
+        <div class="about-stack-outer">
+          <div class="about-stack">
+            <span class="about-30" aria-hidden="true">30</span>
+            <img
+              src="/images/gamania-circle.webp"
+              alt="Gamania"
+              class="about-logo"
+              width="400"
+              height="400"
+            />
+          </div>
+          <div class="about-caption">
+            <div class="about-cap-eyebrow">
+              {t('about.stat.eyebrow')} · {t('about.stat.unit')}
+            </div>
+            <p class="about-cap-body">
+              {t('about.stat.body')}
+            </p>
+          </div>
+        </div>
+
+        <!-- Layer 4: Left fade — softens column boundary -->
+        <div class="about-fade"></div>
+
+        <!-- Layer 5: Vertical CJK on right edge -->
+        <div class="cjk-vert about-cjk">
           {t('about.cjk')}
         </div>
 
-        <!-- Big portrait -->
-        <div
-          class="absolute overflow-hidden"
-          style="left: 0; top: 40px; width: 70%; height: 460px; border: 1px solid var(--bone-line);"
-        >
-          <img
-            src="/images/vision-face.jpg"
-            alt=""
-            style="width: 100%; height: 100%; object-fit: cover; filter: contrast(1.05) saturate(0.85);"
-          />
-          <div
-            class="absolute inset-0"
-            style="background: linear-gradient(135deg, rgba(255,90,31,0.18), transparent 60%);"
-          >
-          </div>
-          <div
-            class="absolute"
-            style="left: 16px; bottom: 14px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; color: var(--color-bone);"
-          >
-            {t('about.portrait.label')}
-          </div>
-        </div>
-
-        <!-- Stat block — bottom right -->
-        <div
-          class="absolute"
-          style="right: 30px; bottom: 0; width: 60%; background: var(--color-ink-2); border: 1px solid var(--bone-line); padding: 36px 32px;"
-        >
-          <div class="eyebrow eyebrow--muted mb-5">
-            {t('about.stat.eyebrow')}
-          </div>
-          <div
-            style="font-family: var(--font-headline); font-size: 64px; font-weight: 200; color: var(--color-cinnabar); line-height: 0.95; letter-spacing: -0.03em;"
-          >
-            30<span style="color: var(--color-bone);">{t('about.stat.unit')}</span>
-          </div>
-          <p class="body-sm-v2" style="margin-top: 16px;">
-            {t('about.stat.body')}
-          </p>
-        </div>
-
-        <!-- Top-right card -->
-        <div
-          class="absolute"
-          style="right: 60px; top: 0; padding: 20px 24px; background: var(--color-ink-3); border: 1px solid var(--color-cinnabar); max-width: 220px;"
-        >
-          <div
-            style="font-size: 10px; letter-spacing: 0.25em; color: var(--color-cinnabar); margin-bottom: 8px;"
-          >
-            {t('about.ethical.label')}
-          </div>
-          <p class="body-sm-v2" style="margin: 0; color: var(--color-bone);">
-            {t('about.ethical.body')}
-          </p>
-        </div>
+        <!-- Coordinate corner labels — micro-detail for engineering feel -->
+        <div class="about-coord about-coord-tl">X · 0.000</div>
+        <div class="about-coord about-coord-br">∇ · GAMANIA-30</div>
       </div>
     </div>
   </div>
 </section>
 
 <style>
+  /* Right visual column — digital blueprint */
+  .mx-about-visual {
+    position: relative;
+    width: 100%;
+    height: 700px;
+    background: #0a0805;
+    overflow: hidden;
+  }
+
+  /* 1px grid backdrop */
+  .about-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 100, 0, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 100, 0, 0.06) 1px, transparent 1px);
+    background-size: 36px 36px;
+    z-index: 1;
+  }
+
+  .about-axes {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+  }
+
+  /* Center stack (logo + 30 overlay + caption) */
+  .about-stack-outer {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 36px;
+    z-index: 4;
+    padding: 0 24px;
+  }
+
+  .about-stack {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Big outlined "30" — partially overlaps logo */
+  .about-30 {
+    font-family: var(--font-headline);
+    font-size: clamp(160px, 22vw, 280px);
+    font-weight: 200;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(244, 236, 220, 0.45);
+    line-height: 0.82;
+    letter-spacing: -0.04em;
+    /* Negative margin pulls logo to overlap */
+    margin-right: -90px;
+    position: relative;
+    z-index: 5;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .about-logo {
+    width: clamp(220px, 32vw, 360px);
+    height: auto;
+    position: relative;
+    z-index: 4;
+    /* Subtle outer glow */
+    filter:
+      drop-shadow(0 0 32px rgba(255, 100, 0, 0.42))
+      drop-shadow(0 0 80px rgba(255, 100, 0, 0.18));
+  }
+
+  /* Caption below composition */
+  .about-caption {
+    text-align: center;
+    max-width: 360px;
+  }
+  .about-cap-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    letter-spacing: 0.22em;
+    color: var(--color-cinnabar);
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  .about-cap-body {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--color-bone-2);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Coordinate corner labels — engineering micro-detail */
+  .about-coord {
+    position: absolute;
+    z-index: 6;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: rgba(255, 100, 0, 0.45);
+    pointer-events: none;
+  }
+  .about-coord-tl {
+    top: 18px;
+    left: 22px;
+  }
+  .about-coord-br {
+    bottom: 18px;
+    right: 22px;
+  }
+
+  /* Left fade — softens column boundary */
+  .about-fade {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 35%;
+    background: linear-gradient(
+      to right,
+      var(--color-ink) 0%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  /* Vertical CJK strip */
+  .about-cjk {
+    position: absolute;
+    right: 16px;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    z-index: 6;
+  }
+
   @container page (max-width: 900px) {
     .mx-two-col {
       grid-template-columns: 1fr !important;
       gap: 56px !important;
     }
-    .mx-about-portrait {
-      height: 440px !important;
+    .mx-about-visual {
+      height: 460px !important;
     }
     .mx-about-pillars {
       grid-template-columns: 1fr !important;
       gap: 24px !important;
+    }
+    .about-30 {
+      font-size: clamp(120px, 28vw, 200px) !important;
+      margin-right: -64px !important;
+    }
+    .about-logo {
+      width: clamp(180px, 38vw, 260px) !important;
+    }
+    /* On mobile (stacked), gradient becomes top-down */
+    .about-fade {
+      width: 100% !important;
+      height: 40% !important;
+      bottom: auto !important;
+      background: linear-gradient(
+        to bottom,
+        var(--color-ink) 0%,
+        transparent 100%
+      ) !important;
+    }
+    .about-cjk {
+      display: none !important;
     }
   }
 </style>

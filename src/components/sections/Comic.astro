@@ -52,25 +52,19 @@ const stages = [
   style="padding: 160px 48px;"
 >
   <div style="max-width: 1440px; margin: 0 auto;">
-    <!-- Header -->
-    <div
-      class="mx-comic-header flex justify-between items-end mb-16"
-      style="gap: 48px;"
-    >
-      <div style="max-width: 760px;">
-        <div class="flex items-center gap-4 mb-7">
-          <span class="num-tag">{t('comic.section')}</span>
-          <span style="width: 80px; height: 1px; background: var(--bone-line);"
-          ></span>
-        </div>
-        <h2 class="h1-display">
-          {t('comic.title.l1')}<br />
-          <span style="color: var(--color-gold); font-style: italic; font-weight: 200;"
-            >{t('comic.title.l2')}</span
-          >
-        </h2>
+    <!-- Header — stacked single column -->
+    <div class="mx-section-head" style="margin-bottom: 64px;">
+      <div class="flex items-center gap-4 mb-7">
+        <span class="num-tag">{t('comic.section')}</span>
+        <span style="flex: 1; height: 1px; background: var(--bone-line);"
+        ></span>
       </div>
-      <p class="body-md-v2" style="max-width: 360px; margin-bottom: 8px;">
+      <h2
+        class="h1-display"
+        style="margin-bottom: 28px;"
+        set:html={t('comic.title')}
+      />
+      <p class="body-lg-v2">
         {t('comic.subtitle')}
       </p>
     </div>
@@ -111,10 +105,6 @@ const stages = [
 
 <style>
   @container page (max-width: 900px) {
-    .mx-comic-header {
-      flex-direction: column !important;
-      align-items: flex-start !important;
-    }
     .mx-comic-tabs {
       grid-template-columns: repeat(2, 1fr) !important;
     }

@@ -57,28 +57,19 @@ const cards: Card[] = [
   style="padding: 160px 48px 140px;"
 >
   <div style="max-width: 1440px; margin: 0 auto;">
-    <!-- Section header — 1fr 1.5fr two-column with eyebrow + h1 + subtitle -->
-    <div
-      class="mx-section-head grid items-end mb-24"
-      style="grid-template-columns: 1fr 1.5fr; gap: 80px;"
-    >
-      <div>
-        <div class="flex items-center gap-4 mb-7">
-          <span class="num-tag">{t('solutions.section')}</span>
-          <span style="flex: 1; height: 1px; background: var(--bone-line);"
-          ></span>
-        </div>
-        <h2 class="h1-display" style="color: var(--color-bone);">
-          {t('solutions.title.line1')}<br />
-          <span style="font-style: italic; font-weight: 200; color: var(--color-gold);"
-            >{t('solutions.title.line2')}</span
-          >
-        </h2>
+    <!-- Section header — stacked single column for clean RWD -->
+    <div class="mx-section-head" style="margin-bottom: 96px;">
+      <div class="flex items-center gap-4 mb-7">
+        <span class="num-tag">{t('solutions.section')}</span>
+        <span style="flex: 1; height: 1px; background: var(--bone-line);"
+        ></span>
       </div>
-      <p
-        class="body-lg-v2"
-        style="max-width: 520px; padding-bottom: 12px;"
-      >
+      <h2
+        class="h1-display"
+        style="color: var(--color-bone); margin-bottom: 28px;"
+        set:html={t('solutions.title')}
+      />
+      <p class="body-lg-v2">
         {t('solutions.subtitle')}
       </p>
     </div>
@@ -122,12 +113,11 @@ const cards: Card[] = [
               </div>
 
               <div
-                class="flex gap-2 mt-11 flex-wrap"
+                class="flex gap-2.5 mt-11 flex-wrap"
               >
                 {c.tags.map((tag) => (
-                  <span
-                    style="font-size: 11px; letter-spacing: 0.1em; padding: 6px 12px; border: 1px solid var(--bone-line); color: var(--color-bone-2); font-family: var(--font-serif-tc);"
-                  >
+                  <span class="solution-tag">
+                    <span class="solution-tag-dot" />
                     {t(tag)}
                   </span>
                 ))}
@@ -228,6 +218,38 @@ const cards: Card[] = [
   }
   .mx-solution-card:hover .hover-line {
     transform: scaleX(1);
+  }
+
+  /* Tag chips — visible enough to read as their own UI element */
+  .solution-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    font-size: 12px;
+    font-family: var(--font-serif-tc);
+    color: var(--color-cinnabar-soft);
+    background: rgba(255, 90, 31, 0.08);
+    border: 1px solid rgba(255, 138, 90, 0.4);
+    border-radius: 999px;
+    letter-spacing: 0.04em;
+    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .solution-tag-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--color-cinnabar);
+    box-shadow: 0 0 6px rgba(255, 90, 31, 0.6);
+    flex-shrink: 0;
+  }
+  .mx-solution-card:hover .solution-tag {
+    color: var(--color-bone);
+    background: rgba(255, 90, 31, 0.16);
+    border-color: rgba(255, 138, 90, 0.7);
+  }
+  .mx-solution-card:hover .solution-tag-dot {
+    box-shadow: 0 0 10px rgba(255, 90, 31, 0.9);
   }
 
   /* Container responsive */

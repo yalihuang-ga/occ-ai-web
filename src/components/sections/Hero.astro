@@ -31,15 +31,15 @@ const t = useTranslations(lang);
   <div
     class="relative z-20 max-w-[1440px] mx-auto px-container-padding pt-32 pb-20 w-full"
   >
-    <div class="max-w-[680px]">
+    <div class="max-w-[900px]">
       <p
         class="text-label-sm uppercase tracking-[0.25em] text-primary mb-6 font-headline"
       >
         {t('hero.eyebrow')}
       </p>
       <h1
-        class="font-headline text-[52px] lg:text-[80px] text-white leading-[1.02] mb-8 font-extrabold tracking-tight"
-        style="text-shadow: 0 4px 40px rgba(0,0,0,0.6);"
+        class="font-headline text-white leading-[0.98] mb-10 tracking-tight"
+        style="font-size: clamp(56px, 8.2vw, 120px); font-weight: 600; text-shadow: 0 4px 40px rgba(0,0,0,0.6);"
       >
         {t('hero.title.line1')}<br />
         <span class="text-primary">{t('hero.title.line2')}</span>
@@ -74,6 +74,14 @@ const t = useTranslations(lang);
     style="background: linear-gradient(to bottom, transparent 0%, rgba(10,10,12,0.6) 60%, #0a0a0c 100%);"
   >
   </div>
+
+  {/* Scroll cue — bottom-center, animated travelling dot */}
+  <div class="hero-scroll" aria-hidden="true">
+    <span class="hero-scroll-label">SCROLL</span>
+    <span class="hero-scroll-line">
+      <span class="hero-scroll-dot"></span>
+    </span>
+  </div>
 </section>
 
 <style>
@@ -83,10 +91,10 @@ const t = useTranslations(lang);
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    padding: 18px 36px;
+    padding: 20px 40px;
     border-radius: 12px;
     font-family: 'Inter', system-ui, sans-serif;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -154,5 +162,70 @@ const t = useTranslations(lang);
     box-shadow:
       0 0 30px rgba(255, 90, 0, 0.18),
       0 1px 0 rgba(255, 255, 255, 0.1) inset;
+  }
+
+  /* Scroll cue — sits above the bottom fade overlay */
+  .hero-scroll {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    pointer-events: none;
+  }
+
+  .hero-scroll-label {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: rgba(244, 236, 220, 0.55);
+    text-transform: uppercase;
+  }
+
+  .hero-scroll-line {
+    position: relative;
+    width: 1px;
+    height: 56px;
+    background: linear-gradient(
+      to bottom,
+      rgba(244, 236, 220, 0.25) 0%,
+      transparent 100%
+    );
+    overflow: visible;
+  }
+
+  .hero-scroll-dot {
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    width: 1px;
+    height: 14px;
+    transform: translateX(-50%);
+    background: #ff5a1f;
+    box-shadow:
+      0 0 6px rgba(255, 90, 31, 0.7),
+      0 0 14px rgba(255, 90, 31, 0.35);
+    animation: heroScrollDot 2.2s cubic-bezier(0.55, 0.05, 0.45, 0.95) infinite;
+  }
+
+  @keyframes heroScrollDot {
+    0% {
+      top: -14px;
+      opacity: 0;
+    }
+    15% {
+      opacity: 1;
+    }
+    85% {
+      opacity: 1;
+    }
+    100% {
+      top: 56px;
+      opacity: 0;
+    }
   }
 </style>

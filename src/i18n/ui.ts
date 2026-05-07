@@ -37,55 +37,53 @@ export const ui = {
     'hero.cta.secondary': '觀看 Demo',
 
     // ---- Solutions (§ 01) ----
+    // Section order: Hero · §01 Solutions · §02 Virtual Human · §03 AI Game · §04 AI Comic · §05 About · §06 Contact
     'solutions.section': '§ 01 — Solutions',
-    'solutions.title.line1': '一站式',
-    'solutions.title.line2': 'AI 創作生產線',
+    'solutions.title':
+      '從 0 到 1，<span class="title-accent-gold">AI 創作生產線</span>',
     'solutions.subtitle':
-      '從劇本、美術、製作到上線──全流程加速。我們不取代創作者，而是在每一個工序裡，把不必要的摩擦消除。',
+      '劇本、角色、世界觀，到多模態交付──我們陪你把 0 走到 1。創作者主導，AI 把每一個工序裡不必要的摩擦移除。',
 
-    'solutions.01.title': '寫故事',
+    'solutions.01.title': '製作劇本',
     'solutions.01.tag': 'Story Engine',
     'solutions.01.desc':
-      'AI 編劇對話、版本追溯，快速展開完整劇本與世界觀。從一句靈感到完整章節大綱，創作者保有主導權。',
-    'solutions.01.t1': '劇本',
-    'solutions.01.t2': '世界觀',
-    'solutions.01.t3': '版本控制',
+      '從一句靈感開始，AI 編劇陪你展開角色性格、世界規則與章節節奏。每一次對話都沉澱進可編輯的劇本大綱──主導權永遠在創作者手裡。',
+    'solutions.01.t1': '劇本大綱',
+    'solutions.01.t2': '角色設定',
+    'solutions.01.t3': '對話節奏',
 
-    'solutions.02.title': '畫角色',
+    'solutions.02.title': '描繪角色',
     'solutions.02.tag': 'Character & Art',
     'solutions.02.desc':
-      '一致性鎖定的角色設計與分鏡，跨章節維持外觀、表情與服飾細節。產出可商用素材庫。',
-    'solutions.02.t1': '一致性',
-    'solutions.02.t2': '分鏡',
-    'solutions.02.t3': '資產庫',
+      '一致性鎖定的角色設計，跨章節維持外觀、表情、服飾細節。三視圖、表情包、動作姿勢一次出齊──直接成為可商用的角色資產庫。',
+    'solutions.02.t1': '三視圖',
+    'solutions.02.t2': '一致性',
+    'solutions.02.t3': '表情系統',
 
-    'solutions.03.title': '做遊戲',
-    'solutions.03.tag': 'Game Pipeline',
+    'solutions.03.title': '建構世界觀',
+    'solutions.03.tag': 'World Builder',
     'solutions.03.desc':
-      'NPC 行為模擬、自適應難度、自動化測試──AI 進入遊戲製程，從原型到上線縮短一個量級。',
-    'solutions.03.t1': 'NPC AI',
-    'solutions.03.t2': '難度',
-    'solutions.03.t3': 'QA',
+      '從文明設定到地理環境，AI 幫你把零散的世界碎片整理成自洽的時空脈絡。場景、文化、歷史──每一個元素都能被故事與角色繼承。',
+    'solutions.03.t1': '場景設計',
+    'solutions.03.t2': '文化體系',
+    'solutions.03.t3': '時空脈絡',
 
     'solutions.04.title': '多模態世界',
     'solutions.04.tag': 'Multimodal World',
     'solutions.04.desc':
-      '將零散的創意碎片織結為具備生命的數位時空──故事、角色、玩法在同一個世界裡共生演化。',
-    'solutions.04.t1': '世界觀',
-    'solutions.04.t2': '跨媒介',
-    'solutions.04.t3': '生態演化',
+      '將前面的劇本、角色、世界觀織結為具備生命的數位時空──故事、角色、玩法在同一個世界裡共生演化，跨漫畫、虛擬人、遊戲全媒介展開。',
+    'solutions.04.t1': '跨媒介',
+    'solutions.04.t2': '共生演化',
+    'solutions.04.t3': '沉浸體驗',
 
     // ---- About (§ 05) ----
     'about.section': '§ 05 — About',
-    'about.title.l1': '在',
-    'about.title.l1b': 'AI',
-    'about.title.l1c': '與',
-    'about.title.l2': '內容的',
-    'about.title.l3': '邊界',
-    'about.title.l3b': '探索',
+    'about.title':
+      '三十年內容工藝，<span class="title-accent-cinnabar">AI</span> 賦予<span class="title-accent-gold">靈魂</span>',
     'about.body1':
-      '我們持續追蹤前沿 AI 技術，並把它真正帶進產品裡──從劇本、漫畫、配樂，到虛擬人互動。每一步都讓創作者更快，讓使用者體驗到不曾有過的互動樂趣。',
-    'about.body2': '不只是加速「構想到成品」的速度，更要用 AI 打開全新的娛樂可能性。',
+      '站在三十年遊戲開發及代理的肩膀上，我們深知內容創作的痛點與極限。Muztrix 致力於將前沿 AI 技術真正落地──從自動化劇本到有溫度的虛擬人互動。',
+    'about.body2':
+      '我們不只追求速度的提升，更追求品質的演化。利用 AI，我們正重新定義數位娛樂的邊界，為品牌與創作者建構無限可能的虛擬世界。',
     'about.pillar1.k': '人本核心',
     'about.pillar1.v': 'AI 由倫理框架與人本價值驅動。',
     'about.pillar2.k': '創作優先',
@@ -103,12 +101,19 @@ export const ui = {
 
     // ---- Virtual Human (§ 02) ----
     'virtual.section': '§ 02 — Virtual Human',
-    'virtual.title.l1': '看得到、聽得懂、',
-    'virtual.title.l2': '記得住',
-    'virtual.title.l3': '的 AI',
+    'virtual.title':
+      '看得到、聽得懂、<span class="title-accent-cinnabar">記得住</span>的 AI',
     'virtual.body1':
-      '我們的 AI 虛擬人建立在自研感知引擎上：即時辨識性別、年齡、表情、衣著與停留時間，分析語音關鍵字與情緒，模擬出有溫度的對話節奏。',
-    'virtual.body2': '長期記憶持續學習回訪偏好，每一次對話都更貼近你的人格。',
+      '從感知、記憶到場景應對──三個層次定義一個有溫度的虛擬人，能在不同情境下，成為你品牌最自然的延伸。',
+    'virtual.body2': '',
+
+    // Three core pillars
+    'vh.pillar1.k': '精準辨識',
+    'vh.pillar1.v': '互動的第一步，是看見你的需求。',
+    'vh.pillar2.k': '智慧連動',
+    'vh.pillar2.v': '真正的溫度，是記得你的名字。',
+    'vh.pillar3.k': '情境導購',
+    'vh.pillar3.v': '高品質的建議，是最貼心的陪伴。',
     'virtual.matrix.1k': 'PERCEPTION',
     'virtual.matrix.1v': '視覺 · 聽覺 · 情緒',
     'virtual.matrix.2k': 'COGNITION',
@@ -117,17 +122,74 @@ export const ui = {
     'virtual.matrix.3v': '即時 · 多輪 · 情境',
     'virtual.matrix.4k': 'IDENTITY',
     'virtual.matrix.4v': '人格鎖定 · 角色化',
-    'virtual.demo.welcome1': '你好，我是 Miyaki。',
-    'virtual.demo.welcome2': '你看得到我嗎？',
-    'virtual.demo.welcome3': '看到了。微笑著，戴眼鏡，穿深色上衣──氣氛很放鬆。',
     'virtual.demo.placeholder': '輸入訊息……',
     'virtual.demo.send': '送出',
     'virtual.demo.perception': '● PERCEPTION FEED',
+    'virtual.demo.live': '● LIVE · MIYAKIEN',
+    'virtual.demo.session': 'SESSION 0x4F3A',
+
+    // Mode toggle (2D / 3D)
+    'vh.mode.label': 'MODE',
+    'vh.mode.2d': '2D · Live2D',
+    'vh.mode.3d': '3D',
+    'vh.mode.3dPending': '準備中',
+
+    // Scene toggle label
+    'vh.scene.label': 'SCENE',
+
+    // Scene 1: 精品店員 (Luxury boutique)
+    'vh.scene.boutique.label': '精品店員',
+    'vh.scene.boutique.tag': 'BOUTIQUE',
+    'vh.scene.boutique.g1': '真開心又看到你！我看到你拿的是上次買的紅色側背包，和你今天的穿著很搭配哦。今天要來看看同色系的零錢包嗎？',
+    'vh.scene.boutique.g2': '你竟然還記得！',
+    'vh.scene.boutique.g3': '當然記得，那款是我私心很喜歡的設計。剛好新到一批配色相近的小物，要不要看看？',
+    'vh.scene.boutique.r1': '這款搭你今天的鞋子很相襯，要不要試一下？',
+    'vh.scene.boutique.r2': '上次你也提過想找耳環──剛好新到一組，等等我拿給你看。',
+    'vh.scene.boutique.r3': '我先幫你把這個留下，慢慢逛沒關係，等你決定。',
+    'vh.scene.boutique.s1': '性別 · 女',
+    'vh.scene.boutique.s2': '年齡 · 25-32',
+    'vh.scene.boutique.s3': '凝視商品 · 1.4s',
+    'vh.scene.boutique.s4': '興趣指數 · 高',
+    'vh.scene.boutique.s5': '情緒 · 愉悅',
+
+    // Scene 2: 企業發言人 (Corporate spokesperson)
+    'vh.scene.corporate.label': '企業接待',
+    'vh.scene.corporate.tag': 'CORPORATE',
+    'vh.scene.corporate.g1': '您好，我們有針對企業提供許多 AI 解決方案。要不要與我玩個小遊戲互相認識一下？告訴我您的公司資訊，或讓我看看您的名片，我來幫您做介紹。',
+    'vh.scene.corporate.g2': '好，那我來說一下。',
+    'vh.scene.corporate.g3': '太好了。我會根據您分享的內容，整理出最適合的方案組合。先從產業類型開始──您主要在做哪一塊呢？',
+    'vh.scene.corporate.r1': '您這產業我們有不少合作經驗，等等可以分享相似的案例給您。',
+    'vh.scene.corporate.r2': '那我來幫您匹配──如果預算範圍方便透露一下，我可以更精準推薦。',
+    'vh.scene.corporate.r3': '太好了，我把方案精簡版整理出來，五分鐘就能看完。要直接寄到您信箱嗎？',
+    'vh.scene.corporate.s1': '來訪屬性 · B2B',
+    'vh.scene.corporate.s2': '詢問模式 · 探索',
+    'vh.scene.corporate.s3': '對話深度 · 概覽',
+    'vh.scene.corporate.s4': '建議行動 · 安排會議',
+    'vh.scene.corporate.s5': '情緒 · 專注',
+
+    // Scene 3: IP 互動 (IP interaction / event / brand)
+    'vh.scene.ip.label': 'IP 導覽互動',
+    'vh.scene.ip.tag': 'IP EVENT',
+    'vh.scene.ip.g1': '你看起來很疲累的樣子耶，黑眼圈怎麼那麼重？跟你說～這附近有一家評價很高的咖啡店。',
+    'vh.scene.ip.g2': '真的假的？',
+    'vh.scene.ip.g3': '真的！他們家的拿鐵超讚。要不要我把店家位置傳給你？順便附上一張今天剛上架的限定甜點照～',
+    'vh.scene.ip.r1': '對了，等等若你逛累了我再帶你去那家店，他們有靠窗座位很舒服。',
+    'vh.scene.ip.r2': '你今天的穿搭蠻好看的耶，是有什麼特別行程嗎？',
+    'vh.scene.ip.r3': '這個展區後面的那條走道我推薦你去看看，剛剛有人說那邊很適合拍照。',
+    'vh.scene.ip.s1': '訪客類型 · 新訪客',
+    'vh.scene.ip.s2': '同行者 · 1 人',
+    'vh.scene.ip.s3': '興趣方向 · 角色',
+    'vh.scene.ip.s4': '互動意願 · 高',
+    'vh.scene.ip.s5': '情緒 · 興奮',
+
+    // 3D placeholder copy
+    'vh.placeholder.3d.title': '3D 模型準備中',
+    'vh.placeholder.3d.body': '高保真 3D 互動體驗將於下個版本上線。',
 
     // ---- Comic Studio (§ 04) ----
     'comic.section': '§ 04 — AI Comic Studio',
-    'comic.title.l1': '從一句靈感到完整漫畫，',
-    'comic.title.l2': '四步串成一條產線',
+    'comic.title':
+      '從一句靈感到完整漫畫，<span class="title-accent-gold">四步串成一條產線</span>',
     'comic.subtitle': '創作者主導，AI 加速。每一步都可回頭微調，產出可商用、可二創的內容資產。',
 
     'comic.01.label': '故事規劃',
@@ -172,10 +234,8 @@ export const ui = {
 
     // ---- Game (§ 03) ----
     'game.section': '§ 03 — AI Game',
-    'game.title.l1': '讓',
-    'game.title.l2': 'NPC',
-    'game.title.l2b': '真正',
-    'game.title.l3': '活著',
+    'game.title':
+      '讓 <span class="title-accent-cinnabar">NPC</span> 真正<span class="title-accent-gold">活著</span>',
     'game.body':
       '每個 NPC 都有自己的記憶、目標與情緒。玩家的選擇會留下痕跡──下一次見面，他們記得你做過什麼。',
     'game.p1': '行為樹 + LLM 混合決策',
@@ -197,9 +257,8 @@ export const ui = {
 
     // ---- CTA / Footer (§ 06) ----
     'cta.section': '§ 06 — Contact',
-    'cta.title.l1': '把 AI 變成',
-    'cta.title.l2': '下一個',
-    'cta.title.l3': '創意夥伴。',
+    'cta.title':
+      '把 AI 變成<span class="title-accent-cinnabar">下一個</span><span class="title-accent-gold">創意夥伴</span>。',
     'cta.body':
       '技術合作、產品授權，或想了解我們能為您的場域帶來什麼樣的 AI 體驗──歡迎來信。',
     'cta.button': '聯絡我們',
@@ -247,53 +306,50 @@ export const ui = {
     'hero.cta.secondary': 'Watch Demo',
 
     'solutions.section': '§ 01 — Solutions',
-    'solutions.title.line1': 'An end-to-end',
-    'solutions.title.line2': 'AI creative pipeline',
+    'solutions.title':
+      'Zero to one — <span class="title-accent-gold">AI creative pipeline</span>',
     'solutions.subtitle':
-      'From script and art to production and launch — every step accelerated. We don\'t replace creators; we remove friction at every stage of their craft.',
+      "Script · Character · World · Multimodal delivery — we walk you from zero to one. Creator-led, AI removes the friction at every stage.",
 
-    'solutions.01.title': 'Story',
+    'solutions.01.title': 'Script',
     'solutions.01.tag': 'Story Engine',
     'solutions.01.desc':
-      'AI screenwriting dialogue with version history. Build worlds and chapter outlines fast — creators stay in control.',
-    'solutions.01.t1': 'Script',
-    'solutions.01.t2': 'Worldbuilding',
-    'solutions.01.t3': 'Versioning',
+      "Start from a single spark. The AI editor walks character, world rules, and pacing with you — every conversation distills into an editable outline. Creators always lead.",
+    'solutions.01.t1': 'Outline',
+    'solutions.01.t2': 'Character',
+    'solutions.01.t3': 'Dialogue',
 
     'solutions.02.title': 'Character',
     'solutions.02.tag': 'Character & Art',
     'solutions.02.desc':
-      'Identity-locked design and storyboards — appearance, expression, costume detail held across chapters. Production-ready asset library.',
-    'solutions.02.t1': 'Consistency',
-    'solutions.02.t2': 'Storyboards',
-    'solutions.02.t3': 'Asset Library',
+      "Identity-locked design across chapters — appearance, expression, costume held together. Three-views, expression sets, action poses out in one pass — a commercial-ready asset library.",
+    'solutions.02.t1': '3-View',
+    'solutions.02.t2': 'Consistency',
+    'solutions.02.t3': 'Expressions',
 
-    'solutions.03.title': 'Game',
-    'solutions.03.tag': 'Game Pipeline',
+    'solutions.03.title': 'Worldbuilding',
+    'solutions.03.tag': 'World Builder',
     'solutions.03.desc':
-      'NPC behavior, adaptive difficulty, automated testing — AI inside the production pipeline. Cut prototype-to-launch by an order of magnitude.',
-    'solutions.03.t1': 'NPC AI',
-    'solutions.03.t2': 'Difficulty',
-    'solutions.03.t3': 'QA',
+      "From civilizations to geography, AI weaves scattered world fragments into a coherent space-time. Scenes, cultures, histories — every element is inheritable by story and character.",
+    'solutions.03.t1': 'Scenes',
+    'solutions.03.t2': 'Cultures',
+    'solutions.03.t3': 'Lore',
 
     'solutions.04.title': 'Multimodal World',
     'solutions.04.tag': 'Multimodal World',
     'solutions.04.desc':
-      'Weave scattered creative fragments into a living digital world — where story, characters, and gameplay co-evolve.',
-    'solutions.04.t1': 'Worldbuilding',
-    'solutions.04.t2': 'Cross-media',
-    'solutions.04.t3': 'Ecology',
+      "Weave script, character, and world into a living digital realm — story, character, and gameplay co-evolve across comic, virtual human, and game.",
+    'solutions.04.t1': 'Cross-media',
+    'solutions.04.t2': 'Co-evolution',
+    'solutions.04.t3': 'Immersion',
 
     'about.section': '§ 05 — About',
-    'about.title.l1': 'At the',
-    'about.title.l1b': 'edge',
-    'about.title.l1c': 'of',
-    'about.title.l2': 'AI ×',
-    'about.title.l3': 'content',
-    'about.title.l3b': 'exploration',
+    'about.title':
+      'Three decades of content craft, <span class="title-accent-cinnabar">AI</span> bringing the <span class="title-accent-gold">soul</span>',
     'about.body1':
-      'We track frontier AI research and bring it into shipping products — from scripts, comics, and scoring to virtual human interactions. Every step gives creators speed and gives audiences something they have never felt before.',
-    'about.body2': 'Not just shortening idea-to-deliverable — opening entirely new entertainment possibilities with AI.',
+      "Standing on the shoulders of three decades in game development and publishing, we know the pain points and limits of content creation. Muztrix brings frontier AI into real practice — from automated scripts to virtual human interactions with warmth.",
+    'about.body2':
+      "We don't just pursue speed — we pursue the evolution of quality. With AI, we're redefining the boundaries of digital entertainment, building worlds of infinite possibility for brands and creators.",
     'about.pillar1.k': 'Human Core',
     'about.pillar1.v': 'AI driven by moral frameworks and human values.',
     'about.pillar2.k': 'Creator First',
@@ -310,13 +366,18 @@ export const ui = {
     'about.ethical.body': 'AI driven by moral frameworks and human values.',
 
     'virtual.section': '§ 02 — Virtual Human',
-    'virtual.title.l1': 'AI that sees you,',
-    'virtual.title.l2': 'remembers you',
-    'virtual.title.l3': '',
+    'virtual.title':
+      'AI that sees you, <span class="title-accent-cinnabar">remembers you</span>',
     'virtual.body1':
-      'Our virtual humans run on a proprietary perception engine: gender, age, expression, attire, dwell time, voice keywords, emotion — synthesized into warm conversational rhythm.',
-    'virtual.body2':
-      'Long-term memory adapts to each visitor. Every conversation gets closer to your personality.',
+      'Perception, memory, scene-aware response — three layers that define a virtual human with real warmth, ready to extend your brand naturally across every context.',
+    'virtual.body2': '',
+
+    'vh.pillar1.k': 'Precise Recognition',
+    'vh.pillar1.v': 'The first step of interaction is seeing what you need.',
+    'vh.pillar2.k': 'Smart Connection',
+    'vh.pillar2.v': 'True warmth is remembering your name.',
+    'vh.pillar3.k': 'Contextual Guidance',
+    'vh.pillar3.v': 'A great suggestion is the most attentive companion.',
     'virtual.matrix.1k': 'PERCEPTION',
     'virtual.matrix.1v': 'Vision · Audio · Emotion',
     'virtual.matrix.2k': 'COGNITION',
@@ -325,16 +386,67 @@ export const ui = {
     'virtual.matrix.3v': 'Real-time · Multi-turn',
     'virtual.matrix.4k': 'IDENTITY',
     'virtual.matrix.4v': 'Persona-locked · Roleplay',
-    'virtual.demo.welcome1': 'Hello, I\'m Miyaki.',
-    'virtual.demo.welcome2': 'Can you see me?',
-    'virtual.demo.welcome3': 'I can. Smiling, glasses, dark top — the mood is relaxed.',
     'virtual.demo.placeholder': 'Type a message…',
     'virtual.demo.send': 'SEND',
     'virtual.demo.perception': '● PERCEPTION FEED',
+    'virtual.demo.live': '● LIVE · MIYAKIEN',
+    'virtual.demo.session': 'SESSION 0x4F3A',
+
+    'vh.mode.label': 'MODE',
+    'vh.mode.2d': '2D · Live2D',
+    'vh.mode.3d': '3D',
+    'vh.mode.3dPending': 'Coming Soon',
+
+    'vh.scene.label': 'SCENE',
+
+    'vh.scene.boutique.label': 'Boutique',
+    'vh.scene.boutique.tag': 'BOUTIQUE',
+    'vh.scene.boutique.g1': "So glad to see you again! I noticed you're carrying the red shoulder bag from your last visit — it pairs beautifully with today's outfit. Want to look at coin pouches in the same color?",
+    'vh.scene.boutique.g2': "You actually remembered!",
+    'vh.scene.boutique.g3': "Of course. That piece is one I quietly love. We just got a new batch of small accessories in a similar tone — want to take a look?",
+    'vh.scene.boutique.r1': "This piece would look great with the shoes you're wearing today — want to try it on?",
+    'vh.scene.boutique.r2': "Last time you mentioned looking for earrings — we just got a new set in. Let me grab them for you.",
+    'vh.scene.boutique.r3': "I'll set this aside for you. Take your time browsing — come back when you've decided.",
+    'vh.scene.boutique.s1': 'Gender · Female',
+    'vh.scene.boutique.s2': 'Age · 25–32',
+    'vh.scene.boutique.s3': 'Gaze · 1.4s',
+    'vh.scene.boutique.s4': 'Interest · High',
+    'vh.scene.boutique.s5': 'Emotion · Pleased',
+
+    'vh.scene.corporate.label': 'Enterprise Reception',
+    'vh.scene.corporate.tag': 'CORPORATE',
+    'vh.scene.corporate.g1': "Hello! We offer many AI solutions for enterprises. Want to play a quick game to get to know each other? Tell me about your company, or show me your business card, and I'll match you with the right options.",
+    'vh.scene.corporate.g2': "OK, here we go.",
+    'vh.scene.corporate.g3': "Perfect. Based on what you share, I'll handpick the most suitable combinations for you. Let's start with your industry — what do you primarily work on?",
+    'vh.scene.corporate.r1': "We've worked with companies in your industry — happy to share similar case studies.",
+    'vh.scene.corporate.r2': "Then let me match you up — if you're comfortable sharing your budget range, I can recommend more precisely.",
+    'vh.scene.corporate.r3': "Great. I'll prepare a condensed version of the proposal — only a 5-minute read. Shall I send it to your email?",
+    'vh.scene.corporate.s1': 'Visitor · B2B',
+    'vh.scene.corporate.s2': 'Mode · Discovery',
+    'vh.scene.corporate.s3': 'Depth · Overview',
+    'vh.scene.corporate.s4': 'Next · Schedule call',
+    'vh.scene.corporate.s5': 'Emotion · Focused',
+
+    'vh.scene.ip.label': 'IP Tour & Guide',
+    'vh.scene.ip.tag': 'IP EVENT',
+    'vh.scene.ip.g1': "You look exhausted — those dark circles though! Hey, there's a really highly-rated café right around here.",
+    'vh.scene.ip.g2': "Really?",
+    'vh.scene.ip.g3': "Yeah! Their lattes are amazing. Want me to send you the address? I'll throw in a photo of the limited dessert they just launched today too.",
+    'vh.scene.ip.r1': "Oh by the way — if you get tired later I'll take you to that café. They've got a great window seat.",
+    'vh.scene.ip.r2': "Your outfit today looks really nice — got something special planned?",
+    'vh.scene.ip.r3': "I'd recommend the corridor behind this exhibit area — someone just said it's perfect for photos.",
+    'vh.scene.ip.s1': 'Visitor · New',
+    'vh.scene.ip.s2': 'Companions · 1',
+    'vh.scene.ip.s3': 'Interest · Characters',
+    'vh.scene.ip.s4': 'Engagement · High',
+    'vh.scene.ip.s5': 'Emotion · Excited',
+
+    'vh.placeholder.3d.title': '3D Model Coming Soon',
+    'vh.placeholder.3d.body': 'Hi-fidelity 3D interactive experience launching in the next release.',
 
     'comic.section': '§ 04 — AI Comic Studio',
-    'comic.title.l1': 'From spark to finished comic,',
-    'comic.title.l2': 'a four-step pipeline',
+    'comic.title':
+      'From spark to finished comic — <span class="title-accent-gold">a four-step pipeline</span>',
     'comic.subtitle':
       "Creator-led, AI-accelerated. Every step is editable; every output is commercially usable.",
 
@@ -379,10 +491,8 @@ export const ui = {
     'comic.cta': 'Try It',
 
     'game.section': '§ 03 — AI Game',
-    'game.title.l1': 'NPCs that',
-    'game.title.l2': 'truly',
-    'game.title.l2b': '',
-    'game.title.l3': 'live',
+    'game.title':
+      '<span class="title-accent-cinnabar">NPCs</span> that <span class="title-accent-gold">truly live</span>',
     'game.body':
       "Every NPC has memory, goals, and emotion. Player choices leave traces — next time you meet, they remember what you did.",
     'game.p1': 'Behavior tree + LLM hybrid decisions',
@@ -403,9 +513,8 @@ export const ui = {
     'game.memory3': 'The player prefers to negotiate before combat.',
 
     'cta.section': '§ 06 — Contact',
-    'cta.title.l1': 'Make AI your',
-    'cta.title.l2': 'next',
-    'cta.title.l3': 'creative partner.',
+    'cta.title':
+      'Make AI your <span class="title-accent-cinnabar">next</span> <span class="title-accent-gold">creative partner</span>.',
     'cta.body':
       "Technology partnerships, product licensing, or learning what AI can do for your space — let's talk.",
     'cta.button': 'Get in Touch',
@@ -451,53 +560,50 @@ export const ui = {
     'hero.cta.secondary': 'デモを見る',
 
     'solutions.section': '§ 01 — ソリューション',
-    'solutions.title.line1': 'AIクリエイティブ',
-    'solutions.title.line2': 'パイプライン',
+    'solutions.title':
+      'ゼロからイチへ、<span class="title-accent-gold">AIクリエイティブ・パイプライン</span>',
     'solutions.subtitle':
-      '脚本・美術・制作・公開まで、すべての工程を加速。クリエイターを置き換えるのではなく、各工程の摩擦を取り除きます。',
+      '脚本・キャラ・世界観・マルチモーダルへ──ゼロからイチまでを共に。クリエイター主導、AIが各工程の摩擦を取り除きます。',
 
-    'solutions.01.title': 'ストーリー',
+    'solutions.01.title': '脚本制作',
     'solutions.01.tag': 'Story Engine',
     'solutions.01.desc':
-      'AI脚本対話とバージョン履歴。世界観と章立てを素早く構築──主導権は常にクリエイターに。',
-    'solutions.01.t1': '脚本',
-    'solutions.01.t2': '世界観',
-    'solutions.01.t3': 'バージョン管理',
+      'ひらめきから始まり、AI編集者がキャラ・世界ルール・テンポを一緒に組み立てます。対話は編集可能なプロットへ蓄積──主導権は常にクリエイターに。',
+    'solutions.01.t1': 'プロット',
+    'solutions.01.t2': 'キャラ設定',
+    'solutions.01.t3': '対話',
 
-    'solutions.02.title': 'キャラクター',
+    'solutions.02.title': 'キャラ描写',
     'solutions.02.tag': 'Character & Art',
     'solutions.02.desc':
-      'アイデンティティを保ったキャラ設計と絵コンテ。章を跨いでも同じキャラ。商用利用可能な素材ライブラリ。',
-    'solutions.02.t1': '一貫性',
-    'solutions.02.t2': '絵コンテ',
-    'solutions.02.t3': '素材ライブラリ',
+      'アイデンティティを保ったキャラ設計。章を跨いでも外観・表情・衣装が一貫。三面図・表情セット・動作ポーズが一気に揃い、商用利用可能な素材ライブラリへ。',
+    'solutions.02.t1': '三面図',
+    'solutions.02.t2': '一貫性',
+    'solutions.02.t3': '表情',
 
-    'solutions.03.title': 'ゲーム',
-    'solutions.03.tag': 'Game Pipeline',
+    'solutions.03.title': '世界観構築',
+    'solutions.03.tag': 'World Builder',
     'solutions.03.desc':
-      'NPC行動、適応的難易度、自動テスト──制作工程にAIを組み込む。プロトタイプから公開までを一桁短縮。',
-    'solutions.03.t1': 'NPC AI',
-    'solutions.03.t2': '難易度',
-    'solutions.03.t3': 'QA',
+      '文明設定から地理環境まで、AIが散らばった世界の断片を一貫した時空軸へ織り上げます。場面・文化・歴史──すべての要素が物語とキャラに継承されます。',
+    'solutions.03.t1': '場面',
+    'solutions.03.t2': '文化',
+    'solutions.03.t3': '歴史',
 
     'solutions.04.title': 'マルチモーダル世界',
     'solutions.04.tag': 'Multimodal World',
     'solutions.04.desc':
-      '散らばった創作の断片を、生命を持つデジタル時空へ──物語・キャラクター・ゲームプレイが共生・進化する世界。',
-    'solutions.04.t1': '世界観',
-    'solutions.04.t2': 'クロスメディア',
-    'solutions.04.t3': '生態進化',
+      '脚本・キャラ・世界観を、生命を持つデジタル時空へ織り上げる──物語・キャラ・ゲームプレイが共生・進化し、漫画・バーチャル・ゲームを横断します。',
+    'solutions.04.t1': 'クロスメディア',
+    'solutions.04.t2': '共進化',
+    'solutions.04.t3': '没入感',
 
     'about.section': '§ 05 — About',
-    'about.title.l1': '',
-    'about.title.l1b': 'AI',
-    'about.title.l1c': 'と',
-    'about.title.l2': 'コンテンツの',
-    'about.title.l3': '境界',
-    'about.title.l3b': 'を探る',
+    'about.title':
+      '三十年のコンテンツ工芸、<span class="title-accent-cinnabar">AI</span>が<span class="title-accent-gold">魂</span>を吹き込む',
     'about.body1':
-      '最先端のAI研究を追い、製品に実装します──脚本・漫画・音楽からバーチャルヒューマンの対話まで。クリエイターには速度を、観客には未体験の感動を。',
-    'about.body2': '「アイデアから成果物まで」を短縮するだけでなく、AIで新しいエンタメの可能性を開きます。',
+      '30年のゲーム開発・代理の蓄積の上に立ち、私たちはコンテンツ制作の痛みと限界を熟知しています。Muztrixは最先端のAI技術を現場へと落とし込みます──自動化された脚本から、温度のあるバーチャルヒューマンとの対話まで。',
+    'about.body2':
+      'スピードの向上だけでなく、品質の進化を追求します。AIで、私たちはデジタルエンタメの境界を再定義し、ブランドとクリエイターに無限の可能性を秘めたバーチャル世界を構築します。',
     'about.pillar1.k': '人間中心',
     'about.pillar1.v': '倫理的枠組みと人間の価値観に基づくAI。',
     'about.pillar2.k': 'クリエイター優先',
@@ -514,12 +620,18 @@ export const ui = {
     'about.ethical.body': 'AI driven by moral frameworks and human values.',
 
     'virtual.section': '§ 02 — Virtual Human',
-    'virtual.title.l1': '見て、聴いて、',
-    'virtual.title.l2': '覚える',
-    'virtual.title.l3': 'AI',
+    'virtual.title':
+      '見て、聴いて、<span class="title-accent-cinnabar">覚える</span>AI',
     'virtual.body1':
-      '自社製の知覚エンジンを基盤に、性別・年齢・表情・服装・滞在時間、音声キーワードと感情までリアルタイムで解析。温度のある対話のリズムを合成します。',
-    'virtual.body2': '長期記憶が来訪者ごとに学習し、対話のたびにあなたの人格へ近づきます。',
+      '知覚・記憶・シーンへの対応──3つのレイヤーで温かみのあるバーチャルヒューマンを定義し、あらゆるシーンであなたのブランドを自然に拡張します。',
+    'virtual.body2': '',
+
+    'vh.pillar1.k': '精密な認識',
+    'vh.pillar1.v': '対話の最初の一歩は、あなたの求めるものを見ること。',
+    'vh.pillar2.k': '知的な連動',
+    'vh.pillar2.v': '本当の温かさは、あなたの名前を覚えていること。',
+    'vh.pillar3.k': 'シーンガイダンス',
+    'vh.pillar3.v': '質の高い提案こそ、最も寄り添う存在。',
     'virtual.matrix.1k': 'PERCEPTION',
     'virtual.matrix.1v': '視覚 · 聴覚 · 感情',
     'virtual.matrix.2k': 'COGNITION',
@@ -528,16 +640,67 @@ export const ui = {
     'virtual.matrix.3v': 'リアルタイム · 多ターン',
     'virtual.matrix.4k': 'IDENTITY',
     'virtual.matrix.4v': '人格固定 · ロールプレイ',
-    'virtual.demo.welcome1': 'こんにちは、Miyakiです。',
-    'virtual.demo.welcome2': '見えていますか？',
-    'virtual.demo.welcome3': '見えています。微笑、眼鏡、暗い色の上着──雰囲気はリラックス。',
     'virtual.demo.placeholder': 'メッセージを入力……',
     'virtual.demo.send': '送信',
     'virtual.demo.perception': '● PERCEPTION FEED',
+    'virtual.demo.live': '● LIVE · MIYAKIEN',
+    'virtual.demo.session': 'SESSION 0x4F3A',
+
+    'vh.mode.label': 'MODE',
+    'vh.mode.2d': '2D · Live2D',
+    'vh.mode.3d': '3D',
+    'vh.mode.3dPending': '準備中',
+
+    'vh.scene.label': 'SCENE',
+
+    'vh.scene.boutique.label': '精品店員',
+    'vh.scene.boutique.tag': 'BOUTIQUE',
+    'vh.scene.boutique.g1': 'またお会いできて嬉しいです。前回お買い上げいただいた赤いショルダーバッグ、今日のお召し物にとても似合っていますね。同系色のコインケースも見てみませんか？',
+    'vh.scene.boutique.g2': '覚えてくれてたんですね！',
+    'vh.scene.boutique.g3': 'もちろんです。あの作品は私もひそかに気に入っていて。ちょうど似た色合いの小物が新しく入荷したばかりです。ご覧になりますか？',
+    'vh.scene.boutique.r1': 'こちら、今日のお靴とすごく相性が良いです。試着されますか？',
+    'vh.scene.boutique.r2': '前回イヤリングをお探しと仰っていましたよね──ちょうど新作が入ったので、お持ちしますね。',
+    'vh.scene.boutique.r3': 'こちらお取り置きしておきますね。ごゆっくり見ていただいて、決まったら戻ってきてください。',
+    'vh.scene.boutique.s1': '性別 · 女性',
+    'vh.scene.boutique.s2': '年齢 · 25-32',
+    'vh.scene.boutique.s3': '注視 · 1.4秒',
+    'vh.scene.boutique.s4': '関心度 · 高',
+    'vh.scene.boutique.s5': '感情 · 喜び',
+
+    'vh.scene.corporate.label': '企業窓口',
+    'vh.scene.corporate.tag': 'CORPORATE',
+    'vh.scene.corporate.g1': 'こんにちは。企業様向けにAIソリューションを多数ご用意しています。ちょっとしたゲーム感覚でお互いを知りませんか？貴社の情報や名刺を見せていただければ、ぴったりの提案をいたします。',
+    'vh.scene.corporate.g2': 'はい、お話しします。',
+    'vh.scene.corporate.g3': 'ありがとうございます。お話しいただいた内容を元に、最適な組み合わせをお選びします。まずは業界からお聞きしてもよろしいですか？',
+    'vh.scene.corporate.r1': 'その業界、弊社にも実績がございます。後ほど類似事例をお見せできます。',
+    'vh.scene.corporate.r2': 'では適切なプランをお選びします──ご予算感を教えていただけると、より具体的にご提案できます。',
+    'vh.scene.corporate.r3': 'かしこまりました。要点をまとめた簡易版をご用意します──5分でご覧いただけます。メールでお送りしましょうか？',
+    'vh.scene.corporate.s1': '来訪 · B2B',
+    'vh.scene.corporate.s2': 'モード · 探索',
+    'vh.scene.corporate.s3': '深度 · 概要',
+    'vh.scene.corporate.s4': '推奨 · 商談設定',
+    'vh.scene.corporate.s5': '感情 · 集中',
+
+    'vh.scene.ip.label': 'IPツアーガイド',
+    'vh.scene.ip.tag': 'IP EVENT',
+    'vh.scene.ip.g1': 'なんか疲れてそうですね、クマがすごい！実はこの近くに評判の良いカフェがあるんですよ。',
+    'vh.scene.ip.g2': '本当に？',
+    'vh.scene.ip.g3': '本当です！特にラテが絶品で。場所を送りましょうか？今日新しく出た限定スイーツの写真もシェアしますね。',
+    'vh.scene.ip.r1': 'そういえば、後で疲れたら例のカフェへ案内しますね。窓際の席がとても気持ちいいですよ。',
+    'vh.scene.ip.r2': '今日のコーディネートとても素敵ですね、何か特別な予定でも？',
+    'vh.scene.ip.r3': 'この展示の奥にある通路、おすすめですよ。さっき写真映えがすごいって誰かが言ってました。',
+    'vh.scene.ip.s1': '訪問者 · 新規',
+    'vh.scene.ip.s2': '同伴者 · 1人',
+    'vh.scene.ip.s3': '関心 · キャラクター',
+    'vh.scene.ip.s4': 'エンゲージメント · 高',
+    'vh.scene.ip.s5': '感情 · 興奮',
+
+    'vh.placeholder.3d.title': '3Dモデル準備中',
+    'vh.placeholder.3d.body': '高精細な3Dインタラクティブ体験は次バージョンで公開予定。',
 
     'comic.section': '§ 04 — AIコミックスタジオ',
-    'comic.title.l1': 'ひらめきから完成まで、',
-    'comic.title.l2': '4ステップのパイプライン',
+    'comic.title':
+      'ひらめきから完成まで、<span class="title-accent-gold">4ステップのパイプライン</span>',
     'comic.subtitle': 'クリエイター主導、AI加速。各ステップが編集可能。商用利用可能な素材を出力します。',
 
     'comic.01.label': 'ストーリー設計',
@@ -581,10 +744,8 @@ export const ui = {
     'comic.cta': '試してみる',
 
     'game.section': '§ 03 — AIゲーム',
-    'game.title.l1': '本当に',
-    'game.title.l2': '生きている',
-    'game.title.l2b': '',
-    'game.title.l3': 'NPC',
+    'game.title':
+      '本当に<span class="title-accent-gold">生きている</span><span class="title-accent-cinnabar">NPC</span>',
     'game.body':
       '各NPCは記憶・目標・感情を持ちます。プレイヤーの選択は痕跡を残し──次に会うとき、彼らはあなたを覚えています。',
     'game.p1': 'ビヘイビアツリー + LLM ハイブリッド意思決定',
@@ -605,9 +766,8 @@ export const ui = {
     'game.memory3': 'プレイヤーは戦闘前に交渉を好む。',
 
     'cta.section': '§ 06 — Contact',
-    'cta.title.l1': 'AIをあなたの',
-    'cta.title.l2': '次の',
-    'cta.title.l3': 'クリエイティブパートナーに。',
+    'cta.title':
+      'AIをあなたの<span class="title-accent-cinnabar">次の</span><span class="title-accent-gold">クリエイティブパートナー</span>に。',
     'cta.body':
       '技術提携、ライセンス、貴社の現場でAIが何をできるか──お気軽にご相談ください。',
     'cta.button': 'お問い合わせ',

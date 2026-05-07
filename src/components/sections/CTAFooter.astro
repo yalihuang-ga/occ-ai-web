@@ -62,14 +62,7 @@ const cols = [
             style="width: 80px; height: 1px; background: var(--bone-line);"
           ></span>
         </div>
-        <h2 class="h-display" style="margin: 0; color: var(--color-bone);">
-          {t('cta.title.l1')}<br />
-          <span style="color: var(--color-cinnabar);">{t('cta.title.l2')}</span>
-          <br />
-          <span style="font-style: italic; font-weight: 200; color: var(--color-gold);"
-            >{t('cta.title.l3')}</span
-          >
-        </h2>
+        <h2 class="h-display" style="margin: 0; color: var(--color-bone);" set:html={t('cta.title')} />
         <p
           class="body-lg-v2"
           style="max-width: 580px; margin-top: 36px;"
