@@ -517,7 +517,7 @@ function MockCharacter() {
       <div className="comic-panel" style={{ background: 'var(--color-ink-2)', border: '1px solid var(--bone-line)' }}>
         <div className="comic-panel-head">
           <span className="comic-panel-tag">CHARACTER · 三視圖</span>
-          <span className="comic-panel-meta">主角 · NANO BANANA PRO</span>
+          <span className="comic-panel-meta">主角 · v3 · LOCKED</span>
         </div>
         <div className="comic-art-wrap" style={{ aspectRatio: '900 / 420' }}>
           <img
@@ -727,7 +727,7 @@ function MockCanvas() {
           CANVAS EDITOR
         </span>
         <span style={{ flex: 1, height: 1, background: 'var(--bone-line)' }} />
-        {['導入 JSON', '備份 JSON', '匯出圖片', '下載素材'].map((b, i) => (
+        {['新增頁面', '版面樣式', '匯出圖片', '下載素材'].map((b, i) => (
           <span
             key={i}
             style={{
@@ -883,7 +883,7 @@ function MockCanvas() {
                 color: 'var(--color-bone)',
               }}
             >
-              <span style={{ fontSize: 11, fontWeight: 600, flex: 1 }}>發布到社區</span>
+              <span style={{ fontSize: 11, fontWeight: 600, flex: 1 }}>發布到社群</span>
               <span
                 style={{
                   width: 8,

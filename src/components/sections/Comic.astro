@@ -60,7 +60,7 @@ const stages = [
         ></span>
       </div>
       <h2
-        class="h1-display"
+        class="h1-display comic-title"
         style="margin-bottom: 28px;"
         set:html={t('comic.title')}
       />
@@ -104,6 +104,13 @@ const stages = [
 </section>
 
 <style>
+  /* Comic title: tighter clamp than the default h1-display so the long
+     19-char Chinese title fits on one row at desktop / tablet widths. On
+     narrow phones it will still wrap normally. */
+  .comic-title {
+    font-size: clamp(40px, 4.6vw, 68px) !important;
+  }
+
   /* Tablet: 2x2 tabs, stacked canvas */
   @container page (max-width: 900px) {
     .mx-comic-tabs {

@@ -198,7 +198,7 @@ export const ui = {
     'comic.01.desc':
       '從一句靈感開始，AI 編劇陪你展開角色設定、場景氛圍與分鏡節奏。每一次對話都會沉澱進可編輯的故事大綱。',
     'comic.01.m1': '彈性討論深度',
-    'comic.01.m2': 'Claude Sonnet 4.6',
+    'comic.01.m2': 'AI 編劇模型',
     'comic.01.m3': '繁中 · 日漫風格',
 
     'comic.02.label': '角色 / 場景設計',
@@ -206,7 +206,7 @@ export const ui = {
     'comic.02.title': '角色三視圖、場景概念板，一次鎖定',
     'comic.02.desc':
       '主角的正面 / 側面 / 背面三視圖，加上故事場景的概念板。角色與場景同步繫結到敘事，確保跨分鏡、跨章節風格一致。',
-    'comic.02.m1': 'Nano Banana Pro',
+    'comic.02.m1': '高一致性出圖',
     'comic.02.m2': '三視圖 + 場景概念板',
     'comic.02.m3': '性格 / 場景綁定',
 
@@ -223,10 +223,10 @@ export const ui = {
     'comic.04.en': 'Canvas & Export',
     'comic.04.title': '排版、匯出、發布',
     'comic.04.desc':
-      '頁漫排版預覽、JSON 備份、匯出圖片或發布到社區。從草稿到上稿，作品始終在你手裡。',
-    'comic.04.m1': 'JSON 雙向匯入',
+      '頁漫排版預覽、匯出圖片或發布到社群。從草稿到上稿，作品始終在你手裡。',
+    'comic.04.m1': '拖拉式編排',
     'comic.04.m2': '匯出 PNG / 頁漫',
-    'comic.04.m3': '社區發布',
+    'comic.04.m3': '社群發布',
 
     'comic.flow': 'FLOW · STORY → CHARACTER → STORYBOARD → CANVAS',
     'comic.flow.note': '產出可商用素材庫，跨章節維持角色一致性',
@@ -456,7 +456,7 @@ export const ui = {
     'comic.01.desc':
       "Start from a single spark. The AI editor walks character, scene, and pacing with you. Every conversation distills into an editable story outline.",
     'comic.01.m1': 'Flexible depth',
-    'comic.01.m2': 'Claude Sonnet 4.6',
+    'comic.01.m2': 'AI script model',
     'comic.01.m3': 'zh-TW · manga style',
 
     'comic.02.label': 'Character & Scene',
@@ -464,7 +464,7 @@ export const ui = {
     'comic.02.title': 'Three-view turnaround + scene boards',
     'comic.02.desc':
       "Front, side, and back rendered together with concept boards for each scene. Character + setting bind to the story so style holds across panels and chapters.",
-    'comic.02.m1': 'Nano Banana Pro',
+    'comic.02.m1': 'High-consistency render',
     'comic.02.m2': '3-view + scene boards',
     'comic.02.m3': 'Character / scene binding',
 
@@ -481,8 +481,8 @@ export const ui = {
     'comic.04.en': 'Canvas & Export',
     'comic.04.title': 'Layout, export, publish',
     'comic.04.desc':
-      "Page layout preview, JSON backup, image export, or publish to the community. Your work stays in your hands.",
-    'comic.04.m1': 'JSON I/O',
+      "Page layout preview, image export, or publish to the community. Your work stays in your hands.",
+    'comic.04.m1': 'Drag-and-drop layout',
     'comic.04.m2': 'PNG export',
     'comic.04.m3': 'Community publish',
 
@@ -709,7 +709,7 @@ export const ui = {
     'comic.01.desc':
       'ひらめきから始まり、AI編集者がキャラ・場面・テンポを一緒に組み立てます。対話は編集可能なプロットへ蓄積。',
     'comic.01.m1': '柔軟な深度',
-    'comic.01.m2': 'Claude Sonnet 4.6',
+    'comic.01.m2': 'AI脚本モデル',
     'comic.01.m3': '繁中 · マンガスタイル',
 
     'comic.02.label': 'キャラ / シーン',
@@ -717,7 +717,7 @@ export const ui = {
     'comic.02.title': '三面図とシーン・コンセプトを一括ロック',
     'comic.02.desc':
       '主人公の正面・側面・背面と、各シーンのコンセプトボードを同時生成。性格と舞台を物語に紐づけ、コマ・章を跨いでもブレません。',
-    'comic.02.m1': 'Nano Banana Pro',
+    'comic.02.m1': '高一貫性レンダリング',
     'comic.02.m2': '三面図 + シーンボード',
     'comic.02.m3': 'キャラ・シーン束縛',
 
@@ -734,8 +734,8 @@ export const ui = {
     'comic.04.en': 'Canvas & Export',
     'comic.04.title': 'レイアウト、書き出し、公開',
     'comic.04.desc':
-      'ページレイアウトプレビュー、JSONバックアップ、画像書き出し、コミュニティ公開。作品はあなたの手に。',
-    'comic.04.m1': 'JSON 双方向',
+      'ページレイアウトプレビュー、画像書き出し、コミュニティ公開。作品はあなたの手に。',
+    'comic.04.m1': 'ドラッグ編集',
     'comic.04.m2': 'PNG 書き出し',
     'comic.04.m3': 'コミュニティ公開',
 
