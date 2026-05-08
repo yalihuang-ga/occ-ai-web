@@ -17,7 +17,7 @@ const stages = [
     en: t('comic.01.en'),
     title: t('comic.01.title'),
     desc: t('comic.01.desc'),
-    meta: [t('comic.01.m1'), t('comic.01.m2'), t('comic.01.m3')] as [string, string, string],
+    meta: [t('comic.01.m1'), t('comic.01.m2'), t('comic.01.m3')] as string[],
   },
   {
     num: '02' as const,
@@ -25,7 +25,7 @@ const stages = [
     en: t('comic.02.en'),
     title: t('comic.02.title'),
     desc: t('comic.02.desc'),
-    meta: [t('comic.02.m1'), t('comic.02.m2'), t('comic.02.m3')] as [string, string, string],
+    meta: [t('comic.02.m1'), t('comic.02.m2'), t('comic.02.m3')] as string[],
   },
   {
     num: '03' as const,
@@ -33,7 +33,7 @@ const stages = [
     en: t('comic.03.en'),
     title: t('comic.03.title'),
     desc: t('comic.03.desc'),
-    meta: [t('comic.03.m1'), t('comic.03.m2'), t('comic.03.m3')] as [string, string, string],
+    meta: [t('comic.03.m1'), t('comic.03.m2'), t('comic.03.m3')] as string[],
   },
   {
     num: '04' as const,
@@ -41,7 +41,12 @@ const stages = [
     en: t('comic.04.en'),
     title: t('comic.04.title'),
     desc: t('comic.04.desc'),
-    meta: [t('comic.04.m1'), t('comic.04.m2'), t('comic.04.m3')] as [string, string, string],
+    meta: [
+      t('comic.04.m1'),
+      t('comic.04.m2'),
+      t('comic.04.m3'),
+      t('comic.04.m4'),
+    ] as string[],
   },
 ];
 ---
@@ -78,7 +83,7 @@ const stages = [
     <!-- Bottom flow strip -->
     <div
       class="mx-comic-bottom flex items-center mt-6"
-      style="gap: 24px; padding: 18px 28px; border: 1px solid var(--bone-line);"
+      style="gap: 24px; padding: 22px 28px; border: 1px solid var(--bone-line);"
     >
       <span
         style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.25em; color: var(--color-cinnabar);"
@@ -93,8 +98,7 @@ const stages = [
         href="https://mangacanvas.gamaniaocc.org/"
         target="_blank"
         rel="noopener noreferrer"
-        class="btn-v2 btn-v2--ghost"
-        style="padding: 10px 18px; font-size: 11px;"
+        class="btn-v2 btn-v2--primary mx-comic-cta"
       >
         {t('comic.cta')}
         <span class="arrow"></span>
@@ -109,6 +113,30 @@ const stages = [
      narrow phones it will still wrap normally. */
   .comic-title {
     font-size: clamp(40px, 4.6vw, 68px) !important;
+  }
+
+  /* Bottom CTA — larger / heavier than the default btn-v2 sizing so it
+     reads as the section's primary action. */
+  .mx-comic-cta {
+    padding: 22px 36px !important;
+    font-size: 14px !important;
+    letter-spacing: 0.22em !important;
+    box-shadow: 0 0 0 1px rgba(255, 90, 31, 0.0), 0 8px 24px rgba(255, 90, 31, 0.18);
+  }
+  .mx-comic-cta:hover {
+    box-shadow: 0 0 0 1px rgba(255, 90, 31, 0.4), 0 12px 32px rgba(255, 90, 31, 0.28);
+  }
+  .mx-comic-cta .arrow {
+    width: 16px !important;
+    height: 16px !important;
+    border-top-width: 2px !important;
+    border-right-width: 2px !important;
+  }
+  @container page (max-width: 700px) {
+    .mx-comic-cta {
+      padding: 18px 28px !important;
+      font-size: 13px !important;
+    }
   }
 
   /* Tablet: 2x2 tabs, stacked canvas */

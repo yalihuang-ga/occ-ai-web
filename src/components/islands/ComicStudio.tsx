@@ -6,7 +6,7 @@ interface Stage {
   en: string;
   title: string;
   desc: string;
-  meta: [string, string, string];
+  meta: string[];
 }
 
 interface Props {
@@ -710,194 +710,171 @@ function MockStoryboard() {
 }
 
 function MockCanvas() {
+  type PageLayout = 'cover' | 'split' | 'grid' | 'tall';
+  type PagePanel = { src: string; pos?: string };
+  type Page = {
+    layout: PageLayout;
+    panels: PagePanel[];
+    label: string;
+    rotate: number;
+    offsetX: number; // % of stack area
+    offsetY: number; // px
+  };
+
+  // Each page is a portrait comic page; the user can swap in real artwork later.
+  // Pages are arranged back-to-front, slight rotation + offset → "pile of finished works" feel.
+  const pages: Page[] = [
+    {
+      layout: 'grid',
+      panels: [
+        { src: '/comic/panel-2a.webp', pos: 'center center' },
+        { src: '/comic/loc-bamboo.webp', pos: 'center center' },
+        { src: '/comic/panel-2b.webp', pos: 'left center' },
+        { src: '/comic/panel-3b.webp', pos: 'left center' },
+      ],
+      label: 'PG · 06',
+      rotate: -10,
+      offsetX: -28,
+      offsetY: -8,
+    },
+    {
+      layout: 'split',
+      panels: [
+        { src: '/comic/panel-3a.webp', pos: 'center top' },
+        { src: '/comic/loc-peak.webp', pos: 'center center' },
+        { src: '/comic/loc-glass.webp', pos: 'center center' },
+      ],
+      label: 'PG · 04',
+      rotate: 8,
+      offsetX: 24,
+      offsetY: -14,
+    },
+    {
+      layout: 'tall',
+      panels: [
+        { src: '/comic/panel-1a.webp', pos: 'center top' },
+        { src: '/comic/panel-2b.webp', pos: 'right center' },
+      ],
+      label: 'PG · 03',
+      rotate: -4,
+      offsetX: -12,
+      offsetY: 12,
+    },
+    {
+      layout: 'cover',
+      panels: [{ src: '/comic/panel-3a.webp', pos: 'center 30%' }],
+      label: 'PG · 01',
+      rotate: 2,
+      offsetX: 8,
+      offsetY: 18,
+    },
+  ];
+
   return (
     <div
       style={{
         position: 'absolute',
         inset: 0,
-        padding: 32,
+        padding: 28,
         display: 'flex',
         flexDirection: 'column',
         gap: 14,
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+      {/* Minimal status — no toolbar / project details / publish buttons */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
         <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--color-cinnabar)' }} />
         <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.2em', color: 'var(--color-bone-2)' }}>
-          CANVAS EDITOR
+          FINISHED WORKS · 4 / 4 PAGES
         </span>
         <span style={{ flex: 1, height: 1, background: 'var(--bone-line)' }} />
-        {['新增頁面', '版面樣式', '匯出圖片', '下載素材'].map((b, i) => (
-          <span
+        <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.2em', color: 'var(--color-bone-3)' }}>
+          READY TO PUBLISH
+        </span>
+      </div>
+
+      {/* Stack of finished pages */}
+      <div style={{ flex: 1, position: 'relative' }}>
+        {pages.map((p, i) => (
+          <div
             key={i}
             style={{
-              fontSize: 10,
-              padding: '5px 10px',
-              border: i === 2 ? '1px solid var(--color-cinnabar)' : '1px solid var(--bone-line)',
-              color: i === 2 ? 'var(--color-cinnabar)' : 'var(--color-bone-2)',
-              background: i === 2 ? 'rgba(255,90,31,0.1)' : 'transparent',
-              fontFamily: 'var(--font-mono)',
-              letterSpacing: '0.1em',
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              width: '46%',
+              minWidth: 200,
+              aspectRatio: '3 / 4',
+              transform: `translate(calc(-50% + ${p.offsetX}%), calc(-50% + ${p.offsetY}px)) rotate(${p.rotate}deg)`,
+              zIndex: i + 1,
+              background: '#f4ecdc',
+              padding: 8,
+              boxShadow: '0 18px 36px rgba(0,0,0,0.55), 0 4px 12px rgba(0,0,0,0.35)',
+              transition: 'transform .5s cubic-bezier(.22,1,.36,1)',
             }}
           >
-            {b}
-          </span>
+            {/* Page label stamp */}
+            <span
+              style={{
+                position: 'absolute',
+                top: 6,
+                right: 10,
+                fontFamily: 'var(--font-mono)',
+                fontSize: 7,
+                color: '#9b8d72',
+                letterSpacing: '0.25em',
+              }}
+            >
+              {p.label}
+            </span>
+            <ComicPageContent layout={p.layout} panels={p.panels} />
+          </div>
         ))}
       </div>
+    </div>
+  );
+}
 
-      <div style={{ flex: 1, display: 'grid', gridTemplateColumns: '1.6fr 0.9fr', gap: 14 }}>
-        <div
-          style={{
-            background: '#f4ecdc',
-            border: '1px solid var(--bone-line)',
-            padding: 14,
-            position: 'relative',
-            overflow: 'hidden',
-          }}
-        >
-          <div
-            style={{
-              position: 'absolute',
-              top: 8,
-              right: 12,
-              fontFamily: 'var(--font-mono)',
-              fontSize: 8,
-              color: '#999',
-              letterSpacing: '0.2em',
-            }}
-          >
-            PAGE · 01
-          </div>
+function ComicPageContent({ layout, panels }: { layout: 'cover' | 'split' | 'grid' | 'tall'; panels: { src: string; pos?: string }[] }) {
+  const Panel = ({ src, pos, style }: { src: string; pos?: string; style?: React.CSSProperties }) => (
+    <div className="comic-art-wrap" style={{ background: '#0e0b08', border: '1px solid #1a1a1a', ...style }}>
+      <img src={src} alt="" loading="lazy" decoding="async" className="comic-art" style={{ objectPosition: pos ?? 'center center' }} />
+      <span className="comic-art-tint" />
+      <span className="comic-art-halftone" />
+    </div>
+  );
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '1.4fr 1fr',
-              gridTemplateRows: '1.1fr 0.9fr 0.9fr',
-              gap: 6,
-              height: '100%',
-            }}
-          >
-            {[
-              { src: '/comic/panel-1a.webp', span: 'row', pos: 'center top' },
-              { src: '/comic/loc-glass.webp', span: '', pos: 'center center' },
-              { src: '/comic/panel-2b.webp', span: '', pos: 'left center' },
-              { src: '/comic/panel-3a.webp', span: 'col', pos: 'center top' },
-            ].map((p, i) => (
-              <div
-                key={i}
-                className="comic-art-wrap"
-                style={{
-                  gridRow: p.span === 'row' ? 'span 2' : undefined,
-                  gridColumn: p.span === 'col' ? 'span 2' : undefined,
-                  border: '1px solid #222',
-                  background: '#0e0b08',
-                }}
-              >
-                <img
-                  src={p.src}
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
-                  className="comic-art"
-                  style={{ objectPosition: p.pos }}
-                />
-                <span className="comic-art-tint" />
-                <span className="comic-art-halftone" />
-              </div>
-            ))}
-          </div>
-        </div>
+  if (layout === 'cover') {
+    return <Panel src={panels[0].src} pos={panels[0].pos} style={{ width: '100%', height: '100%' }} />;
+  }
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-          <div style={{ border: '1px solid var(--bone-line)', padding: '14px 16px' }}>
-            <div
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: 9,
-                letterSpacing: '0.25em',
-                color: 'var(--color-bone-3)',
-                marginBottom: 8,
-              }}
-            >
-              專案詳情
-            </div>
-            <div
-              style={{
-                fontFamily: 'var(--font-headline)',
-                fontSize: 14,
-                color: 'var(--color-bone)',
-                lineHeight: 1.4,
-                marginBottom: 14,
-              }}
-            >
-              絕壁之巔：<br />艾力克斯·霍諾德的 101 自由攀登
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
-              {[
-                ['角色', '1'],
-                ['場景', '3'],
-                ['分鏡', '9'],
-                ['頁數', '4'],
-              ].map(([l, v], i) => (
-                <div key={i}>
-                  <div style={{ fontSize: 9, color: 'var(--color-bone-3)', letterSpacing: '0.1em', marginBottom: 2 }}>
-                    {l}
-                  </div>
-                  <div style={{ fontFamily: 'var(--font-headline)', fontSize: 22, color: 'var(--color-bone)', lineHeight: 1 }}>
-                    {v}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div
-            style={{
-              border: '1px solid var(--color-cinnabar)',
-              padding: '14px 16px',
-              background: 'rgba(255,90,31,0.06)',
-            }}
-          >
-            <div
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: 9,
-                letterSpacing: '0.25em',
-                color: 'var(--color-cinnabar)',
-                marginBottom: 8,
-              }}
-            >
-              分享與發布
-            </div>
-            <div style={{ fontSize: 11, color: 'var(--color-bone-2)', lineHeight: 1.5, marginBottom: 12 }}>
-              發布後可獲得專屬連結，讓讀者一頁頁翻完你的作品。
-            </div>
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 8,
-                padding: '8px 12px',
-                background: 'var(--color-cinnabar)',
-                color: 'var(--color-bone)',
-              }}
-            >
-              <span style={{ fontSize: 11, fontWeight: 600, flex: 1 }}>發布到社群</span>
-              <span
-                style={{
-                  width: 8,
-                  height: 8,
-                  borderTop: '1.5px solid currentColor',
-                  borderRight: '1.5px solid currentColor',
-                  transform: 'rotate(45deg)',
-                  display: 'inline-block',
-                }}
-              />
-            </div>
-          </div>
+  if (layout === 'split') {
+    return (
+      <div style={{ display: 'grid', gridTemplateRows: '1.4fr 1fr', gap: 5, height: '100%' }}>
+        <Panel src={panels[0].src} pos={panels[0].pos} />
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 5 }}>
+          <Panel src={panels[1].src} pos={panels[1].pos} />
+          <Panel src={panels[2].src} pos={panels[2].pos} />
         </div>
       </div>
+    );
+  }
+
+  if (layout === 'tall') {
+    return (
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr', gridTemplateRows: '1.3fr 1fr', gap: 5, height: '100%' }}>
+        <Panel src={panels[0].src} pos={panels[0].pos} />
+        <Panel src={panels[1].src} pos={panels[1].pos} />
+      </div>
+    );
+  }
+
+  // grid (2x2)
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', gap: 5, height: '100%' }}>
+      {panels.slice(0, 4).map((p, i) => (
+        <Panel key={i} src={p.src} pos={p.pos} />
+      ))}
     </div>
   );
 }

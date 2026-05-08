@@ -198,8 +198,8 @@ export const ui = {
     'comic.01.desc':
       '從一句靈感開始，AI 編劇陪你展開角色設定、場景氛圍與分鏡節奏。每一次對話都會沉澱進可編輯的故事大綱。',
     'comic.01.m1': '彈性討論深度',
-    'comic.01.m2': 'AI 編劇模型',
-    'comic.01.m3': '繁中 · 日漫風格',
+    'comic.01.m2': '支援多語系',
+    'comic.01.m3': '多種輸出格式與風格',
 
     'comic.02.label': '角色 / 場景設計',
     'comic.02.en': 'Character & Scene Design',
@@ -215,18 +215,19 @@ export const ui = {
     'comic.03.title': '幕、格、節奏一次到位',
     'comic.03.desc':
       '依故事大綱自動生成分幕分鏡，比例、構圖、對話框可逐格微調。角色與場景資產自動套用。',
-    'comic.03.m1': '幕 / 格 階層',
-    'comic.03.m2': '3:2 · 16:9 雙比例',
-    'comic.03.m3': '逐格重生',
+    'comic.03.m1': '批次生成所有分鏡',
+    'comic.03.m2': '支援多種圖片比例',
+    'comic.03.m3': '筆刷重繪功能',
 
     'comic.04.label': '畫布編輯',
     'comic.04.en': 'Canvas & Export',
     'comic.04.title': '排版、匯出、發布',
     'comic.04.desc':
       '頁漫排版預覽、匯出圖片或發布到社群。從草稿到上稿，作品始終在你手裡。',
-    'comic.04.m1': '拖拉式編排',
-    'comic.04.m2': '匯出 PNG / 頁漫',
-    'comic.04.m3': '社群發布',
+    'comic.04.m1': '無需手動排版',
+    'comic.04.m2': '智慧生成封面',
+    'comic.04.m3': '素材匯出',
+    'comic.04.m4': '社群發布',
 
     'comic.flow': 'FLOW · STORY → CHARACTER → STORYBOARD → CANVAS',
     'comic.flow.note': '產出可商用素材庫，跨章節維持角色一致性',
@@ -455,9 +456,9 @@ export const ui = {
     'comic.01.title': 'Co-author with AI',
     'comic.01.desc':
       "Start from a single spark. The AI editor walks character, scene, and pacing with you. Every conversation distills into an editable story outline.",
-    'comic.01.m1': 'Flexible depth',
-    'comic.01.m2': 'AI script model',
-    'comic.01.m3': 'zh-TW · manga style',
+    'comic.01.m1': 'Flexible discussion depth',
+    'comic.01.m2': 'Multilingual support',
+    'comic.01.m3': 'Multiple formats & styles',
 
     'comic.02.label': 'Character & Scene',
     'comic.02.en': 'Character & Scene Design',
@@ -473,18 +474,19 @@ export const ui = {
     'comic.03.title': 'Acts, panels, and pacing',
     'comic.03.desc':
       "Auto-generate panels from the outline. Ratio, composition, and dialogue boxes are tunable per panel; characters and scenes auto-apply.",
-    'comic.03.m1': 'Acts / Panels',
-    'comic.03.m2': '3:2 · 16:9',
-    'comic.03.m3': 'Per-panel regen',
+    'comic.03.m1': 'Batch panel generation',
+    'comic.03.m2': 'Multiple aspect ratios',
+    'comic.03.m3': 'Brush re-render',
 
     'comic.04.label': 'Canvas & Export',
     'comic.04.en': 'Canvas & Export',
     'comic.04.title': 'Layout, export, publish',
     'comic.04.desc':
       "Page layout preview, image export, or publish to the community. Your work stays in your hands.",
-    'comic.04.m1': 'Drag-and-drop layout',
-    'comic.04.m2': 'PNG export',
-    'comic.04.m3': 'Community publish',
+    'comic.04.m1': 'Auto layout',
+    'comic.04.m2': 'Smart cover generation',
+    'comic.04.m3': 'Asset export',
+    'comic.04.m4': 'Community publish',
 
     'comic.flow': 'FLOW · STORY → CHARACTER → STORYBOARD → CANVAS',
     'comic.flow.note': 'Commercial-ready library, character consistency across chapters',
@@ -708,9 +710,9 @@ export const ui = {
     'comic.01.title': 'AI編集者と世界を共創',
     'comic.01.desc':
       'ひらめきから始まり、AI編集者がキャラ・場面・テンポを一緒に組み立てます。対話は編集可能なプロットへ蓄積。',
-    'comic.01.m1': '柔軟な深度',
-    'comic.01.m2': 'AI脚本モデル',
-    'comic.01.m3': '繁中 · マンガスタイル',
+    'comic.01.m1': '柔軟な対話深度',
+    'comic.01.m2': '多言語対応',
+    'comic.01.m3': '多様なフォーマット・スタイル',
 
     'comic.02.label': 'キャラ / シーン',
     'comic.02.en': 'Character & Scene Design',
@@ -726,18 +728,19 @@ export const ui = {
     'comic.03.title': '幕・コマ・テンポを一気通貫',
     'comic.03.desc':
       'プロットからコマを自動生成。比率・構図・吹き出しはコマ単位で調整可能。キャラと場面を自動適用。',
-    'comic.03.m1': '幕 / コマ',
-    'comic.03.m2': '3:2 · 16:9',
-    'comic.03.m3': 'コマ単位再生成',
+    'comic.03.m1': '全コマ一括生成',
+    'comic.03.m2': '多様な画像比率に対応',
+    'comic.03.m3': 'ブラシ再描画',
 
     'comic.04.label': 'キャンバス',
     'comic.04.en': 'Canvas & Export',
     'comic.04.title': 'レイアウト、書き出し、公開',
     'comic.04.desc':
       'ページレイアウトプレビュー、画像書き出し、コミュニティ公開。作品はあなたの手に。',
-    'comic.04.m1': 'ドラッグ編集',
-    'comic.04.m2': 'PNG 書き出し',
-    'comic.04.m3': 'コミュニティ公開',
+    'comic.04.m1': '自動レイアウト',
+    'comic.04.m2': '表紙の自動生成',
+    'comic.04.m3': '素材エクスポート',
+    'comic.04.m4': 'コミュニティ公開',
 
     'comic.flow': 'FLOW · STORY → CHARACTER → STORYBOARD → CANVAS',
     'comic.flow.note': '商用利用可能、章を跨いだキャラ一貫性',
