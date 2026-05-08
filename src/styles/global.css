@@ -522,6 +522,96 @@
     z-index: 4;
   }
 
+  /* Visitor recognition mini-window — sits on the empty left side of the stage */
+  .vh-visitor {
+    position: absolute;
+    top: 36px;
+    left: 36px;
+    width: 156px;
+    background: rgba(14, 11, 8, 0.72);
+    border: 1px solid rgba(255, 90, 31, 0.35);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 6;
+    pointer-events: none;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
+  }
+  .vh-visitor-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-bottom: 1px solid rgba(255, 90, 31, 0.25);
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.2em;
+    color: var(--color-bone-3);
+  }
+  .vh-visitor-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-cinnabar);
+    box-shadow: 0 0 8px var(--color-cinnabar);
+    animation: vhPulse 1.6s ease-in-out infinite;
+  }
+  .vh-visitor-title {
+    color: var(--color-cinnabar);
+  }
+  .vh-visitor-frame {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 50% 60%, rgba(255, 90, 31, 0.08), transparent 60%),
+      linear-gradient(180deg, rgba(27, 40, 64, 0.4), rgba(14, 11, 8, 0.6));
+  }
+  .vh-visitor-corner {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    pointer-events: none;
+  }
+  .vh-visitor-silhouette {
+    position: absolute;
+    inset: 14px 18px 0;
+    width: calc(100% - 36px);
+    height: calc(100% - 14px);
+  }
+  .vh-visitor-scan {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 90, 31, 0.7) 50%,
+      transparent 100%
+    );
+    box-shadow: 0 0 8px rgba(255, 90, 31, 0.5);
+    animation: vhScan 3.2s ease-in-out infinite;
+  }
+  .vh-visitor-meta {
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 10px;
+    border-top: 1px solid rgba(255, 90, 31, 0.25);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    color: var(--color-bone-3);
+  }
+  .vh-visitor-pulse {
+    color: var(--color-cinnabar);
+    animation: vhVisitorBlink 1.8s ease-in-out infinite;
+  }
+  @keyframes vhVisitorBlink {
+    0%, 100% { opacity: 0.55; }
+    50% { opacity: 1; }
+  }
+
   /* 3D placeholder */
   .vh-placeholder {
     position: relative;
@@ -739,6 +829,16 @@
     .vh-perception-strip {
       padding: 14px 20px;
       gap: 14px;
+    }
+    .vh-visitor {
+      top: 16px;
+      left: 16px;
+      width: 116px;
+    }
+    .vh-visitor-header,
+    .vh-visitor-meta {
+      padding: 6px 8px;
+      font-size: 8.5px;
     }
   }
   @container page (max-width: 600px) {

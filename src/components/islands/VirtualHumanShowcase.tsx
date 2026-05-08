@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { Mic } from 'lucide-react';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 type Mode = '2d' | '3d';
 
@@ -250,43 +249,11 @@ export default function VirtualHumanShowcase({ scenes, imgSrc, ui }: Props) {
 }
 
 /* ============================================================
-   CharacterStage — character image + CV overlay + gaze tracking
+   CharacterStage — character image + CV overlay + visitor mini-window
    ============================================================ */
 function CharacterStage({ imgSrc }: { imgSrc: string }) {
-  const stageRef = useRef<HTMLDivElement>(null);
-  const rotateX = useMotionValue(0);
-  const rotateY = useMotionValue(0);
-  const springX = useSpring(rotateX, { stiffness: 80, damping: 18, mass: 0.6 });
-  const springY = useSpring(rotateY, { stiffness: 80, damping: 18, mass: 0.6 });
-
-  useEffect(() => {
-    const handleMove = (e: MouseEvent) => {
-      const el = stageRef.current;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      // Normalize relative to viewport diagonal so movement feels natural at any size
-      const dx = (e.clientX - cx) / window.innerWidth;
-      const dy = (e.clientY - cy) / window.innerHeight;
-      // Clamp to gentle range; rotateY follows horizontal mouse, rotateX inverts vertical
-      rotateY.set(Math.max(-6, Math.min(6, dx * 12)));
-      rotateX.set(Math.max(-4, Math.min(4, -dy * 8)));
-    };
-    const handleLeave = () => {
-      rotateX.set(0);
-      rotateY.set(0);
-    };
-    window.addEventListener('mousemove', handleMove);
-    window.addEventListener('mouseleave', handleLeave);
-    return () => {
-      window.removeEventListener('mousemove', handleMove);
-      window.removeEventListener('mouseleave', handleLeave);
-    };
-  }, [rotateX, rotateY]);
-
   return (
-    <div ref={stageRef} className="vh-stage" style={{ perspective: '1200px' }}>
+    <div className="vh-stage">
       {/* Bracket corners */}
       {[
         { top: 12, left: 12 },
@@ -307,24 +274,59 @@ function CharacterStage({ imgSrc }: { imgSrc: string }) {
         />
       ))}
 
-      {/* Character with gaze-follow rotation */}
-      <motion.img
-        src={imgSrc}
-        alt="MIYAKIEN virtual human"
-        className="vh-character-img"
-        style={{
-          rotateX: springX,
-          rotateY: springY,
-          transformStyle: 'preserve-3d',
-          willChange: 'transform',
-        }}
-      />
+      {/* Character */}
+      <img src={imgSrc} alt="MIYAKIEN virtual human" className="vh-character-img" />
+
+      {/* Visitor recognition mini-window */}
+      <VisitorWindow />
 
       {/* Scan line (CSS animated) */}
       <div className="vh-scan-line" />
 
       {/* Subtle grid backdrop */}
       <div className="vh-grid-bg" />
+    </div>
+  );
+}
+
+function VisitorWindow() {
+  return (
+    <div className="vh-visitor">
+      <div className="vh-visitor-header">
+        <span className="vh-visitor-dot" />
+        <span className="vh-visitor-title">VISITOR · 訪客識別</span>
+      </div>
+      <div className="vh-visitor-frame">
+        {/* corner brackets */}
+        <span className="vh-visitor-corner" style={{ top: 6, left: 6, borderTop: '1px solid var(--color-cinnabar)', borderLeft: '1px solid var(--color-cinnabar)' }} />
+        <span className="vh-visitor-corner" style={{ top: 6, right: 6, borderTop: '1px solid var(--color-cinnabar)', borderRight: '1px solid var(--color-cinnabar)' }} />
+        <span className="vh-visitor-corner" style={{ bottom: 6, left: 6, borderBottom: '1px solid var(--color-cinnabar)', borderLeft: '1px solid var(--color-cinnabar)' }} />
+        <span className="vh-visitor-corner" style={{ bottom: 6, right: 6, borderBottom: '1px solid var(--color-cinnabar)', borderRight: '1px solid var(--color-cinnabar)' }} />
+
+        {/* silhouette */}
+        <svg viewBox="0 0 60 70" preserveAspectRatio="xMidYMax meet" className="vh-visitor-silhouette" aria-hidden>
+          <defs>
+            <linearGradient id="vhSilhouette" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="rgba(244,236,220,0.32)" />
+              <stop offset="100%" stopColor="rgba(244,236,220,0.08)" />
+            </linearGradient>
+          </defs>
+          {/* head */}
+          <circle cx="30" cy="22" r="11" fill="url(#vhSilhouette)" />
+          {/* shoulders */}
+          <path d="M6 70 Q6 42 30 42 Q54 42 54 70 Z" fill="url(#vhSilhouette)" />
+          {/* face crosshair */}
+          <line x1="30" y1="11" x2="30" y2="33" stroke="rgba(255,90,31,0.55)" strokeWidth="0.4" strokeDasharray="1 1.5" />
+          <line x1="19" y1="22" x2="41" y2="22" stroke="rgba(255,90,31,0.55)" strokeWidth="0.4" strokeDasharray="1 1.5" />
+        </svg>
+
+        {/* scan sweep */}
+        <span className="vh-visitor-scan" />
+      </div>
+      <div className="vh-visitor-meta">
+        <span>FACE · 0.97</span>
+        <span className="vh-visitor-pulse">LOCKED</span>
+      </div>
     </div>
   );
 }
