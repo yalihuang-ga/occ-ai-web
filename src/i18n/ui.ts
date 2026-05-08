@@ -201,14 +201,14 @@ export const ui = {
     'comic.01.m2': 'Claude Sonnet 4.6',
     'comic.01.m3': '繁中 · 日漫風格',
 
-    'comic.02.label': '角色設計',
-    'comic.02.en': 'Character Design',
-    'comic.02.title': '三視圖確保一致性',
+    'comic.02.label': '角色 / 場景設計',
+    'comic.02.en': 'Character & Scene Design',
+    'comic.02.title': '角色三視圖、場景概念板，一次鎖定',
     'comic.02.desc':
-      '正面、側面、背面同步出稿。性格設定附著於圖像，跨分鏡、跨章節，角色都是同一個人。',
+      '主角的正面 / 側面 / 背面三視圖，加上故事場景的概念板。角色與場景同步繫結到敘事，確保跨分鏡、跨章節風格一致。',
     'comic.02.m1': 'Nano Banana Pro',
-    'comic.02.m2': '三視圖 turnaround',
-    'comic.02.m3': '性格 + 視覺綁定',
+    'comic.02.m2': '三視圖 + 場景概念板',
+    'comic.02.m3': '性格 / 場景綁定',
 
     'comic.03.label': '分鏡製作',
     'comic.03.en': 'Storyboard',
@@ -459,14 +459,14 @@ export const ui = {
     'comic.01.m2': 'Claude Sonnet 4.6',
     'comic.01.m3': 'zh-TW · manga style',
 
-    'comic.02.label': 'Character Design',
-    'comic.02.en': 'Character Design',
-    'comic.02.title': 'Three-view turnaround',
+    'comic.02.label': 'Character & Scene',
+    'comic.02.en': 'Character & Scene Design',
+    'comic.02.title': 'Three-view turnaround + scene boards',
     'comic.02.desc':
-      "Front, side, and back rendered together. Personality binds to image so the same character holds across panels and chapters.",
+      "Front, side, and back rendered together with concept boards for each scene. Character + setting bind to the story so style holds across panels and chapters.",
     'comic.02.m1': 'Nano Banana Pro',
-    'comic.02.m2': '3-view turnaround',
-    'comic.02.m3': 'Personality binding',
+    'comic.02.m2': '3-view + scene boards',
+    'comic.02.m3': 'Character / scene binding',
 
     'comic.03.label': 'Storyboard',
     'comic.03.en': 'Storyboard',
@@ -712,14 +712,14 @@ export const ui = {
     'comic.01.m2': 'Claude Sonnet 4.6',
     'comic.01.m3': '繁中 · マンガスタイル',
 
-    'comic.02.label': 'キャラクター',
-    'comic.02.en': 'Character Design',
-    'comic.02.title': '三面図で一貫性を担保',
+    'comic.02.label': 'キャラ / シーン',
+    'comic.02.en': 'Character & Scene Design',
+    'comic.02.title': '三面図とシーン・コンセプトを一括ロック',
     'comic.02.desc':
-      '正面・側面・背面を同時生成。性格設定が画像に紐づき、コマ・章を跨いでも同一人物。',
+      '主人公の正面・側面・背面と、各シーンのコンセプトボードを同時生成。性格と舞台を物語に紐づけ、コマ・章を跨いでもブレません。',
     'comic.02.m1': 'Nano Banana Pro',
-    'comic.02.m2': '三面図ターンアラウンド',
-    'comic.02.m3': '性格バインディング',
+    'comic.02.m2': '三面図 + シーンボード',
+    'comic.02.m3': 'キャラ・シーン束縛',
 
     'comic.03.label': '絵コンテ',
     'comic.03.en': 'Storyboard',

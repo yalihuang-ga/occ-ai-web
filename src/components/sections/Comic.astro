@@ -104,6 +104,7 @@ const stages = [
 </section>
 
 <style>
+  /* Tablet: 2x2 tabs, stacked canvas */
   @container page (max-width: 900px) {
     .mx-comic-tabs {
       grid-template-columns: repeat(2, 1fr) !important;
@@ -126,16 +127,40 @@ const stages = [
       flex-wrap: wrap !important;
     }
   }
+
+  /* Mobile: tabs collapse to a horizontally scrollable single-line strip */
   @container page (max-width: 600px) {
     .mx-comic-tabs {
-      grid-template-columns: 1fr !important;
+      display: flex !important;
+      grid-template-columns: none !important;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .mx-comic-tabs::-webkit-scrollbar {
+      display: none;
     }
     .mx-comic-tabs button {
-      border-left: none !important;
-      border-top: 1px solid var(--bone-line) !important;
+      flex: 0 0 auto;
+      min-width: 60%;
+      scroll-snap-align: start;
+      padding: 16px 18px !important;
+      border-left: 1px solid var(--bone-line) !important;
+      border-top: none !important;
     }
     .mx-comic-tabs button:first-child {
-      border-top: none !important;
+      border-left: none !important;
+    }
+    /* Tighter mockup padding on mobile */
+    .mx-comic-canvas {
+      min-height: 0 !important;
+    }
+    .mx-comic-canvas > div:first-child {
+      padding: 36px 28px !important;
+    }
+    .mx-comic-canvas > div:nth-child(2) {
+      min-height: 440px !important;
     }
   }
 </style>
