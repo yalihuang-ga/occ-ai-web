@@ -54,14 +54,38 @@ const t = useTranslations(lang);
       <div class="flex flex-wrap gap-5">
         <a href="#cta" class="shimmer-btn shimmer-btn-primary">
           <span class="relative z-10">{t('hero.cta.primary')}</span>
-          <span class="material-symbols-outlined relative z-10 text-[20px]">
-            arrow_forward
-          </span>
+          <svg
+            class="relative z-10"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
         </a>
         <button class="shimmer-btn shimmer-btn-glass">
-          <span class="material-symbols-outlined relative z-10 text-[20px]">
-            play_circle
-          </span>
+          <svg
+            class="relative z-10"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <polygon points="10 8 16 12 10 16 10 8" fill="currentColor" />
+          </svg>
           <span class="relative z-10">{t('hero.cta.secondary')}</span>
         </button>
       </div>
