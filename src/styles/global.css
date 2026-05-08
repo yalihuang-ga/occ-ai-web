@@ -651,13 +651,13 @@
     background: var(--color-bone);
   }
 
-  /* Perception strip below */
+  /* Perception strip below — label on its own line, signals below */
   .vh-perception-strip {
     display: flex;
-    align-items: center;
-    gap: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
     padding: 16px 28px;
-    flex-wrap: wrap;
   }
   .vh-perception-label {
     font-family: var(--font-mono);
@@ -706,8 +706,19 @@
     }
     .vh-control-group {
       flex-direction: column;
-      align-items: flex-start;
+      align-items: stretch;
       gap: 8px;
+      width: 100%;
+    }
+    /* Mobile: stack tabs vertically — all options visible without horizontal scroll */
+    .vh-tab-row {
+      flex-direction: column;
+      overflow: visible;
+      width: 100%;
+    }
+    .vh-tab {
+      width: 100%;
+      justify-content: space-between;
     }
     .vh-status {
       padding: 10px 20px;

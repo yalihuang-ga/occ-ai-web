@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Mic } from 'lucide-react';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 type Mode = '2d' | '3d';
 
@@ -249,11 +250,43 @@ export default function VirtualHumanShowcase({ scenes, imgSrc, ui }: Props) {
 }
 
 /* ============================================================
-   CharacterStage — character image + CV overlay
+   CharacterStage — character image + CV overlay + gaze tracking
    ============================================================ */
 function CharacterStage({ imgSrc }: { imgSrc: string }) {
+  const stageRef = useRef<HTMLDivElement>(null);
+  const rotateX = useMotionValue(0);
+  const rotateY = useMotionValue(0);
+  const springX = useSpring(rotateX, { stiffness: 80, damping: 18, mass: 0.6 });
+  const springY = useSpring(rotateY, { stiffness: 80, damping: 18, mass: 0.6 });
+
+  useEffect(() => {
+    const handleMove = (e: MouseEvent) => {
+      const el = stageRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      // Normalize relative to viewport diagonal so movement feels natural at any size
+      const dx = (e.clientX - cx) / window.innerWidth;
+      const dy = (e.clientY - cy) / window.innerHeight;
+      // Clamp to gentle range; rotateY follows horizontal mouse, rotateX inverts vertical
+      rotateY.set(Math.max(-6, Math.min(6, dx * 12)));
+      rotateX.set(Math.max(-4, Math.min(4, -dy * 8)));
+    };
+    const handleLeave = () => {
+      rotateX.set(0);
+      rotateY.set(0);
+    };
+    window.addEventListener('mousemove', handleMove);
+    window.addEventListener('mouseleave', handleLeave);
+    return () => {
+      window.removeEventListener('mousemove', handleMove);
+      window.removeEventListener('mouseleave', handleLeave);
+    };
+  }, [rotateX, rotateY]);
+
   return (
-    <div className="vh-stage">
+    <div ref={stageRef} className="vh-stage" style={{ perspective: '1200px' }}>
       {/* Bracket corners */}
       {[
         { top: 12, left: 12 },
@@ -274,8 +307,18 @@ function CharacterStage({ imgSrc }: { imgSrc: string }) {
         />
       ))}
 
-      {/* Character */}
-      <img src={imgSrc} alt="MIYAKIEN virtual human" className="vh-character-img" />
+      {/* Character with gaze-follow rotation */}
+      <motion.img
+        src={imgSrc}
+        alt="MIYAKIEN virtual human"
+        className="vh-character-img"
+        style={{
+          rotateX: springX,
+          rotateY: springY,
+          transformStyle: 'preserve-3d',
+          willChange: 'transform',
+        }}
+      />
 
       {/* Scan line (CSS animated) */}
       <div className="vh-scan-line" />
