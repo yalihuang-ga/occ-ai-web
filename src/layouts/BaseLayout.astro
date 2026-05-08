@@ -13,16 +13,85 @@ const t = useTranslations(lang);
 
 const { title = t('site.title'), description = t('site.description') } =
   Astro.props;
+
+// SEO — i18n equivalents (hreflang)
+const SITE = 'https://ai.gamaniaocc.org';
+const localePathMap: Record<Lang, string> = {
+  'zh-TW': '/',
+  en: '/en/',
+  ja: '/ja/',
+};
+const hreflangMap: Record<Lang, string> = {
+  'zh-TW': 'zh-Hant-TW',
+  en: 'en',
+  ja: 'ja-JP',
+};
+const ogLocaleMap: Record<Lang, string> = {
+  'zh-TW': 'zh_TW',
+  en: 'en_US',
+  ja: 'ja_JP',
+};
+
+const canonicalUrl = `${SITE}${localePathMap[lang]}`;
+const ogImageUrl = `${SITE}/og-image.png`;
 ---
 
 <!doctype html>
-<html lang={lang} class="dark">
+<html lang={hreflangMap[lang]} class="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={description} />
+
+    <!-- Primary meta -->
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- hreflang for multilingual SEO -->
+    {
+      (Object.keys(localePathMap) as Lang[]).map((code) => (
+        <link
+          rel="alternate"
+          hreflang={hreflangMap[code]}
+          href={`${SITE}${localePathMap[code]}`}
+        />
+      ))
+    }
+    <link rel="alternate" hreflang="x-default" href={`${SITE}/`} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Muztrix" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={ogLocaleMap[lang]} />
+    {
+      (Object.keys(ogLocaleMap) as Lang[])
+        .filter((c) => c !== lang)
+        .map((c) => (
+          <meta property="og:locale:alternate" content={ogLocaleMap[c]} />
+        ))
+    }
+
+    <!-- Twitter card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
+
+    <!-- Theme color (mobile browser chrome) -->
+    <meta name="theme-color" content="#0e0b08" />
 
     <!-- Fonts: Epilogue + Inter + Noto Serif TC + JetBrains Mono + Material Symbols -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -30,6 +99,33 @@ const { title = t('site.title'), description = t('site.description') } =
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Epilogue:wght@200;300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+TC:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    />
+
+    <!-- JSON-LD Organization schema -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'Muztrix',
+        legalName: 'Gamania Digital Entertainment Co., Ltd. — Original Content Center',
+        url: SITE,
+        logo: `${SITE}/android-chrome-512x512.png`,
+        image: ogImageUrl,
+        description: t('site.description'),
+        founder: { '@type': 'Organization', name: 'Gamania' },
+        foundingDate: '1995',
+        sameAs: ['https://mangacanvas.gamaniaocc.org/'],
+        address: {
+          '@type': 'PostalAddress',
+          addressCountry: 'TW',
+        },
+        contactPoint: {
+          '@type': 'ContactPoint',
+          email: 'yalihuang@gamania.com',
+          contactType: 'business',
+        },
+      })}
     />
   </head>
   <body class="bg-background text-on-background font-body">
