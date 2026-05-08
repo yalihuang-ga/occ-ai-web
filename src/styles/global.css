@@ -279,6 +279,36 @@
     color: var(--color-bone-3);
   }
 
+  /* Cinnabar pill tags — shared by Solutions, Virtual Human matrix, Comic panels */
+  .solution-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    font-size: 12px;
+    font-family: var(--font-serif-tc);
+    color: var(--color-cinnabar-soft);
+    background: rgba(255, 90, 31, 0.08);
+    border: 1px solid rgba(255, 138, 90, 0.4);
+    border-radius: 999px;
+    letter-spacing: 0.04em;
+    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .solution-tag-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--color-cinnabar);
+    box-shadow: 0 0 6px rgba(255, 90, 31, 0.6);
+    flex-shrink: 0;
+  }
+  .solution-tag-body {
+    min-width: 0;
+    word-break: break-word;
+  }
+
   /* Hairline divider — fades at both ends */
   .hairline {
     height: 1px;
@@ -741,7 +771,7 @@
     background: var(--color-bone);
   }
 
-  /* Perception strip below — label on its own line, signals below */
+  /* Perception strip — label + cycling signals (dot + highlight) */
   .vh-perception-strip {
     display: flex;
     flex-direction: column;
@@ -771,6 +801,7 @@
     color: var(--color-bone-3);
     letter-spacing: 0.05em;
     transition: color 0.3s;
+    max-width: 100%;
   }
   .vh-signal-dot {
     width: 6px;
@@ -778,6 +809,7 @@
     border-radius: 50%;
     background: var(--bone-line);
     transition: all 0.3s;
+    flex-shrink: 0;
   }
   .vh-signal.is-active {
     color: var(--color-bone);
@@ -830,6 +862,9 @@
       padding: 14px 20px;
       gap: 14px;
     }
+    .vh-perception-signals {
+      gap: 12px;
+    }
     .vh-visitor {
       top: 16px;
       left: 16px;
@@ -867,10 +902,26 @@
     border-bottom: 1px solid var(--bone-line);
   }
   .comic-panel-tag {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    color: var(--color-cinnabar);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    font-family: var(--font-serif-tc);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--color-cinnabar-soft);
+    background: rgba(255, 90, 31, 0.08);
+    border: 1px solid rgba(255, 138, 90, 0.4);
+    border-radius: 999px;
+  }
+  .comic-panel-tag::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--color-cinnabar);
+    box-shadow: 0 0 6px rgba(255, 90, 31, 0.6);
+    flex-shrink: 0;
   }
   .comic-panel-meta {
     font-family: var(--font-mono);

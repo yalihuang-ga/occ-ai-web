@@ -30,44 +30,18 @@ const t = useTranslations(lang);
 
         <h2
           class="h1-display mb-12"
-          style="color: var(--color-bone);"
+          style={lang === 'en'
+            ? 'color: var(--color-bone); text-wrap: balance;'
+            : 'color: var(--color-bone);'}
           set:html={t('about.title')}
         />
 
-        <p class="body-lg-v2 mb-7">
+        <p
+          class="body-lg-v2"
+          style={lang === 'en' ? 'text-wrap: pretty; max-width: 38em;' : undefined}
+        >
           {t('about.body1')}
         </p>
-        <p class="body-md-v2 mb-14">
-          {t('about.body2')}
-        </p>
-
-        <!-- Pillars -->
-        <div
-          class="mx-about-pillars grid gap-8 pt-9"
-          style="grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--bone-line);"
-        >
-          {
-            [
-              { k: t('about.pillar1.k'), v: t('about.pillar1.v') },
-              { k: t('about.pillar2.k'), v: t('about.pillar2.v') },
-              { k: t('about.pillar3.k'), v: t('about.pillar3.v') },
-            ].map((p) => (
-              <div>
-                <div
-                  style="width: 24px; height: 1px; background: var(--color-cinnabar); margin-bottom: 14px;"
-                />
-                <h4
-                  style="font-family: var(--font-headline); font-size: 16px; font-weight: 500; color: var(--color-bone); margin: 0 0 8px;"
-                >
-                  {p.k}
-                </h4>
-                <p class="body-sm-v2" style="margin: 0;">
-                  {p.v}
-                </p>
-              </div>
-            ))
-          }
-        </div>
       </div>
 
       <!-- Right — Digital blueprint visual: grid + axes + Gamania logo + outlined "30" -->
@@ -121,21 +95,13 @@ const t = useTranslations(lang);
           </div>
           <div class="about-caption">
             <div class="about-cap-eyebrow">
-              {t('about.stat.eyebrow')} · {t('about.stat.unit')}
+              {t('about.stat.eyebrow')}
             </div>
-            <p class="about-cap-body">
-              {t('about.stat.body')}
-            </p>
           </div>
         </div>
 
         <!-- Layer 4: Left fade — softens column boundary -->
         <div class="about-fade"></div>
-
-        <!-- Layer 5: Vertical CJK on right edge -->
-        <div class="cjk-vert about-cjk">
-          {t('about.cjk')}
-        </div>
 
         <!-- Coordinate corner labels — micro-detail for engineering feel -->
         <div class="about-coord about-coord-tl">X · 0.000</div>
@@ -235,14 +201,6 @@ const t = useTranslations(lang);
     margin-bottom: 14px;
     text-transform: uppercase;
   }
-  .about-cap-body {
-    font-family: var(--font-body);
-    font-size: 13px;
-    color: var(--color-bone-2);
-    line-height: 1.6;
-    margin: 0;
-  }
-
   /* Coordinate corner labels — engineering micro-detail */
   .about-coord {
     position: absolute;
@@ -278,17 +236,6 @@ const t = useTranslations(lang);
     z-index: 3;
   }
 
-  /* Vertical CJK strip */
-  .about-cjk {
-    position: absolute;
-    right: 16px;
-    top: 0;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    z-index: 6;
-  }
-
   @container page (max-width: 900px) {
     .mx-two-col {
       grid-template-columns: 1fr !important;
@@ -296,10 +243,6 @@ const t = useTranslations(lang);
     }
     .mx-about-visual {
       height: 460px !important;
-    }
-    .mx-about-pillars {
-      grid-template-columns: 1fr !important;
-      gap: 24px !important;
     }
     .about-30 {
       font-size: clamp(120px, 28vw, 200px) !important;
@@ -318,9 +261,6 @@ const t = useTranslations(lang);
         var(--color-ink) 0%,
         transparent 100%
       ) !important;
-    }
-    .about-cjk {
-      display: none !important;
     }
   }
 </style>

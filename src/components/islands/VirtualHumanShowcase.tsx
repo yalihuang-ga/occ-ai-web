@@ -40,7 +40,7 @@ interface Props {
  *
  * Combines: mode toggle (2D / 3D placeholder) + scene toggle (3 B2B scenes) +
  * character display with CV overlay (scan line, landmark dots, bracket corners) +
- * chat thread + perception strip.
+ * chat thread + perception strip (cycling signal highlight).
  *
  * Per scene change: chat thread resets to scene's preset greeting; perception
  * signals swap; mock reply pool changes too.
@@ -69,7 +69,7 @@ export default function VirtualHumanShowcase({ scenes, imgSrc, ui }: Props) {
     }
   }, [messages, typing]);
 
-  // Perception ticker
+  // Perception ticker — single highlighted signal + dot
   const [tickIdx, setTickIdx] = useState(0);
   useEffect(() => {
     setTickIdx(0);
@@ -209,7 +209,7 @@ export default function VirtualHumanShowcase({ scenes, imgSrc, ui }: Props) {
         </div>
       </div>
 
-      {/* Perception strip below */}
+      {/* Perception strip */}
       <div className="vh-perception-strip">
         <span className="vh-perception-label">{ui.perceptionLabel}</span>
         <div className="vh-perception-signals">

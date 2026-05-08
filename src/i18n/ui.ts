@@ -15,9 +15,10 @@ export type Lang = keyof typeof languages;
 export const ui = {
   'zh-TW': {
     // ---- Site meta ----
-    'site.title': 'Muztrix — 遊戲橘子原創中心 AI 小組',
+    'site.title': 'Muztrix | 賦予數位生命，更有溫度的虛擬交互',
     'site.description':
-      '來自橘子集團原創中心。用 AI 重新想像漫畫、虛擬人、遊戲的可能。',
+      '「將靈感織入代碼，為您的品牌建構具備靈魂的虛擬宇宙。」',
+    'site.keywords': '有溫度的虛擬人, AI 敘事技術, 數位品牌轉型',
 
     // ---- Header / Nav ----
     'nav.solutions': '核心方案',
@@ -30,11 +31,12 @@ export const ui = {
 
     // ---- Hero (kept; legacy keys still in use) ----
     'hero.eyebrow': 'Gamania Original Content Center',
-    'hero.title.line1': '定義你的',
-    'hero.title.line2': '泛娛樂新視界',
-    'hero.desc': '用 AI 重新想像漫畫、虛擬人、遊戲的可能。',
+    'hero.title.line1': '賦予數位生命，',
+    'hero.title.line2': '更有溫度的虛擬視界',
+    'hero.desc':
+      'Muztrix 誕生於數位娛樂的實戰現場。我們不只是追隨技術，我們是將三十年的內容開發經驗，封裝進 AI 的核心。',
     'hero.cta.primary': '探索方案',
-    'hero.cta.secondary': '觀看 Demo',
+    'hero.cta.secondary': '預約DEMO',
 
     // ---- Solutions (§ 01) ----
     // Section order: Hero · §01 Solutions · §02 Virtual Human · §03 AI Game · §04 AI Comic · §05 About · §06 Contact
@@ -79,23 +81,11 @@ export const ui = {
     // ---- About (§ 05) ----
     'about.section': '§ 05 — About',
     'about.title':
-      '三十年內容工藝，<span class="title-accent-cinnabar">AI</span> 賦予<span class="title-accent-gold">靈魂</span>',
+      '三十載娛樂工藝，定義<span class="title-accent-cinnabar">有溫度的 AI</span><span class="title-accent-gold">交互</span>。',
     'about.body1':
-      '站在三十年遊戲開發及代理的肩膀上，我們深知內容創作的痛點與極限。Muztrix 致力於將前沿 AI 技術真正落地──從自動化劇本到有溫度的虛擬人互動。',
-    'about.body2':
-      '我們不只追求速度的提升，更追求品質的演化。利用 AI，我們正重新定義數位娛樂的邊界，為品牌與創作者建構無限可能的虛擬世界。',
-    'about.pillar1.k': '人本核心',
-    'about.pillar1.v': 'AI 由倫理框架與人本價值驅動。',
-    'about.pillar2.k': '創作優先',
-    'about.pillar2.v': '工具服務創作者，而非取代之。',
-    'about.pillar3.k': '長期主義',
-    'about.pillar3.v': '我們相信內容值得耐心。',
-    'about.cjk': '原 · 創 · 中 · 心',
+      '站在三十年數位娛樂開發的肩膀上，我們比誰都懂內容創作的痛點與極限。Muztrix 致力於將前沿 AI 技術真正落地──從深度敘事的劇本核心，到具備感知溫度的虛擬人交互。',
     'about.portrait.label': 'VH/0001 — PERCEPTION ENGINE',
     'about.stat.eyebrow': 'Since 1995',
-    'about.stat.unit': '年',
-    'about.stat.body':
-      '橘子集團數位娛樂深耕。我們把這份對玩家的理解，帶進 AI 的下一個世代。',
     'about.ethical.label': '★ ETHICAL CORE',
     'about.ethical.body': 'AI driven by moral frameworks and human values.',
 
@@ -108,19 +98,9 @@ export const ui = {
     'virtual.body2': '',
 
     // Three core pillars
-    'vh.pillar1.k': '精準辨識',
-    'vh.pillar1.v': '互動的第一步，是看見你的需求。',
-    'vh.pillar2.k': '智慧連動',
-    'vh.pillar2.v': '真正的溫度，是記得你的名字。',
-    'vh.pillar3.k': '情境導購',
-    'vh.pillar3.v': '高品質的建議，是最貼心的陪伴。',
-    'virtual.matrix.1k': 'PERCEPTION',
     'virtual.matrix.1v': '視覺 · 聽覺 · 情緒',
-    'virtual.matrix.2k': 'COGNITION',
     'virtual.matrix.2v': '長期記憶 · 偏好',
-    'virtual.matrix.3k': 'DIALOGUE',
     'virtual.matrix.3v': '即時 · 多輪 · 情境',
-    'virtual.matrix.4k': 'IDENTITY',
     'virtual.matrix.4v': '人格鎖定 · 角色化',
     'virtual.demo.placeholder': '輸入訊息……',
     'virtual.demo.send': '送出',
@@ -221,16 +201,14 @@ export const ui = {
 
     'comic.04.label': '畫布編輯',
     'comic.04.en': 'Canvas & Export',
-    'comic.04.title': '排版、匯出、發布',
+    'comic.04.title': '立即展示給你的朋友',
     'comic.04.desc':
-      '頁漫排版預覽、匯出圖片或發布到社群。從草稿到上稿，作品始終在你手裡。',
+      '直接檢視成品、匯出圖片或發布到社群。從草稿到上稿，作品始終在你手裡。',
     'comic.04.m1': '無需手動排版',
     'comic.04.m2': '智慧生成封面',
     'comic.04.m3': '素材匯出',
     'comic.04.m4': '社群發布',
 
-    'comic.flow': 'FLOW · STORY → CHARACTER → STORYBOARD → CANVAS',
-    'comic.flow.note': '產出可商用素材庫，跨章節維持角色一致性',
     'comic.cta': '開始試用',
 
     // ---- Game (§ 03) ----
@@ -259,36 +237,40 @@ export const ui = {
     // ---- CTA / Footer (§ 06) ----
     'cta.section': '§ 06 — Contact',
     'cta.title':
-      '把 AI 變成<span class="title-accent-cinnabar">下一個</span><span class="title-accent-gold">創意夥伴</span>。',
+      '觸碰<span class="title-accent-cinnabar">有溫度的 AI</span>，啟動<span class="title-accent-gold">商業新體驗</span>。',
     'cta.body':
-      '技術合作、產品授權，或想了解我們能為您的場域帶來什麼樣的 AI 體驗──歡迎來信。',
+      '技術合作、產品授權或品牌 IP 打造，讓我們的 AI 引擎成為您最強大的執行動能。',
     'cta.button': '聯絡我們',
+    'cta.contact1.role': '技術經理',
+    'cta.contact1.name': '周思瑜',
+    'cta.contact2.role': '產品副理',
+    'cta.contact2.name': '黃雅莉',
+    'cta.mailtoFallbackLine': '未開啟郵件程式？',
+    'cta.copyEmails': '複製聯絡信箱',
+    'cta.copied': '已複製',
 
-    'footer.tagline': '來自橘子集團原創中心。用 AI 重新想像漫畫、虛擬人、遊戲的可能。',
     'footer.col1.h': '產品',
-    'footer.col1.i1': 'AI 漫畫',
-    'footer.col1.i2': '虛擬人',
+    'footer.col1.i1': '虛擬人',
+    'footer.col1.i2': 'AI 漫畫',
     'footer.col1.i3': 'AI 遊戲',
-    'footer.col1.i4': '感知引擎',
-    'footer.col2.h': '公司',
-    'footer.col2.i1': '關於我們',
-    'footer.col2.i2': 'AI 倫理',
-    'footer.col2.i3': '新聞',
-    'footer.col2.i4': '徵才',
-    'footer.col3.h': '法律',
-    'footer.col3.i1': '隱私政策',
-    'footer.col3.i2': '服務條款',
-    'footer.col3.i3': '版權聲明',
-    'footer.copyright': '© 1995 – 2026 Gamania Digital Entertainment Co., Ltd.',
+    'footer.related.h': '相關網站',
+    'footer.related.gamania': '橘子集團',
+    'footer.related.mojoin': 'MOJOIN',
+    'footer.related.mangacanvas': 'Muztrix漫畫創作',
+    'footer.copyright': '© 1995 - 2026 gamania',
+    'footer.address': '台灣臺北市內湖區瑞湖街111號',
 
     // legacy / optional kept
     'lang.switcher.label': '語系',
   },
 
   en: {
-    'site.title': 'Muztrix — Gamania Original Content Center AI',
+    'site.title':
+      'Muztrix | Breathing life into digital — warmer, human-centered virtual interaction',
     'site.description':
-      "From Gamania Original Content Center. Reimagining comics, virtual humans, and games with AI.",
+      'Weaving inspiration into code — building a virtual universe with soul for your brand.',
+    'site.keywords':
+      'warm virtual humans, AI narrative technology, digital brand transformation',
 
     'nav.solutions': 'Solutions',
     'nav.about': 'About',
@@ -299,12 +281,12 @@ export const ui = {
     'nav.connect': 'Connect',
 
     'hero.eyebrow': 'Gamania Original Content Center',
-    'hero.title.line1': 'AI-Powered Creativity.',
-    'hero.title.line2': 'Limitless Entertainment.',
+    'hero.title.line1': 'Give digital life more warmth—',
+    'hero.title.line2': 'a new horizon for virtual worlds.',
     'hero.desc':
-      'Reimagining comics, virtual humans, and games with AI. Join the Muztrix ecosystem.',
+      'Muztrix was born on the front lines of digital entertainment. We do not only follow technology—we pack three decades of content craft into the core of AI.',
     'hero.cta.primary': 'Explore Solutions',
-    'hero.cta.secondary': 'Watch Demo',
+    'hero.cta.secondary': 'Book a demo',
 
     'solutions.section': '§ 01 — Solutions',
     'solutions.title':
@@ -346,23 +328,11 @@ export const ui = {
 
     'about.section': '§ 05 — About',
     'about.title':
-      'Three decades of content craft, <span class="title-accent-cinnabar">AI</span> bringing the <span class="title-accent-gold">soul</span>',
+      'Thirty years of entertainment craft — defining <span class="title-accent-cinnabar">warm AI</span> <span class="title-accent-gold">interaction</span>.',
     'about.body1':
-      "Standing on the shoulders of three decades in game development and publishing, we know the pain points and limits of content creation. Muztrix brings frontier AI into real practice — from automated scripts to virtual human interactions with warmth.",
-    'about.body2':
-      "We don't just pursue speed — we pursue the evolution of quality. With AI, we're redefining the boundaries of digital entertainment, building worlds of infinite possibility for brands and creators.",
-    'about.pillar1.k': 'Human Core',
-    'about.pillar1.v': 'AI driven by moral frameworks and human values.',
-    'about.pillar2.k': 'Creator First',
-    'about.pillar2.v': 'Tools serve creators, not replace them.',
-    'about.pillar3.k': 'Long-term',
-    'about.pillar3.v': 'We believe content deserves patience.',
-    'about.cjk': 'Original · Content · Center',
+      'Standing on three decades of digital entertainment development, we understand creation’s pain points and limits better than anyone. Muztrix lands frontier AI in practice — from deep narrative scripting cores to virtual human interaction you can truly feel.',
     'about.portrait.label': 'VH/0001 — PERCEPTION ENGINE',
     'about.stat.eyebrow': 'Since 1995',
-    'about.stat.unit': 'yrs',
-    'about.stat.body':
-      "Three decades of digital entertainment under Gamania. We're bringing that understanding of players into AI's next generation.",
     'about.ethical.label': '★ ETHICAL CORE',
     'about.ethical.body': 'AI driven by moral frameworks and human values.',
 
@@ -373,19 +343,9 @@ export const ui = {
       'Perception, memory, scene-aware response — three layers that define a virtual human with real warmth, ready to extend your brand naturally across every context.',
     'virtual.body2': '',
 
-    'vh.pillar1.k': 'Precise Recognition',
-    'vh.pillar1.v': 'The first step of interaction is seeing what you need.',
-    'vh.pillar2.k': 'Smart Connection',
-    'vh.pillar2.v': 'True warmth is remembering your name.',
-    'vh.pillar3.k': 'Contextual Guidance',
-    'vh.pillar3.v': 'A great suggestion is the most attentive companion.',
-    'virtual.matrix.1k': 'PERCEPTION',
     'virtual.matrix.1v': 'Vision · Audio · Emotion',
-    'virtual.matrix.2k': 'COGNITION',
     'virtual.matrix.2v': 'Long memory · Preferences',
-    'virtual.matrix.3k': 'DIALOGUE',
-    'virtual.matrix.3v': 'Real-time · Multi-turn',
-    'virtual.matrix.4k': 'IDENTITY',
+    'virtual.matrix.3v': 'Real-time · Multi-turn · Context',
     'virtual.matrix.4v': 'Persona-locked · Roleplay',
     'virtual.demo.placeholder': 'Type a message…',
     'virtual.demo.send': 'SEND',
@@ -480,16 +440,14 @@ export const ui = {
 
     'comic.04.label': 'Canvas & Export',
     'comic.04.en': 'Canvas & Export',
-    'comic.04.title': 'Layout, export, publish',
+    'comic.04.title': 'Show it off to your friends',
     'comic.04.desc':
-      "Page layout preview, image export, or publish to the community. Your work stays in your hands.",
+      "Preview the finished work, export images, or publish to the community. From draft to release, your work stays in your hands.",
     'comic.04.m1': 'Auto layout',
     'comic.04.m2': 'Smart cover generation',
     'comic.04.m3': 'Asset export',
     'comic.04.m4': 'Community publish',
 
-    'comic.flow': 'FLOW · STORY → CHARACTER → STORYBOARD → CANVAS',
-    'comic.flow.note': 'Commercial-ready library, character consistency across chapters',
     'comic.cta': 'Try It',
 
     'game.section': '§ 03 — AI Game',
@@ -516,35 +474,39 @@ export const ui = {
 
     'cta.section': '§ 06 — Contact',
     'cta.title':
-      'Make AI your <span class="title-accent-cinnabar">next</span> <span class="title-accent-gold">creative partner</span>.',
+      'Connect with <span class="title-accent-cinnabar">human-centered AI</span> — <span class="title-accent-gold">ignite new business experiences</span>.',
     'cta.body':
-      "Technology partnerships, product licensing, or learning what AI can do for your space — let's talk.",
+      'Technology partnerships, product licensing, or brand IP — let our AI engine become your most powerful driver of execution.',
     'cta.button': 'Get in Touch',
+    'cta.contact1.role': 'Technical Manager',
+    'cta.contact1.name': 'Szu-Yu Chou',
+    'cta.contact2.role': 'Associate Product Manager',
+    'cta.contact2.name': 'Ya-Li Huang',
+    'cta.mailtoFallbackLine': 'Mail app not opening?',
+    'cta.copyEmails': 'Copy addresses',
+    'cta.copied': 'Copied',
 
-    'footer.tagline': "From Gamania Original Content Center. Reimagining comics, virtual humans, and games with AI.",
     'footer.col1.h': 'PRODUCT',
-    'footer.col1.i1': 'AI Comic',
-    'footer.col1.i2': 'Virtual Human',
+    'footer.col1.i1': 'Virtual Human',
+    'footer.col1.i2': 'AI Comic',
     'footer.col1.i3': 'AI Game',
-    'footer.col1.i4': 'Perception Engine',
-    'footer.col2.h': 'COMPANY',
-    'footer.col2.i1': 'About',
-    'footer.col2.i2': 'AI Ethics',
-    'footer.col2.i3': 'News',
-    'footer.col2.i4': 'Careers',
-    'footer.col3.h': 'LEGAL',
-    'footer.col3.i1': 'Privacy',
-    'footer.col3.i2': 'Terms',
-    'footer.col3.i3': 'Copyright',
-    'footer.copyright': '© 1995 – 2026 Gamania Digital Entertainment Co., Ltd.',
+    'footer.related.h': 'Related Sites',
+    'footer.related.gamania': 'Gamania',
+    'footer.related.mojoin': 'MOJOIN',
+    'footer.related.mangacanvas': 'Muztrix Comic Studio',
+    'footer.copyright': '© 1995 - 2026 gamania',
+    'footer.address': '111 Ruihu Street, Neihu District, Taipei City, Taiwan',
 
     'lang.switcher.label': 'Language',
   },
 
   ja: {
-    'site.title': 'Muztrix — ガマニア・オリジナルコンテンツセンターAI',
+    'site.title':
+      'Muztrix | デジタルに命を吹き込む、より温かいバーチャル体験',
     'site.description':
-      'ガマニア・オリジナルコンテンツセンター発。AIで漫画・バーチャルヒューマン・ゲームを再定義。',
+      'インスピレーションをコードに織り込み、魂のある仮想宇宙をブランドのために。',
+    'site.keywords':
+      '温かみのあるバーチャルヒューマン, AIナラティブ技術, デジタルブランド変革',
 
     'nav.solutions': 'ソリューション',
     'nav.about': '会社概要',
@@ -555,11 +517,12 @@ export const ui = {
     'nav.connect': 'お問い合わせ',
 
     'hero.eyebrow': 'Gamania Original Content Center',
-    'hero.title.line1': 'AIで創る、',
-    'hero.title.line2': '新しいエンタメ体験。',
-    'hero.desc': 'AIで漫画・バーチャルヒューマン・ゲームの可能性を再定義。',
+    'hero.title.line1': 'デジタルに命を吹き込み、',
+    'hero.title.line2': '温度のあるバーチャルな視界へ。',
+    'hero.desc':
+      'Muztrixはデジタルエンタメの最前線から生まれました。技術を追うだけではなく、三十年のコンテンツ開発の蓄積をAIの核に封じ込めます。',
     'hero.cta.primary': 'ソリューションを見る',
-    'hero.cta.secondary': 'デモを見る',
+    'hero.cta.secondary': 'デモを予約',
 
     'solutions.section': '§ 01 — ソリューション',
     'solutions.title':
@@ -601,23 +564,11 @@ export const ui = {
 
     'about.section': '§ 05 — About',
     'about.title':
-      '三十年のコンテンツ工芸、<span class="title-accent-cinnabar">AI</span>が<span class="title-accent-gold">魂</span>を吹き込む',
+      '三十載のエンタメ工芸、<span class="title-accent-cinnabar">温かいAI</span><span class="title-accent-gold">インタラクション</span>を定義。',
     'about.body1':
-      '30年のゲーム開発・代理の蓄積の上に立ち、私たちはコンテンツ制作の痛みと限界を熟知しています。Muztrixは最先端のAI技術を現場へと落とし込みます──自動化された脚本から、温度のあるバーチャルヒューマンとの対話まで。',
-    'about.body2':
-      'スピードの向上だけでなく、品質の進化を追求します。AIで、私たちはデジタルエンタメの境界を再定義し、ブランドとクリエイターに無限の可能性を秘めたバーチャル世界を構築します。',
-    'about.pillar1.k': '人間中心',
-    'about.pillar1.v': '倫理的枠組みと人間の価値観に基づくAI。',
-    'about.pillar2.k': 'クリエイター優先',
-    'about.pillar2.v': 'ツールはクリエイターのために。',
-    'about.pillar3.k': '長期主義',
-    'about.pillar3.v': 'コンテンツには忍耐が必要だと信じます。',
-    'about.cjk': '原 · 創 · 中 · 心',
+      '三十年のデジタルエンタメ開発の礎の上に立ち、コンテンツ制作の痛みと限界を誰より理解しています。Muztrixは最先端のAIを現場へ──深い物語の脚本の核から、感知できる温かみのあるバーチャルヒューマン対話まで。',
     'about.portrait.label': 'VH/0001 — PERCEPTION ENGINE',
     'about.stat.eyebrow': 'Since 1995',
-    'about.stat.unit': '年',
-    'about.stat.body':
-      'ガマニアによる30年のデジタルエンタメ。プレイヤーへの理解を、AIの次世代へ。',
     'about.ethical.label': '★ ETHICAL CORE',
     'about.ethical.body': 'AI driven by moral frameworks and human values.',
 
@@ -628,19 +579,9 @@ export const ui = {
       '知覚・記憶・シーンへの対応──3つのレイヤーで温かみのあるバーチャルヒューマンを定義し、あらゆるシーンであなたのブランドを自然に拡張します。',
     'virtual.body2': '',
 
-    'vh.pillar1.k': '精密な認識',
-    'vh.pillar1.v': '対話の最初の一歩は、あなたの求めるものを見ること。',
-    'vh.pillar2.k': '知的な連動',
-    'vh.pillar2.v': '本当の温かさは、あなたの名前を覚えていること。',
-    'vh.pillar3.k': 'シーンガイダンス',
-    'vh.pillar3.v': '質の高い提案こそ、最も寄り添う存在。',
-    'virtual.matrix.1k': 'PERCEPTION',
     'virtual.matrix.1v': '視覚 · 聴覚 · 感情',
-    'virtual.matrix.2k': 'COGNITION',
     'virtual.matrix.2v': '長期記憶 · 嗜好',
-    'virtual.matrix.3k': 'DIALOGUE',
-    'virtual.matrix.3v': 'リアルタイム · 多ターン',
-    'virtual.matrix.4k': 'IDENTITY',
+    'virtual.matrix.3v': 'リアルタイム · 多ターン · シーン',
     'virtual.matrix.4v': '人格固定 · ロールプレイ',
     'virtual.demo.placeholder': 'メッセージを入力……',
     'virtual.demo.send': '送信',
@@ -734,16 +675,14 @@ export const ui = {
 
     'comic.04.label': 'キャンバス',
     'comic.04.en': 'Canvas & Export',
-    'comic.04.title': 'レイアウト、書き出し、公開',
+    'comic.04.title': '今すぐ友達に披露しよう',
     'comic.04.desc':
-      'ページレイアウトプレビュー、画像書き出し、コミュニティ公開。作品はあなたの手に。',
+      '完成作品をそのままプレビュー、画像書き出し、コミュニティ公開。下書きから公開まで、作品はあなたの手に。',
     'comic.04.m1': '自動レイアウト',
     'comic.04.m2': '表紙の自動生成',
     'comic.04.m3': '素材エクスポート',
     'comic.04.m4': 'コミュニティ公開',
 
-    'comic.flow': 'FLOW · STORY → CHARACTER → STORYBOARD → CANVAS',
-    'comic.flow.note': '商用利用可能、章を跨いだキャラ一貫性',
     'comic.cta': '試してみる',
 
     'game.section': '§ 03 — AIゲーム',
@@ -770,27 +709,28 @@ export const ui = {
 
     'cta.section': '§ 06 — Contact',
     'cta.title':
-      'AIをあなたの<span class="title-accent-cinnabar">次の</span><span class="title-accent-gold">クリエイティブパートナー</span>に。',
+      '温度のある<span class="title-accent-cinnabar">AI</span>に触れ、<span class="title-accent-gold">ビジネス体験を新たに始動</span>。',
     'cta.body':
-      '技術提携、ライセンス、貴社の現場でAIが何をできるか──お気軽にご相談ください。',
+      '技術提携・製品ライセンス・ブランドIPの構築まで、私たちのAIエンジンを、貴社の最強の実行エンジンに。',
     'cta.button': 'お問い合わせ',
+    'cta.contact1.role': 'テクニカルマネージャー',
+    'cta.contact1.name': '周思瑜',
+    'cta.contact2.role': 'プロダクト副マネージャー',
+    'cta.contact2.name': '黃雅莉',
+    'cta.mailtoFallbackLine': 'メールが開きませんか？',
+    'cta.copyEmails': 'アドレスをコピー',
+    'cta.copied': 'コピーしました',
 
-    'footer.tagline': 'ガマニア・オリジナルコンテンツセンター発。AIで漫画・バーチャルヒューマン・ゲームを再定義。',
     'footer.col1.h': '製品',
-    'footer.col1.i1': 'AIコミック',
-    'footer.col1.i2': 'バーチャルヒューマン',
+    'footer.col1.i1': 'バーチャルヒューマン',
+    'footer.col1.i2': 'AIコミック',
     'footer.col1.i3': 'AIゲーム',
-    'footer.col1.i4': '知覚エンジン',
-    'footer.col2.h': '会社',
-    'footer.col2.i1': '会社概要',
-    'footer.col2.i2': 'AI倫理',
-    'footer.col2.i3': 'ニュース',
-    'footer.col2.i4': '採用',
-    'footer.col3.h': '法的事項',
-    'footer.col3.i1': 'プライバシー',
-    'footer.col3.i2': '利用規約',
-    'footer.col3.i3': '著作権',
-    'footer.copyright': '© 1995 – 2026 Gamania Digital Entertainment Co., Ltd.',
+    'footer.related.h': '関連サイト',
+    'footer.related.gamania': 'ガマニア',
+    'footer.related.mojoin': 'MOJOIN',
+    'footer.related.mangacanvas': 'Muztrix コミック',
+    'footer.copyright': '© 1995 - 2026 gamania',
+    'footer.address': '台湾台北市內湖区瑞湖街111号',
 
     'lang.switcher.label': '言語',
   },

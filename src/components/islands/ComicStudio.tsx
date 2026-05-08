@@ -15,17 +15,22 @@ interface Props {
 }
 
 /**
- * AI Comic Studio — 4-stage tabbed showcase.
- * Each stage shows a custom SVG mockup of the workflow step.
- * Tabs along the top, large interactive preview pane on the right.
+ * AI Comic Studio — 4-stage workflow showcase.
+ *
+ * Desktop: tabs at top + a single active panel (text on left, mock on right).
+ * Mobile: tabs hidden, all 4 stage panels stacked as cards (text on top, mock below).
+ *
+ * All 4 panels are always rendered; the .is-active class controls visibility on
+ * desktop. CSS @container queries (in Comic.astro) drive the desktop/mobile swap.
  */
 export default function ComicStudio({ stages, capabilitiesLabel }: Props) {
   const [active, setActive] = useState(0);
-  const stage = stages[active];
+
+  const mocks = [MockStory, MockCharacter, MockStoryboard, MockCanvas];
 
   return (
     <>
-      {/* Stage tabs */}
+      {/* Stage tabs (desktop only — hidden on mobile via CSS) */}
       <div
         className="mx-comic-tabs grid"
         style={{
@@ -62,7 +67,6 @@ export default function ComicStudio({ stages, capabilitiesLabel }: Props) {
                 if (!isActive) e.currentTarget.style.background = 'transparent';
               }}
             >
-              {/* Active top indicator */}
               <div
                 style={{
                   position: 'absolute',
@@ -76,14 +80,7 @@ export default function ComicStudio({ stages, capabilitiesLabel }: Props) {
                   transition: 'transform .4s cubic-bezier(.22,1,.36,1)',
                 }}
               />
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'baseline',
-                  gap: 12,
-                  marginBottom: 10,
-                }}
-              >
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 10 }}>
                 <span
                   style={{
                     fontFamily: 'var(--font-mono)',
@@ -117,13 +114,7 @@ export default function ComicStudio({ stages, capabilitiesLabel }: Props) {
               >
                 {s.label}
               </div>
-              <div
-                style={{
-                  fontSize: 11,
-                  color: 'var(--color-bone-3)',
-                  letterSpacing: '0.05em',
-                }}
-              >
+              <div style={{ fontSize: 11, color: 'var(--color-bone-3)', letterSpacing: '0.05em' }}>
                 {s.en}
               </div>
             </button>
@@ -131,143 +122,142 @@ export default function ComicStudio({ stages, capabilitiesLabel }: Props) {
         })}
       </div>
 
-      {/* Stage canvas */}
-      <div
-        className="mx-comic-canvas grid"
-        style={{
-          gridTemplateColumns: '1fr 1.4fr',
-          gap: 0,
-          border: '1px solid var(--bone-line)',
-          borderTop: 'none',
-          background: 'var(--color-ink-2)',
-          minHeight: 560,
-        }}
-      >
-        {/* Left text */}
-        <div
-          style={{
-            padding: '56px 48px',
-            borderRight: '1px solid var(--bone-line)',
-            position: 'relative',
-          }}
-        >
+      {/* All 4 stage panels — only .is-active is visible on desktop;
+          on mobile the CSS shows all of them stacked. */}
+      {stages.map((stage, i) => {
+        const Mock = mocks[i];
+        const isActive = i === active;
+        return (
           <div
+            key={stage.num}
+            className={`mx-comic-canvas grid ${isActive ? 'is-active' : ''}`}
             style={{
-              position: 'absolute',
-              top: 24,
-              right: 24,
-              fontFamily: 'var(--font-headline)',
-              fontSize: 140,
-              fontWeight: 700,
-              color: 'transparent',
-              WebkitTextStroke: '1px rgba(244,236,220,0.06)',
-              lineHeight: 1,
-              letterSpacing: '-0.06em',
-              pointerEvents: 'none',
+              gridTemplateColumns: '1fr 1.4fr',
+              gap: 0,
+              border: '1px solid var(--bone-line)',
+              borderTop: 'none',
+              background: 'var(--color-ink-2)',
+              minHeight: 560,
             }}
           >
-            {stage.num}
-          </div>
-          <div style={{ position: 'relative', zIndex: 1 }}>
+            {/* Left text */}
             <div
-              className="num-tag"
-              style={{ marginBottom: 24, color: 'var(--color-cinnabar)' }}
-            >
-              {stage.en}
-            </div>
-            <h3
+              className="mx-comic-text"
               style={{
-                fontFamily: 'var(--font-headline)',
-                fontSize: 44,
-                fontWeight: 500,
-                lineHeight: 1.1,
-                letterSpacing: '-0.02em',
-                color: 'var(--color-bone)',
-                margin: '0 0 28px',
+                padding: '56px 48px',
+                borderRight: '1px solid var(--bone-line)',
+                position: 'relative',
               }}
             >
-              {stage.title}
-            </h3>
-            <p
-              className="body-md-v2"
-              style={{ marginBottom: 36, maxWidth: 420 }}
-            >
-              {stage.desc}
-            </p>
-
-            <div style={{ borderTop: '1px solid var(--bone-line)', paddingTop: 24 }}>
+              {/* Mobile-only step badge so each stacked card has a clear header */}
+              <div className="mx-comic-mobile-badge">STEP · {stage.num}</div>
               <div
                 style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: 10,
-                  letterSpacing: '0.25em',
-                  color: 'var(--color-bone-3)',
-                  marginBottom: 16,
+                  position: 'absolute',
+                  top: 24,
+                  right: 24,
+                  fontFamily: 'var(--font-headline)',
+                  fontSize: 140,
+                  fontWeight: 700,
+                  color: 'transparent',
+                  WebkitTextStroke: '1px rgba(244,236,220,0.06)',
+                  lineHeight: 1,
+                  letterSpacing: '-0.06em',
+                  pointerEvents: 'none',
                 }}
+                aria-hidden
               >
-                {capabilitiesLabel}
+                {stage.num}
               </div>
-              <ul
-                style={{
-                  listStyle: 'none',
-                  padding: 0,
-                  margin: 0,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 12,
-                }}
-              >
-                {stage.meta.map((m, i) => (
-                  <li
-                    key={i}
+              <div style={{ position: 'relative', zIndex: 1 }}>
+                <div className="num-tag" style={{ marginBottom: 24, color: 'var(--color-cinnabar)' }}>
+                  {stage.en}
+                </div>
+                <h3
+                  className="mx-comic-stage-title"
+                  style={{
+                    fontFamily: 'var(--font-headline)',
+                    fontSize: 44,
+                    fontWeight: 500,
+                    lineHeight: 1.1,
+                    letterSpacing: '-0.02em',
+                    color: 'var(--color-bone)',
+                    margin: '0 0 28px',
+                  }}
+                >
+                  {stage.title}
+                </h3>
+                <p className="body-md-v2" style={{ marginBottom: 36, maxWidth: 420 }}>
+                  {stage.desc}
+                </p>
+
+                <div style={{ borderTop: '1px solid var(--bone-line)', paddingTop: 24 }}>
+                  <div
                     style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 14,
-                      fontSize: 13,
-                      color: 'var(--color-bone-2)',
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: 10,
+                      letterSpacing: '0.25em',
+                      color: 'var(--color-bone-3)',
+                      marginBottom: 16,
                     }}
                   >
-                    <span
-                      style={{
-                        width: 16,
-                        height: 1,
-                        background: 'var(--color-cinnabar)',
-                      }}
-                    />
-                    {m}
-                  </li>
-                ))}
-              </ul>
+                    {capabilitiesLabel}
+                  </div>
+                  <ul
+                    style={{
+                      listStyle: 'none',
+                      padding: 0,
+                      margin: 0,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: 12,
+                    }}
+                  >
+                    {stage.meta.map((m, idx) => (
+                      <li
+                        key={idx}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: 14,
+                          fontSize: 13,
+                          color: 'var(--color-bone-2)',
+                        }}
+                      >
+                        <span style={{ width: 16, height: 1, background: 'var(--color-cinnabar)' }} />
+                        {m}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Right mock */}
+            <div
+              className="mx-comic-mock"
+              style={{
+                position: 'relative',
+                overflow: 'hidden',
+                background: 'linear-gradient(135deg, #14100c 0%, #0a0805 100%)',
+                minHeight: 560,
+              }}
+            >
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  backgroundImage:
+                    'linear-gradient(rgba(244,236,220,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(244,236,220,0.025) 1px, transparent 1px)',
+                  backgroundSize: '32px 32px',
+                  pointerEvents: 'none',
+                }}
+              />
+              <Mock />
             </div>
           </div>
-        </div>
-
-        {/* Right mockup */}
-        <div
-          style={{
-            position: 'relative',
-            overflow: 'hidden',
-            background: 'linear-gradient(135deg, #14100c 0%, #0a0805 100%)',
-            minHeight: 560,
-          }}
-        >
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              backgroundImage:
-                'linear-gradient(rgba(244,236,220,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(244,236,220,0.025) 1px, transparent 1px)',
-              backgroundSize: '32px 32px',
-              pointerEvents: 'none',
-            }}
-          />
-          {active === 0 && <MockStory />}
-          {active === 1 && <MockCharacter />}
-          {active === 2 && <MockStoryboard />}
-          {active === 3 && <MockCanvas />}
-        </div>
-      </div>
+        );
+      })}
     </>
   );
 }
@@ -312,18 +302,9 @@ function MockStory() {
             color: 'var(--color-bone-2)',
           }}
         >
-          STORY · zh-TW · FLEXIBLE
+          STORY
         </span>
         <span style={{ flex: 1, height: 1, background: 'var(--bone-line)' }} />
-        <span
-          style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: 10,
-            color: 'var(--color-bone-3)',
-          }}
-        >
-          9,995 pts
-        </span>
       </div>
 
       <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
@@ -559,7 +540,7 @@ function MockCharacter() {
       {/* Scene boards */}
       <div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
-          <span className="comic-panel-tag" style={{ background: 'rgba(255,90,31,0.1)', padding: '3px 8px' }}>
+          <span className="comic-panel-tag">
             SCENE · 概念板
           </span>
           <span style={{ flex: 1, height: 1, background: 'var(--bone-line)' }} />
@@ -567,7 +548,7 @@ function MockCharacter() {
             3 / 3 BOARDS
           </span>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
+        <div data-mock-grid="3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
           {sceneBoards.map((b) => (
             <div key={b.tag} style={{ background: 'var(--color-ink)', border: '1px solid var(--bone-line)' }}>
               <div className="comic-art-wrap" style={{ aspectRatio: '4 / 3' }}>
@@ -652,7 +633,7 @@ function MockStoryboard() {
               {act.label}
             </span>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
+          <div data-mock-grid="3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
             {act.panels.map((p) => (
               <div
                 key={p.n}
@@ -798,6 +779,7 @@ function MockCanvas() {
         {pages.map((p, i) => (
           <div
             key={i}
+            data-mock-page
             style={{
               position: 'absolute',
               top: '50%',

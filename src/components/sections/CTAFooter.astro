@@ -10,30 +10,43 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
-const cols = [
+const productLinks = [
+  { href: '#virtual', label: t('footer.col1.i1') },
+  { href: '#comic', label: t('footer.col1.i2') },
+  { href: '#game', label: t('footer.col1.i3') },
+] as const;
+
+const relatedLinks = [
   {
-    h: t('footer.col1.h'),
-    items: [
-      t('footer.col1.i1'),
-      t('footer.col1.i2'),
-      t('footer.col1.i3'),
-      t('footer.col1.i4'),
-    ],
+    href: 'https://www.gamania.com/',
+    label: t('footer.related.gamania'),
+  },
+  { href: 'https://mojoin.com/', label: t('footer.related.mojoin') },
+  {
+    href: 'https://mangacanvas.gamaniaocc.org/',
+    label: t('footer.related.mangacanvas'),
+  },
+] as const;
+
+const linkStyle =
+  'color: var(--color-bone-2); text-decoration: none; font-size: 13px;';
+
+const ctaContacts = [
+  {
+    role: t('cta.contact1.role'),
+    name: t('cta.contact1.name'),
+    email: 'mazzchou@gamania.com',
   },
   {
-    h: t('footer.col2.h'),
-    items: [
-      t('footer.col2.i1'),
-      t('footer.col2.i2'),
-      t('footer.col2.i3'),
-      t('footer.col2.i4'),
-    ],
+    role: t('cta.contact2.role'),
+    name: t('cta.contact2.name'),
+    email: 'yalihuang@gamania.com',
   },
-  {
-    h: t('footer.col3.h'),
-    items: [t('footer.col3.i1'), t('footer.col3.i2'), t('footer.col3.i3')],
-  },
-];
+] as const;
+const ctaMailtoHref = `mailto:${ctaContacts.map((c) => c.email).join(',')}`;
+const ctaEmailList = ctaContacts.map((c) => c.email).join(', ');
+const ctaCopyEmailsLabel = t('cta.copyEmails');
+const ctaCopiedLabel = t('cta.copied');
 ---
 
 <section
@@ -64,25 +77,47 @@ const cols = [
         </div>
         <h2 class="h-display" style="margin: 0; color: var(--color-bone);" set:html={t('cta.title')} />
         <p
-          class="body-lg-v2"
-          style="max-width: 580px; margin-top: 36px;"
+          class="body-lg-v2 mx-cta-body"
+          style="margin-top: 36px;"
         >
           {t('cta.body')}
         </p>
       </div>
       <div style="padding-bottom: 16px;">
         <a
-          href="mailto:yalihuang@gamania.com"
+          href={ctaMailtoHref}
           class="btn-v2 btn-v2--primary"
           style="padding: 24px 36px; font-size: 13px;"
         >
           {t('cta.button')}
           <span class="arrow"></span>
         </a>
-        <div
-          style="margin-top: 18px; font-family: var(--font-mono); font-size: 11px; color: var(--color-bone-3); letter-spacing: 0.1em;"
-        >
-          yalihuang@gamania.com
+        <div class="mx-cta-contacts">
+          {
+            ctaContacts.map((c) => (
+              <div class="mx-cta-contact-row">
+                <span class="mx-cta-contact-meta">
+                  {c.role} · {c.name}
+                </span>
+                <a
+                  href={`mailto:${c.email}`}
+                  class="mx-cta-contact-mail"
+                >
+                  {c.email}
+                </a>
+              </div>
+            ))
+          }
+        </div>
+        <div class="mx-cta-mailto-fallback">
+          <span class="mx-cta-mailto-fallback-text">{t('cta.mailtoFallbackLine')}</span>
+          <button
+            type="button"
+            class="mx-cta-copy-emails"
+            data-mx-cta-copy-emails
+          >
+            {t('cta.copyEmails')}
+          </button>
         </div>
       </div>
     </div>
@@ -91,71 +126,203 @@ const cols = [
     <footer style="padding-top: 48px;">
       <div
         class="mx-footer-cols grid mb-16"
-        style="grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;"
+        style="grid-template-columns: 2fr 1fr 1fr; gap: 48px;"
       >
         <div>
           <a class="wordmark wordmark--lg" href="#hero">
             <MuztrixGlyph size={44} />
             <span>Muztrix</span>
           </a>
-          <p
-            class="body-sm-v2"
-            style="margin-top: 24px; max-width: 320px;"
-          >
-            {t('footer.tagline')}
-          </p>
         </div>
-        {
-          cols.map((c) => (
-            <div>
-              <h5
-                style="font-family: var(--font-headline); font-size: 11px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--color-cinnabar); margin: 0 0 18px;"
-              >
-                {c.h}
-              </h5>
-              <ul
-                style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;"
-              >
-                {c.items.map((it) => (
-                  <li>
-                    <a
-                      href="#"
-                      style="color: var(--color-bone-2); text-decoration: none; font-size: 13px;"
-                    >
-                      {it}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))
-        }
+        <div>
+          <h5
+            style="font-family: var(--font-headline); font-size: 11px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--color-cinnabar); margin: 0 0 18px;"
+          >
+            {t('footer.col1.h')}
+          </h5>
+          <ul
+            style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;"
+          >
+            {
+              productLinks.map(({ href, label }) => (
+                <li>
+                  <a href={href} style={linkStyle}>
+                    {label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div>
+          <h5
+            style="font-family: var(--font-headline); font-size: 11px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--color-cinnabar); margin: 0 0 18px;"
+          >
+            {t('footer.related.h')}
+          </h5>
+          <ul
+            style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;"
+          >
+            {
+              relatedLinks.map(({ href, label }) => (
+                <li>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={linkStyle}
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
       </div>
 
-      <!-- Big outlined wordmark -->
+      <!-- Big outlined wordmark (hidden until we have final hero copy here) -->
       <div
+        class="mx-footer-muztrix-outlined"
         style="font-family: var(--font-headline); font-weight: 700; font-size: clamp(80px, 18vw, 280px); line-height: 0.85; letter-spacing: -0.05em; color: transparent; -webkit-text-stroke: 1px var(--bone-line); margin: 40px 0 32px; display: flex; align-items: baseline; gap: 12px;"
       >
-        MUZTRIX
+        Muztrix
         <span
           style="font-size: 0.15em; -webkit-text-stroke: none; color: var(--color-cinnabar); letter-spacing: 0.2em;"
           >·</span
         >
       </div>
 
-      <div
-        class="mx-footer-bottom flex justify-between items-center"
-        style="padding-top: 24px; border-top: 1px solid var(--bone-line); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--color-bone-3);"
-      >
-        <span>{t('footer.copyright')}</span>
-        <span>TPE · TKY · TPE</span>
-        <span>v2.0 · DESIGN/2026.05</span>
+      <div class="mx-footer-bottom">
+        <span class="mx-footer-copy">{t('footer.copyright')}</span>
+        <span class="mx-footer-address">{t('footer.address')}</span>
       </div>
     </footer>
   </div>
 </section>
 
+<script
+  define:vars={{
+    ctaEmailList,
+    ctaCopyEmailsLabel,
+    ctaCopiedLabel,
+  }}
+>
+  (function () {
+    const btn = document.querySelector('[data-mx-cta-copy-emails]');
+    if (!btn) return;
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(ctaEmailList);
+        btn.textContent = ctaCopiedLabel;
+        window.setTimeout(() => {
+          btn.textContent = ctaCopyEmailsLabel;
+        }, 2200);
+      } catch {
+        window.prompt('Copy:', ctaEmailList);
+      }
+    });
+  })();
+</script>
+
 <style>
+  .mx-footer-muztrix-outlined {
+    display: none !important;
+  }
+
+  /* Same column width as .h-display title; pretty wraps for CJK / long lines */
+  .mx-cta-body {
+    text-wrap: pretty;
+  }
+
+  .mx-cta-contacts {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 320px;
+  }
+  .mx-cta-contact-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .mx-cta-contact-meta {
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1.45;
+    color: var(--color-bone-2);
+  }
+  .mx-cta-contact-mail {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--color-bone-3);
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+  .mx-cta-contact-mail:hover {
+    color: var(--color-cinnabar);
+  }
+
+  .mx-cta-mailto-fallback {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+    max-width: 320px;
+  }
+  .mx-cta-mailto-fallback-text {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--color-bone-3);
+  }
+  .mx-cta-copy-emails {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-cinnabar-soft);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 138, 90, 0.45);
+    padding: 0 0 2px;
+    cursor: pointer;
+    transition: color 0.25s, border-color 0.25s;
+  }
+  .mx-cta-copy-emails:hover {
+    color: var(--color-cinnabar);
+    border-bottom-color: var(--color-cinnabar);
+  }
+
+  .mx-footer-bottom {
+    padding-top: 24px;
+    border-top: 1px solid var(--bone-line);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 12px 28px;
+    color: var(--color-bone-3);
+  }
+  .mx-footer-copy {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    justify-self: start;
+    text-align: left;
+  }
+  .mx-footer-address {
+    font-family: var(--font-body);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    line-height: 1.55;
+    color: var(--color-bone-3);
+    justify-self: end;
+    text-align: right;
+  }
+
   @container page (max-width: 900px) {
     .mx-cta-row {
       grid-template-columns: 1fr !important;
@@ -166,15 +333,16 @@ const cols = [
       grid-template-columns: 1fr 1fr !important;
       gap: 32px !important;
     }
-    .mx-footer-bottom {
-      flex-direction: column !important;
-      gap: 12px !important;
-      text-align: center;
-    }
   }
   @container page (max-width: 600px) {
     .mx-footer-cols {
       grid-template-columns: 1fr !important;
+    }
+    .mx-footer-bottom {
+      grid-template-columns: 1fr;
+    }
+    .mx-footer-address {
+      justify-self: end;
     }
   }
 </style>

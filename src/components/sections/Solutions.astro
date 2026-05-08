@@ -220,29 +220,7 @@ const cards: Card[] = [
     transform: scaleX(1);
   }
 
-  /* Tag chips — visible enough to read as their own UI element */
-  .solution-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 14px;
-    font-size: 12px;
-    font-family: var(--font-serif-tc);
-    color: var(--color-cinnabar-soft);
-    background: rgba(255, 90, 31, 0.08);
-    border: 1px solid rgba(255, 138, 90, 0.4);
-    border-radius: 999px;
-    letter-spacing: 0.04em;
-    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .solution-tag-dot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--color-cinnabar);
-    box-shadow: 0 0 6px rgba(255, 90, 31, 0.6);
-    flex-shrink: 0;
-  }
+  /* Tag hover — base .solution-tag lives in global.css */
   .mx-solution-card:hover .solution-tag {
     color: var(--color-bone);
     background: rgba(255, 90, 31, 0.16);

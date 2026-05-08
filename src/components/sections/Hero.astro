@@ -38,8 +38,8 @@ const t = useTranslations(lang);
         {t('hero.eyebrow')}
       </p>
       <h1
-        class="font-headline text-white leading-[0.98] mb-10 tracking-tight"
-        style="font-size: clamp(56px, 8.2vw, 120px); font-weight: 600; text-shadow: 0 4px 40px rgba(0,0,0,0.6);"
+        class="font-headline text-white leading-[0.98] mb-10 tracking-tight mx-hero-title"
+        style="font-weight: 600; text-shadow: 0 4px 40px rgba(0,0,0,0.6);"
       >
         {t('hero.title.line1')}<br />
         <span class="text-primary">{t('hero.title.line2')}</span>
@@ -52,7 +52,7 @@ const t = useTranslations(lang);
       </p>
 
       <div class="flex flex-wrap gap-5">
-        <a href="#cta" class="shimmer-btn shimmer-btn-primary">
+        <a href="#solutions" class="shimmer-btn shimmer-btn-primary">
           <span class="relative z-10">{t('hero.cta.primary')}</span>
           <svg
             class="relative z-10"
@@ -70,7 +70,7 @@ const t = useTranslations(lang);
             <path d="m12 5 7 7-7 7" />
           </svg>
         </a>
-        <button class="shimmer-btn shimmer-btn-glass">
+        <a href="#contact" class="shimmer-btn shimmer-btn-glass">
           <svg
             class="relative z-10"
             width="20"
@@ -87,7 +87,7 @@ const t = useTranslations(lang);
             <polygon points="10 8 16 12 10 16 10 8" fill="currentColor" />
           </svg>
           <span class="relative z-10">{t('hero.cta.secondary')}</span>
-        </button>
+        </a>
       </div>
     </div>
   </div>
@@ -109,8 +109,14 @@ const t = useTranslations(lang);
 </section>
 
 <style>
+  /* Largest headline site-wide: above .h-display (max 144px) and .h1-display (max 88px) */
+  .mx-hero-title {
+    font-size: clamp(64px, 10.8vw, 172px);
+  }
+
   /* Glassmorphism + shimmer button base */
   .shimmer-btn {
+    text-decoration: none;
     position: relative;
     display: inline-flex;
     align-items: center;

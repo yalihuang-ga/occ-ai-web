@@ -11,11 +11,11 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
-const matrix = [
-  { k: t('virtual.matrix.1k'), v: t('virtual.matrix.1v') },
-  { k: t('virtual.matrix.2k'), v: t('virtual.matrix.2v') },
-  { k: t('virtual.matrix.3k'), v: t('virtual.matrix.3v') },
-  { k: t('virtual.matrix.4k'), v: t('virtual.matrix.4v') },
+const matrixLines = [
+  t('virtual.matrix.1v'),
+  t('virtual.matrix.2v'),
+  t('virtual.matrix.3v'),
+  t('virtual.matrix.4v'),
 ];
 
 const scenes: Scene[] = [
@@ -102,7 +102,7 @@ const scenes: Scene[] = [
 
   <div style="max-width: 1440px; margin: 0 auto; position: relative;">
     <!-- Section header — stacked single column -->
-    <div class="mx-section-head" style="margin-bottom: 56px;">
+    <div class="mx-section-head" style="margin-bottom: 48px;">
       <div class="flex items-center gap-4 mb-7">
         <span class="num-tag">{t('virtual.section')}</span>
         <span style="flex: 1; height: 1px; background: var(--bone-line);"
@@ -116,23 +116,6 @@ const scenes: Scene[] = [
       <p class="body-lg-v2">
         {t('virtual.body1')}
       </p>
-    </div>
-
-    <!-- Three core pillars — replaces the previous body1/body2 list -->
-    <div class="vh-pillars" style="margin-bottom: 64px;">
-      {
-        [
-          { n: '01', k: t('vh.pillar1.k'), v: t('vh.pillar1.v') },
-          { n: '02', k: t('vh.pillar2.k'), v: t('vh.pillar2.v') },
-          { n: '03', k: t('vh.pillar3.k'), v: t('vh.pillar3.v') },
-        ].map((p) => (
-          <div class="vh-pillar">
-            <div class="vh-pillar-num">{p.n}</div>
-            <h3 class="vh-pillar-k">{p.k}</h3>
-            <p class="vh-pillar-v">{p.v}</p>
-          </div>
-        ))
-      }
     </div>
 
     <!-- Showcase island -->
@@ -155,25 +138,17 @@ const scenes: Scene[] = [
       client:visible
     />
 
-    <!-- Capability matrix below -->
+    <!-- Capability matrix — same cinnabar pill tags as Solutions -->
     <div
-      class="grid mt-12"
-      style="grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--bone-line);"
+      class="virtual-cap-tags mt-12 flex flex-wrap"
+      style="gap: 10px;"
     >
       {
-        matrix.map((c, i) => (
-          <div
-            style={`padding: 20px 22px; border-right: ${i < 3 ? '1px solid var(--bone-line)' : 'none'};`}
-          >
-            <div
-              style="font-size: 10px; letter-spacing: 0.25em; color: var(--color-cinnabar); margin-bottom: 8px;"
-            >
-              {c.k}
-            </div>
-            <div class="body-sm-v2" style="color: var(--color-bone);">
-              {c.v}
-            </div>
-          </div>
+        matrixLines.map((line) => (
+          <span class="solution-tag">
+            <span class="solution-tag-dot" />
+            <span class="solution-tag-body">{line}</span>
+          </span>
         ))
       }
     </div>
@@ -181,83 +156,13 @@ const scenes: Scene[] = [
 </section>
 
 <style>
-  /* Three-pillar block — value-prop intro before the demo */
-  .vh-pillars {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-    border-top: 1px solid var(--bone-line);
-    border-bottom: 1px solid var(--bone-line);
-  }
-  .vh-pillar {
-    padding: 36px 32px;
-    border-right: 1px solid var(--bone-line);
-    position: relative;
-  }
-  .vh-pillar:last-child {
-    border-right: none;
-  }
-  .vh-pillar-num {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.25em;
-    color: var(--color-cinnabar);
-    margin-bottom: 14px;
-  }
-  .vh-pillar-k {
-    font-family: var(--font-headline);
-    font-size: 22px;
-    font-weight: 500;
-    color: var(--color-bone);
-    margin: 0 0 12px;
-    letter-spacing: -0.01em;
-  }
-  .vh-pillar-v {
-    font-family: var(--font-body);
-    font-size: 14px;
-    line-height: 1.65;
-    color: var(--color-bone-2);
-    margin: 0;
-  }
-
-  @container page (max-width: 900px) {
-    .vh-pillars {
-      grid-template-columns: 1fr;
-    }
-    .vh-pillar {
-      border-right: none;
-      border-bottom: 1px solid var(--bone-line);
-      padding: 28px 4px;
-    }
-    .vh-pillar:last-child {
-      border-bottom: none;
-    }
-  }
-  @container page (max-width: 900px) {
-    /* Capability matrix collapses to 2x2 on tablet */
-    section#virtual .grid[style*="repeat(4, 1fr)"] {
-      grid-template-columns: repeat(2, 1fr) !important;
-    }
-    section#virtual .grid[style*="repeat(4, 1fr)"] > div:nth-child(2) {
-      border-right: none !important;
-    }
-    section#virtual .grid[style*="repeat(4, 1fr)"] > div:nth-child(odd) {
-      border-right: 1px solid var(--bone-line) !important;
-    }
-    section#virtual .grid[style*="repeat(4, 1fr)"] > div:nth-child(-n+2) {
-      border-bottom: 1px solid var(--bone-line) !important;
-    }
-  }
   @container page (max-width: 600px) {
-    section#virtual .grid[style*="repeat(4, 1fr)"] {
-      grid-template-columns: 1fr !important;
+    .virtual-cap-tags {
+      gap: 8px !important;
     }
-    section#virtual .grid[style*="repeat(4, 1fr)"] > div {
-      border-right: none !important;
-      border-bottom: 1px solid var(--bone-line) !important;
-    }
-    section#virtual .grid[style*="repeat(4, 1fr)"] > div:last-child {
-      border-bottom: none !important;
+    .virtual-cap-tags :global(.solution-tag) {
+      padding: 7px 12px;
+      font-size: 11px;
     }
   }
 </style>

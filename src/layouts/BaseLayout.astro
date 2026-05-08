@@ -49,6 +49,7 @@ const ogImageUrl = `${SITE}/og-image.png`;
     <!-- Primary meta -->
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content={t('site.keywords')} />
     <link rel="canonical" href={canonicalUrl} />
 
     <!-- Google Search Console verification -->
@@ -165,13 +166,23 @@ const ogImageUrl = `${SITE}/og-image.png`;
         sameAs: ['https://mangacanvas.gamaniaocc.org/'],
         address: {
           '@type': 'PostalAddress',
+          streetAddress: 'No. 111, Ruihu Street',
+          addressLocality: 'Neihu District',
+          addressRegion: 'Taipei City',
           addressCountry: 'TW',
         },
-        contactPoint: {
-          '@type': 'ContactPoint',
-          email: 'yalihuang@gamania.com',
-          contactType: 'business',
-        },
+        contactPoint: [
+          {
+            '@type': 'ContactPoint',
+            email: 'mazzchou@gamania.com',
+            contactType: 'technical support',
+          },
+          {
+            '@type': 'ContactPoint',
+            email: 'yalihuang@gamania.com',
+            contactType: 'customer support',
+          },
+        ],
       })}
     />
   </head>
