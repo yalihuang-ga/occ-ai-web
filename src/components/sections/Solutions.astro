@@ -254,6 +254,10 @@ const cards: Card[] = [
 
   /* Container responsive */
   @container page (max-width: 900px) {
+    /* Cards stack vertically in 1 column on mobile / tablet */
+    .mx-solutions-grid {
+      grid-template-columns: 1fr !important;
+    }
     .mx-solution-card {
       padding: 40px 28px !important;
       min-height: auto !important;
