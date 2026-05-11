@@ -20,6 +20,7 @@ export interface Scene {
 interface Props {
   scenes: Scene[];
   imgSrc: string;
+  imgSrcSmile: string;
   ui: {
     modeLabel: string;
     mode2d: string;
@@ -32,6 +33,7 @@ interface Props {
     liveLabel: string;
     placeholder3dTitle: string;
     placeholder3dBody: string;
+    analysisTexts: string[];
   };
 }
 
@@ -45,7 +47,7 @@ interface Props {
  * Per scene change: chat thread resets to scene's preset greeting; perception
  * signals swap; mock reply pool changes too.
  */
-export default function VirtualHumanShowcase({ scenes, imgSrc, ui }: Props) {
+export default function VirtualHumanShowcase({ scenes, imgSrc, imgSrcSmile, ui }: Props) {
   const [mode, setMode] = useState<Mode>('2d');
   const [sceneIdx, setSceneIdx] = useState(0);
   const scene = scenes[sceneIdx];
@@ -152,7 +154,7 @@ export default function VirtualHumanShowcase({ scenes, imgSrc, ui }: Props) {
         {/* Character + CV overlay */}
         <div className="vh-character-area">
           {mode === '2d' ? (
-            <CharacterStage imgSrc={imgSrc} />
+            <CharacterStage imgSrc={imgSrc} imgSrcSmile={imgSrcSmile} analysisTexts={ui.analysisTexts} />
           ) : (
             <Placeholder3D
               title={ui.placeholder3dTitle}
@@ -249,9 +251,22 @@ export default function VirtualHumanShowcase({ scenes, imgSrc, ui }: Props) {
 }
 
 /* ============================================================
-   CharacterStage — character image + CV overlay + visitor mini-window
+   CharacterStage — character image + CV overlay
    ============================================================ */
-function CharacterStage({ imgSrc }: { imgSrc: string }) {
+function CharacterStage({ imgSrc, imgSrcSmile, analysisTexts }: { imgSrc: string; imgSrcSmile: string; analysisTexts: string[] }) {
+  const [showSmile, setShowSmile] = useState(false);
+  const [textIdx, setTextIdx] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setShowSmile((v) => !v), 3500);
+    return () => clearInterval(id);
+  }, []);
+
+  useEffect(() => {
+    const id = setInterval(() => setTextIdx((i) => (i + 1) % analysisTexts.length), 2000);
+    return () => clearInterval(id);
+  }, []);
+
   return (
     <div className="vh-stage">
       {/* Bracket corners */}
@@ -274,59 +289,38 @@ function CharacterStage({ imgSrc }: { imgSrc: string }) {
         />
       ))}
 
-      {/* Character */}
-      <img src={imgSrc} alt="MIYAKIEN virtual human" className="vh-character-img" />
+      {/* Character — two images crossfading */}
+      <img
+        src={imgSrc}
+        alt="MIYAKIEN virtual human"
+        className="vh-character-img"
+        style={{ opacity: showSmile ? 0 : 1, transition: 'opacity 0.6s ease' }}
+      />
+      <img
+        src={imgSrcSmile}
+        alt=""
+        className="vh-character-img"
+        style={{
+          opacity: showSmile ? 1 : 0,
+          transition: 'opacity 0.6s ease',
+          transform: 'translateX(-50%) scale(1.15)',
+          transformOrigin: 'top center',
+        }}
+      />
 
-      {/* Visitor recognition mini-window */}
-      <VisitorWindow />
+      {/* Bottom analysis text ticker */}
+      <div className="vh-analysis-ticker">
+        <span className="vh-analysis-dot" />
+        <span key={textIdx} className="vh-analysis-text">
+          {analysisTexts[textIdx]}
+        </span>
+      </div>
 
       {/* Scan line (CSS animated) */}
       <div className="vh-scan-line" />
 
       {/* Subtle grid backdrop */}
       <div className="vh-grid-bg" />
-    </div>
-  );
-}
-
-function VisitorWindow() {
-  return (
-    <div className="vh-visitor">
-      <div className="vh-visitor-header">
-        <span className="vh-visitor-dot" />
-        <span className="vh-visitor-title">VISITOR · 訪客識別</span>
-      </div>
-      <div className="vh-visitor-frame">
-        {/* corner brackets */}
-        <span className="vh-visitor-corner" style={{ top: 6, left: 6, borderTop: '1px solid var(--color-cinnabar)', borderLeft: '1px solid var(--color-cinnabar)' }} />
-        <span className="vh-visitor-corner" style={{ top: 6, right: 6, borderTop: '1px solid var(--color-cinnabar)', borderRight: '1px solid var(--color-cinnabar)' }} />
-        <span className="vh-visitor-corner" style={{ bottom: 6, left: 6, borderBottom: '1px solid var(--color-cinnabar)', borderLeft: '1px solid var(--color-cinnabar)' }} />
-        <span className="vh-visitor-corner" style={{ bottom: 6, right: 6, borderBottom: '1px solid var(--color-cinnabar)', borderRight: '1px solid var(--color-cinnabar)' }} />
-
-        {/* silhouette */}
-        <svg viewBox="0 0 60 70" preserveAspectRatio="xMidYMax meet" className="vh-visitor-silhouette" aria-hidden>
-          <defs>
-            <linearGradient id="vhSilhouette" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="rgba(244,236,220,0.32)" />
-              <stop offset="100%" stopColor="rgba(244,236,220,0.08)" />
-            </linearGradient>
-          </defs>
-          {/* head */}
-          <circle cx="30" cy="22" r="11" fill="url(#vhSilhouette)" />
-          {/* shoulders */}
-          <path d="M6 70 Q6 42 30 42 Q54 42 54 70 Z" fill="url(#vhSilhouette)" />
-          {/* face crosshair */}
-          <line x1="30" y1="11" x2="30" y2="33" stroke="rgba(255,90,31,0.55)" strokeWidth="0.4" strokeDasharray="1 1.5" />
-          <line x1="19" y1="22" x2="41" y2="22" stroke="rgba(255,90,31,0.55)" strokeWidth="0.4" strokeDasharray="1 1.5" />
-        </svg>
-
-        {/* scan sweep */}
-        <span className="vh-visitor-scan" />
-      </div>
-      <div className="vh-visitor-meta">
-        <span>FACE · 0.97</span>
-        <span className="vh-visitor-pulse">LOCKED</span>
-      </div>
     </div>
   );
 }

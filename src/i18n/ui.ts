@@ -165,6 +165,12 @@ export const ui = {
     'vh.placeholder.3d.title': '3D 模型準備中',
     'vh.placeholder.3d.body': '高保真 3D 互動體驗將於下個版本上線。',
 
+    'vh.analysis.t1': '正在觀察你的衣著…',
+    'vh.analysis.t2': '正在分析你的表情…',
+    'vh.analysis.t3': '辨識到情緒：好奇',
+    'vh.analysis.t4': '語調分析中…',
+    'vh.analysis.t5': '正在生成回應策略…',
+
     // ---- Comic Studio (§ 04) ----
     'comic.section': '§ 04 — AI Comic Studio',
     'comic.title':
@@ -426,6 +432,12 @@ export const ui = {
     'vh.placeholder.3d.title': '3D Model Coming Soon',
     'vh.placeholder.3d.body': 'Hi-fidelity 3D interactive experience launching in the next release.',
 
+    'vh.analysis.t1': 'Observing your attire…',
+    'vh.analysis.t2': 'Analyzing your expression…',
+    'vh.analysis.t3': 'Emotion detected: Curious',
+    'vh.analysis.t4': 'Analyzing vocal tone…',
+    'vh.analysis.t5': 'Generating response strategy…',
+
     'comic.section': '§ 04 — AI Comic Studio',
     'comic.title':
       'From spark to finished comic — <span class="title-accent-gold">a four-step pipeline</span>',
@@ -683,6 +695,12 @@ export const ui = {
 
     'vh.placeholder.3d.title': '3Dモデル準備中',
     'vh.placeholder.3d.body': '高精細な3Dインタラクティブ体験は次バージョンで公開予定。',
+
+    'vh.analysis.t1': '服装を観察中…',
+    'vh.analysis.t2': '表情を分析中…',
+    'vh.analysis.t3': '感情検出：好奇心',
+    'vh.analysis.t4': '声のトーンを分析中…',
+    'vh.analysis.t5': '応答戦略を生成中…',
 
     'comic.section': '§ 04 — AIコミックスタジオ',
     'comic.title':

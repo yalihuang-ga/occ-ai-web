@@ -8,7 +8,9 @@ import { useEffect, useRef, useState } from 'react';
 
 interface Props {
   lineSrc: string;
+  lineSrcMobile: string;
   colorSrc: string;
+  colorSrcMobile: string;
   alt: string;
 }
 
@@ -34,7 +36,7 @@ type Stage = 1 | 2 | 3;
  *  - GPU layer hint (translateZ + will-change) only on the colored image —
  *    line art is briefly visible at boot, not worth promoting.
  */
-export default function HeroVisual({ lineSrc, colorSrc, alt }: Props) {
+export default function HeroVisual({ lineSrc, lineSrcMobile, colorSrc, colorSrcMobile, alt }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { amount: 0.15 });
   const [stage, setStage] = useState<Stage>(1);
@@ -157,7 +159,12 @@ export default function HeroVisual({ lineSrc, colorSrc, alt }: Props) {
       {/* Stage 1: line art — alpha pre-baked, no mask, no blend mode, no invert */}
       <motion.img
         src={lineSrc}
+        srcSet={`${lineSrcMobile} 600w, ${lineSrc} 1200w`}
+        sizes="(max-width: 767px) 60vw, 60vw"
         alt={alt}
+        loading="eager"
+        fetchPriority="high"
+        decoding="async"
         className={`pointer-events-auto ${figurePos} ${figureSize}`}
         style={{ x: mx, y: my }}
         initial={{ opacity: 0 }}
@@ -180,7 +187,12 @@ export default function HeroVisual({ lineSrc, colorSrc, alt }: Props) {
       {/* Stage 2/3: colored character — single drop-shadow, baked alpha edges */}
       <motion.img
         src={colorSrc}
+        srcSet={`${colorSrcMobile} 600w, ${colorSrc} 1200w`}
+        sizes="(max-width: 767px) 60vw, 60vw"
         alt={alt}
+        loading="eager"
+        fetchPriority="high"
+        decoding="async"
         className={`pointer-events-auto ${figurePos} ${figureSize}`}
         style={{ ...gpuHint, x: mx, y: my }}
         initial={{ opacity: 0, scale: 0.94 }}
