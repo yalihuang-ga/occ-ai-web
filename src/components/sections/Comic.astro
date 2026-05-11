@@ -15,32 +15,24 @@ const stages = [
     num: '01' as const,
     label: t('comic.01.label'),
     en: t('comic.01.en'),
-    title: t('comic.01.title'),
-    desc: t('comic.01.desc'),
-    meta: [t('comic.01.m1'), t('comic.01.m2'), t('comic.01.m3')] as string[],
+    meta: [t('comic.01.m1'), t('comic.01.m2'), t('comic.01.m3'), t('comic.01.m4')] as string[],
   },
   {
     num: '02' as const,
     label: t('comic.02.label'),
     en: t('comic.02.en'),
-    title: t('comic.02.title'),
-    desc: t('comic.02.desc'),
     meta: [t('comic.02.m1'), t('comic.02.m2'), t('comic.02.m3')] as string[],
   },
   {
     num: '03' as const,
     label: t('comic.03.label'),
     en: t('comic.03.en'),
-    title: t('comic.03.title'),
-    desc: t('comic.03.desc'),
     meta: [t('comic.03.m1'), t('comic.03.m2'), t('comic.03.m3')] as string[],
   },
   {
     num: '04' as const,
     label: t('comic.04.label'),
     en: t('comic.04.en'),
-    title: t('comic.04.title'),
-    desc: t('comic.04.desc'),
     meta: [
       t('comic.04.m1'),
       t('comic.04.m2'),
@@ -74,11 +66,7 @@ const stages = [
       </p>
     </div>
 
-    <ComicStudio
-      stages={stages}
-      capabilitiesLabel="CAPABILITIES"
-      client:visible
-    />
+    <ComicStudio stages={stages} tagsAriaLabel={t('comic.tagsAria')} lang={lang} client:visible />
 
     <div class="mx-comic-bottom flex justify-end items-center mt-6">
       <a
@@ -96,8 +84,8 @@ const stages = [
 
 <style is:global>
   /* All comic-section selectors live in this block. The block is global
-     because most targets (.mx-comic-canvas, .mx-comic-tabs, .mx-comic-text,
-     .mx-comic-mock, etc.) are rendered inside a React island and don't
+     because most targets (.mx-comic-canvas, .mx-comic-tabs, .mx-comic-mock,
+     .mx-comic-tags-row, etc.) are rendered inside a React island and don't
      receive Astro's scoped data-cid attribute. The .mx-* / .comic-*
      namespacing keeps these from leaking into other sections. */
 
@@ -108,22 +96,47 @@ const stages = [
     font-size: clamp(40px, 4.6vw, 68px) !important;
   }
 
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Stage layout: mock full width, Solutions-style pills below (global .solution-tag) */
+  .mx-comic-stage-inner {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  .mx-comic-tags-row {
+    padding: 22px 32px 26px;
+    border-top: 1px solid var(--bone-line);
+    background: var(--color-ink-2);
+  }
+  /* Match Solutions card tag hover when hovering the active stage */
+  .mx-comic-canvas.is-active:hover .solution-tag {
+    color: var(--color-bone);
+    background: rgba(255, 90, 31, 0.16);
+    border-color: rgba(255, 138, 90, 0.7);
+  }
+  .mx-comic-canvas.is-active:hover .solution-tag-dot {
+    box-shadow: 0 0 10px rgba(255, 90, 31, 0.9);
+  }
+
   /* Bottom CTA — larger / heavier than the default btn-v2 sizing so it
      reads as the section's primary action. */
   @keyframes mx-comic-cta-pulse {
     0%,
     100% {
       box-shadow:
-        0 0 0 1px rgba(255, 90, 31, 0.35),
-        0 8px 28px rgba(255, 90, 31, 0.22);
+        0 8px 28px rgba(255, 90, 31, 0.22),
+        0 0 20px rgba(255, 90, 31, 0.12);
       filter: brightness(1);
     }
     50% {
       box-shadow:
-        0 0 0 3px rgba(255, 200, 140, 0.65),
-        0 0 56px rgba(255, 90, 31, 0.72),
-        0 14px 44px rgba(255, 90, 31, 0.42);
-      filter: brightness(1.14);
+        0 0 36px rgba(255, 90, 31, 0.38),
+        0 14px 44px rgba(255, 90, 31, 0.36);
+      filter: brightness(1.1);
     }
   }
 
@@ -151,7 +164,9 @@ const stages = [
     padding: 22px 36px !important;
     font-size: 14px !important;
     letter-spacing: 0.22em !important;
-    box-shadow: 0 0 0 1px rgba(255, 90, 31, 0.0), 0 8px 24px rgba(255, 90, 31, 0.18);
+    box-shadow:
+      0 8px 24px rgba(255, 90, 31, 0.18),
+      0 0 18px rgba(255, 90, 31, 0.1);
     animation: mx-comic-cta-pulse 1.75s ease-in-out infinite;
     will-change: box-shadow, filter;
   }
@@ -179,7 +194,9 @@ const stages = [
   .mx-comic-cta:hover {
     animation-play-state: paused;
     filter: brightness(1);
-    box-shadow: 0 0 0 1px rgba(255, 90, 31, 0.4), 0 12px 32px rgba(255, 90, 31, 0.28);
+    box-shadow:
+      0 12px 32px rgba(255, 90, 31, 0.28),
+      0 0 22px rgba(255, 90, 31, 0.18);
   }
   .mx-comic-cta:hover::before {
     animation-play-state: paused;
@@ -210,21 +227,28 @@ const stages = [
   }
 
   /* ==============================================================
-     Desktop default: all 4 stage panels are rendered, but only the
-     one with .is-active is visible (controlled by React state).
+     Desktop: only the active stage panel is visible (React state).
+     Panel = column: mock → tag row (full width).
      ============================================================== */
   .mx-comic-canvas {
     display: none !important;
   }
   .mx-comic-canvas.is-active {
-    display: grid !important;
+    display: flex !important;
+    flex-direction: column;
   }
-  /* Mobile-only step badge stays hidden on desktop */
+  /* Mobile-only step header (badge + title) — hidden on desktop */
+  .mx-comic-mobile-header {
+    display: none;
+  }
   .mx-comic-mobile-badge {
     display: none;
   }
+  .mx-comic-mobile-title {
+    display: none;
+  }
 
-  /* Tablet: 2x2 tabs, stack text-on-top / mock-below inside the active card */
+  /* Tablet: 2x2 tabs; stage panel stays single column (mock → tags) */
   @container page (max-width: 900px) {
     .mx-comic-tabs {
       grid-template-columns: repeat(2, 1fr) !important;
@@ -236,27 +260,22 @@ const stages = [
     .mx-comic-tabs button:nth-child(4) {
       border-top: 1px solid var(--bone-line) !important;
     }
-    .mx-comic-canvas.is-active {
-      grid-template-columns: 1fr !important;
-    }
-    .mx-comic-canvas .mx-comic-text {
-      border-right: none !important;
-      border-bottom: 1px solid var(--bone-line) !important;
+    .mx-comic-tags-row {
+      padding: 18px 24px 22px;
     }
   }
 
   /* ==============================================================
-     Mobile: hide tabs, render all 4 stage panels stacked as cards.
-     Each card = text block on top + mock below + thin separator.
+     Mobile: hide tabs; stack all 4 stages (badge → mock → tags).
      ============================================================== */
   @container page (max-width: 700px) {
     .mx-comic-tabs {
       display: none !important;
     }
-    /* Show every stage panel, stacked */
     .mx-comic-canvas,
     .mx-comic-canvas.is-active {
-      display: block !important;
+      display: flex !important;
+      flex-direction: column;
       border-top: 1px solid var(--bone-line);
       margin-bottom: 16px;
       min-height: 0 !important;
@@ -264,7 +283,15 @@ const stages = [
     .mx-comic-canvas:last-of-type {
       margin-bottom: 0;
     }
-    /* Surface the small step badge that's hidden on desktop */
+    .mx-comic-stage-inner {
+      padding: 16px 0 0;
+    }
+    .mx-comic-mobile-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 18px 12px;
+    }
     .mx-comic-mobile-badge {
       display: inline-block;
       font-family: var(--font-mono);
@@ -274,24 +301,21 @@ const stages = [
       padding: 4px 10px;
       border: 1px solid rgba(255, 90, 31, 0.4);
       background: rgba(255, 90, 31, 0.06);
-      margin-bottom: 18px;
     }
-    /* Text panel: tighter padding, drop the giant watermark */
-    .mx-comic-text {
-      padding: 28px 22px !important;
-      border-right: none !important;
-      border-bottom: 1px solid var(--bone-line) !important;
+    .mx-comic-mobile-title {
+      display: block;
+      font-family: var(--font-headline);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--color-bone);
+      letter-spacing: -0.01em;
     }
-    .mx-comic-text > div[aria-hidden] {
-      display: none !important;
-    }
-    .mx-comic-stage-title {
-      font-size: 30px !important;
-      margin-bottom: 20px !important;
+    .mx-comic-tags-row {
+      padding: 14px 18px 18px;
     }
     /* Mock panel: shorter height on phones, tighter inside padding */
     .mx-comic-mock {
-      min-height: 380px !important;
+      min-height: 0 !important;
     }
     /* Inner mock grids that were 3-col on desktop → 2-col so labels stay readable */
     .mx-comic-mock [data-mock-grid="3"] {

@@ -21,7 +21,7 @@ type Stage = 1 | 2 | 3;
  * Stage 2 (transition) : line art cross-fades to colored render with bounce
  * Stage 3 (AI power)   : colored stays + 1 drop-shadow neon halo
  *                        + breathing radial-gradient orb behind silhouette
- *                        + neural-network SVG draws in
+ *                        (neural-network overlay removed — misaligned on small viewports)
  *
  * Auto-progresses 1→2 after 1.5s in view, 2→3 after another 1.5s.
  * Hover advances 1→2 immediately.
@@ -89,15 +89,24 @@ export default function HeroVisual({ lineSrc, colorSrc, alt }: Props) {
     willChange: 'transform, filter, opacity',
   } as const;
 
+  /** Matches Hero copy column: centered max 1440 + horizontal padding (full bleed on mobile). */
+  const frame =
+    'pointer-events-none absolute inset-x-0 top-0 bottom-0 mx-auto w-full max-w-[1440px] px-container-padding max-md:max-w-none max-md:px-0';
+
+  /** Same scale as original: 60vw capped at 1100px; anchored to frame right on md+. */
+  const figureSize = 'h-auto w-[60vw] max-w-[1100px] object-contain';
+  const figurePos = 'absolute top-[60px] max-md:right-[-4vw] md:right-0';
+
   return (
     <div
       ref={ref}
       className="absolute inset-0 pointer-events-auto overflow-visible"
       onMouseEnter={handleHover}
     >
-      {/* Stage 3: large warm aura */}
+      <div className={frame}>
+      {/* Stage 3: large warm aura — desktop only; mobile uses img drop-shadow only */}
       <motion.div
-        className="absolute right-[-8vw] bottom-[-15vh] w-[900px] h-[900px] rounded-full pointer-events-none"
+        className="absolute right-[-8vw] bottom-[-15vh] w-[900px] h-[900px] rounded-full pointer-events-none max-md:hidden"
         style={{
           background:
             'radial-gradient(circle, rgba(255,90,0,0.5) 0%, rgba(255,140,80,0.2) 35%, transparent 72%)',
@@ -114,9 +123,9 @@ export default function HeroVisual({ lineSrc, colorSrc, alt }: Props) {
         }
       />
 
-      {/* Stage 1: cool dispersion */}
+      {/* Stage 1: cool dispersion — desktop only */}
       <motion.div
-        className="absolute right-[5vw] top-[10vh] w-[600px] h-[800px] rounded-full pointer-events-none"
+        className="absolute right-[5vw] top-[10vh] h-[800px] w-[600px] rounded-full pointer-events-none max-md:hidden"
         style={{
           background:
             'radial-gradient(circle, rgba(140,170,210,0.32) 0%, transparent 65%)',
@@ -126,9 +135,9 @@ export default function HeroVisual({ lineSrc, colorSrc, alt }: Props) {
         transition={{ duration: 1, ease: 'easeInOut' }}
       />
 
-      {/* Stage 3: breathing radial-gradient orb (replaces 2nd image overlay) */}
+      {/* Stage 3: breathing radial-gradient orb — desktop only */}
       <motion.div
-        className="absolute top-[60px] right-[-4vw] w-[60vw] max-w-[1100px] aspect-[1200/1680] rounded-full pointer-events-none"
+        className="absolute top-[60px] max-md:right-[-4vw] md:right-0 aspect-[1200/1680] w-[60vw] max-w-[1100px] rounded-full pointer-events-none max-md:hidden"
         style={{
           background:
             'radial-gradient(ellipse 65% 70% at center 45%, rgba(255,90,0,0.55) 0%, rgba(255,140,80,0.25) 30%, transparent 65%)',
@@ -145,14 +154,11 @@ export default function HeroVisual({ lineSrc, colorSrc, alt }: Props) {
         }
       />
 
-      {/* Stage 3: Neural network SVG */}
-      <NeuralNetwork active={stage === 3} />
-
       {/* Stage 1: line art — alpha pre-baked, no mask, no blend mode, no invert */}
       <motion.img
         src={lineSrc}
         alt={alt}
-        className="absolute top-[60px] right-[-4vw] h-auto w-[60vw] max-w-[1100px] object-contain"
+        className={`pointer-events-auto ${figurePos} ${figureSize}`}
         style={{ x: mx, y: my }}
         initial={{ opacity: 0 }}
         animate={{
@@ -175,7 +181,7 @@ export default function HeroVisual({ lineSrc, colorSrc, alt }: Props) {
       <motion.img
         src={colorSrc}
         alt={alt}
-        className="absolute top-[60px] right-[-4vw] h-auto w-[60vw] max-w-[1100px] object-contain"
+        className={`pointer-events-auto ${figurePos} ${figureSize}`}
         style={{ ...gpuHint, x: mx, y: my }}
         initial={{ opacity: 0, scale: 0.94 }}
         animate={{
@@ -203,112 +209,7 @@ export default function HeroVisual({ lineSrc, colorSrc, alt }: Props) {
           filter: { duration: 1.4, ease: 'easeOut' },
         }}
       />
+      </div>
     </div>
-  );
-}
-
-/* ============================================================
-   Neural Network — animated SVG nodes + connecting lines
-   ============================================================ */
-
-const NEURAL_NODES = [
-  { x: 76, y: 18 },
-  { x: 88, y: 32 },
-  { x: 92, y: 55 },
-  { x: 82, y: 75 },
-  { x: 68, y: 88 },
-  { x: 56, y: 78 },
-  { x: 50, y: 55 },
-  { x: 60, y: 32 },
-  { x: 96, y: 42 },
-  { x: 72, y: 50 },
-  { x: 64, y: 65 },
-  { x: 84, y: 60 },
-];
-
-const NEURAL_CONNECTIONS = (() => {
-  const conns: { a: number; b: number; dist: number }[] = [];
-  for (let i = 0; i < NEURAL_NODES.length; i++) {
-    for (let j = i + 1; j < NEURAL_NODES.length; j++) {
-      const dx = NEURAL_NODES[i].x - NEURAL_NODES[j].x;
-      const dy = NEURAL_NODES[i].y - NEURAL_NODES[j].y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < 22) conns.push({ a: i, b: j, dist });
-    }
-  }
-  return conns;
-})();
-
-function NeuralNetwork({ active }: { active: boolean }) {
-  return (
-    <motion.svg
-      className="absolute inset-0 w-full h-full pointer-events-none"
-      viewBox="0 0 100 100"
-      preserveAspectRatio="none"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: active ? 0.7 : 0 }}
-      transition={{ duration: 1.5, ease: 'easeOut' }}
-    >
-      <defs>
-        <linearGradient id="neural-line" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="rgba(255,90,0,0.9)" />
-          <stop offset="100%" stopColor="rgba(255,180,140,0.3)" />
-        </linearGradient>
-        <radialGradient id="neural-node">
-          <stop offset="0%" stopColor="rgba(255,200,160,1)" />
-          <stop offset="50%" stopColor="rgba(255,90,0,0.9)" />
-          <stop offset="100%" stopColor="rgba(255,90,0,0)" />
-        </radialGradient>
-      </defs>
-
-      {NEURAL_CONNECTIONS.map((c, i) => (
-        <motion.line
-          key={i}
-          x1={NEURAL_NODES[c.a].x}
-          y1={NEURAL_NODES[c.a].y}
-          x2={NEURAL_NODES[c.b].x}
-          y2={NEURAL_NODES[c.b].y}
-          stroke="url(#neural-line)"
-          strokeWidth={0.18}
-          strokeLinecap="round"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={
-            active
-              ? { pathLength: 1, opacity: [0.3, 0.7, 0.3] }
-              : { pathLength: 0, opacity: 0 }
-          }
-          transition={{
-            pathLength: { duration: 1.6, delay: i * 0.06 + 0.2, ease: 'easeOut' },
-            opacity: {
-              duration: 3 + (i % 4) * 0.5,
-              delay: i * 0.06 + 0.5,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            },
-          }}
-        />
-      ))}
-
-      {NEURAL_NODES.map((n, i) => (
-        <motion.circle
-          key={i}
-          cx={n.x}
-          cy={n.y}
-          fill="url(#neural-node)"
-          initial={{ r: 0, opacity: 0 }}
-          animate={
-            active
-              ? { r: [0.5, 1.1, 0.5], opacity: [0.5, 1, 0.5] }
-              : { r: 0, opacity: 0 }
-          }
-          transition={{
-            duration: 2.5 + (i % 3) * 0.7,
-            delay: i * 0.12 + 0.4,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
-      ))}
-    </motion.svg>
   );
 }

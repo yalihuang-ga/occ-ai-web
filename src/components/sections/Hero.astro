@@ -14,7 +14,7 @@ const t = useTranslations(lang);
 
 <section
   id="hero"
-  class="relative min-h-screen overflow-hidden flex items-center"
+  class="relative flex min-h-svh flex-col items-start overflow-hidden md:min-h-screen md:flex-row md:items-center"
 >
   {/* Layer 0: atmospheric background — grid + particles (idle hydration) */}
   <HeroBackground client:idle />
@@ -29,7 +29,7 @@ const t = useTranslations(lang);
 
   {/* Layer 2: Text overlay — z-20, edge slightly overlaps character */}
   <div
-    class="relative z-20 max-w-[1440px] mx-auto px-container-padding pt-32 pb-20 w-full"
+    class="relative z-20 mx-auto w-full max-w-[1440px] px-container-padding pb-16 pt-20 md:pb-20 md:pt-32"
   >
     <div class="max-w-[900px]">
       <p
@@ -38,11 +38,10 @@ const t = useTranslations(lang);
         {t('hero.eyebrow')}
       </p>
       <h1
-        class="font-headline text-white leading-[0.98] mb-10 tracking-tight mx-hero-title"
+        class="font-headline text-white leading-[1.05] mb-10 tracking-tight mx-hero-title"
         style="font-weight: 600; text-shadow: 0 4px 40px rgba(0,0,0,0.6);"
       >
-        {t('hero.title.line1')}<br />
-        <span class="text-primary">{t('hero.title.line2')}</span>
+        {t('hero.title.line1')}<span class="text-primary">{t('hero.title.line2')}</span>
       </h1>
       <p
         class="text-body-lg text-on-surface-variant max-w-xl mb-12 leading-relaxed"
@@ -52,25 +51,7 @@ const t = useTranslations(lang);
       </p>
 
       <div class="flex flex-wrap gap-5">
-        <a href="#solutions" class="shimmer-btn shimmer-btn-primary">
-          <span class="relative z-10">{t('hero.cta.primary')}</span>
-          <svg
-            class="relative z-10"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M5 12h14" />
-            <path d="m12 5 7 7-7 7" />
-          </svg>
-        </a>
-        <a href="#contact" class="shimmer-btn shimmer-btn-glass">
+        <a href="#contact" class="shimmer-btn shimmer-btn-primary">
           <svg
             class="relative z-10"
             width="20"
@@ -112,6 +93,7 @@ const t = useTranslations(lang);
   /* Largest headline site-wide: above .h-display (max 144px) and .h1-display (max 88px) */
   .mx-hero-title {
     font-size: clamp(64px, 10.8vw, 172px);
+    text-wrap: balance;
   }
 
   /* Glassmorphism + shimmer button base */
@@ -194,18 +176,32 @@ const t = useTranslations(lang);
       0 1px 0 rgba(255, 255, 255, 0.1) inset;
   }
 
-  /* Scroll cue — sits above the bottom fade overlay */
+  /* Scroll cue — in document flow on mobile (avoids huge gap under CTA); fixed to hero bottom on md+ */
   .hero-scroll {
-    position: absolute;
-    bottom: 36px;
-    left: 50%;
-    transform: translateX(-50%);
     z-index: 40;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 14px;
     pointer-events: none;
+  }
+
+  @media (max-width: 767px) {
+    .hero-scroll {
+      position: relative;
+      align-self: center;
+      margin-top: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .hero-scroll {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 
   .hero-scroll-label {

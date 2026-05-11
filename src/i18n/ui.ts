@@ -34,8 +34,7 @@ export const ui = {
     'hero.title.line1': '賦予數位生命，',
     'hero.title.line2': '更有溫度的虛擬視界',
     'hero.desc':
-      'Muztrix 誕生於數位娛樂的實戰現場。我們不只是追隨技術，我們是將三十年的內容開發經驗，封裝進 AI 的核心。',
-    'hero.cta.primary': '探索方案',
+      'Muztrix 誕生於數位娛樂的實戰現場。不僅僅是追隨技術的躍進，我們要將三十年的內容開發經驗，封裝進 AI 的核心。',
     'hero.cta.secondary': '預約DEMO',
 
     // ---- Solutions (§ 01) ----
@@ -171,23 +170,46 @@ export const ui = {
     'comic.title':
       '從一句靈感到完整漫畫，<span class="title-accent-gold">四步串成一條產線</span>',
     'comic.subtitle': '創作者主導，AI 加速。每一步都可回頭微調，產出可商用、可二創的內容資產。',
+    'comic.tagsAria': '此步驟重點能力',
 
     'comic.01.label': '故事規劃',
     'comic.01.en': 'Story Planning',
     'comic.01.title': '與 AI 編劇共構世界',
     'comic.01.desc':
       '從一句靈感開始，AI 編劇陪你展開角色設定、場景氛圍與分鏡節奏。每一次對話都會沉澱進可編輯的故事大綱。',
-    'comic.01.m1': '彈性討論深度',
-    'comic.01.m2': '支援多語系',
-    'comic.01.m3': '多種輸出格式與風格',
+    'comic.01.m1': 'AI 編劇陪伴討論',
+    'comic.01.m2': '彈性討論深度',
+    'comic.01.m3': '多語系',
+    'comic.01.m4': '多種輸出格式與風格',
+
+    'comic.01.chat.user1': '想做一部以艾力克斯·霍諾德為主角的漫畫，他在台北 101 進行無繩自由攀登。',
+    'comic.01.chat.ai1': '讓我先了解一下你對這個故事的想像——這部漫畫的核心是什麼？是偏向：',
+    'comic.01.chat.ai1.opt1': '紀實風格：還原真實攀登過程，強調技術細節和心理狀態',
+    'comic.01.chat.ai1.opt2': '戲劇衝突型：加入故事元素，例如阻礙、追逐、或某種秘密任務',
+    'comic.01.chat.ai1.opt3': '內心獨白型：攀登過程中穿插大量回憶、哲學思考，偏靜態沉浸',
+    'comic.01.chat.ai1.q': '你心目中的氛圍比較偏哪一種？',
+    'comic.01.chat.user2': '想結合內心獨白，有深度一點',
+    'comic.01.chat.ai2': '很棒耶，我們來聊聊故事的「靈魂」——霍諾德這次攀登台北 101，背後的內心主題是什麼？比如：',
+    'comic.01.chat.ai2.opt1': '恐懼與超越：面對死亡的可能性，他如何與恐懼共處、甚至與它和解',
+    'comic.01.chat.ai2.opt2': '孤獨與意義：在極限高度上，思索人生的選擇和代價',
+    'comic.01.chat.ai2.opt3': '執念與自由：為什麼要做「不需要做」的事，追求純粹的自由',
+    'comic.01.chat.ai2.q': '或者你有其他想法也可以說說！這個主題會決定獨白的調性和整個故事的走向',
+    'comic.01.chat.pick1': '主題選「恐懼與超越」，他在攀登中與內心的恐懼對話',
+    'comic.01.chat.pick2': '主題選「孤獨與意義」，在高空中回想起過去的人與事',
+    'comic.01.chat.pick3': '混合兩個主題，攀登越高，內心越複雜',
+    'comic.01.chat.ai3': '這個主題非常有深度！孤獨的攀登者懸掛在 509 公尺的高空，腦海中卻是最溫暖或最痛的記憶——這種對比本身就很有詩意。✨',
+    'comic.01.chat.ai3b': '想讓回憶的部分更立體一點——',
+    'comic.01.chat.ai3c': '霍諾德回想的「過去的人與事」，你有沒有想要放入的元素？比如：',
+    'comic.01.chat.ai3.opt1': '某個對他影響深遠的人（家人、朋友、夥伴、還是某個素未謀面卻改變他的人？）',
+    'comic.01.chat.ai3.opt2': '某段關鍵經歷（人生轉折點、一次差點放棄的時刻、或某次失去？）',
 
     'comic.02.label': '角色 / 場景設計',
     'comic.02.en': 'Character & Scene Design',
     'comic.02.title': '角色三視圖、場景概念板，一次鎖定',
     'comic.02.desc':
       '主角的正面 / 側面 / 背面三視圖，加上故事場景的概念板。角色與場景同步繫結到敘事，確保跨分鏡、跨章節風格一致。',
-    'comic.02.m1': '高一致性出圖',
-    'comic.02.m2': '三視圖 + 場景概念板',
+    'comic.02.m1': '角色三視圖',
+    'comic.02.m2': '高一致性出圖',
     'comic.02.m3': '性格 / 場景綁定',
 
     'comic.03.label': '分鏡製作',
@@ -199,8 +221,8 @@ export const ui = {
     'comic.03.m2': '支援多種圖片比例',
     'comic.03.m3': '筆刷重繪功能',
 
-    'comic.04.label': '畫布編輯',
-    'comic.04.en': 'Canvas & Export',
+    'comic.04.label': '發布',
+    'comic.04.en': 'Publish & Export',
     'comic.04.title': '立即展示給你的朋友',
     'comic.04.desc':
       '直接檢視成品、匯出圖片或發布到社群。從草稿到上稿，作品始終在你手裡。',
@@ -281,11 +303,10 @@ export const ui = {
     'nav.connect': 'Connect',
 
     'hero.eyebrow': 'Gamania Original Content Center',
-    'hero.title.line1': 'Give digital life more warmth—',
-    'hero.title.line2': 'a new horizon for virtual worlds.',
+    'hero.title.line1': 'Virtually Human, ',
+    'hero.title.line2': 'Truly Warm.',
     'hero.desc':
-      'Muztrix was born on the front lines of digital entertainment. We do not only follow technology—we pack three decades of content craft into the core of AI.',
-    'hero.cta.primary': 'Explore Solutions',
+      'Muztrix was born on the front lines of digital entertainment. More than chasing each technical leap, we pack three decades of content craft into the core of AI.',
     'hero.cta.secondary': 'Book a demo',
 
     'solutions.section': '§ 01 — Solutions',
@@ -410,23 +431,46 @@ export const ui = {
       'From spark to finished comic — <span class="title-accent-gold">a four-step pipeline</span>',
     'comic.subtitle':
       "Creator-led, AI-accelerated. Every step is editable; every output is commercially usable.",
+    'comic.tagsAria': 'Capabilities for this step',
 
     'comic.01.label': 'Story Planning',
     'comic.01.en': 'Story Planning',
     'comic.01.title': 'Co-author with AI',
     'comic.01.desc':
       "Start from a single spark. The AI editor walks character, scene, and pacing with you. Every conversation distills into an editable story outline.",
-    'comic.01.m1': 'Flexible discussion depth',
-    'comic.01.m2': 'Multilingual support',
-    'comic.01.m3': 'Multiple formats & styles',
+    'comic.01.m1': 'AI co-writing companion',
+    'comic.01.m2': 'Flexible discussion depth',
+    'comic.01.m3': 'Multilingual',
+    'comic.01.m4': 'Multiple formats & styles',
+
+    'comic.01.chat.user1': 'I want to create a manga featuring Alex Honnold free-soloing Taipei 101.',
+    'comic.01.chat.ai1': 'Let me understand your vision for this story — what\'s the core of this manga? Is it leaning toward:',
+    'comic.01.chat.ai1.opt1': 'Documentary style: faithfully recreating the climb, emphasizing technical detail and mental state',
+    'comic.01.chat.ai1.opt2': 'Dramatic conflict: adding story elements like obstacles, pursuit, or a secret mission',
+    'comic.01.chat.ai1.opt3': 'Inner monologue: interspersing memories and philosophical reflection during the climb, more contemplative',
+    'comic.01.chat.ai1.q': 'Which atmosphere are you leaning toward?',
+    'comic.01.chat.user2': 'I\'d like to combine inner monologue, something with more depth',
+    'comic.01.chat.ai2': 'Great choice! Let\'s talk about the "soul" of the story — what\'s the inner theme behind Honnold\'s climb up Taipei 101? For example:',
+    'comic.01.chat.ai2.opt1': 'Fear & Transcendence: facing mortality, how he coexists with fear and even reconciles with it',
+    'comic.01.chat.ai2.opt2': 'Solitude & Meaning: at extreme heights, reflecting on life\'s choices and their costs',
+    'comic.01.chat.ai2.opt3': 'Obsession & Freedom: why do something "unnecessary" — the pursuit of pure freedom',
+    'comic.01.chat.ai2.q': 'Or feel free to share your own ideas! This theme will shape the tone of the monologue and the story\'s direction',
+    'comic.01.chat.pick1': 'Theme: "Fear & Transcendence" — he dialogues with his inner fear during the climb',
+    'comic.01.chat.pick2': 'Theme: "Solitude & Meaning" — recalling people and events from the past while high above',
+    'comic.01.chat.pick3': 'Blend both themes — the higher he climbs, the more complex his inner world becomes',
+    'comic.01.chat.ai3': 'This theme has incredible depth! A solitary climber suspended 509 meters up, yet his mind holds the warmest or most painful memories — that contrast alone is deeply poetic. ✨',
+    'comic.01.chat.ai3b': 'Let\'s make the memory segments more vivid —',
+    'comic.01.chat.ai3c': 'For the "people and events" Honnold recalls, do you have elements you\'d like to include? For example:',
+    'comic.01.chat.ai3.opt1': 'A person who profoundly influenced him (family, friend, partner, or someone he never met but who changed him?)',
+    'comic.01.chat.ai3.opt2': 'A pivotal experience (a life turning point, a moment he almost gave up, or a loss?)',
 
     'comic.02.label': 'Character & Scene',
     'comic.02.en': 'Character & Scene Design',
     'comic.02.title': 'Three-view turnaround + scene boards',
     'comic.02.desc':
       "Front, side, and back rendered together with concept boards for each scene. Character + setting bind to the story so style holds across panels and chapters.",
-    'comic.02.m1': 'High-consistency render',
-    'comic.02.m2': '3-view + scene boards',
+    'comic.02.m1': 'Character turnaround',
+    'comic.02.m2': 'High-consistency render',
     'comic.02.m3': 'Character / scene binding',
 
     'comic.03.label': 'Storyboard',
@@ -438,8 +482,8 @@ export const ui = {
     'comic.03.m2': 'Multiple aspect ratios',
     'comic.03.m3': 'Brush re-render',
 
-    'comic.04.label': 'Canvas & Export',
-    'comic.04.en': 'Canvas & Export',
+    'comic.04.label': 'Publish',
+    'comic.04.en': 'Export & share',
     'comic.04.title': 'Show it off to your friends',
     'comic.04.desc':
       "Preview the finished work, export images, or publish to the community. From draft to release, your work stays in your hands.",
@@ -517,11 +561,10 @@ export const ui = {
     'nav.connect': 'お問い合わせ',
 
     'hero.eyebrow': 'Gamania Original Content Center',
-    'hero.title.line1': 'デジタルに命を吹き込み、',
-    'hero.title.line2': '温度のあるバーチャルな視界へ。',
+    'hero.title.line1': 'デジタルに命を。',
+    'hero.title.line2': '心に温度を。',
     'hero.desc':
-      'Muztrixはデジタルエンタメの最前線から生まれました。技術を追うだけではなく、三十年のコンテンツ開発の蓄積をAIの核に封じ込めます。',
-    'hero.cta.primary': 'ソリューションを見る',
+      'Muztrixはデジタルエンタメの最前線から生まれました。技術の飛躍を追うだけではなく、三十年のコンテンツ開発の蓄積をAIの核に封じ込めます。',
     'hero.cta.secondary': 'デモを予約',
 
     'solutions.section': '§ 01 — ソリューション',
@@ -645,23 +688,46 @@ export const ui = {
     'comic.title':
       'ひらめきから完成まで、<span class="title-accent-gold">4ステップのパイプライン</span>',
     'comic.subtitle': 'クリエイター主導、AI加速。各ステップが編集可能。商用利用可能な素材を出力します。',
+    'comic.tagsAria': 'このステップの機能タグ',
 
     'comic.01.label': 'ストーリー設計',
     'comic.01.en': 'Story Planning',
     'comic.01.title': 'AI編集者と世界を共創',
     'comic.01.desc':
       'ひらめきから始まり、AI編集者がキャラ・場面・テンポを一緒に組み立てます。対話は編集可能なプロットへ蓄積。',
-    'comic.01.m1': '柔軟な対話深度',
-    'comic.01.m2': '多言語対応',
-    'comic.01.m3': '多様なフォーマット・スタイル',
+    'comic.01.m1': 'AI共同執筆',
+    'comic.01.m2': '柔軟な対話深度',
+    'comic.01.m3': '多言語対応',
+    'comic.01.m4': '多様なフォーマット・スタイル',
+
+    'comic.01.chat.user1': 'アレックス・ホノルドを主人公にした漫画を作りたい。台北101をフリーソロで登る話。',
+    'comic.01.chat.ai1': 'この物語へのイメージを教えてください——この漫画の核心は何でしょう？方向性としては：',
+    'comic.01.chat.ai1.opt1': 'ドキュメンタリー風：実際の登攀を忠実に再現し、技術的ディテールと心理状態を重視',
+    'comic.01.chat.ai1.opt2': 'ドラマチック衝突型：障害、追跡、秘密のミッションなどのストーリー要素を加える',
+    'comic.01.chat.ai1.opt3': '内面モノローグ型：登攀中に大量の回想や哲学的思考を挟み、静かな没入感を重視',
+    'comic.01.chat.ai1.q': 'どの雰囲気がイメージに近いですか？',
+    'comic.01.chat.user2': '内面モノローグを取り入れて、深みのあるものにしたい',
+    'comic.01.chat.ai2': '素晴らしい選択ですね！物語の「魂」について話しましょう——ホノルドが台北101を登る背後にある内面のテーマは？例えば：',
+    'comic.01.chat.ai2.opt1': '恐怖と超越：死の可能性に直面し、恐怖とどう共存し、和解するか',
+    'comic.01.chat.ai2.opt2': '孤独と意味：極限の高さで、人生の選択とその代償を思索する',
+    'comic.01.chat.ai2.opt3': '執念と自由：「やる必要のないこと」をなぜやるのか——純粋な自由の追求',
+    'comic.01.chat.ai2.q': '他にアイデアがあればぜひ教えてください！このテーマがモノローグのトーンと物語全体の方向性を決めます',
+    'comic.01.chat.pick1': 'テーマは「恐怖と超越」——登攀中に内なる恐怖と対話する',
+    'comic.01.chat.pick2': 'テーマは「孤独と意味」——高空で過去の人や出来事を回想する',
+    'comic.01.chat.pick3': '両方のテーマを混合——高く登るほど、内面は複雑になる',
+    'comic.01.chat.ai3': 'このテーマは非常に深いですね！509メートルの高空に宙吊りの孤独な登攀者、しかし脳裏には最も温かいか最も痛い記憶がある——このコントラスト自体がとても詩的です。✨',
+    'comic.01.chat.ai3b': '回想の部分をもっと立体的にしましょう——',
+    'comic.01.chat.ai3c': 'ホノルドが回想する「過去の人と出来事」に入れたい要素はありますか？例えば：',
+    'comic.01.chat.ai3.opt1': '彼に深い影響を与えた人物（家族、友人、パートナー、または会ったことはないが人生を変えた人？）',
+    'comic.01.chat.ai3.opt2': '重要な経験（人生の転機、諦めかけた瞬間、あるいは喪失の体験？）',
 
     'comic.02.label': 'キャラ / シーン',
     'comic.02.en': 'Character & Scene Design',
     'comic.02.title': '三面図とシーン・コンセプトを一括ロック',
     'comic.02.desc':
       '主人公の正面・側面・背面と、各シーンのコンセプトボードを同時生成。性格と舞台を物語に紐づけ、コマ・章を跨いでもブレません。',
-    'comic.02.m1': '高一貫性レンダリング',
-    'comic.02.m2': '三面図 + シーンボード',
+    'comic.02.m1': 'キャラ三面図',
+    'comic.02.m2': '高一貫性レンダリング',
     'comic.02.m3': 'キャラ・シーン束縛',
 
     'comic.03.label': '絵コンテ',
@@ -673,8 +739,8 @@ export const ui = {
     'comic.03.m2': '多様な画像比率に対応',
     'comic.03.m3': 'ブラシ再描画',
 
-    'comic.04.label': 'キャンバス',
-    'comic.04.en': 'Canvas & Export',
+    'comic.04.label': '公開',
+    'comic.04.en': 'Publish & Export',
     'comic.04.title': '今すぐ友達に披露しよう',
     'comic.04.desc':
       '完成作品をそのままプレビュー、画像書き出し、コミュニティ公開。下書きから公開まで、作品はあなたの手に。',
