@@ -21,6 +21,7 @@ interface Props {
   scenes: Scene[];
   imgSrc: string;
   imgSrcSmile: string;
+  imgSrcThinking: string;
   ui: {
     modeLabel: string;
     mode2d: string;
@@ -47,7 +48,7 @@ interface Props {
  * Per scene change: chat thread resets to scene's preset greeting; perception
  * signals swap; mock reply pool changes too.
  */
-export default function VirtualHumanShowcase({ scenes, imgSrc, imgSrcSmile, ui }: Props) {
+export default function VirtualHumanShowcase({ scenes, imgSrc, imgSrcSmile, imgSrcThinking, ui }: Props) {
   const [mode, setMode] = useState<Mode>('2d');
   const [sceneIdx, setSceneIdx] = useState(0);
   const scene = scenes[sceneIdx];
@@ -154,7 +155,7 @@ export default function VirtualHumanShowcase({ scenes, imgSrc, imgSrcSmile, ui }
         {/* Character + CV overlay */}
         <div className="vh-character-area">
           {mode === '2d' ? (
-            <CharacterStage imgSrc={imgSrc} imgSrcSmile={imgSrcSmile} analysisTexts={ui.analysisTexts} />
+            <CharacterStage imgSrc={imgSrc} imgSrcSmile={imgSrcSmile} imgSrcThinking={imgSrcThinking} analysisTexts={ui.analysisTexts} />
           ) : (
             <Placeholder3D
               title={ui.placeholder3dTitle}
@@ -253,12 +254,14 @@ export default function VirtualHumanShowcase({ scenes, imgSrc, imgSrcSmile, ui }
 /* ============================================================
    CharacterStage — character image + CV overlay
    ============================================================ */
-function CharacterStage({ imgSrc, imgSrcSmile, analysisTexts }: { imgSrc: string; imgSrcSmile: string; analysisTexts: string[] }) {
-  const [showSmile, setShowSmile] = useState(false);
+function CharacterStage({ imgSrc, imgSrcSmile, imgSrcThinking, analysisTexts }: { imgSrc: string; imgSrcSmile: string; imgSrcThinking: string; analysisTexts: string[] }) {
+  const [activeIdx, setActiveIdx] = useState(0);
   const [textIdx, setTextIdx] = useState(0);
 
+  const images = [imgSrc, imgSrcSmile, imgSrcThinking];
+
   useEffect(() => {
-    const id = setInterval(() => setShowSmile((v) => !v), 3500);
+    const id = setInterval(() => setActiveIdx((i) => (i + 1) % images.length), 3500);
     return () => clearInterval(id);
   }, []);
 
@@ -289,24 +292,19 @@ function CharacterStage({ imgSrc, imgSrcSmile, analysisTexts }: { imgSrc: string
         />
       ))}
 
-      {/* Character — two images crossfading */}
-      <img
-        src={imgSrc}
-        alt="MIYAKIEN virtual human"
-        className="vh-character-img"
-        style={{ opacity: showSmile ? 0 : 1, transition: 'opacity 0.6s ease' }}
-      />
-      <img
-        src={imgSrcSmile}
-        alt=""
-        className="vh-character-img"
-        style={{
-          opacity: showSmile ? 1 : 0,
-          transition: 'opacity 0.6s ease',
-          transform: 'translateX(-50%) scale(1.15)',
-          transformOrigin: 'top center',
-        }}
-      />
+      {/* Character — three images crossfading */}
+      {images.map((src, i) => (
+        <img
+          key={src}
+          src={src}
+          alt={i === 0 ? 'MIYAKIEN virtual human' : ''}
+          className="vh-character-img"
+          style={{
+            opacity: activeIdx === i ? 1 : 0,
+            transition: 'opacity 0.6s ease',
+          }}
+        />
+      ))}
 
       {/* Bottom analysis text ticker */}
       <div className="vh-analysis-ticker">
