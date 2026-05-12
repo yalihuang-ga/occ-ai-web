@@ -1,0 +1,390 @@
+---
+import { useTranslations, getLocalizedPath } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section id="products" class="mx-products">
+  <div class="mx-products-grid">
+
+    <!-- AI Game Card -->
+    <div class="mx-product-card">
+      <a href={getLocalizedPath(lang, 'game')} class="mx-product-card__img-link">
+        <div class="mx-product-card__img-wrap mx-product-card__img-wrap--game">
+          <div class="mx-brand-grid" aria-hidden="true"></div>
+          <img src="/images/game-1.png" alt="" loading="lazy" decoding="async" class="mx-game-slide mx-game-slide--1" />
+          <img src="/images/game-2.png" alt="" loading="lazy" decoding="async" class="mx-game-slide mx-game-slide--2" />
+          <img src="/images/game-3.png" alt="" loading="lazy" decoding="async" class="mx-game-slide mx-game-slide--3" />
+          <img src="/images/game-4.png" alt="" loading="lazy" decoding="async" class="mx-game-slide mx-game-slide--4" />
+          <div class="mx-game-halftone" aria-hidden="true"></div>
+          <div class="mx-classified-wrap" aria-hidden="true">
+            <span class="mx-classified-line"></span>
+            <span class="mx-classified-text">CLASSIFIED</span>
+            <span class="mx-classified-line"></span>
+          </div>
+          <div class="mx-card-gradient" aria-hidden="true"></div>
+        </div>
+      </a>
+      <div class="mx-product-card__body">
+        <h3 class="mx-product-card__title">{t('products.game.title')}</h3>
+        <p class="mx-product-card__summary">{t('products.game.summary')}</p>
+        <a href={getLocalizedPath(lang, 'game')} class="mx-product-card__cta">
+          {t('products.game.cta')}
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Virtual Human Card -->
+    <div class="mx-product-card">
+      <a href={getLocalizedPath(lang, 'virtual-human')} class="mx-product-card__img-link">
+        <div class="mx-product-card__img-wrap mx-product-card__img-wrap--vh">
+          <div class="mx-brand-grid" aria-hidden="true"></div>
+          <div class="mx-vh-glow" aria-hidden="true"></div>
+          <img src="/images/vh-hero.png" alt={t('products.vh.title')} loading="lazy" decoding="async" class="mx-vh-img" />
+          <div class="mx-vh-flow" aria-hidden="true"></div>
+          <div class="mx-card-gradient" aria-hidden="true"></div>
+        </div>
+      </a>
+      <div class="mx-product-card__body">
+        <h3 class="mx-product-card__title">{t('products.vh.title')}</h3>
+        <p class="mx-product-card__summary">{t('products.vh.summary')}</p>
+        <a href={getLocalizedPath(lang, 'virtual-human')} class="mx-product-card__cta">
+          {t('products.vh.cta')}
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- AI Comic Card -->
+    <div class="mx-product-card">
+      <a href={getLocalizedPath(lang, 'comic')} class="mx-product-card__img-link">
+        <div class="mx-product-card__img-wrap mx-product-card__img-wrap--comic">
+          <div class="mx-brand-grid" aria-hidden="true"></div>
+          <img src="/images/comic-step-draw.png" alt={t('products.comic.title')} loading="lazy" decoding="async" class="mx-comic-img mx-comic-img--a" />
+          <img src="/images/comic-step-draft.png" alt="" loading="lazy" decoding="async" class="mx-comic-img mx-comic-img--b" />
+          <img src="/images/comic-step-color.png" alt="" loading="lazy" decoding="async" class="mx-comic-img mx-comic-img--c" />
+          <div class="mx-comic-halftone" aria-hidden="true"></div>
+          <div class="mx-card-gradient" aria-hidden="true"></div>
+        </div>
+      </a>
+      <div class="mx-product-card__body">
+        <h3 class="mx-product-card__title">{t('products.comic.title')}</h3>
+        <p class="mx-product-card__summary">{t('products.comic.summary')}</p>
+        <a href={getLocalizedPath(lang, 'comic')} class="mx-product-card__cta">
+          {t('products.comic.cta')}
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .mx-products {
+    padding: 6rem 1.5rem;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .mx-products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  /* --- Card base --- */
+  .mx-product-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #0a0908;
+  }
+
+  /* Clickable image area */
+  .mx-product-card__img-link {
+    display: block;
+    text-decoration: none;
+    overflow: hidden;
+  }
+
+  .mx-product-card__img-link:hover .mx-vh-img {
+    transform: scale(1.06);
+  }
+
+  .mx-product-card__img-link:hover .mx-game-slide {
+    transform: scale(1.05);
+  }
+
+  .mx-product-card__img-link:hover .mx-comic-img {
+    transform: scale(1.06);
+  }
+
+  /* --- Image area (unified) --- */
+  .mx-product-card__img-wrap {
+    position: relative;
+    aspect-ratio: 16 / 12;
+    overflow: hidden;
+    background: #0a0908;
+  }
+
+  /* Global brand grid (10% opacity geometric mesh) */
+  .mx-brand-grid {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.1;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.4) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.4) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  /* Gradient fade (bottom → up) */
+  .mx-card-gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 45%;
+    background: linear-gradient(to bottom, transparent 0%, #0a0908 92%);
+    pointer-events: none;
+    z-index: 6;
+  }
+
+  /* --- AI Game: single image carousel + halftone + CLASSIFIED --- */
+  .mx-product-card__img-wrap--game {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mx-game-slide {
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 4px;
+    opacity: 0;
+    z-index: 2;
+    transition: transform 0.4s ease;
+    animation: gameSlide 12s ease-in-out infinite;
+  }
+
+  .mx-game-slide--1 { animation-delay: 0s; }
+  .mx-game-slide--2 { animation-delay: -9s; }
+  .mx-game-slide--3 { animation-delay: -6s; }
+  .mx-game-slide--4 { animation-delay: -3s; }
+
+  @keyframes gameSlide {
+    0%, 3% { opacity: 0; }
+    8%, 22% { opacity: 1; }
+    27%, 100% { opacity: 0; }
+  }
+
+  .mx-game-halftone {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(14, 11, 8, 0.6) 1px, transparent 1.4px);
+    background-size: 4px 4px;
+    mix-blend-mode: multiply;
+    opacity: 0.65;
+  }
+
+  .mx-classified-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    pointer-events: none;
+  }
+
+  .mx-classified-line {
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: rgba(200, 160, 60, 0.5);
+  }
+
+  .mx-classified-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.35em;
+    color: rgba(200, 160, 60, 0.6);
+    text-transform: uppercase;
+    text-shadow: 0 0 8px rgba(200, 160, 60, 0.3);
+  }
+
+  /* --- Virtual Human: character display + flow effect --- */
+  .mx-product-card__img-wrap--vh {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(ellipse at center, rgba(30, 20, 12, 1) 0%, #0a0908 70%);
+  }
+
+  .mx-vh-glow {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: radial-gradient(ellipse at 50% 60%, rgba(220, 120, 50, 0.18) 0%, transparent 60%);
+    animation: vhGlow 4s ease-in-out infinite alternate;
+    pointer-events: none;
+  }
+
+  .mx-vh-flow {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      transparent 30%,
+      rgba(220, 120, 50, 0.06) 55%,
+      rgba(220, 120, 50, 0.1) 75%,
+      transparent 100%
+    );
+    animation: vhFlow 6s ease-in-out infinite;
+  }
+
+  @keyframes vhGlow {
+    0% { opacity: 0.5; transform: scale(0.95); }
+    100% { opacity: 1; transform: scale(1.05); }
+  }
+
+  @keyframes vhFlow {
+    0% { transform: translateY(10%); opacity: 0.6; }
+    50% { transform: translateY(-10%); opacity: 1; }
+    100% { transform: translateY(10%); opacity: 0.6; }
+  }
+
+  .mx-vh-img {
+    position: relative;
+    width: 80%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 15%;
+    z-index: 2;
+    transition: transform 0.4s ease;
+  }
+
+  /* --- AI Comic: 3-image crossfade + halftone --- */
+  .mx-product-card__img-wrap--comic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mx-comic-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0;
+    z-index: 2;
+    transition: transform 0.4s ease;
+    animation: comicCrossfade3 9s ease-in-out infinite;
+  }
+
+  .mx-comic-img--a { animation-delay: 0s; }
+  .mx-comic-img--b { animation-delay: -6s; }
+  .mx-comic-img--c { animation-delay: -3s; }
+
+  @keyframes comicCrossfade3 {
+    0%, 5% { opacity: 0; }
+    10%, 30% { opacity: 1; }
+    36%, 100% { opacity: 0; }
+  }
+
+  .mx-comic-halftone {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(14, 11, 8, 0.6) 1px, transparent 1.4px);
+    background-size: 4px 4px;
+    mix-blend-mode: multiply;
+    opacity: 0.65;
+  }
+
+  /* --- Card body (text area) --- */
+  .mx-product-card__body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+  }
+
+  .mx-product-card__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-bone);
+    margin: 0;
+    text-align: center;
+  }
+
+  .mx-product-card__summary {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-bone-2);
+    margin: 0;
+    text-align: center;
+    flex: 1;
+  }
+
+  .mx-product-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.75rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-gold);
+    text-decoration: none;
+    border: 1px solid rgba(200, 160, 60, 0.3);
+    border-radius: 4px;
+    transition: gap 0.25s ease, background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  }
+
+  .mx-product-card__cta:hover {
+    gap: 0.7rem;
+    background: rgba(200, 160, 60, 0.1);
+    border-color: rgba(200, 160, 60, 0.6);
+    color: var(--color-bone);
+  }
+
+  /* --- Mobile --- */
+  @media (max-width: 768px) {
+    .mx-products {
+      padding: 4rem 1.25rem;
+    }
+    .mx-products-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+</style>

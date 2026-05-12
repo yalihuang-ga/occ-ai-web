@@ -4,9 +4,7 @@ import Header from './sections/Header.astro';
 import Hero from './sections/Hero.astro';
 import Solutions from './sections/Solutions.astro';
 import About from './sections/About.astro';
-import VirtualHuman from './sections/VirtualHuman.astro';
-import Comic from './sections/Comic.astro';
-import Game from './sections/Game.astro';
+import ProductCards from './sections/ProductCards.astro';
 import CTAFooter from './sections/CTAFooter.astro';
 import type { Lang } from '../i18n/ui';
 
@@ -21,10 +19,8 @@ const { lang } = Astro.props;
   <div class="mx-root">
     <Header lang={lang} />
     <Hero lang={lang} />
+    <ProductCards lang={lang} />
     <Solutions lang={lang} />
-    <VirtualHuman lang={lang} />
-    <Game lang={lang} />
-    <Comic lang={lang} />
     <About lang={lang} />
     <CTAFooter lang={lang} />
   </div>

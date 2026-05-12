@@ -1,5 +1,5 @@
 ---
-import { useTranslations } from '../../i18n/utils';
+import { useTranslations, getLocalizedPath } from '../../i18n/utils';
 import type { Lang, UIKey } from '../../i18n/ui';
 import MuztrixGlyph from '../MuztrixGlyph.astro';
 import LangSwitcher from './LangSwitcher.astro';
@@ -19,12 +19,14 @@ const localeUrls: Record<Lang, string> = {
 
 type NavItem = { labelKey: UIKey; href: string };
 
+const homeBase = localeUrls[lang];
+
 const navItems: NavItem[] = [
-  { labelKey: 'nav.solutions', href: '#solutions' },
-  { labelKey: 'nav.virtualHuman', href: '#virtual' },
-  { labelKey: 'nav.game', href: '#game' },
-  { labelKey: 'nav.comic', href: '#comic' },
-  { labelKey: 'nav.about', href: '#about' },
+  { labelKey: 'nav.solutions', href: `${homeBase}#solutions` },
+  { labelKey: 'nav.virtualHuman', href: getLocalizedPath(lang, 'virtual-human') },
+  { labelKey: 'nav.game', href: getLocalizedPath(lang, 'game') },
+  { labelKey: 'nav.comic', href: getLocalizedPath(lang, 'comic') },
+  { labelKey: 'nav.about', href: `${homeBase}#about` },
 ];
 ---
 
@@ -60,12 +62,11 @@ const navItems: NavItem[] = [
     <div class="flex items-center gap-5">
       <LangSwitcher lang={lang} />
       <a
-        href="#contact"
-        class="hidden sm:inline-flex btn-v2 btn-v2--primary"
+        href={`${homeBase}#contact`}
+        class="hidden sm:inline-flex shimmer-btn shimmer-btn-primary"
         style="padding: 12px 22px; font-size: 11px;"
       >
         {t('nav.contact')}
-        <span class="arrow"></span>
       </a>
     </div>
   </div>

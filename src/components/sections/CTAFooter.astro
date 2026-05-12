@@ -1,5 +1,5 @@
 ---
-import { useTranslations } from '../../i18n/utils';
+import { useTranslations, getLocalizedPath } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 import MuztrixGlyph from '../MuztrixGlyph.astro';
 
@@ -11,9 +11,9 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 
 const productLinks = [
-  { href: '#virtual', label: t('footer.col1.i1') },
-  { href: '#comic', label: t('footer.col1.i2') },
-  { href: '#game', label: t('footer.col1.i3') },
+  { href: getLocalizedPath(lang, 'virtual-human'), label: t('footer.col1.i1') },
+  { href: getLocalizedPath(lang, 'comic'), label: t('footer.col1.i2') },
+  { href: getLocalizedPath(lang, 'game'), label: t('footer.col1.i3') },
 ] as const;
 
 const relatedLinks = [
@@ -44,9 +44,6 @@ const ctaContacts = [
   },
 ] as const;
 const ctaMailtoHref = `mailto:${ctaContacts.map((c) => c.email).join(',')}`;
-const ctaEmailList = ctaContacts.map((c) => c.email).join(', ');
-const ctaCopyEmailsLabel = t('cta.copyEmails');
-const ctaCopiedLabel = t('cta.copied');
 ---
 
 <section
@@ -65,17 +62,11 @@ const ctaCopiedLabel = t('cta.copied');
   >
     <!-- CTA -->
     <div
-      class="mx-cta-row grid items-end"
-      style="grid-template-columns: 1fr auto; gap: 80px; padding-bottom: 100px; border-bottom: 1px solid var(--bone-line);"
+      class="mx-cta-row grid items-start"
+      style="grid-template-columns: 1fr 1fr; gap: 96px; padding-bottom: 100px; border-bottom: 1px solid var(--bone-line);"
     >
-      <div>
-        <div class="flex items-center gap-4 mb-7">
-          <span class="num-tag">{t('cta.section')}</span>
-          <span
-            style="width: 80px; height: 1px; background: var(--bone-line);"
-          ></span>
-        </div>
-        <h2 class="h-display" style="margin: 0; color: var(--color-bone);" set:html={t('cta.title')} />
+        <div>
+        <h2 class="h1-display" style="margin: 0; color: var(--color-bone);" set:html={t('cta.title')} />
         <p
           class="body-lg-v2 mx-cta-body"
           style="margin-top: 36px;"
@@ -83,14 +74,13 @@ const ctaCopiedLabel = t('cta.copied');
           {t('cta.body')}
         </p>
       </div>
-      <div style="padding-bottom: 16px;">
+      <div>
         <a
           href={ctaMailtoHref}
-          class="btn-v2 btn-v2--primary"
-          style="padding: 24px 36px; font-size: 13px;"
+          class="shimmer-btn shimmer-btn-primary"
+          style="padding: 24px 36px; font-size: 18px;"
         >
           {t('cta.button')}
-          <span class="arrow"></span>
         </a>
         <div class="mx-cta-contacts">
           {
@@ -99,25 +89,25 @@ const ctaCopiedLabel = t('cta.copied');
                 <span class="mx-cta-contact-meta">
                   {c.role} · {c.name}
                 </span>
-                <a
-                  href={`mailto:${c.email}`}
-                  class="mx-cta-contact-mail"
-                >
-                  {c.email}
-                </a>
+                <span class="mx-cta-contact-email-row">
+                  <a
+                    href={`mailto:${c.email}`}
+                    class="mx-cta-contact-mail"
+                  >
+                    {c.email}
+                  </a>
+                  <button
+                    type="button"
+                    class="mx-cta-copy-single"
+                    data-copy-email={c.email}
+                    aria-label="Copy email"
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  </button>
+                </span>
               </div>
             ))
           }
-        </div>
-        <div class="mx-cta-mailto-fallback">
-          <span class="mx-cta-mailto-fallback-text">{t('cta.mailtoFallbackLine')}</span>
-          <button
-            type="button"
-            class="mx-cta-copy-emails"
-            data-mx-cta-copy-emails
-          >
-            {t('cta.copyEmails')}
-          </button>
         </div>
       </div>
     </div>
@@ -201,26 +191,25 @@ const ctaCopiedLabel = t('cta.copied');
   </div>
 </section>
 
-<script
-  define:vars={{
-    ctaEmailList,
-    ctaCopyEmailsLabel,
-    ctaCopiedLabel,
-  }}
->
+<script>
   (function () {
-    const btn = document.querySelector('[data-mx-cta-copy-emails]');
-    if (!btn) return;
-    btn.addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText(ctaEmailList);
-        btn.textContent = ctaCopiedLabel;
-        window.setTimeout(() => {
-          btn.textContent = ctaCopyEmailsLabel;
-        }, 2200);
-      } catch {
-        window.prompt('Copy:', ctaEmailList);
-      }
+    const btns = document.querySelectorAll('[data-copy-email]');
+    btns.forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const email = btn.getAttribute('data-copy-email') || '';
+        try {
+          await navigator.clipboard.writeText(email);
+          const tip = document.createElement('span');
+          tip.className = 'copied-tip';
+          tip.textContent = 'Copied!';
+          btn.appendChild(tip);
+          window.setTimeout(() => {
+            tip.remove();
+          }, 1800);
+        } catch {
+          window.prompt('Copy:', email);
+        }
+      });
     });
   })();
 </script>
@@ -236,11 +225,10 @@ const ctaCopiedLabel = t('cta.copied');
   }
 
   .mx-cta-contacts {
-    margin-top: 20px;
+    margin-top: 24px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    max-width: 320px;
+    gap: 16px;
   }
   .mx-cta-contact-row {
     display: flex;
@@ -249,14 +237,19 @@ const ctaCopiedLabel = t('cta.copied');
   }
   .mx-cta-contact-meta {
     font-family: var(--font-body);
-    font-size: 13px;
+    font-size: 15px;
     line-height: 1.45;
     color: var(--color-bone-2);
   }
+  .mx-cta-contact-email-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
   .mx-cta-contact-mail {
     font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.06em;
+    font-size: 14px;
+    letter-spacing: 0.04em;
     color: var(--color-bone-3);
     text-decoration: none;
     transition: color 0.25s;
@@ -264,37 +257,36 @@ const ctaCopiedLabel = t('cta.copied');
   .mx-cta-contact-mail:hover {
     color: var(--color-cinnabar);
   }
-
-  .mx-cta-mailto-fallback {
-    margin-top: 20px;
-    display: flex;
-    flex-wrap: wrap;
+  .mx-cta-copy-single {
+    display: inline-flex;
     align-items: center;
-    gap: 8px 12px;
-    max-width: 320px;
-  }
-  .mx-cta-mailto-fallback-text {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.12em;
+    justify-content: center;
     color: var(--color-bone-3);
-  }
-  .mx-cta-copy-emails {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color-cinnabar-soft);
     background: transparent;
     border: none;
-    border-bottom: 1px solid rgba(255, 138, 90, 0.45);
-    padding: 0 0 2px;
+    padding: 4px;
     cursor: pointer;
-    transition: color 0.25s, border-color 0.25s;
+    transition: color 0.25s;
+    position: relative;
   }
-  .mx-cta-copy-emails:hover {
+  .mx-cta-copy-single:hover {
     color: var(--color-cinnabar);
-    border-bottom-color: var(--color-cinnabar);
+  }
+  .mx-cta-copy-single .copied-tip {
+    position: absolute;
+    top: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--color-cinnabar);
+    white-space: nowrap;
+    animation: fadeUp 0.3s ease;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateX(-50%) translateY(4px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
   }
 
   .mx-footer-bottom {
@@ -326,7 +318,7 @@ const ctaCopiedLabel = t('cta.copied');
   @container page (max-width: 900px) {
     .mx-cta-row {
       grid-template-columns: 1fr !important;
-      gap: 40px !important;
+      gap: 48px !important;
       padding-bottom: 64px !important;
     }
     .mx-footer-cols {

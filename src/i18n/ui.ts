@@ -288,6 +288,17 @@ export const ui = {
     'footer.copyright': '© 1995 - 2026 gamania',
     'footer.address': '台灣臺北市內湖區瑞湖街111號',
 
+    // ---- Product Cards (entry page) ----
+    'products.vh.title': '虛擬人',
+    'products.vh.summary': '打造您的專屬虛擬代言人，探索無限商機！',
+    'products.vh.cta': '了解更多',
+    'products.game.title': 'AI 遊戲',
+    'products.game.summary': 'AI 助您加速遊戲開發，只要有想法就能實現！',
+    'products.game.cta': '了解更多',
+    'products.comic.title': 'AI 漫畫',
+    'products.comic.summary': '將微小的靈感放大至完稿發布，AI 編輯陪你創造無限篇章！',
+    'products.comic.cta': '了解更多',
+
     // legacy / optional kept
     'lang.switcher.label': '語系',
   },
@@ -553,6 +564,17 @@ export const ui = {
     'footer.copyright': '© 1995 - 2026 gamania',
     'footer.address': '111 Ruihu Street, Neihu District, Taipei City, Taiwan',
 
+    // ---- Product Cards (entry page) ----
+    'products.vh.title': 'Virtual Human',
+    'products.vh.summary': 'AI that sees you, hears you, and remembers you — a warm brand ambassador',
+    'products.vh.cta': 'Learn more',
+    'products.game.title': 'AI Game',
+    'products.game.summary': 'From worldbuilding to gameplay, AI breathes life into your narrative game',
+    'products.game.cta': 'Learn more',
+    'products.comic.title': 'AI Comic',
+    'products.comic.summary': 'From a single spark to published pages — AI walks every panel with you',
+    'products.comic.cta': 'Learn more',
+
     'lang.switcher.label': 'Language',
   },
 
@@ -815,6 +837,17 @@ export const ui = {
     'footer.related.mangacanvas': 'Muztrix コミック',
     'footer.copyright': '© 1995 - 2026 gamania',
     'footer.address': '台湾台北市內湖区瑞湖街111号',
+
+    // ---- Product Cards (entry page) ----
+    'products.vh.title': 'バーチャルヒューマン',
+    'products.vh.summary': '見て、聴いて、覚える——温かみのあるAIブランドアンバサダー',
+    'products.vh.cta': '詳しく見る',
+    'products.game.title': 'AIゲーム',
+    'products.game.summary': '世界観からゲームプレイまで、AIがナラティブゲームに魂を吹き込む',
+    'products.game.cta': '詳しく見る',
+    'products.comic.title': 'AIコミック',
+    'products.comic.summary': 'ひらめきから出版まで、AIが全ページを共に歩む',
+    'products.comic.cta': '詳しく見る',
 
     'lang.switcher.label': '言語',
   },
