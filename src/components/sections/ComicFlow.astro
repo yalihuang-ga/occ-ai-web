@@ -1,7 +1,7 @@
 ---
 import { useTranslations } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
-import { ChatMock, CharacterReveal, StoryboardAssemble, PublishStack } from '../islands/ComicFlowVisuals.tsx';
+import { ChatMock, ChatMockB, StoryProgress, CharacterReveal, StoryboardAssemble, PublishStack } from '../islands/ComicFlowVisuals.tsx';
 
 interface Props {
   lang: Lang;
@@ -24,26 +24,49 @@ const t = useTranslations(lang);
   <!-- Step 1: Story Planning -->
   <div class="cf-step" data-step="1">
     <div class="cf-left">
-      <div class="cf-step-num">01</div>
-      <h2 class="cf-step-title">{t('comic.01.label')}</h2>
-      <p class="cf-step-en">{t('comic.01.en')}</p>
-      <p class="cf-step-desc">{t('comic.01.m1')}</p>
-      <ul class="cf-features">
-        <li>{t('comic.01.m2')}</li>
-        <li>{t('comic.01.m3')}</li>
-        <li>{t('comic.01.m4')}</li>
-      </ul>
+      <div class="cf-step-title-row">
+        <span class="cf-step-num">01</span>
+        <h2 class="cf-step-title">{t('comic.01.label')}</h2>
+      </div>
+      <ol class="cf-flow-list">
+        <li class="cf-flow-item cf-flow-item--active" data-flow="0">
+          {lang === 'en' ? 'Describe your story inspiration in one sentence — AI screenwriter helps you clarify the direction.' : lang === 'ja' ? '一言でストーリーのインスピレーションを伝えると、AI脚本家が方向性を整理します。' : '一句話說明你的故事靈感，AI 編劇會陪你釐清方向。'}
+        </li>
+        <li class="cf-flow-item" data-flow="1">
+          {lang === 'en' ? 'After selecting a theme, AI digs deeper to confirm style and length.' : lang === 'ja' ? 'テーマ選定後、AIがスタイルと長さを確認します。' : '選定主題後，AI 會繼續深入提問，確認風格與篇幅。'}
+        </li>
+        <li class="cf-flow-item" data-flow="2">
+          {lang === 'en' ? 'Discussion complete — AI begins crafting the entire work.' : lang === 'ja' ? '討論完了——AIが作品全体の構想を開始します。' : '討論完成，AI 開始構思整部作品。'}
+        </li>
+      </ol>
+      <div class="cf-tags">
+        <span class="cf-tag">{t('comic.01.m2')}</span>
+        <span class="cf-tag">{t('comic.01.m3')}</span>
+        <span class="cf-tag">{t('comic.01.m4')}</span>
+      </div>
     </div>
     <div class="cf-right">
-      <ChatMock lang={lang} client:visible />
+      <div class="cf-right-stack">
+        <div data-flow-idx="0">
+          <ChatMock lang={lang} client:visible />
+        </div>
+        <div data-flow-idx="1">
+          <ChatMockB lang={lang} client:visible />
+        </div>
+        <div data-flow-idx="2">
+          <StoryProgress lang={lang} client:visible />
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- Step 2: Character & Scene -->
   <div class="cf-step" data-step="2">
     <div class="cf-left">
-      <div class="cf-step-num">02</div>
-      <h2 class="cf-step-title">{t('comic.02.label')}</h2>
+      <div class="cf-step-title-row">
+        <span class="cf-step-num">02</span>
+        <h2 class="cf-step-title">{t('comic.02.label')}</h2>
+      </div>
       <p class="cf-step-en">{t('comic.02.en')}</p>
       <p class="cf-step-desc">{t('comic.02.m1')}</p>
       <ul class="cf-features">
@@ -59,8 +82,10 @@ const t = useTranslations(lang);
   <!-- Step 3: Storyboard -->
   <div class="cf-step" data-step="3">
     <div class="cf-left">
-      <div class="cf-step-num">03</div>
-      <h2 class="cf-step-title">{t('comic.03.label')}</h2>
+      <div class="cf-step-title-row">
+        <span class="cf-step-num">03</span>
+        <h2 class="cf-step-title">{t('comic.03.label')}</h2>
+      </div>
       <p class="cf-step-en">{t('comic.03.en')}</p>
       <p class="cf-step-desc">{t('comic.03.m1')}</p>
       <ul class="cf-features">
@@ -76,8 +101,10 @@ const t = useTranslations(lang);
   <!-- Step 4: Publish -->
   <div class="cf-step" data-step="4">
     <div class="cf-left">
-      <div class="cf-step-num">04</div>
-      <h2 class="cf-step-title">{t('comic.04.label')}</h2>
+      <div class="cf-step-title-row">
+        <span class="cf-step-num">04</span>
+        <h2 class="cf-step-title">{t('comic.04.label')}</h2>
+      </div>
       <p class="cf-step-en">{t('comic.04.en')}</p>
       <p class="cf-step-desc">{t('comic.04.m1')}</p>
       <ul class="cf-features">
@@ -104,6 +131,26 @@ const t = useTranslations(lang);
     </a>
   </div>
 </section>
+
+<script>
+  const cards = document.querySelectorAll('[data-flow-idx]');
+  const flowItems = document.querySelectorAll('.cf-flow-item');
+
+  if (cards.length && flowItems.length) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const idx = (entry.target as HTMLElement).dataset.flowIdx;
+          flowItems.forEach((item, i) => {
+            item.classList.toggle('cf-flow-item--active', i === Number(idx));
+          });
+        }
+      });
+    }, { threshold: 0.3, rootMargin: '-20% 0px -40% 0px' });
+
+    cards.forEach(card => observer.observe(card));
+  }
+</script>
 
 <style is:global>
   /* ===== Layout ===== */
@@ -142,20 +189,24 @@ const t = useTranslations(lang);
     align-self: start;
   }
   .cf-step-num {
-    font-family: var(--font-mono);
-    font-size: 52px;
-    font-weight: 200;
+    font-family: var(--font-headline);
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 500;
     color: var(--color-cinnabar);
     letter-spacing: -0.02em;
-    margin-bottom: 16px;
-    opacity: 0.7;
   }
   .cf-step-title {
     font-family: var(--font-headline);
     font-size: clamp(28px, 3.5vw, 42px);
     font-weight: 500;
     color: var(--color-bone);
-    margin: 0 0 8px;
+    margin: 0;
+  }
+  .cf-step-title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 8px;
   }
   .cf-step-en {
     font-family: var(--font-mono);
@@ -197,9 +248,67 @@ const t = useTranslations(lang);
     opacity: 0.6;
   }
 
+  /* Flow list (Step 1 left column) */
+  .cf-flow-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    counter-reset: flow;
+  }
+  .cf-flow-item {
+    counter-increment: flow;
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--color-bone-3);
+    border-left: 2px solid transparent;
+    transition: all 0.4s ease;
+    opacity: 0.5;
+  }
+  .cf-flow-item--active {
+    color: var(--color-bone);
+    border-left-color: var(--color-cinnabar);
+    opacity: 1;
+    background: rgba(255, 90, 31, 0.04);
+  }
+
+  /* Tags */
+  .cf-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .cf-tag {
+    font-size: 12px;
+    padding: 6px 14px;
+    border: 1px solid var(--color-cinnabar);
+    border-radius: 20px;
+    color: var(--color-cinnabar);
+    white-space: nowrap;
+  }
+
   .cf-right {
     display: flex;
     align-items: flex-start;
+  }
+  .cf-right-stack {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  /* Narration text between cards */
+  .cf-narration {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--color-bone-2);
+    padding: 48px 0;
+    margin: 0;
   }
 
   .cf-cta {
@@ -243,6 +352,56 @@ const t = useTranslations(lang);
     flex-direction: column;
     gap: 12px;
     min-height: 520px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Enlarged user-input intro overlay */
+  .cf-intro-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    background: rgba(20, 18, 15, 0.95);
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    padding: 40px;
+  }
+  .cf-intro-overlay.cf-in {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .cf-intro-overlay.cf-intro-shrunk {
+    opacity: 0;
+    transform: scale(0.7) translateY(-20px);
+    pointer-events: none;
+  }
+  .cf-intro-text {
+    font-size: clamp(18px, 2.5vw, 22px);
+    line-height: 1.7;
+    color: var(--color-bone);
+    text-align: center;
+    font-weight: 500;
+    padding: 20px 28px;
+    background: var(--color-cinnabar);
+    border-radius: 12px;
+    box-shadow: 0 0 40px rgba(255, 90, 31, 0.2);
+    max-width: 90%;
+  }
+
+  /* Chat body visibility */
+  .cf-chat-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    opacity: 0;
+    transition: opacity 0.6s ease 0.3s;
+  }
+  .cf-chat-body--visible {
+    opacity: 1;
   }
   .cf-chat-header {
     display: flex;
@@ -541,16 +700,172 @@ const t = useTranslations(lang);
     color: #4ade80;
   }
 
+  /* ===== Step 1c: Story Progress ===== */
+  .cf-progress {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: var(--color-ink-2, #1a1816);
+    border-color: var(--bone-line, rgba(244, 236, 220, 0.1));
+  }
+  .cf-progress-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .cf-progress-spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(244, 236, 220, 0.15);
+    border-top-color: var(--color-cinnabar);
+    border-radius: 50%;
+    animation: cfSpin 1s linear infinite;
+  }
+  .cf-progress-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-bone);
+  }
+  .cf-progress-bar-wrap {
+    width: 100%;
+    height: 8px;
+    background: rgba(244, 236, 220, 0.08);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .cf-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-cinnabar), #ff7a3d);
+    border-radius: 4px;
+    transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .cf-progress-pct {
+    font-size: 12px;
+    color: var(--color-bone-2, rgba(244, 236, 220, 0.7));
+    text-align: right;
+  }
+  .cf-progress-tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .cf-progress-task {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    transition: all 0.5s ease;
+  }
+  .cf-progress-task--done {
+    background: rgba(255, 90, 31, 0.08);
+    border-color: rgba(255, 90, 31, 0.25);
+  }
+  .cf-progress-task--active {
+    background: rgba(255, 90, 31, 0.06);
+    border-color: rgba(255, 90, 31, 0.35);
+  }
+  .cf-progress-task--pending {
+    background: transparent;
+    opacity: 0.4;
+  }
+  .cf-progress-task-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .cf-progress-task-label {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-bone);
+  }
+  .cf-progress-task-status {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+  }
+  .cf-progress-check {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--color-cinnabar);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .cf-progress-task-spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(244, 236, 220, 0.12);
+    border-top-color: var(--color-cinnabar);
+    border-radius: 50%;
+    animation: cfSpin 1s linear infinite;
+  }
+  .cf-progress-circle {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(244, 236, 220, 0.2);
+    border-radius: 50%;
+  }
+
+  /* ===== Step 1b: Done button ===== */
+  .cf-done-wrap {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .cf-done-wrap.cf-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .cf-done-btn {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 10px 20px;
+    background: var(--color-cinnabar);
+    color: var(--color-bone);
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+  }
+
   /* ===== Responsive ===== */
   @media (max-width: 900px) {
     .mx-comic-flow { padding: 100px 24px 60px; }
     .cf-step {
       grid-template-columns: 1fr;
-      gap: 40px;
+      gap: 32px;
       min-height: auto;
       padding: 60px 0;
     }
     .cf-left { position: static; }
+    .cf-flow-list { margin: 16px 0; }
+    .cf-flow-item {
+      font-size: 13px;
+      padding: 10px 14px;
+    }
+    .cf-tags { justify-content: center; }
+    .cf-narration {
+      font-size: 15px;
+      text-align: center;
+      padding: 40px 24px;
+    }
+    .cf-visual {
+      min-height: 70vh;
+    }
+    .cf-intro-overlay { padding: 24px; }
+    .cf-intro-text { font-size: 16px; padding: 16px 20px; }
     .cf-publish-stack { height: 320px; }
     .cf-page { width: 65%; }
   }
