@@ -1,0 +1,557 @@
+---
+import { useTranslations } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+import { ChatMock, CharacterReveal, StoryboardAssemble, PublishStack } from '../islands/ComicFlowVisuals.tsx';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="mx-comic-flow">
+  <!-- Hero intro -->
+  <div class="cf-hero">
+    <span class="cf-eyebrow">AI COMIC STUDIO</span>
+    <h1 class="h1-display" style="color: var(--color-bone); margin-bottom: 24px;" set:html={t('comic.title')} />
+    <p class="body-lg-v2" style="max-width: 560px; margin: 0 auto;">
+      {t('comic.subtitle')}
+    </p>
+  </div>
+
+  <!-- Step 1: Story Planning -->
+  <div class="cf-step" data-step="1">
+    <div class="cf-left">
+      <div class="cf-step-num">01</div>
+      <h2 class="cf-step-title">{t('comic.01.label')}</h2>
+      <p class="cf-step-en">{t('comic.01.en')}</p>
+      <p class="cf-step-desc">{t('comic.01.m1')}</p>
+      <ul class="cf-features">
+        <li>{t('comic.01.m2')}</li>
+        <li>{t('comic.01.m3')}</li>
+        <li>{t('comic.01.m4')}</li>
+      </ul>
+    </div>
+    <div class="cf-right">
+      <ChatMock lang={lang} client:visible />
+    </div>
+  </div>
+
+  <!-- Step 2: Character & Scene -->
+  <div class="cf-step" data-step="2">
+    <div class="cf-left">
+      <div class="cf-step-num">02</div>
+      <h2 class="cf-step-title">{t('comic.02.label')}</h2>
+      <p class="cf-step-en">{t('comic.02.en')}</p>
+      <p class="cf-step-desc">{t('comic.02.m1')}</p>
+      <ul class="cf-features">
+        <li>{t('comic.02.m2')}</li>
+        <li>{t('comic.02.m3')}</li>
+      </ul>
+    </div>
+    <div class="cf-right">
+      <CharacterReveal lang={lang} client:visible />
+    </div>
+  </div>
+
+  <!-- Step 3: Storyboard -->
+  <div class="cf-step" data-step="3">
+    <div class="cf-left">
+      <div class="cf-step-num">03</div>
+      <h2 class="cf-step-title">{t('comic.03.label')}</h2>
+      <p class="cf-step-en">{t('comic.03.en')}</p>
+      <p class="cf-step-desc">{t('comic.03.m1')}</p>
+      <ul class="cf-features">
+        <li>{t('comic.03.m2')}</li>
+        <li>{t('comic.03.m3')}</li>
+      </ul>
+    </div>
+    <div class="cf-right">
+      <StoryboardAssemble lang={lang} client:visible />
+    </div>
+  </div>
+
+  <!-- Step 4: Publish -->
+  <div class="cf-step" data-step="4">
+    <div class="cf-left">
+      <div class="cf-step-num">04</div>
+      <h2 class="cf-step-title">{t('comic.04.label')}</h2>
+      <p class="cf-step-en">{t('comic.04.en')}</p>
+      <p class="cf-step-desc">{t('comic.04.m1')}</p>
+      <ul class="cf-features">
+        <li>{t('comic.04.m2')}</li>
+        <li>{t('comic.04.m3')}</li>
+        <li>{t('comic.04.m4')}</li>
+      </ul>
+    </div>
+    <div class="cf-right">
+      <PublishStack lang={lang} client:visible />
+    </div>
+  </div>
+
+  <!-- Bottom CTA -->
+  <div class="cf-cta">
+    <a
+      href="https://mangacanvas.gamaniaocc.org/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="shimmer-btn shimmer-btn-primary"
+      style="padding: 24px 40px; font-size: 15px;"
+    >
+      {t('comic.cta')}
+    </a>
+  </div>
+</section>
+
+<style is:global>
+  /* ===== Layout ===== */
+  .mx-comic-flow {
+    padding: 160px 48px 100px;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .cf-hero {
+    text-align: center;
+    margin-bottom: 120px;
+  }
+  .cf-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--color-cinnabar);
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .cf-step {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    min-height: 100vh;
+    padding: 80px 0;
+    border-top: 1px solid var(--bone-line);
+    align-items: start;
+  }
+
+  .cf-left {
+    position: sticky;
+    top: 30vh;
+    align-self: start;
+  }
+  .cf-step-num {
+    font-family: var(--font-mono);
+    font-size: 52px;
+    font-weight: 200;
+    color: var(--color-cinnabar);
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    opacity: 0.7;
+  }
+  .cf-step-title {
+    font-family: var(--font-headline);
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 500;
+    color: var(--color-bone);
+    margin: 0 0 8px;
+  }
+  .cf-step-en {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--color-bone-3);
+    margin: 0 0 28px;
+    text-transform: uppercase;
+  }
+  .cf-step-desc {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--color-bone-2);
+    margin: 0 0 20px;
+  }
+  .cf-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .cf-features li {
+    font-size: 14px;
+    color: var(--color-bone-3);
+    padding-left: 16px;
+    position: relative;
+  }
+  .cf-features li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-cinnabar);
+    opacity: 0.6;
+  }
+
+  .cf-right {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .cf-cta {
+    text-align: center;
+    padding: 100px 0 0;
+  }
+
+  /* ===== Shared elements ===== */
+  .cf-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-cinnabar);
+    flex-shrink: 0;
+  }
+  .cf-line {
+    flex: 1;
+    height: 1px;
+    background: var(--bone-line);
+  }
+  .cf-mono-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--color-bone-2);
+  }
+
+  /* ===== Visual card base ===== */
+  .cf-visual {
+    width: 100%;
+    background: var(--color-ink-2);
+    border: 1px solid var(--bone-line);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  /* ===== Step 1: Chat ===== */
+  .cf-chat {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 520px;
+  }
+  .cf-chat-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .cf-msg {
+    display: flex;
+    gap: 10px;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .cf-msg.cf-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .cf-msg--user { justify-content: flex-end; }
+  .cf-msg--ai { align-items: flex-start; }
+  .cf-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--color-cinnabar);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: var(--color-bone);
+    flex-shrink: 0;
+  }
+  .cf-bubble {
+    padding: 12px 16px;
+    font-size: 12px;
+    line-height: 1.7;
+    max-width: 80%;
+  }
+  .cf-bubble--user {
+    background: var(--color-cinnabar);
+    color: var(--color-bone);
+  }
+  .cf-bubble--ai {
+    background: rgba(244, 236, 220, 0.04);
+    border: 1px solid var(--bone-line);
+    color: var(--color-bone);
+  }
+  .cf-bubble--ai p { margin: 0 0 10px; }
+  .cf-options {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .cf-option {
+    font-size: 11px;
+    padding: 6px 12px;
+    border: 1px solid var(--bone-line);
+    color: var(--color-bone-3);
+    background: var(--color-ink-2);
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .cf-option--active {
+    border-color: var(--color-cinnabar);
+    color: var(--color-cinnabar);
+  }
+  .cf-typing {
+    display: flex !important;
+    gap: 4px;
+    padding: 14px 18px !important;
+  }
+  .cf-typing span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-bone-3);
+    animation: cfTyping 1.4s infinite;
+  }
+  .cf-typing span:nth-child(2) { animation-delay: 0.2s; }
+  .cf-typing span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes cfTyping {
+    0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+    30% { opacity: 1; transform: translateY(-3px); }
+  }
+  .cf-input {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border: 1px solid var(--bone-line);
+    background: var(--color-ink);
+    margin-top: auto;
+    gap: 4px;
+  }
+  .cf-input-text {
+    flex: 1;
+    font-size: 12px;
+    color: var(--color-bone-3);
+  }
+  .cf-input-cursor {
+    width: 1px;
+    height: 14px;
+    background: var(--color-cinnabar);
+    animation: cfBlink 1s step-end infinite;
+  }
+  @keyframes cfBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  .cf-input-send {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--color-cinnabar);
+    margin-left: 12px;
+  }
+
+  /* ===== Step 2: Character & Scene ===== */
+  .cf-gen {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .cf-gen-section { display: flex; flex-direction: column; gap: 12px; }
+  .cf-gen-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .cf-gen-status {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--color-cinnabar);
+    animation: cfPulse 2s infinite;
+  }
+  @keyframes cfPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* Blur-to-clear reveal */
+  .cf-reveal {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--bone-line);
+    border-radius: 2px;
+  }
+  .cf-reveal img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(20px) saturate(0.5);
+    transform: scale(1.05);
+    transition: filter 1.6s cubic-bezier(0.22, 1, 0.36, 1), transform 1.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .is-visible .cf-reveal img {
+    filter: blur(0) saturate(1);
+    transform: scale(1);
+  }
+
+  .cf-gen-img-wrap {
+    aspect-ratio: 900 / 280;
+  }
+
+  .cf-scan-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--color-cinnabar), transparent);
+    animation: cfScan 3s linear infinite;
+    opacity: 0;
+  }
+  .is-visible .cf-scan-line { opacity: 1; }
+  @keyframes cfScan {
+    0% { top: 0%; }
+    100% { top: 100%; }
+  }
+
+  .cf-scene-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .cf-scene-item {
+    aspect-ratio: 3 / 2;
+  }
+  .cf-scene-item img {
+    transition-delay: inherit;
+  }
+
+  /* ===== Step 3: Storyboard ===== */
+  .cf-board {
+    padding: 24px;
+  }
+  .cf-board-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .cf-board-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .cf-panel {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--bone-line);
+    border-radius: 2px;
+    aspect-ratio: 3 / 2;
+    opacity: 0;
+    transform: translateY(30px) scale(0.92);
+  }
+  .cf-panel.cf-panel-in {
+    animation: cfPanelIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  @keyframes cfPanelIn {
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .cf-panel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .cf-panel-num {
+    position: absolute;
+    top: 6px;
+    left: 8px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--color-cinnabar);
+    background: rgba(10, 9, 8, 0.75);
+    padding: 2px 6px;
+  }
+  .cf-panel-loading {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--color-ink);
+    color: var(--color-bone-3);
+    font-family: var(--font-mono);
+    font-size: 10px;
+  }
+  .cf-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--bone-line);
+    border-top-color: var(--color-cinnabar);
+    border-radius: 50%;
+    animation: cfSpin 1s linear infinite;
+  }
+  @keyframes cfSpin { to { transform: rotate(360deg); } }
+
+  /* ===== Step 4: Publish ===== */
+  .cf-publish {
+    display: flex;
+    flex-direction: column;
+  }
+  .cf-publish-stack {
+    position: relative;
+    height: 460px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    perspective: 1000px;
+  }
+  .cf-page {
+    position: absolute;
+    width: 52%;
+    height: auto;
+    border: 1px solid var(--bone-line);
+    border-radius: 2px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  }
+  .cf-publish-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    border-top: 1px solid var(--bone-line);
+  }
+  .cf-publish-badge {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: #4ade80;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 900px) {
+    .mx-comic-flow { padding: 100px 24px 60px; }
+    .cf-step {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      min-height: auto;
+      padding: 60px 0;
+    }
+    .cf-left { position: static; }
+    .cf-publish-stack { height: 320px; }
+    .cf-page { width: 65%; }
+  }
+</style>
