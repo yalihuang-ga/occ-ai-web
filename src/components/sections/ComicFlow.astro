@@ -16,10 +16,43 @@ const t = useTranslations(lang);
   <!-- Hero intro -->
   <div class="cf-hero">
     <span class="cf-eyebrow">AI COMIC STUDIO</span>
-    <h1 class="h1-display" style="color: var(--color-bone); margin-bottom: 24px;" set:html={t('comic.title')} />
-    <p class="body-lg-v2" style="max-width: 560px; margin: 0 auto;">
+    <h1 class="h1-display" style="color: var(--color-bone);" set:html={t('comic.title')} />
+    <h2 class="cf-hero-desc">
       {t('comic.subtitle')}
-    </p>
+    </h2>
+
+    <!-- Productivity badges -->
+    <div class="cf-hero-badges">
+      <div class="cf-hero-badge">
+        <div class="cf-badge-icon">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></svg>
+        </div>
+        <h3 class="cf-hero-badge-value">{lang === 'en' ? 'Speed up 20×' : lang === 'ja' ? '20倍高速化' : '加速 20 倍'}</h3>
+        <p class="cf-hero-badge-desc">{lang === 'en' ? 'From concept to finished pages in hours, not months.' : lang === 'ja' ? '構想から完成まで、数ヶ月ではなく数時間で。' : '從構想到成品，以小時計而非月計。'}</p>
+      </div>
+      <div class="cf-hero-badge">
+        <div class="cf-badge-icon">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" /></svg>
+        </div>
+        <h3 class="cf-hero-badge-value">{lang === 'en' ? 'Consistent style' : lang === 'ja' ? 'スタイル統一' : '風格一致'}</h3>
+        <p class="cf-hero-badge-desc">{lang === 'en' ? 'Characters stay on-model across every panel and chapter.' : lang === 'ja' ? 'キャラは全コマ・全話で統一されます。' : '角色跨分鏡、跨章節維持一致外觀。'}</p>
+      </div>
+      <div class="cf-hero-badge">
+        <div class="cf-badge-icon">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 L2 7 L12 12 L22 7 Z" /><path d="M2 17 L12 22 L22 17" /><path d="M2 12 L12 17 L22 12" /></svg>
+        </div>
+        <h3 class="cf-hero-badge-value">{lang === 'en' ? 'All-in-one' : lang === 'ja' ? 'オールインワン' : '一站式作業'}</h3>
+        <p class="cf-hero-badge-desc">{lang === 'en' ? 'Script, art, layout, and publish — one integrated workflow.' : lang === 'ja' ? '脚本・作画・レイアウト・公開を一つのワークフローで。' : '劇本、作畫、排版、發布一站完成。'}</p>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="cf-hero-scroll" aria-hidden="true">
+      <span class="cf-hero-scroll-label">SCROLL</span>
+      <span class="cf-hero-scroll-line">
+        <span class="cf-hero-scroll-dot"></span>
+      </span>
+    </div>
   </div>
 
   <!-- Step 1: Story Planning -->
@@ -166,8 +199,7 @@ const t = useTranslations(lang);
       href="https://mangacanvas.gamaniaocc.org/"
       target="_blank"
       rel="noopener noreferrer"
-      class="shimmer-btn shimmer-btn-primary"
-      style="padding: 24px 40px; font-size: 15px;"
+      class="cf-cta-btn"
     >
       {t('comic.cta')}
     </a>
@@ -199,7 +231,7 @@ const t = useTranslations(lang);
 <style is:global>
   /* ===== Layout ===== */
   .mx-comic-flow {
-    padding: 160px 48px 100px;
+    padding: 160px 48px 120px;
     max-width: 1440px;
     margin: 0 auto;
   }
@@ -214,17 +246,120 @@ const t = useTranslations(lang);
     letter-spacing: 0.3em;
     color: var(--color-cinnabar);
     display: block;
-    margin-bottom: 20px;
+    margin-bottom: 32px;
+  }
+
+  .cf-hero .h1-display {
+    margin-bottom: 24px;
+  }
+
+  .cf-hero-desc {
+    font-size: clamp(18px, 2.4vw, 26px);
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--color-bone-2);
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  /* Productivity badges — large card style */
+  .cf-hero-badges {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 56px;
+  }
+  .cf-hero-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 32px 28px;
+    border: 1px solid var(--bone-line);
+    border-radius: 16px;
+    background: rgba(244, 236, 220, 0.02);
+    text-align: center;
+    color: var(--color-bone);
+  }
+  .cf-badge-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: rgba(255, 90, 31, 0.08);
+    border: 1px solid rgba(255, 90, 31, 0.2);
+  }
+  .cf-badge-icon svg {
+    color: var(--color-cinnabar);
+  }
+  .cf-hero-badge-value {
+    font-family: var(--font-headline);
+    font-size: clamp(18px, 2vw, 22px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  .cf-hero-badge-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--color-bone-3);
+    margin: 0;
+  }
+
+  /* Scroll indicator (matches homepage) */
+  .cf-hero-scroll {
+    margin-top: 72px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    pointer-events: none;
+  }
+  .cf-hero-scroll-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: rgba(244, 236, 220, 0.55);
+    text-transform: uppercase;
+  }
+  .cf-hero-scroll-line {
+    position: relative;
+    width: 1px;
+    height: 56px;
+    background: linear-gradient(to bottom, rgba(244, 236, 220, 0.25) 0%, transparent 100%);
+    overflow: visible;
+  }
+  .cf-hero-scroll-dot {
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    width: 1px;
+    height: 14px;
+    transform: translateX(-50%);
+    background: #ff5a1f;
+    box-shadow: 0 0 6px rgba(255, 90, 31, 0.7), 0 0 14px rgba(255, 90, 31, 0.35);
+    animation: cfScrollDot 2.2s cubic-bezier(0.55, 0.05, 0.45, 0.95) infinite;
+  }
+  @keyframes cfScrollDot {
+    0% { top: -14px; opacity: 0; }
+    15% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { top: 56px; opacity: 0; }
   }
 
   .cf-step {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
     gap: 80px;
-    min-height: 100vh;
+    min-height: auto;
     padding: 80px 0;
     border-top: 1px solid var(--bone-line);
     align-items: start;
+  }
+  .cf-step[data-step="4"] {
+    min-height: auto;
   }
 
   .cf-left {
@@ -315,7 +450,49 @@ const t = useTranslations(lang);
 
   .cf-cta {
     text-align: center;
-    padding: 100px 0 0;
+    padding: 80px 0 0;
+  }
+  .cf-cta-btn {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    padding: 14px 40px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 12px;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ff5a00 0%, #ff7a30 100%);
+    color: #fff;
+    box-shadow: 0 0 28px rgba(255, 90, 0, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .cf-cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 50px rgba(255, 90, 0, 0.65);
+  }
+  .cf-cta-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.35) 50%,
+      transparent 100%
+    );
+    animation: cfShimmer 2.5s infinite;
+  }
+  @keyframes cfShimmer {
+    0% { left: -100%; }
+    100% { left: 200%; }
   }
 
   /* ===== Shared elements ===== */
@@ -689,18 +866,40 @@ const t = useTranslations(lang);
     gap: 10px;
   }
   .cf-scene-grid--full {
-    aspect-ratio: 900 / 500;
     position: relative;
     overflow: hidden;
     border: 1px solid var(--bone-line);
     border-radius: 2px;
   }
   .cf-scene-item {
-    aspect-ratio: auto;
+    aspect-ratio: 3 / 4;
     min-height: 0;
+    background: var(--color-ink, #0e0b08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   .cf-scene-item img {
     transition-delay: inherit;
+    object-fit: contain;
+    object-position: center center;
+  }
+  .cf-scene-caption {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--color-bone-2);
+    white-space: nowrap;
+    padding: 4px 10px;
+    background: rgba(14, 11, 8, 0.75);
+    border: 1px solid var(--bone-line);
+    border-radius: 3px;
+    z-index: 3;
   }
 
   /* Halftone dot overlay for gen cards */
@@ -799,80 +998,238 @@ const t = useTranslations(lang);
   }
   @keyframes cfSpin { to { transform: rotate(360deg); } }
 
-  /* ===== Step 3b: Storyboard Edit ===== */
+  /* ===== Step 3b: Storyboard Edit — brush + inpaint + translate ===== */
   .cf-board-edit {
-    padding: 24px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
   }
-  .cf-edit-placeholder {
+  .cf-edit-header {
     display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .cf-edit-canvas {
-    aspect-ratio: 16 / 10;
-    background: var(--color-ink);
-    border: 1px solid var(--bone-line);
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .cf-edit-img-area {
-    display: flex;
-    flex-direction: column;
     align-items: center;
     gap: 10px;
-    color: var(--color-bone-3);
   }
-  .cf-edit-icon {
-    font-size: 32px;
-    opacity: 0.5;
-  }
-  .cf-edit-label {
-    font-size: 12px;
+  .cf-edit-badge {
     font-family: var(--font-mono);
-    letter-spacing: 0.05em;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--bone-line);
+    color: var(--color-bone-2);
+    background: rgba(244, 236, 220, 0.04);
+    transition: all 0.4s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
+  .cf-edit-badge--busy {
+    color: var(--color-cinnabar);
+    border-color: rgba(255, 90, 31, 0.5);
+    background: rgba(255, 90, 31, 0.12);
+    animation: cfPulse 1.4s infinite;
+  }
+  .cf-edit-badge--ok {
+    color: #4ade80;
+    border-color: rgba(74, 222, 128, 0.4);
+    background: rgba(74, 222, 128, 0.1);
+  }
+
+  .cf-edit-stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 768 / 1376;
+    max-height: 560px;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 1px solid var(--bone-line);
+    border-radius: 4px;
+    background: var(--color-ink);
+  }
+  .cf-edit-stage::before {
+    /* subtle inner edge */
+    content: '';
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+    pointer-events: none;
+    z-index: 4;
+  }
+  .cf-edit-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 1;
+  }
+  .cf-edit-img--show {
+    opacity: 1;
+    z-index: 2;
+  }
+
+  .cf-edit-mask {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    background: rgba(20, 18, 15, 0.35);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    overflow: hidden;
+  }
+  .cf-edit-mask--on { opacity: 1; }
+  .cf-edit-mask-scan {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(255, 90, 31, 0) 45%,
+      rgba(255, 90, 31, 0.55) 50%,
+      rgba(255, 90, 31, 0) 55%,
+      transparent 100%
+    );
+    background-size: 100% 220%;
+    animation: cfEditScan 1.6s linear infinite;
+    mix-blend-mode: screen;
+  }
+  @keyframes cfEditScan {
+    0% { background-position: 0 -120%; }
+    100% { background-position: 0 120%; }
+  }
+  .cf-edit-mask-pill {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(10, 9, 8, 0.85);
+    border: 1px solid rgba(255, 90, 31, 0.5);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--color-bone);
+    backdrop-filter: blur(8px);
+  }
+  .cf-spinner--sm {
+    width: 12px;
+    height: 12px;
+    border-width: 1.5px;
+  }
+
+  /* Toolbar */
   .cf-edit-toolbar {
     display: flex;
     gap: 8px;
   }
   .cf-edit-tool {
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     border-radius: 6px;
-    background: rgba(244, 236, 220, 0.06);
+    background: rgba(244, 236, 220, 0.04);
     border: 1px solid var(--bone-line);
+    color: var(--color-bone-3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.35s ease;
   }
   .cf-edit-tool--active {
     border-color: var(--color-cinnabar);
-    background: rgba(255, 90, 31, 0.1);
+    background: rgba(255, 90, 31, 0.12);
+    color: var(--color-cinnabar);
+    box-shadow: 0 0 0 1px rgba(255, 90, 31, 0.25), 0 0 12px rgba(255, 90, 31, 0.25);
+  }
+
+  /* Command input */
+  .cf-edit-cmd {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border: 1px solid var(--bone-line);
+    background: var(--color-ink);
+    border-radius: 4px;
+    gap: 10px;
+    min-height: 44px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .cf-edit-cmd--flash {
+    border-color: var(--color-cinnabar);
+    box-shadow: 0 0 0 1px rgba(255, 90, 31, 0.35), 0 0 18px rgba(255, 90, 31, 0.25);
+  }
+  .cf-edit-cmd-text {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    font-size: 12px;
+    color: var(--color-bone);
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .cf-edit-cmd-placeholder {
+    color: var(--color-bone-3);
+  }
+  .cf-edit-cmd-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 14px;
+    background: var(--color-cinnabar);
+    margin-left: 4px;
+    animation: cfBlink 1s step-end infinite;
+  }
+  .cf-edit-cmd-send {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--color-cinnabar);
+    padding: 4px 10px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    flex-shrink: 0;
+    transition: all 0.25s ease;
+  }
+  .cf-edit-cmd-send--active {
+    background: var(--color-cinnabar);
+    color: var(--color-bone);
+    border-color: var(--color-cinnabar);
+    transform: scale(0.96);
+    box-shadow: 0 0 18px rgba(255, 90, 31, 0.45);
   }
 
   /* ===== Step 4: Publish ===== */
   .cf-publish {
     display: flex;
     flex-direction: column;
-  }
-  .cf-publish-stack {
-    position: relative;
-    height: 460px;
-    display: flex;
     align-items: center;
-    justify-content: center;
+    position: relative;
+    aspect-ratio: 3 / 4;
+    max-height: 480px;
     overflow: hidden;
-    perspective: 1000px;
+    background: var(--color-ink, #0e0b08);
+    border-radius: 0;
+    border: none;
+    perspective: 1200px;
   }
   .cf-page {
     position: absolute;
-    width: 52%;
-    height: auto;
-    border: 1px solid var(--bone-line);
-    border-radius: 2px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center center;
+    transform-origin: top center;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
   }
   .cf-publish-bar {
     display: flex;
@@ -1032,6 +1389,8 @@ const t = useTranslations(lang);
   /* ===== Responsive ===== */
   @media (max-width: 900px) {
     .mx-comic-flow { padding: 100px 24px 60px; }
+    .cf-hero-badges { grid-template-columns: 1fr; gap: 12px; }
+    .cf-hero-badge { padding: 24px 20px; }
     .cf-step {
       grid-template-columns: 1fr;
       gap: 32px;
@@ -1060,7 +1419,11 @@ const t = useTranslations(lang);
     .cf-intro-input-wrap { width: 95%; }
     .cf-intro-input { font-size: 15px; padding: 14px 16px; }
     .cf-intro-text { font-size: 16px; padding: 16px 20px; }
-    .cf-publish-stack { height: 320px; }
+    .cf-publish { max-height: 320px; }
     .cf-page { width: 65%; }
+    .cf-edit-stage { max-height: 460px; }
+    .cf-edit-cmd { padding: 10px 12px; }
+    .cf-edit-cmd-text { font-size: 11px; }
+    .cf-edit-tool { width: 28px; height: 28px; }
   }
 </style>

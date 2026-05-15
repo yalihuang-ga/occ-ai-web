@@ -17,6 +17,8 @@ const localeUrls: Record<Lang, string> = {
   ja: '/ja/',
 };
 
+const pathname = Astro.url.pathname;
+
 type NavItem = { labelKey: UIKey; href: string };
 
 const homeBase = localeUrls[lang];
@@ -60,7 +62,7 @@ const navItems: NavItem[] = [
     </nav>
 
     <div class="flex items-center gap-5">
-      <LangSwitcher lang={lang} />
+      <LangSwitcher lang={lang} pathname={pathname} />
       <a
         href={`${homeBase}#contact`}
         class="hidden sm:inline-flex shimmer-btn shimmer-btn-primary"

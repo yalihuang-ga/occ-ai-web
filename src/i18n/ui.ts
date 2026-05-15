@@ -174,8 +174,8 @@ export const ui = {
     // ---- Comic Studio (§ 04) ----
     'comic.section': '§ 04 — AI Comic Studio',
     'comic.title':
-      '從一句靈感到完整漫畫，<span class="title-accent-gold">四步串成一條產線</span>',
-    'comic.subtitle': '創作者主導，AI 加速。每一步都可回頭微調，產出可商用、可二創的內容資產。',
+      '幫你把靈感<span class="title-accent-gold">變成連載作品</span>',
+    'comic.subtitle': '由創作者主導，AI 加速。與傳統製程相比效率提升 20 倍！',
     'comic.tagsAria': '此步驟重點能力',
 
     'comic.01.label': '故事規劃',
@@ -232,12 +232,12 @@ export const ui = {
     'comic.04.title': '立即展示給你的朋友',
     'comic.04.desc':
       '直接檢視成品、匯出圖片或發布到社群。從草稿到上稿，作品始終在你手裡。',
-    'comic.04.m1': '無需手動排版',
+    'comic.04.m1': '預覽成品並公開你的作品',
     'comic.04.m2': '智慧生成封面',
     'comic.04.m3': '素材匯出',
     'comic.04.m4': '社群發布',
 
-    'comic.cta': '開始試用',
+    'comic.cta': '立即體驗',
 
     // ---- Game (§ 03) ----
     'game.section': '§ 03 — AI Game',
@@ -451,9 +451,9 @@ export const ui = {
 
     'comic.section': '§ 04 — AI Comic Studio',
     'comic.title':
-      'From spark to finished comic — <span class="title-accent-gold">a four-step pipeline</span>',
+      'Turn your spark <span class="title-accent-gold">into a serial work</span>',
     'comic.subtitle':
-      "Creator-led, AI-accelerated. Every step is editable; every output is commercially usable.",
+      "Creator-led, AI-accelerated. 20× faster than traditional production!",
     'comic.tagsAria': 'Capabilities for this step',
 
     'comic.01.label': 'Story Planning',
@@ -510,7 +510,7 @@ export const ui = {
     'comic.04.title': 'Show it off to your friends',
     'comic.04.desc':
       "Preview the finished work, export images, or publish to the community. From draft to release, your work stays in your hands.",
-    'comic.04.m1': 'Auto layout',
+    'comic.04.m1': 'Preview and publish your work',
     'comic.04.m2': 'Smart cover generation',
     'comic.04.m3': 'Asset export',
     'comic.04.m4': 'Community publish',
@@ -726,8 +726,8 @@ export const ui = {
 
     'comic.section': '§ 04 — AIコミックスタジオ',
     'comic.title':
-      'ひらめきから完成まで、<span class="title-accent-gold">4ステップのパイプライン</span>',
-    'comic.subtitle': 'クリエイター主導、AI加速。各ステップが編集可能。商用利用可能な素材を出力します。',
+      'ひらめきを<span class="title-accent-gold">連載作品に変える</span>',
+    'comic.subtitle': 'クリエイター主導、AI加速。従来の制作と比べて効率20倍アップ！',
     'comic.tagsAria': 'このステップの機能タグ',
 
     'comic.01.label': 'ストーリー設計',
@@ -784,7 +784,7 @@ export const ui = {
     'comic.04.title': '今すぐ友達に披露しよう',
     'comic.04.desc':
       '完成作品をそのままプレビュー、画像書き出し、コミュニティ公開。下書きから公開まで、作品はあなたの手に。',
-    'comic.04.m1': '自動レイアウト',
+    'comic.04.m1': '成果をプレビューして公開',
     'comic.04.m2': '表紙の自動生成',
     'comic.04.m3': '素材エクスポート',
     'comic.04.m4': 'コミュニティ公開',

@@ -453,9 +453,9 @@ function MockStory({ lang }: { lang: string }) {
 
 function MockCharacter() {
   const scenes = [
-    { src: '/comic/locations/loc-taipei101-glass.jpg', label: '玻璃幕牆' },
-    { src: '/comic/locations/loc-taipei101-bamboo.jpg', label: '竹節結構' },
-    { src: '/comic/locations/loc-taipei101-spire.jpg', label: '避雷針基座' },
+    { src: '/comic/locations/loc-taipei101-glass.webp', label: '玻璃幕牆' },
+    { src: '/comic/locations/loc-taipei101-bamboo.webp', label: '竹節結構' },
+    { src: '/comic/locations/loc-taipei101-spire.webp', label: '避雷針基座' },
   ];
 
   return (
@@ -654,13 +654,13 @@ function MockStoryboard() {
 
 function MockCanvas() {
   const pages: { src: string; rotate: number; offsetX: number; offsetY: number }[] = [
-    { src: '/comic/publish/sengoku-1.png', rotate: 12, offsetX: -28, offsetY: -14 },
-    { src: '/comic/publish/baseball-2.png', rotate: -15, offsetX: 22, offsetY: -8 },
+    { src: '/comic/publish/sengoku-1.webp', rotate: 12, offsetX: -28, offsetY: -14 },
+    { src: '/comic/publish/baseball-2.webp', rotate: -15, offsetX: 22, offsetY: -8 },
     { src: '/comic/panel-2a.webp', rotate: 6, offsetX: -8, offsetY: 18 },
-    { src: '/comic/publish/sengoku-3.png', rotate: -9, offsetX: 16, offsetY: 12 },
-    { src: '/comic/publish/baseball-1.png', rotate: 10, offsetX: -18, offsetY: 6 },
-    { src: '/comic/publish/sengoku-2.png', rotate: -5, offsetX: 6, offsetY: -16 },
-    { src: '/comic/publish/baseball-3.png', rotate: 8, offsetX: -12, offsetY: -4 },
+    { src: '/comic/publish/sengoku-3.webp', rotate: -9, offsetX: 16, offsetY: 12 },
+    { src: '/comic/publish/baseball-1.webp', rotate: 10, offsetX: -18, offsetY: 6 },
+    { src: '/comic/publish/sengoku-2.webp', rotate: -5, offsetX: 6, offsetY: -16 },
+    { src: '/comic/publish/baseball-3.webp', rotate: 8, offsetX: -12, offsetY: -4 },
     { src: '/comic/panel-1a.webp', rotate: -3, offsetX: 10, offsetY: 8 },
     { src: '/comic/panel-3a.webp', rotate: 2, offsetX: 4, offsetY: 14 },
   ];

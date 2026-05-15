@@ -4,15 +4,25 @@ import Header from '../sections/Header.astro';
 import ComicFlow from '../sections/ComicFlow.astro';
 import CTAFooter from '../sections/CTAFooter.astro';
 import type { Lang } from '../../i18n/ui';
+import { useTranslations } from '../../i18n/utils';
 
 interface Props {
   lang: Lang;
 }
 
 const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const seo = {
+  'zh-TW': { title: 'AI 漫畫工作室 | Muztrix', description: '由創作者主導，AI 加速。從一句靈感到完整連載，四步完成漫畫製作，效率提升 20 倍。' },
+  en: { title: 'AI Comic Studio | Muztrix', description: 'Creator-led, AI-accelerated. From a single spark to a full serial — four steps to finished comics, 20× faster.' },
+  ja: { title: 'AIコミックスタジオ | Muztrix', description: 'クリエイター主導、AI加速。ひらめきから連載まで4ステップで完成、効率20倍アップ。' },
+};
+
+const { title, description } = seo[lang];
 ---
 
-<BaseLayout>
+<BaseLayout title={title} description={description}>
   <div class="mx-root">
     <Header lang={lang} />
     <ComicFlow lang={lang} />

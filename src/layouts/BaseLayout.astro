@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getLangFromUrl, useTranslations, getLocaleUrlsForPathname } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
 
 interface Props {
@@ -19,11 +19,7 @@ const GA_ID = 'G-T1VMEDD4N5';
 
 // SEO — i18n equivalents (hreflang)
 const SITE = 'https://ai.gamaniaocc.org';
-const localePathMap: Record<Lang, string> = {
-  'zh-TW': '/',
-  en: '/en/',
-  ja: '/ja/',
-};
+const localeUrls = getLocaleUrlsForPathname(Astro.url.pathname);
 const hreflangMap: Record<Lang, string> = {
   'zh-TW': 'zh-Hant-TW',
   en: 'en',
@@ -35,7 +31,7 @@ const ogLocaleMap: Record<Lang, string> = {
   ja: 'ja_JP',
 };
 
-const canonicalUrl = `${SITE}${localePathMap[lang]}`;
+const canonicalUrl = `${SITE}${localeUrls[lang]}`;
 const ogImageUrl = `${SITE}/og-image.png`;
 ---
 
@@ -60,15 +56,15 @@ const ogImageUrl = `${SITE}/og-image.png`;
 
     <!-- hreflang for multilingual SEO -->
     {
-      (Object.keys(localePathMap) as Lang[]).map((code) => (
+      (Object.keys(localeUrls) as Lang[]).map((code) => (
         <link
           rel="alternate"
           hreflang={hreflangMap[code]}
-          href={`${SITE}${localePathMap[code]}`}
+          href={`${SITE}${localeUrls[code]}`}
         />
       ))
     }
-    <link rel="alternate" hreflang="x-default" href={`${SITE}/`} />
+    <link rel="alternate" hreflang="x-default" href={`${SITE}${localeUrls['zh-TW']}`} />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -192,5 +188,13 @@ const ogImageUrl = `${SITE}/og-image.png`;
   </head>
   <body class="bg-background text-on-background font-body">
     <slot />
+    <script is:inline>
+      document.addEventListener('contextmenu', function(e) {
+        if (e.target.tagName === 'IMG') e.preventDefault();
+      });
+      document.addEventListener('dragstart', function(e) {
+        if (e.target.tagName === 'IMG') e.preventDefault();
+      });
+    </script>
   </body>
 </html>

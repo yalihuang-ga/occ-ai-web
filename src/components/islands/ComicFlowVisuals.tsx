@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface VisualProps {
   lang: string;
@@ -393,6 +394,12 @@ export function CharacterCard({ lang }: VisualProps) {
 export function SceneCard({ lang }: VisualProps) {
   const { ref, visible } = useInView(0.2);
 
+  const scenes = [
+    { src: '/comic/locations/loc-taipei101-glass.webp', label: lang === 'en' ? 'Taipei 101 Upper Floors' : lang === 'ja' ? '台北101 高層階' : '台北101高層' },
+    { src: '/comic/locations/loc-taipei101-bamboo.webp', label: lang === 'en' ? 'Taipei 101 Lower Exterior' : lang === 'ja' ? '台北101 外壁低層' : '台北101外牆低層' },
+    { src: '/comic/locations/loc-taipei101-spire.webp', label: lang === 'en' ? 'Taipei 101 Rooftop Spire' : lang === 'ja' ? '台北101 頂上プラットフォーム' : '台北101頂端平台' },
+  ];
+
   return (
     <div ref={ref} className={`cf-visual cf-gen ${visible ? 'is-visible' : ''}`}>
       <div className="cf-gen-section">
@@ -403,14 +410,11 @@ export function SceneCard({ lang }: VisualProps) {
           <span className="cf-gen-status">3 / 3</span>
         </div>
         <div className="cf-scene-grid cf-scene-grid--full">
-          {[
-            '/comic/locations/loc-taipei101-glass.jpg',
-            '/comic/locations/loc-taipei101-bamboo.jpg',
-            '/comic/locations/loc-taipei101-spire.jpg',
-          ].map((src, i) => (
+          {scenes.map((scene, i) => (
             <div key={i} className="cf-scene-item cf-reveal" style={{ transitionDelay: `${i * 0.4}s` }}>
-              <img src={src} alt="" loading="lazy" decoding="async" />
+              <img src={scene.src} alt="" loading="lazy" decoding="async" />
               <div className="cf-scan-line" style={{ animationDelay: `${i * 1}s` }} />
+              <span className="cf-scene-caption">{scene.label}</span>
             </div>
           ))}
         </div>
@@ -428,9 +432,9 @@ export function StoryboardAssemble({ lang }: VisualProps) {
     { src: '/comic/panel-1a.webp', pos: 'center top' },
     { src: '/comic/panel-2a.webp', pos: 'center center' },
     { src: '/comic/panel-2b.webp', pos: 'right center' },
-    { src: '/comic/panel-s2-3.png', pos: 'center center' },
-    { src: '/comic/panel-s3-1.jpg', pos: 'center top' },
-    { src: '/comic/panel-s3-2.jpg', pos: 'center center' },
+    { src: '/comic/panel-s2-3.webp', pos: 'center center' },
+    { src: '/comic/panel-s3-1.webp', pos: 'center top' },
+    { src: '/comic/panel-s3-2.webp', pos: 'center center' },
   ];
 
   useEffect(() => {
@@ -479,30 +483,298 @@ export function StoryboardAssemble({ lang }: VisualProps) {
   );
 }
 
-/* ===== Step 3b: Storyboard Edit (placeholder) ===== */
+/* ===== Step 3b: Storyboard Edit — inpaint + translate + ratio change demo ===== */
+type EditPhase =
+  | 'idle'
+  | 'typing-1'
+  | 'sending-1'
+  | 'processing-1'
+  | 'fixed'
+  | 'typing-2'
+  | 'sending-2'
+  | 'processing-2'
+  | 'translated'
+  | 'typing-3'
+  | 'sending-3'
+  | 'processing-3'
+  | 'done';
+
 export function StoryboardEdit({ lang }: VisualProps) {
-  const { ref, visible } = useInView(0.2);
+  const { ref, visible } = useInView(0.25);
+  const [phase, setPhase] = useState<EditPhase>('idle');
+  const [cycleKey, setCycleKey] = useState(0);
+  const [typed, setTyped] = useState('');
+
+  const copy = lang === 'en'
+    ? {
+        header: 'STORYBOARD · EDIT',
+        cmd1: 'Remove the extra leg',
+        cmd2: 'Translate this page into Japanese',
+        cmd3: 'Change aspect ratio to 3:4',
+        placeholder: 'Describe your edit…',
+        send: 'SEND ↵',
+        badge: {
+          idle: 'EDIT',
+          processing1: 'AI INPAINTING',
+          fixed: 'FIXED ✓',
+          processing2: 'ZH → JP',
+          translated: 'JP ✓',
+          processing3: '9:16 → 3:4',
+          done: '3:4 ✓',
+        },
+        tools: ['SELECT', 'BRUSH', 'TEXT', 'TRANSLATE'],
+      }
+    : lang === 'ja'
+    ? {
+        header: 'STORYBOARD · EDIT',
+        cmd1: '余分な脚を削除',
+        cmd2: 'このページを日本語に翻訳',
+        cmd3: 'アスペクト比を3:4に変更',
+        placeholder: '編集内容を入力…',
+        send: 'SEND ↵',
+        badge: {
+          idle: 'EDIT',
+          processing1: 'AI 修復中',
+          fixed: 'FIXED ✓',
+          processing2: 'ZH → JP',
+          translated: 'JP ✓',
+          processing3: '9:16 → 3:4',
+          done: '3:4 ✓',
+        },
+        tools: ['SELECT', 'BRUSH', 'TEXT', 'TRANSLATE'],
+      }
+    : {
+        header: 'STORYBOARD · EDIT',
+        cmd1: '移除多餘的腳',
+        cmd2: '將整頁翻譯成日文',
+        cmd3: '將比例改為 3:4',
+        placeholder: '描述你的編輯…',
+        send: 'SEND ↵',
+        badge: {
+          idle: 'EDIT',
+          processing1: 'AI 修圖中',
+          fixed: 'FIXED ✓',
+          processing2: 'ZH → JP',
+          translated: 'JP ✓',
+          processing3: '9:16 → 3:4',
+          done: '3:4 ✓',
+        },
+        tools: ['SELECT', 'BRUSH', 'TEXT', 'TRANSLATE'],
+      };
+
+  useEffect(() => {
+    if (!visible) return;
+    setPhase('idle');
+    setTyped('');
+
+    const timers: number[] = [];
+    const schedule = (delay: number, fn: () => void) => {
+      timers.push(window.setTimeout(fn, delay));
+    };
+
+    const typewrite = (text: string, startAt: number, charMs = 55) => {
+      for (let i = 1; i <= text.length; i++) {
+        schedule(startAt + i * charMs, () => setTyped(text.slice(0, i)));
+      }
+      return startAt + text.length * charMs;
+    };
+
+    // --- Phase 1: remove extra leg ---
+    const typing1Start = 600;
+    schedule(typing1Start, () => {
+      setPhase('typing-1');
+      setTyped('');
+    });
+    const typing1End = typewrite(copy.cmd1, typing1Start, 55);
+
+    schedule(typing1End + 400, () => setPhase('sending-1'));
+    schedule(typing1End + 1000, () => setPhase('processing-1'));
+    schedule(typing1End + 2800, () => setPhase('fixed'));
+
+    // --- Phase 2: translate to JP ---
+    const typing2Start = typing1End + 4400;
+    schedule(typing2Start, () => {
+      setPhase('typing-2');
+      setTyped('');
+    });
+    const typing2End = typewrite(copy.cmd2, typing2Start, 50);
+
+    schedule(typing2End + 400, () => setPhase('sending-2'));
+    schedule(typing2End + 1000, () => setPhase('processing-2'));
+    schedule(typing2End + 2800, () => setPhase('translated'));
+
+    // --- Phase 3: change aspect ratio ---
+    const typing3Start = typing2End + 4400;
+    schedule(typing3Start, () => {
+      setPhase('typing-3');
+      setTyped('');
+    });
+    const typing3End = typewrite(copy.cmd3, typing3Start, 50);
+
+    schedule(typing3End + 400, () => setPhase('sending-3'));
+    schedule(typing3End + 1000, () => setPhase('processing-3'));
+    schedule(typing3End + 2800, () => setPhase('done'));
+
+    // Restart the loop after holding the final state.
+    schedule(typing3End + 5200, () => setCycleKey((k) => k + 1));
+
+    return () => {
+      timers.forEach((id) => clearTimeout(id));
+    };
+  }, [visible, cycleKey, copy.cmd1, copy.cmd2, copy.cmd3]);
+
+  const showOriginal = ['idle', 'typing-1', 'sending-1', 'processing-1'].includes(phase);
+  const showFixed = ['fixed', 'typing-2', 'sending-2', 'processing-2'].includes(phase);
+  const showTranslated = ['translated', 'typing-3', 'sending-3', 'processing-3'].includes(phase);
+  const showRatioChanged = phase === 'done';
+  const processing = phase === 'processing-1' || phase === 'processing-2' || phase === 'processing-3';
+  const sending = phase === 'sending-1' || phase === 'sending-2' || phase === 'sending-3';
+
+  const activeTool: number = (() => {
+    if (['idle', 'typing-1', 'sending-1', 'processing-1', 'fixed'].includes(phase)) return 1; // brush
+    if (['typing-2', 'sending-2', 'processing-2', 'translated'].includes(phase)) return 3; // translate
+    return 0; // select for ratio
+  })();
+
+  const badgeLabel = (() => {
+    switch (phase) {
+      case 'idle':
+      case 'typing-1':
+      case 'sending-1':
+        return copy.badge.idle;
+      case 'processing-1':
+        return copy.badge.processing1;
+      case 'fixed':
+        return copy.badge.fixed;
+      case 'typing-2':
+      case 'sending-2':
+        return copy.badge.idle;
+      case 'processing-2':
+        return copy.badge.processing2;
+      case 'translated':
+        return copy.badge.translated;
+      case 'typing-3':
+      case 'sending-3':
+        return copy.badge.idle;
+      case 'processing-3':
+        return copy.badge.processing3;
+      case 'done':
+        return copy.badge.done;
+    }
+  })();
+
+  const badgeTone =
+    phase === 'fixed' || phase === 'translated' || phase === 'done'
+      ? 'ok'
+      : processing
+      ? 'busy'
+      : 'idle';
+
+  const processingLabel = (() => {
+    if (phase === 'processing-1') return copy.badge.processing1;
+    if (phase === 'processing-2') return copy.badge.processing2;
+    if (phase === 'processing-3') return copy.badge.processing3;
+    return '';
+  })();
 
   return (
-    <div ref={ref} className={`cf-visual cf-board-edit ${visible ? 'is-visible' : ''}`}>
-      <div className="cf-board-header">
+    <div
+      ref={ref}
+      className={`cf-visual cf-board-edit ${visible ? 'is-visible' : ''}`}
+      data-phase={phase}
+    >
+      <div className="cf-edit-header">
         <span className="cf-dot" />
-        <span className="cf-mono-label">EDIT PANEL</span>
+        <span className="cf-mono-label">{copy.header}</span>
         <span className="cf-line" />
+        <span className={`cf-edit-badge cf-edit-badge--${badgeTone}`}>{badgeLabel}</span>
       </div>
-      <div className="cf-edit-placeholder">
-        <div className="cf-edit-canvas">
-          <div className="cf-edit-img-area">
-            <span className="cf-edit-icon">✎</span>
-            <span className="cf-edit-label">{lang === 'en' ? 'Brush redraw / Inpaint' : lang === 'ja' ? 'ブラシ再描画' : '筆刷重繪 / 局部修改'}</span>
+
+      <div className="cf-edit-stage">
+        <img
+          src="/comic/edit/original.webp"
+          alt=""
+          loading="lazy"
+          decoding="async"
+          className={`cf-edit-img ${showOriginal ? 'cf-edit-img--show' : ''}`}
+        />
+        <img
+          src="/comic/edit/fixed-zhtw.webp"
+          alt=""
+          loading="lazy"
+          decoding="async"
+          className={`cf-edit-img ${showFixed ? 'cf-edit-img--show' : ''}`}
+        />
+        <img
+          src="/comic/edit/translated-jp.webp"
+          alt=""
+          loading="lazy"
+          decoding="async"
+          className={`cf-edit-img ${showTranslated ? 'cf-edit-img--show' : ''}`}
+        />
+        <img
+          src="/comic/edit/ratio-changed.webp"
+          alt=""
+          loading="lazy"
+          decoding="async"
+          className={`cf-edit-img ${showRatioChanged ? 'cf-edit-img--show' : ''}`}
+        />
+
+        {/* Processing overlay */}
+        <div className={`cf-edit-mask ${processing ? 'cf-edit-mask--on' : ''}`}>
+          <div className="cf-edit-mask-scan" />
+          <div className="cf-edit-mask-pill">
+            <span className="cf-spinner cf-spinner--sm" />
+            <span>{processingLabel}</span>
           </div>
         </div>
-        <div className="cf-edit-toolbar">
-          <span className="cf-edit-tool" />
-          <span className="cf-edit-tool" />
-          <span className="cf-edit-tool" />
-          <span className="cf-edit-tool cf-edit-tool--active" />
-        </div>
+      </div>
+
+      <div className="cf-edit-toolbar">
+        {copy.tools.map((label, i) => (
+          <span
+            key={label}
+            className={`cf-edit-tool ${i === activeTool ? 'cf-edit-tool--active' : ''}`}
+            data-tool={label.toLowerCase()}
+          >
+            {i === 0 && (
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 4 L4 20 L10 14 L13 21 L16 19 L13 13 L20 13 Z" />
+              </svg>
+            )}
+            {i === 1 && (
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M3 21 C 6 18, 10 14, 14 10" />
+                <path d="M14 10 L 18 6 L 21 9 L 17 13 Z" />
+              </svg>
+            )}
+            {i === 2 && (
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 6 H 20" />
+                <path d="M12 6 V 20" />
+                <path d="M9 20 H 15" />
+              </svg>
+            )}
+            {i === 3 && (
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 5 H 11" />
+                <path d="M7.5 5 V 7" />
+                <path d="M4 9 C 6 13, 9 15, 11 16" />
+                <path d="M11 9 C 9 13, 6 15, 4 16" />
+                <path d="M13 20 L 17 10 L 21 20" />
+                <path d="M14.5 17 H 19.5" />
+              </svg>
+            )}
+          </span>
+        ))}
+      </div>
+
+      <div className={`cf-edit-cmd ${sending ? 'cf-edit-cmd--flash' : ''}`}>
+        <span className="cf-edit-cmd-text">
+          {typed || <span className="cf-edit-cmd-placeholder">{copy.placeholder}</span>}
+          {(phase === 'typing-1' || phase === 'typing-2' || phase === 'typing-3') && <span className="cf-edit-cmd-cursor" />}
+        </span>
+        <span className={`cf-edit-cmd-send ${sending ? 'cf-edit-cmd-send--active' : ''}`}>{copy.send}</span>
       </div>
     </div>
   );
@@ -511,52 +783,91 @@ export function StoryboardEdit({ lang }: VisualProps) {
 /* ===== Step 4: Publish Stack ===== */
 export function PublishStack({ lang }: VisualProps) {
   const { ref, visible } = useInView(0.2);
-  const [topIdx, setTopIdx] = useState(0);
+  const [flippedCount, setFlippedCount] = useState(0);
+  const [coverIdx, setCoverIdx] = useState(0);
 
-  const pages = [
-    '/comic/publish/sengoku-1.png',
-    '/comic/publish/baseball-1.png',
-    '/comic/publish/sengoku-2.png',
-    '/comic/publish/baseball-2.png',
-    '/comic/publish/sengoku-3.png',
+  const panels = [
+    '/comic/publish/sengoku-1.webp',
+    '/comic/publish/sengoku-2.webp',
+    '/comic/publish/sengoku-3.webp',
+    '/comic/publish/baseball-1.webp',
+    '/comic/publish/baseball-2.webp',
+    '/comic/publish/baseball-3.webp',
   ];
+
+  const covers = [
+    '/comic/covers/cover_101.webp',
+    '/comic/covers/cover_baseball.webp',
+    '/comic/covers/cover_blackcat.webp',
+    '/comic/covers/cover_guoya.webp',
+    '/comic/covers/cover_lovely.webp',
+    '/comic/covers/cover_senkoku.webp',
+    '/comic/covers/cover_space.webp',
+    '/comic/covers/cover_wuxia.webp',
+  ];
+
+  const pages = [...panels, covers[coverIdx]];
+  const lastIdx = pages.length - 1;
 
   useEffect(() => {
     if (!visible) return;
-    const id = setInterval(() => {
-      setTopIdx((prev) => (prev + 1) % pages.length);
-    }, 2500);
-    return () => clearInterval(id);
-  }, [visible]);
+    let timer: ReturnType<typeof setTimeout>;
+    let cancelled = false;
+
+    const advance = () => {
+      if (cancelled) return;
+      setFlippedCount((prev) => {
+        if (prev >= lastIdx) {
+          timer = setTimeout(() => {
+            if (!cancelled) {
+              setCoverIdx((ci) => (ci + 1) % covers.length);
+              setFlippedCount(0);
+            }
+          }, 3000);
+          return prev;
+        }
+        const next = prev + 1;
+        const delay = next === lastIdx ? 3000 : 600;
+        timer = setTimeout(advance, delay);
+        return next;
+      });
+    };
+    timer = setTimeout(advance, 600);
+    return () => { cancelled = true; clearTimeout(timer); };
+  }, [visible, flippedCount === 0]);
 
   return (
     <div ref={ref} className={`cf-visual cf-publish ${visible ? 'is-visible' : ''}`}>
-      <div className="cf-publish-stack">
+      <AnimatePresence>
         {pages.map((src, i) => {
-          const isTop = i === topIdx;
-          const offset = ((i - topIdx + pages.length) % pages.length);
+          if (i < flippedCount) return null;
           return (
-            <img
-              key={i}
+            <motion.img
+              key={`${src}-${i}-${coverIdx}`}
               src={src}
               alt=""
               loading="lazy"
               decoding="async"
               className="cf-page"
-              style={{
-                zIndex: pages.length - offset,
-                transform: `rotate(${(i % 2 === 0 ? -1 : 1) * (2 + offset)}deg) translateY(${offset * 4}px)`,
-                opacity: offset > 3 ? 0.3 : 1,
-                transition: 'all 0.8s cubic-bezier(0.22, 1, 0.36, 1)',
+              style={{ zIndex: pages.length - i }}
+              initial={false}
+              exit={{
+                rotateX: -110,
+                y: -200,
+                opacity: 0,
+                scale: 0.9,
+                transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] },
               }}
             />
           );
         })}
-      </div>
+      </AnimatePresence>
       <div className="cf-publish-bar">
         <span className="cf-dot" />
-        <span className="cf-mono-label">EXPORTED · {pages.length} PAGES</span>
-        <span className="cf-publish-badge">✓ READY</span>
+        <span className="cf-mono-label">
+          {flippedCount >= lastIdx ? 'COVER' : 'FLIPPING'}
+        </span>
+        <span className="cf-publish-badge">{flippedCount >= lastIdx ? '✓ READY' : `${String(flippedCount + 1).padStart(2, '0')} / ${pages.length}`}</span>
       </div>
     </div>
   );

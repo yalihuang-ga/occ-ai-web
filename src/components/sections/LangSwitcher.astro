@@ -1,17 +1,15 @@
 ---
 import { languages, type Lang } from '../../i18n/ui';
+import { getLocaleUrlsForPathname } from '../../i18n/utils';
 
 interface Props {
   lang: Lang;
+  pathname: string;
 }
 
-const { lang } = Astro.props;
+const { lang, pathname } = Astro.props;
 
-const localeUrls: Record<Lang, string> = {
-  'zh-TW': '/',
-  en: '/en/',
-  ja: '/ja/',
-};
+const localeUrls = getLocaleUrlsForPathname(pathname);
 
 const shortLabel: Record<Lang, string> = {
   'zh-TW': '繁',

@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+/* ===== Image Protection: prevent right-click save & drag-download ===== */
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  pointer-events: auto;
+}
+
 /* ========================================
    Muztrix Design Tokens — Organic Deep Space
    Source: _reference/DESIGN.md
