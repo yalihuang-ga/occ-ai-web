@@ -209,7 +209,7 @@ export const ui = {
     'comic.01.chat.ai3.opt1': '某個對他影響深遠的人（家人、朋友、夥伴、還是某個素未謀面卻改變他的人？）',
     'comic.01.chat.ai3.opt2': '某段關鍵經歷（人生轉折點、一次差點放棄的時刻、或某次失去？）',
 
-    'comic.02.label': '角色 / 場景設計',
+    'comic.02.label': '角色及場景',
     'comic.02.en': 'Character & Scene Design',
     'comic.02.title': '角色三視圖、場景概念板，一次鎖定',
     'comic.02.desc':

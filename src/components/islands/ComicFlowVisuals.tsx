@@ -26,20 +26,13 @@ function useInView(threshold = 0.3) {
 export function ChatMock({ lang }: VisualProps) {
   const { ref, visible } = useInView(0.2);
   const [phase, setPhase] = useState(0);
-  // phase 0: enlarged intro (user message big)
-  // phase 1: shrink into chat, AI typing
+  // phase 0: enlarged input with typing effect
+  // phase 1: send clicked, shrink into chat
   // phase 2: AI 1 appears
   // phase 3: User 2 appears
   // phase 4: AI 2 appears
-
-  useEffect(() => {
-    if (!visible) return;
-    const t1 = setTimeout(() => setPhase(1), 2000);
-    const t2 = setTimeout(() => setPhase(2), 3200);
-    const t3 = setTimeout(() => setPhase(3), 5000);
-    const t4 = setTimeout(() => setPhase(4), 6500);
-    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); };
-  }, [visible]);
+  const [typedLen, setTypedLen] = useState(0);
+  const [sendClicked, setSendClicked] = useState(false);
 
   const s = {
     user1: lang === 'en'
@@ -68,13 +61,43 @@ export function ChatMock({ lang }: VisualProps) {
         ? '素晴らしい！「孤独と意味」をテーマに、極限の高さで人生を振り返る——非常に深い物語になりますね。✨'
         : '很棒耶！「孤獨與意義」這個主題——在極限高度上思索人生的選擇和代價——會讓整部故事非常有深度。✨',
     placeholder: lang === 'en' ? 'Describe your story idea…' : lang === 'ja' ? 'ストーリーのアイデアを入力…' : '描述您的故事構想…',
+    sendLabel: lang === 'en' ? 'SEND' : lang === 'ja' ? 'SEND' : 'SEND',
   };
+
+  useEffect(() => {
+    if (!visible) return;
+    const fullLen = s.user1.length;
+    let i = 0;
+    const typeInterval = setInterval(() => {
+      i++;
+      setTypedLen(i);
+      if (i >= fullLen) clearInterval(typeInterval);
+    }, 30);
+    const typeDone = fullLen * 30;
+    const tSend = setTimeout(() => {
+      setSendClicked(true);
+      document.dispatchEvent(new CustomEvent('cf:card1-done'));
+    }, typeDone + 600);
+    const t1 = setTimeout(() => setPhase(1), typeDone + 1200);
+    const t2 = setTimeout(() => setPhase(2), typeDone + 2400);
+    const t3 = setTimeout(() => setPhase(3), typeDone + 4200);
+    const t4 = setTimeout(() => setPhase(4), typeDone + 5700);
+    return () => { clearInterval(typeInterval); clearTimeout(tSend); clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); };
+  }, [visible]);
 
   return (
     <div ref={ref} className={`cf-visual cf-chat ${visible ? 'is-visible' : ''}`}>
-      {/* Enlarged intro — user's first message shown big initially */}
+      {/* Enlarged intro — typing input UI */}
       <div className={`cf-intro-overlay ${phase >= 1 ? 'cf-intro-shrunk' : ''} ${visible ? 'cf-in' : ''}`}>
-        <span className="cf-intro-text">{s.user1}</span>
+        <div className="cf-intro-input-wrap">
+          <div className="cf-intro-input">
+            <span className="cf-intro-typed">{s.user1.slice(0, typedLen)}</span>
+            {typedLen < s.user1.length && <span className="cf-intro-cursor" />}
+          </div>
+          <button className={`cf-intro-send-btn ${typedLen >= s.user1.length ? 'cf-intro-send-btn--show' : ''} ${sendClicked ? 'cf-intro-send-btn--active' : ''}`}>
+            {s.sendLabel} ↵
+          </button>
+        </div>
       </div>
 
       <div className={`cf-chat-body ${phase >= 1 ? 'cf-chat-body--visible' : ''}`}>
@@ -138,17 +161,27 @@ export function ChatMock({ lang }: VisualProps) {
 
 /* ===== Step 1b: Chat continuation ===== */
 export function ChatMockB({ lang }: VisualProps) {
-  const { ref, visible } = useInView(0.2);
+  const ref = useRef<HTMLDivElement>(null);
+  const [activated, setActivated] = useState(false);
   const [phase, setPhase] = useState(0);
 
   useEffect(() => {
-    if (!visible) return;
+    const handler = () => setActivated(true);
+    document.addEventListener('cf:card1-done', handler);
+    return () => document.removeEventListener('cf:card1-done', handler);
+  }, []);
+
+  useEffect(() => {
+    if (!activated) return;
     const t1 = setTimeout(() => setPhase(1), 1000);
     const t2 = setTimeout(() => setPhase(2), 2800);
     const t3 = setTimeout(() => setPhase(3), 4200);
-    const t4 = setTimeout(() => setPhase(4), 5800);
+    const t4 = setTimeout(() => {
+      setPhase(4);
+      document.dispatchEvent(new CustomEvent('cf:card2-done'));
+    }, 5800);
     return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); };
-  }, [visible]);
+  }, [activated]);
 
   const s = lang === 'en' ? {
     ai1: 'Does the story have a clear "philosophical theme" or "core question"? For example:',
@@ -201,7 +234,7 @@ export function ChatMockB({ lang }: VisualProps) {
   };
 
   return (
-    <div ref={ref} className={`cf-visual cf-chat ${visible ? 'is-visible' : ''}`}>
+    <div ref={ref} className={`cf-visual cf-chat ${activated ? 'cf-visual--ready' : 'cf-visual--pending'}`}>
       <div className="cf-chat-header">
         <span className="cf-dot" />
         <span className="cf-mono-label">STORY</span>
@@ -209,7 +242,7 @@ export function ChatMockB({ lang }: VisualProps) {
       </div>
 
       {/* AI — theme question */}
-      <div className={`cf-msg cf-msg--ai ${visible ? 'cf-in' : ''}`}>
+      <div className={`cf-msg cf-msg--ai ${activated ? 'cf-in' : ''}`}>
         <div className="cf-avatar">✦</div>
         <div className="cf-bubble cf-bubble--ai">
           <p>{s.ai1}</p>
@@ -255,8 +288,15 @@ export function ChatMockB({ lang }: VisualProps) {
 
 /* ===== Step 1c: Story Progress ===== */
 export function StoryProgress({ lang }: VisualProps) {
-  const { ref, visible } = useInView(0.2);
+  const ref = useRef<HTMLDivElement>(null);
+  const [activated, setActivated] = useState(false);
   const [completedCount, setCompletedCount] = useState(0);
+
+  useEffect(() => {
+    const handler = () => setActivated(true);
+    document.addEventListener('cf:card2-done', handler);
+    return () => document.removeEventListener('cf:card2-done', handler);
+  }, []);
 
   const tasks = lang === 'en' ? [
     { label: 'Analyze story outline' },
@@ -279,22 +319,22 @@ export function StoryProgress({ lang }: VisualProps) {
   ];
 
   useEffect(() => {
-    if (!visible) return;
+    if (!activated) return;
     let count = 0;
     const id = setInterval(() => {
       count++;
-      if (count > 2) { clearInterval(id); return; }
+      if (count >= tasks.length) { clearInterval(id); return; }
       setCompletedCount(count);
     }, 1800);
     return () => clearInterval(id);
-  }, [visible]);
+  }, [activated]);
 
-  const progress = visible ? Math.min((completedCount + 0.5) / tasks.length * 100, 60) : 0;
+  const progress = activated ? Math.min(((completedCount + 0.5) / tasks.length) * 100, 100) : 0;
   const title = lang === 'en' ? 'Generating story...' : lang === 'ja' ? 'ストーリーを生成中...' : '正在生成故事...';
   const pctLabel = lang === 'en' ? 'complete' : lang === 'ja' ? '完成' : '完成';
 
   return (
-    <div ref={ref} className={`cf-visual cf-progress ${visible ? 'is-visible' : ''}`}>
+    <div ref={ref} className={`cf-visual cf-progress ${activated ? 'cf-visual--ready' : 'cf-visual--pending'}`}>
       {/* Header */}
       <div className="cf-progress-header">
         <span className="cf-progress-spinner" />
@@ -310,7 +350,7 @@ export function StoryProgress({ lang }: VisualProps) {
       {/* Task list */}
       <div className="cf-progress-tasks">
         {tasks.map((task, i) => {
-          const status = i < completedCount ? 'done' : i === completedCount && visible ? 'active' : 'pending';
+          const status = i < completedCount ? 'done' : i === completedCount && activated ? 'active' : 'pending';
           return (
             <div key={i} className={`cf-progress-task cf-progress-task--${status}`}>
               <span className="cf-progress-task-label">{task.label}</span>
@@ -327,13 +367,12 @@ export function StoryProgress({ lang }: VisualProps) {
   );
 }
 
-/* ===== Step 2: Character Reveal ===== */
-export function CharacterReveal({ lang }: VisualProps) {
+/* ===== Step 2: Character Card ===== */
+export function CharacterCard({ lang }: VisualProps) {
   const { ref, visible } = useInView(0.2);
 
   return (
     <div ref={ref} className={`cf-visual cf-gen ${visible ? 'is-visible' : ''}`}>
-      {/* Character section */}
       <div className="cf-gen-section">
         <div className="cf-gen-label">
           <span className="cf-dot" />
@@ -342,12 +381,20 @@ export function CharacterReveal({ lang }: VisualProps) {
           <span className="cf-gen-status">{lang === 'en' ? 'consistency locked' : lang === 'ja' ? '一致性ロック' : '一致性鎖定'}</span>
         </div>
         <div className="cf-gen-img-wrap cf-reveal">
-          <img src="/comic/char-turnaround.webp" alt="" loading="lazy" decoding="async" />
+          <img src="/comic/char-turnaround.webp" alt="" loading="lazy" decoding="async" style={{ objectPosition: 'center top' }} />
           <div className="cf-scan-line" />
         </div>
       </div>
+    </div>
+  );
+}
 
-      {/* Scene section */}
+/* ===== Step 2: Scene Card ===== */
+export function SceneCard({ lang }: VisualProps) {
+  const { ref, visible } = useInView(0.2);
+
+  return (
+    <div ref={ref} className={`cf-visual cf-gen ${visible ? 'is-visible' : ''}`}>
       <div className="cf-gen-section">
         <div className="cf-gen-label">
           <span className="cf-dot" />
@@ -355,7 +402,7 @@ export function CharacterReveal({ lang }: VisualProps) {
           <span className="cf-line" />
           <span className="cf-gen-status">3 / 3</span>
         </div>
-        <div className="cf-scene-grid">
+        <div className="cf-scene-grid cf-scene-grid--full">
           {[
             '/comic/locations/loc-taipei101-glass.jpg',
             '/comic/locations/loc-taipei101-bamboo.jpg',
@@ -375,43 +422,87 @@ export function CharacterReveal({ lang }: VisualProps) {
 /* ===== Step 3: Storyboard Assemble ===== */
 export function StoryboardAssemble({ lang }: VisualProps) {
   const { ref, visible } = useInView(0.2);
+  const [generatedCount, setGeneratedCount] = useState(0);
 
   const panels = [
     { src: '/comic/panel-1a.webp', pos: 'center top' },
     { src: '/comic/panel-2a.webp', pos: 'center center' },
     { src: '/comic/panel-2b.webp', pos: 'right center' },
-    { src: '/comic/panel-3a.webp', pos: 'center top' },
-    { src: '/comic/panel-3b.webp', pos: 'left center' },
-    null, // loading placeholder
+    { src: '/comic/panel-s2-3.png', pos: 'center center' },
+    { src: '/comic/panel-s3-1.jpg', pos: 'center top' },
+    { src: '/comic/panel-s3-2.jpg', pos: 'center center' },
   ];
+
+  useEffect(() => {
+    if (!visible) return;
+    let count = 0;
+    const id = setInterval(() => {
+      count++;
+      setGeneratedCount(count);
+      if (count >= panels.length) clearInterval(id);
+    }, 800);
+    return () => clearInterval(id);
+  }, [visible]);
 
   return (
     <div ref={ref} className={`cf-visual cf-board ${visible ? 'is-visible' : ''}`}>
       <div className="cf-board-header">
         <span className="cf-dot" />
-        <span className="cf-mono-label">STORYBOARD · {visible ? '5 / 6' : '0 / 6'} GENERATED</span>
+        <span className="cf-mono-label">STORYBOARD · {generatedCount} / {panels.length} GENERATED</span>
         <span className="cf-line" />
       </div>
       <div className="cf-board-grid">
         {panels.map((p, i) => (
           <div
             key={i}
-            className={`cf-panel ${visible ? 'cf-panel-in' : ''}`}
-            style={{ animationDelay: `${i * 0.5}s` }}
+            className={`cf-panel ${i < generatedCount ? 'cf-panel-in' : ''}`}
           >
-            {p ? (
+            {i < generatedCount ? (
               <>
                 <img src={p.src} alt="" loading="lazy" decoding="async" style={{ objectPosition: p.pos }} />
                 <span className="cf-panel-num">{String(i + 1).padStart(2, '0')}</span>
               </>
-            ) : (
+            ) : i === generatedCount && visible ? (
               <div className="cf-panel-loading">
                 <div className="cf-spinner" />
+                <span>{String(i + 1).padStart(2, '0')}</span>
+              </div>
+            ) : (
+              <div className="cf-panel-empty">
                 <span>{String(i + 1).padStart(2, '0')}</span>
               </div>
             )}
           </div>
         ))}
+      </div>
+    </div>
+  );
+}
+
+/* ===== Step 3b: Storyboard Edit (placeholder) ===== */
+export function StoryboardEdit({ lang }: VisualProps) {
+  const { ref, visible } = useInView(0.2);
+
+  return (
+    <div ref={ref} className={`cf-visual cf-board-edit ${visible ? 'is-visible' : ''}`}>
+      <div className="cf-board-header">
+        <span className="cf-dot" />
+        <span className="cf-mono-label">EDIT PANEL</span>
+        <span className="cf-line" />
+      </div>
+      <div className="cf-edit-placeholder">
+        <div className="cf-edit-canvas">
+          <div className="cf-edit-img-area">
+            <span className="cf-edit-icon">✎</span>
+            <span className="cf-edit-label">{lang === 'en' ? 'Brush redraw / Inpaint' : lang === 'ja' ? 'ブラシ再描画' : '筆刷重繪 / 局部修改'}</span>
+          </div>
+        </div>
+        <div className="cf-edit-toolbar">
+          <span className="cf-edit-tool" />
+          <span className="cf-edit-tool" />
+          <span className="cf-edit-tool" />
+          <span className="cf-edit-tool cf-edit-tool--active" />
+        </div>
       </div>
     </div>
   );

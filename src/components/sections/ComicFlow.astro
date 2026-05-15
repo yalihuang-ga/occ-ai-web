@@ -1,7 +1,8 @@
 ---
 import { useTranslations } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
-import { ChatMock, ChatMockB, StoryProgress, CharacterReveal, StoryboardAssemble, PublishStack } from '../islands/ComicFlowVisuals.tsx';
+
+import { ChatMock, ChatMockB, StoryProgress, CharacterCard, SceneCard, StoryboardAssemble, StoryboardEdit, PublishStack } from '../islands/ComicFlowVisuals.tsx';
 
 interface Props {
   lang: Lang;
@@ -40,20 +41,23 @@ const t = useTranslations(lang);
         </li>
       </ol>
       <div class="cf-tags">
-        <span class="cf-tag">{t('comic.01.m2')}</span>
-        <span class="cf-tag">{t('comic.01.m3')}</span>
-        <span class="cf-tag">{t('comic.01.m4')}</span>
+        <span class="solution-tag"><span class="solution-tag-dot" />{t('comic.01.m2')}</span>
+        <span class="solution-tag"><span class="solution-tag-dot" />{t('comic.01.m3')}</span>
+        <span class="solution-tag"><span class="solution-tag-dot" />{t('comic.01.m4')}</span>
       </div>
     </div>
     <div class="cf-right">
       <div class="cf-right-stack">
         <div data-flow-idx="0">
+          <p class="cf-flow-label">{lang === 'en' ? 'Describe your story inspiration in one sentence — AI screenwriter helps you clarify the direction.' : lang === 'ja' ? '一言でストーリーのインスピレーションを伝えると、AI脚本家が方向性を整理します。' : '一句話說明你的故事靈感，AI 編劇會陪你釐清方向。'}</p>
           <ChatMock lang={lang} client:visible />
         </div>
         <div data-flow-idx="1">
+          <p class="cf-flow-label">{lang === 'en' ? 'After selecting a theme, AI digs deeper to confirm style and length.' : lang === 'ja' ? 'テーマ選定後、AIがスタイルと長さを確認します。' : '選定主題後，AI 會繼續深入提問，確認風格與篇幅。'}</p>
           <ChatMockB lang={lang} client:visible />
         </div>
         <div data-flow-idx="2">
+          <p class="cf-flow-label">{lang === 'en' ? 'Discussion complete — AI begins crafting the entire work.' : lang === 'ja' ? '討論完了——AIが作品全体の構想を開始します。' : '討論完成，AI 開始構思整部作品。'}</p>
           <StoryProgress lang={lang} client:visible />
         </div>
       </div>
@@ -67,15 +71,30 @@ const t = useTranslations(lang);
         <span class="cf-step-num">02</span>
         <h2 class="cf-step-title">{t('comic.02.label')}</h2>
       </div>
-      <p class="cf-step-en">{t('comic.02.en')}</p>
-      <p class="cf-step-desc">{t('comic.02.m1')}</p>
-      <ul class="cf-features">
-        <li>{t('comic.02.m2')}</li>
-        <li>{t('comic.02.m3')}</li>
-      </ul>
+      <ol class="cf-flow-list">
+        <li class="cf-flow-item cf-flow-item--active" data-flow="0">
+          {lang === 'en' ? 'Generate character turnaround sheets' : lang === 'ja' ? 'キャラクター三面図を生成' : '生成角色三視圖'}
+        </li>
+        <li class="cf-flow-item" data-flow="1">
+          {lang === 'en' ? 'Auto-generate story scene artwork' : lang === 'ja' ? 'ストーリーシーン画を自動生成' : '自動產生故事場景圖素'}
+        </li>
+      </ol>
+      <div class="cf-tags">
+        <span class="solution-tag"><span class="solution-tag-dot" />{t('comic.02.m2')}</span>
+        <span class="solution-tag"><span class="solution-tag-dot" />{t('comic.02.m3')}</span>
+      </div>
     </div>
     <div class="cf-right">
-      <CharacterReveal lang={lang} client:visible />
+      <div class="cf-right-stack">
+        <div data-flow-idx="0">
+          <p class="cf-flow-label">{lang === 'en' ? 'Generate character turnaround sheets' : lang === 'ja' ? 'キャラクター三面図を生成' : '生成角色三視圖'}</p>
+          <CharacterCard lang={lang} client:visible />
+        </div>
+        <div data-flow-idx="1">
+          <p class="cf-flow-label">{lang === 'en' ? 'Auto-generate story scene artwork' : lang === 'ja' ? 'ストーリーシーン画を自動生成' : '自動產生故事場景圖素'}</p>
+          <SceneCard lang={lang} client:visible />
+        </div>
+      </div>
     </div>
   </div>
 
@@ -86,15 +105,30 @@ const t = useTranslations(lang);
         <span class="cf-step-num">03</span>
         <h2 class="cf-step-title">{t('comic.03.label')}</h2>
       </div>
-      <p class="cf-step-en">{t('comic.03.en')}</p>
-      <p class="cf-step-desc">{t('comic.03.m1')}</p>
-      <ul class="cf-features">
-        <li>{t('comic.03.m2')}</li>
-        <li>{t('comic.03.m3')}</li>
-      </ul>
+      <ol class="cf-flow-list">
+        <li class="cf-flow-item cf-flow-item--active" data-flow="0">
+          {lang === 'en' ? 'Batch-generate all storyboard panels' : lang === 'ja' ? '全コマを一括生成' : '批次生成所有分鏡'}
+        </li>
+        <li class="cf-flow-item" data-flow="1">
+          {lang === 'en' ? 'Manually edit panel artwork' : lang === 'ja' ? 'コマ画像を手動編集' : '手動修改分鏡圖'}
+        </li>
+      </ol>
+      <div class="cf-tags">
+        <span class="solution-tag"><span class="solution-tag-dot" />{t('comic.03.m2')}</span>
+        <span class="solution-tag"><span class="solution-tag-dot" />{t('comic.03.m3')}</span>
+      </div>
     </div>
     <div class="cf-right">
-      <StoryboardAssemble lang={lang} client:visible />
+      <div class="cf-right-stack">
+        <div data-flow-idx="0">
+          <p class="cf-flow-label">{lang === 'en' ? 'Batch-generate all storyboard panels' : lang === 'ja' ? '全コマを一括生成' : '批次生成所有分鏡'}</p>
+          <StoryboardAssemble lang={lang} client:visible />
+        </div>
+        <div data-flow-idx="1">
+          <p class="cf-flow-label">{lang === 'en' ? 'Manually edit panel artwork' : lang === 'ja' ? 'コマ画像を手動編集' : '手動修改分鏡圖'}</p>
+          <StoryboardEdit lang={lang} client:visible />
+        </div>
+      </div>
     </div>
   </div>
 
@@ -105,16 +139,24 @@ const t = useTranslations(lang);
         <span class="cf-step-num">04</span>
         <h2 class="cf-step-title">{t('comic.04.label')}</h2>
       </div>
-      <p class="cf-step-en">{t('comic.04.en')}</p>
-      <p class="cf-step-desc">{t('comic.04.m1')}</p>
-      <ul class="cf-features">
-        <li>{t('comic.04.m2')}</li>
-        <li>{t('comic.04.m3')}</li>
-        <li>{t('comic.04.m4')}</li>
-      </ul>
+      <ol class="cf-flow-list">
+        <li class="cf-flow-item cf-flow-item--active" data-flow="0">
+          {t('comic.04.m1')}
+        </li>
+      </ol>
+      <div class="cf-tags">
+        <span class="solution-tag"><span class="solution-tag-dot" />{t('comic.04.m2')}</span>
+        <span class="solution-tag"><span class="solution-tag-dot" />{t('comic.04.m3')}</span>
+        <span class="solution-tag"><span class="solution-tag-dot" />{t('comic.04.m4')}</span>
+      </div>
     </div>
     <div class="cf-right">
-      <PublishStack lang={lang} client:visible />
+      <div class="cf-right-stack">
+        <div data-flow-idx="0">
+          <p class="cf-flow-label">{t('comic.04.m1')}</p>
+          <PublishStack lang={lang} client:visible />
+        </div>
+      </div>
     </div>
   </div>
 
@@ -133,10 +175,12 @@ const t = useTranslations(lang);
 </section>
 
 <script>
-  const cards = document.querySelectorAll('[data-flow-idx]');
-  const flowItems = document.querySelectorAll('.cf-flow-item');
+  document.querySelectorAll('.cf-step').forEach(step => {
+    const cards = step.querySelectorAll('[data-flow-idx]');
+    const flowItems = step.querySelectorAll('.cf-flow-item');
 
-  if (cards.length && flowItems.length) {
+    if (!cards.length || !flowItems.length) return;
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -149,7 +193,7 @@ const t = useTranslations(lang);
     }, { threshold: 0.3, rootMargin: '-20% 0px -40% 0px' });
 
     cards.forEach(card => observer.observe(card));
-  }
+  });
 </script>
 
 <style is:global>
@@ -208,47 +252,8 @@ const t = useTranslations(lang);
     gap: 14px;
     margin-bottom: 8px;
   }
-  .cf-step-en {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    color: var(--color-bone-3);
-    margin: 0 0 28px;
-    text-transform: uppercase;
-  }
-  .cf-step-desc {
-    font-size: 16px;
-    line-height: 1.7;
-    color: var(--color-bone-2);
-    margin: 0 0 20px;
-  }
-  .cf-features {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .cf-features li {
-    font-size: 14px;
-    color: var(--color-bone-3);
-    padding-left: 16px;
-    position: relative;
-  }
-  .cf-features li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 8px;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--color-cinnabar);
-    opacity: 0.6;
-  }
 
-  /* Flow list (Step 1 left column) */
+  /* Flow list (all steps left column) */
   .cf-flow-list {
     list-style: none;
     padding: 0;
@@ -263,10 +268,10 @@ const t = useTranslations(lang);
     padding: 14px 16px;
     font-size: 14px;
     line-height: 1.65;
-    color: var(--color-bone-3);
+    color: var(--color-bone);
     border-left: 2px solid transparent;
     transition: all 0.4s ease;
-    opacity: 0.5;
+    opacity: 1;
   }
   .cf-flow-item--active {
     color: var(--color-bone);
@@ -275,20 +280,17 @@ const t = useTranslations(lang);
     background: rgba(255, 90, 31, 0.04);
   }
 
+  /* Flow labels (mobile only — hidden on desktop) */
+  .cf-flow-label {
+    display: none;
+  }
+
   /* Tags */
   .cf-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
     margin-top: 16px;
-  }
-  .cf-tag {
-    font-size: 12px;
-    padding: 6px 14px;
-    border: 1px solid var(--color-cinnabar);
-    border-radius: 20px;
-    color: var(--color-cinnabar);
-    white-space: nowrap;
   }
 
   .cf-right {
@@ -344,6 +346,16 @@ const t = useTranslations(lang);
     border-radius: 4px;
     overflow: hidden;
   }
+  .cf-visual--pending {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .cf-visual--ready {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
 
   /* ===== Step 1: Chat ===== */
   .cf-chat {
@@ -379,6 +391,71 @@ const t = useTranslations(lang);
     transform: scale(0.7) translateY(-20px);
     pointer-events: none;
   }
+  .cf-intro-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 90%;
+    max-width: 560px;
+  }
+  .cf-intro-input-wrap {
+    width: 90%;
+    max-width: 560px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: stretch;
+  }
+  .cf-intro-input {
+    padding: 18px 22px;
+    background: var(--color-ink);
+    border: 1px solid var(--bone-line);
+    border-radius: 10px;
+    font-size: clamp(16px, 2.2vw, 20px);
+    line-height: 1.7;
+    color: var(--color-bone);
+    min-height: 60px;
+    position: relative;
+  }
+  .cf-intro-typed {
+    font-weight: 500;
+  }
+  .cf-intro-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.2em;
+    background: var(--color-cinnabar);
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    animation: cfBlink 1s step-end infinite;
+  }
+  .cf-intro-send-btn {
+    align-self: flex-end;
+    padding: 10px 22px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--color-cinnabar);
+    background: transparent;
+    border: 1px solid var(--color-cinnabar);
+    border-radius: 6px;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: all 0.3s ease;
+  }
+  .cf-intro-send-btn--show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .cf-intro-send-btn--active {
+    background: var(--color-cinnabar);
+    color: var(--color-bone);
+    box-shadow: 0 0 24px rgba(255, 90, 31, 0.4);
+    transform: scale(0.96);
+  }
   .cf-intro-text {
     font-size: clamp(18px, 2.5vw, 22px);
     line-height: 1.7;
@@ -389,7 +466,31 @@ const t = useTranslations(lang);
     background: var(--color-cinnabar);
     border-radius: 12px;
     box-shadow: 0 0 40px rgba(255, 90, 31, 0.2);
-    max-width: 90%;
+  }
+  .cf-intro-send {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-bone);
+    background: rgba(255, 90, 31, 0.15);
+    border: 1px solid var(--color-cinnabar);
+    border-radius: 8px;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.4s ease, transform 0.4s ease, background 0.3s ease, box-shadow 0.3s ease;
+  }
+  .cf-intro-send--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .cf-intro-send--clicked {
+    background: var(--color-cinnabar);
+    box-shadow: 0 0 20px rgba(255, 90, 31, 0.5);
+    transform: scale(0.95);
   }
 
   /* Chat body visibility */
@@ -563,7 +664,7 @@ const t = useTranslations(lang);
   }
 
   .cf-gen-img-wrap {
-    aspect-ratio: 900 / 280;
+    aspect-ratio: 900 / 500;
   }
 
   .cf-scan-line {
@@ -587,11 +688,33 @@ const t = useTranslations(lang);
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
   }
+  .cf-scene-grid--full {
+    aspect-ratio: 900 / 500;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--bone-line);
+    border-radius: 2px;
+  }
   .cf-scene-item {
-    aspect-ratio: 3 / 2;
+    aspect-ratio: auto;
+    min-height: 0;
   }
   .cf-scene-item img {
     transition-delay: inherit;
+  }
+
+  /* Halftone dot overlay for gen cards */
+  .cf-gen-img-wrap::after,
+  .cf-scene-grid--full::after,
+  .cf-board-grid::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    background-image: radial-gradient(circle, rgba(0, 0, 0, 0.45) 1px, transparent 1px);
+    background-size: 4px 4px;
+    mix-blend-mode: multiply;
   }
 
   /* ===== Step 3: Storyboard ===== */
@@ -605,6 +728,7 @@ const t = useTranslations(lang);
     margin-bottom: 16px;
   }
   .cf-board-grid {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
@@ -653,6 +777,18 @@ const t = useTranslations(lang);
     font-family: var(--font-mono);
     font-size: 10px;
   }
+  .cf-panel-empty {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-ink);
+    border: 1px dashed rgba(244, 236, 220, 0.1);
+    color: rgba(244, 236, 220, 0.2);
+    font-family: var(--font-mono);
+    font-size: 10px;
+  }
   .cf-spinner {
     width: 20px;
     height: 20px;
@@ -662,6 +798,59 @@ const t = useTranslations(lang);
     animation: cfSpin 1s linear infinite;
   }
   @keyframes cfSpin { to { transform: rotate(360deg); } }
+
+  /* ===== Step 3b: Storyboard Edit ===== */
+  .cf-board-edit {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .cf-edit-placeholder {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .cf-edit-canvas {
+    aspect-ratio: 16 / 10;
+    background: var(--color-ink);
+    border: 1px solid var(--bone-line);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cf-edit-img-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-bone-3);
+  }
+  .cf-edit-icon {
+    font-size: 32px;
+    opacity: 0.5;
+  }
+  .cf-edit-label {
+    font-size: 12px;
+    font-family: var(--font-mono);
+    letter-spacing: 0.05em;
+  }
+  .cf-edit-toolbar {
+    display: flex;
+    gap: 8px;
+  }
+  .cf-edit-tool {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: rgba(244, 236, 220, 0.06);
+    border: 1px solid var(--bone-line);
+  }
+  .cf-edit-tool--active {
+    border-color: var(--color-cinnabar);
+    background: rgba(255, 90, 31, 0.1);
+  }
 
   /* ===== Step 4: Publish ===== */
   .cf-publish {
@@ -850,21 +1039,26 @@ const t = useTranslations(lang);
       padding: 60px 0;
     }
     .cf-left { position: static; }
-    .cf-flow-list { margin: 16px 0; }
-    .cf-flow-item {
-      font-size: 13px;
-      padding: 10px 14px;
+    .cf-flow-list { display: none; }
+    .cf-flow-label {
+      display: block;
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--color-bone);
+      text-align: center;
+      padding: 24px 16px;
+      margin: 0;
     }
     .cf-tags { justify-content: center; }
-    .cf-narration {
-      font-size: 15px;
-      text-align: center;
-      padding: 40px 24px;
-    }
     .cf-visual {
-      min-height: 70vh;
+      min-height: auto;
+    }
+    .cf-chat {
+      min-height: auto;
     }
     .cf-intro-overlay { padding: 24px; }
+    .cf-intro-input-wrap { width: 95%; }
+    .cf-intro-input { font-size: 15px; padding: 14px 16px; }
     .cf-intro-text { font-size: 16px; padding: 16px 20px; }
     .cf-publish-stack { height: 320px; }
     .cf-page { width: 65%; }

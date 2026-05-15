@@ -921,28 +921,6 @@
     padding: 10px 14px;
     border-bottom: 1px solid var(--bone-line);
   }
-  .comic-panel-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 12px;
-    font-family: var(--font-serif-tc);
-    font-size: 11px;
-    letter-spacing: 0.04em;
-    color: var(--color-cinnabar-soft);
-    background: rgba(255, 90, 31, 0.08);
-    border: 1px solid rgba(255, 138, 90, 0.4);
-    border-radius: 999px;
-  }
-  .comic-panel-tag::before {
-    content: "";
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--color-cinnabar);
-    box-shadow: 0 0 6px rgba(255, 90, 31, 0.6);
-    flex-shrink: 0;
-  }
   .comic-panel-meta {
     font-family: var(--font-mono);
     font-size: 10px;
