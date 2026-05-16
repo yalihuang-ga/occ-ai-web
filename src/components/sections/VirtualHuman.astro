@@ -24,14 +24,9 @@ const scenes: Scene[] = [
     label: t('vh.scene.boutique.label'),
     tag: t('vh.scene.boutique.tag'),
     greeting: [
-      { from: 'vh', text: t('vh.scene.boutique.g1') },
+      { from: 'vh', text: t('vh.scene.boutique.g1'), audio: '/audio/vh/boutique-1.mp3' },
       { from: 'user', text: t('vh.scene.boutique.g2') },
-      { from: 'vh', text: t('vh.scene.boutique.g3') },
-    ],
-    replies: [
-      t('vh.scene.boutique.r1'),
-      t('vh.scene.boutique.r2'),
-      t('vh.scene.boutique.r3'),
+      { from: 'vh', text: t('vh.scene.boutique.g3'), audio: '/audio/vh/boutique-2.mp3' },
     ],
     signals: [
       t('vh.scene.boutique.s1'),
@@ -46,14 +41,9 @@ const scenes: Scene[] = [
     label: t('vh.scene.corporate.label'),
     tag: t('vh.scene.corporate.tag'),
     greeting: [
-      { from: 'vh', text: t('vh.scene.corporate.g1') },
+      { from: 'vh', text: t('vh.scene.corporate.g1'), audio: '/audio/vh/corporate-1.mp3' },
       { from: 'user', text: t('vh.scene.corporate.g2') },
-      { from: 'vh', text: t('vh.scene.corporate.g3') },
-    ],
-    replies: [
-      t('vh.scene.corporate.r1'),
-      t('vh.scene.corporate.r2'),
-      t('vh.scene.corporate.r3'),
+      { from: 'vh', text: t('vh.scene.corporate.g3'), audio: '/audio/vh/corporate-2.mp3' },
     ],
     signals: [
       t('vh.scene.corporate.s1'),
@@ -68,14 +58,9 @@ const scenes: Scene[] = [
     label: t('vh.scene.ip.label'),
     tag: t('vh.scene.ip.tag'),
     greeting: [
-      { from: 'vh', text: t('vh.scene.ip.g1') },
+      { from: 'vh', text: t('vh.scene.ip.g1'), audio: '/audio/vh/ip-1.mp3' },
       { from: 'user', text: t('vh.scene.ip.g2') },
-      { from: 'vh', text: t('vh.scene.ip.g3') },
-    ],
-    replies: [
-      t('vh.scene.ip.r1'),
-      t('vh.scene.ip.r2'),
-      t('vh.scene.ip.r3'),
+      { from: 'vh', text: t('vh.scene.ip.g3'), audio: '/audio/vh/ip-2.mp3' },
     ],
     signals: [
       t('vh.scene.ip.s1'),
@@ -91,7 +76,7 @@ const scenes: Scene[] = [
 <section
   id="virtual"
   class="relative mx-section overflow-hidden"
-  style="padding: 160px 48px; background: var(--color-ink);"
+  style="padding: 120px 24px; background: var(--color-ink);"
 >
   <!-- Atmospheric blue glow -->
   <div
@@ -100,40 +85,30 @@ const scenes: Scene[] = [
   >
   </div>
 
-  <div style="max-width: 1440px; margin: 0 auto; position: relative;">
-    <!-- Section header — stacked single column -->
-    <div class="mx-section-head" style="margin-bottom: 48px;">
-      <div class="flex items-center gap-4 mb-7">
+  <div style="max-width: 960px; margin: 0 auto; position: relative;">
+    <!-- Section header -->
+    <div class="mx-section-head" style="margin-bottom: 48px; text-align: center;">
+      <div class="flex items-center gap-4 mb-7 justify-center">
         <span class="num-tag">{t('virtual.section')}</span>
-        <span style="flex: 1; height: 1px; background: var(--bone-line);"
-        ></span>
       </div>
       <h2
         class="h1-display"
-        style="color: var(--color-bone); margin-bottom: 28px;"
+        style="color: var(--color-bone); margin-bottom: 20px;"
         set:html={t('virtual.title')}
       />
-      <p class="body-lg-v2">
+      <p class="body-lg-v2" style="max-width: 640px; margin: 0 auto;">
         {t('virtual.body1')}
       </p>
     </div>
 
-    <!-- Showcase island -->
+    <!-- Showcase island — vertical card flow -->
     <VirtualHumanShowcase
       scenes={scenes}
       imgSrc="/images/miyaki-full.webp"
       imgSrcSmile="/images/miyakien-smile.png"
       imgSrcThinking="/images/miyakien-thinking.png"
       ui={{
-        modeLabel: t('vh.mode.label'),
-        mode2d: t('vh.mode.2d'),
-        mode3d: t('vh.mode.3d'),
-        mode3dPending: t('vh.mode.3dPending'),
-        sceneLabel: t('vh.scene.label'),
         perceptionLabel: t('virtual.demo.perception'),
-        placeholder: t('virtual.demo.placeholder'),
-        sendLabel: t('virtual.demo.send'),
-        liveLabel: t('virtual.demo.live'),
         placeholder3dTitle: t('vh.placeholder.3d.title'),
         placeholder3dBody: t('vh.placeholder.3d.body'),
         analysisTexts: [t('vh.analysis.t1'), t('vh.analysis.t2'), t('vh.analysis.t3'), t('vh.analysis.t4'), t('vh.analysis.t5')],
@@ -141,9 +116,9 @@ const scenes: Scene[] = [
       client:visible
     />
 
-    <!-- Capability matrix — same cinnabar pill tags as Solutions -->
+    <!-- Capability matrix tags -->
     <div
-      class="virtual-cap-tags mt-12 flex flex-wrap"
+      class="virtual-cap-tags mt-12 flex flex-wrap justify-center"
       style="gap: 10px;"
     >
       {
@@ -157,15 +132,3 @@ const scenes: Scene[] = [
     </div>
   </div>
 </section>
-
-<style>
-  @container page (max-width: 600px) {
-    .virtual-cap-tags {
-      gap: 8px !important;
-    }
-    .virtual-cap-tags :global(.solution-tag) {
-      padding: 7px 12px;
-      font-size: 11px;
-    }
-  }
-</style>
