@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../sections/Header.astro';
+import VHHero from '../sections/VHHero.astro';
 import VirtualHuman from '../sections/VirtualHuman.astro';
 import CTAFooter from '../sections/CTAFooter.astro';
 import type { Lang } from '../../i18n/ui';
@@ -15,6 +16,7 @@ const { lang } = Astro.props;
 <BaseLayout>
   <div class="mx-root">
     <Header lang={lang} />
+    <VHHero lang={lang} />
     <VirtualHuman lang={lang} />
     <CTAFooter lang={lang} />
   </div>

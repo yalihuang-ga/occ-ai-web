@@ -1,0 +1,31 @@
+---
+import { useTranslations } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+import VHHeroConsole from '../islands/VHHeroConsole.tsx';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const tabs = [
+  { key: 'persona', label: t('vh.hero.tab.persona') },
+  { key: 'brain', label: t('vh.hero.tab.brain') },
+  { key: 'acoustics', label: t('vh.hero.tab.acoustics') },
+];
+---
+
+<section class="vh-hero">
+  <div class="vh-hero-text">
+    <h1 class="vh-hero-title" set:html={t('virtual.title')} />
+    <p class="vh-hero-subtitle">{t('virtual.body1')}</p>
+  </div>
+
+  <VHHeroConsole tabs={tabs} client:visible />
+
+  <div class="vh-hero-scroll-hint">
+    <span class="vh-hero-arrow">&#8595;</span>
+  </div>
+</section>

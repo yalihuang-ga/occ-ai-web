@@ -11,63 +11,53 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
-const matrixLines = [
-  t('virtual.matrix.1v'),
-  t('virtual.matrix.2v'),
-  t('virtual.matrix.3v'),
-  t('virtual.matrix.4v'),
-];
-
 const scenes: Scene[] = [
   {
     key: 'boutique',
-    label: t('vh.scene.boutique.label'),
-    tag: t('vh.scene.boutique.tag'),
+    title: t('vh.scene.boutique.title'),
+    description: t('vh.scene.boutique.desc'),
+    videoMp4: '/video/vh/aivtuber_miyaki_happy_black.mp4',
+    perceptionLabels: [
+      t('vh.label.boutique.1'),
+      t('vh.label.boutique.2'),
+      t('vh.label.boutique.3'),
+    ],
     greeting: [
       { from: 'vh', text: t('vh.scene.boutique.g1'), audio: '/audio/vh/boutique-1.mp3' },
       { from: 'user', text: t('vh.scene.boutique.g2') },
       { from: 'vh', text: t('vh.scene.boutique.g3'), audio: '/audio/vh/boutique-2.mp3' },
     ],
-    signals: [
-      t('vh.scene.boutique.s1'),
-      t('vh.scene.boutique.s2'),
-      t('vh.scene.boutique.s3'),
-      t('vh.scene.boutique.s4'),
-      t('vh.scene.boutique.s5'),
-    ],
   },
   {
     key: 'corporate',
-    label: t('vh.scene.corporate.label'),
-    tag: t('vh.scene.corporate.tag'),
+    title: t('vh.scene.corporate.title'),
+    description: t('vh.scene.corporate.desc'),
+    videoMp4: '/video/vh/aivtuber_receptionist_happy_black.mp4',
+    perceptionLabels: [
+      t('vh.label.corporate.1'),
+      t('vh.label.corporate.2'),
+      t('vh.label.corporate.3'),
+    ],
     greeting: [
       { from: 'vh', text: t('vh.scene.corporate.g1'), audio: '/audio/vh/corporate-1.mp3' },
       { from: 'user', text: t('vh.scene.corporate.g2') },
       { from: 'vh', text: t('vh.scene.corporate.g3'), audio: '/audio/vh/corporate-2.mp3' },
     ],
-    signals: [
-      t('vh.scene.corporate.s1'),
-      t('vh.scene.corporate.s2'),
-      t('vh.scene.corporate.s3'),
-      t('vh.scene.corporate.s4'),
-      t('vh.scene.corporate.s5'),
-    ],
   },
   {
     key: 'ip',
-    label: t('vh.scene.ip.label'),
-    tag: t('vh.scene.ip.tag'),
+    title: t('vh.scene.ip.title'),
+    description: t('vh.scene.ip.desc'),
+    videoMp4: '/video/vh/aivtuber_miyaki_confuse_black.mp4',
+    perceptionLabels: [
+      t('vh.label.ip.1'),
+      t('vh.label.ip.2'),
+      t('vh.label.ip.3'),
+    ],
     greeting: [
       { from: 'vh', text: t('vh.scene.ip.g1'), audio: '/audio/vh/ip-1.mp3' },
       { from: 'user', text: t('vh.scene.ip.g2') },
       { from: 'vh', text: t('vh.scene.ip.g3'), audio: '/audio/vh/ip-2.mp3' },
-    ],
-    signals: [
-      t('vh.scene.ip.s1'),
-      t('vh.scene.ip.s2'),
-      t('vh.scene.ip.s3'),
-      t('vh.scene.ip.s4'),
-      t('vh.scene.ip.s5'),
     ],
   },
 ];
@@ -78,57 +68,32 @@ const scenes: Scene[] = [
   class="relative mx-section overflow-hidden"
   style="padding: 120px 24px; background: var(--color-ink);"
 >
-  <!-- Atmospheric blue glow -->
   <div
     class="absolute"
     style="left: -10%; top: 20%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(27,40,64,0.5), transparent 60%); filter: blur(80px);"
   >
   </div>
 
-  <div style="max-width: 960px; margin: 0 auto; position: relative;">
+  <div style="max-width: 1100px; margin: 0 auto; position: relative;">
     <!-- Section header -->
-    <div class="mx-section-head" style="margin-bottom: 48px; text-align: center;">
-      <div class="flex items-center gap-4 mb-7 justify-center">
-        <span class="num-tag">{t('virtual.section')}</span>
-      </div>
+    <div class="mx-section-head" style="margin-bottom: 80px; text-align: center;">
       <h2
         class="h1-display"
         style="color: var(--color-bone); margin-bottom: 20px;"
-        set:html={t('virtual.title')}
+        set:html={t('vh.scenes.title')}
       />
       <p class="body-lg-v2" style="max-width: 640px; margin: 0 auto;">
-        {t('virtual.body1')}
+        {t('vh.scenes.subtitle')}
       </p>
     </div>
 
-    <!-- Showcase island — vertical card flow -->
+    <!-- Showcase island — alternating left/right scenes -->
     <VirtualHumanShowcase
       scenes={scenes}
       imgSrc="/images/miyaki-full.webp"
       imgSrcSmile="/images/miyakien-smile.png"
       imgSrcThinking="/images/miyakien-thinking.png"
-      ui={{
-        perceptionLabel: t('virtual.demo.perception'),
-        placeholder3dTitle: t('vh.placeholder.3d.title'),
-        placeholder3dBody: t('vh.placeholder.3d.body'),
-        analysisTexts: [t('vh.analysis.t1'), t('vh.analysis.t2'), t('vh.analysis.t3'), t('vh.analysis.t4'), t('vh.analysis.t5')],
-      }}
       client:visible
     />
-
-    <!-- Capability matrix tags -->
-    <div
-      class="virtual-cap-tags mt-12 flex flex-wrap justify-center"
-      style="gap: 10px;"
-    >
-      {
-        matrixLines.map((line) => (
-          <span class="solution-tag">
-            <span class="solution-tag-dot" />
-            <span class="solution-tag-body">{line}</span>
-          </span>
-        ))
-      }
-    </div>
   </div>
 </section>

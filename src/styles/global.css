@@ -460,56 +460,189 @@ img {
   }
 
   /* ============================================================
-     Virtual Human — card-based vertical flow
+     Virtual Human — Hero Section
      ============================================================ */
-  .vh-cards {
+
+  .vh-hero {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: 48px;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 24px 60px;
+    background: var(--color-ink);
+    position: relative;
   }
 
-  /* Scene card */
-  .vh-card {
-    background: var(--color-ink-2);
-    border: 1px solid var(--bone-line);
-    border-radius: 8px;
+  .vh-hero-text {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .vh-hero-title {
+    font-family: var(--font-headline);
+    font-size: clamp(48px, 5.6vw, 88px);
+    font-weight: 300;
+    color: var(--color-bone);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+
+  .vh-hero-subtitle {
+    font-size: 18px;
+    color: rgba(244, 236, 220, 0.6);
+    max-width: 640px;
+    margin: 0 auto;
+    line-height: 1.65;
+  }
+
+  .vh-hero-console {
+    width: 100%;
+    max-width: 1100px;
+    border-radius: 16px;
+    border: 1px solid rgba(244, 236, 220, 0.08);
+    background: rgba(21, 17, 13, 0.7);
+    backdrop-filter: blur(12px);
     overflow: hidden;
   }
-  .vh-card-3d {
-    border-style: dashed;
-    opacity: 0.7;
-  }
-  .vh-card-header {
+
+  .vh-hero-tabs {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 16px 20px;
-    border-bottom: 1px solid var(--bone-line);
-  }
-  .vh-card-tag {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    color: var(--color-cinnabar);
-    padding: 4px 10px;
-    border: 1px solid rgba(255, 90, 31, 0.3);
-    border-radius: 4px;
-    background: rgba(255, 90, 31, 0.06);
-  }
-  .vh-card-label {
-    font-family: var(--font-headline);
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--color-bone);
+    gap: 0;
+    border-bottom: 1px solid rgba(244, 236, 220, 0.08);
   }
 
-  /* Character stage */
+  .vh-hero-tab {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 20px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(244, 236, 220, 0.45);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s;
+  }
+
+  .vh-hero-tab:hover {
+    color: rgba(244, 236, 220, 0.7);
+  }
+
+  .vh-hero-tab.is-active {
+    color: var(--color-bone);
+    background: rgba(244, 236, 220, 0.04);
+  }
+
+  .vh-hero-tab-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .vh-hero-canvas {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .vh-hero-orb {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    will-change: transform;
+  }
+
+  .vh-hero-converge-ring {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 1px dashed var(--color-cinnabar);
+    pointer-events: none;
+  }
+
+  .vh-hero-scroll-hint {
+    margin-top: 48px;
+    animation: vhScrollBounce 2s ease-in-out infinite;
+  }
+
+  .vh-hero-arrow {
+    font-size: 24px;
+    color: rgba(244, 236, 220, 0.3);
+  }
+
+  @keyframes vhScrollBounce {
+    0%, 100% { transform: translateY(0); opacity: 0.3; }
+    50% { transform: translateY(8px); opacity: 0.7; }
+  }
+
+  @container page (max-width: 600px) {
+    .vh-hero {
+      min-height: auto;
+      padding: 100px 16px 40px;
+    }
+    .vh-hero-orb {
+      width: 120px;
+      height: 120px;
+    }
+    .vh-hero-tab {
+      font-size: 12px;
+      padding: 12px 10px;
+    }
+  }
+
+  /* ============================================================
+     Virtual Human — Lovart-style alternating left/right sections
+     ============================================================ */
+
+  .vh-scenes {
+    display: flex;
+    flex-direction: column;
+    gap: 120px;
+  }
+
+  /* Scene: alternating left/right grid */
+  .vh-scene {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .vh-scene--reversed .vh-scene-media {
+    order: 2;
+  }
+  .vh-scene--reversed .vh-scene-content {
+    order: 1;
+  }
+
+  /* Media side */
+  .vh-scene-media {
+    position: relative;
+  }
+
+  /* VideoStage */
   .vh-stage {
     position: relative;
-    aspect-ratio: 3 / 4;
-    max-height: 400px;
+    aspect-ratio: 1 / 1;
     overflow: hidden;
-    background: linear-gradient(135deg, var(--color-imperial), var(--color-ink-2));
+    border-radius: 12px;
+    background: #000;
+    isolation: isolate;
+    transform: translateZ(0);
+    -webkit-mask-image: linear-gradient(#000, #000);
   }
   .vh-grid-bg {
     position: absolute;
@@ -525,18 +658,20 @@ img {
     left: 50%;
     top: 0;
     transform: translateX(-50%);
-    width: 85%;
+    width: 90%;
     height: 100%;
     object-fit: cover;
     object-position: top center;
     pointer-events: none;
   }
-  .vh-bracket {
+  .vh-character-video {
     position: absolute;
-    width: 14px;
-    height: 14px;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
     pointer-events: none;
-    z-index: 5;
   }
   .vh-scan-line {
     position: absolute;
@@ -555,87 +690,94 @@ img {
     pointer-events: none;
     z-index: 4;
   }
-  .vh-analysis-ticker {
+
+  .vh-perception-labels {
     position: absolute;
-    bottom: 20px;
+    bottom: 16px;
     left: 50%;
     transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    background: rgba(14, 11, 8, 0.72);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    border: 1px solid rgba(255, 90, 31, 0.25);
-    z-index: 6;
     pointer-events: none;
-    white-space: nowrap;
+    z-index: 6;
   }
-  .vh-analysis-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--color-cinnabar);
-    box-shadow: 0 0 8px var(--color-cinnabar);
-    animation: vhPulse 1.6s ease-in-out infinite;
-    flex-shrink: 0;
-  }
-  .vh-analysis-text {
+  .vh-perception-label {
     font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    color: var(--color-bone-2);
-    animation: vhAnalysisFade 2s ease-in-out;
-  }
-  @keyframes vhAnalysisFade {
-    0% { opacity: 0; transform: translateY(4px); }
-    15% { opacity: 1; transform: translateY(0); }
-    85% { opacity: 1; transform: translateY(0); }
-    100% { opacity: 0; transform: translateY(-4px); }
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--color-cinnabar);
+    background: rgba(14, 11, 8, 0.8);
+    border: 1px solid rgba(255, 90, 31, 0.4);
+    border-radius: 4px;
+    padding: 5px 14px;
+    white-space: nowrap;
+    backdrop-filter: blur(4px);
+    animation: vhLabelFadeIn 0.4s ease-out;
   }
 
-  /* Chat bubbles (static display) */
-  .vh-card-chat {
+  @keyframes vhLabelFadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Content side */
+  .vh-scene-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .vh-scene-title {
+    font-family: var(--font-headline);
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    color: var(--color-bone);
+    line-height: 1.2;
+    margin: 0;
+  }
+  .vh-scene-desc {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--color-bone-2);
+    margin: 0;
+    max-width: 480px;
+  }
+
+  /* Chat bubbles (simplified) */
+  .vh-scene-chat {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    padding: 20px;
-    border-top: 1px solid var(--bone-line);
+    margin-top: 8px;
   }
-  .vh-msg {
+  .vh-bubble {
     display: flex;
     align-items: flex-start;
-    gap: 8px;
-    max-width: 90%;
-    padding: 12px 16px;
+    gap: 10px;
+    max-width: 100%;
+    padding: 14px 18px;
     font-size: 14px;
-    line-height: 1.55;
-    border-radius: 8px;
+    line-height: 1.6;
+    border-radius: 10px;
   }
-  .vh-msg-text {
-    flex: 1;
-  }
-  .vh-msg-vh {
-    align-self: flex-start;
-    background: var(--color-ink-3, rgba(30, 25, 20, 0.8));
+  .vh-bubble--vh {
+    background: var(--color-ink-2);
     border: 1px solid var(--bone-line);
     color: var(--color-bone);
   }
-  .vh-msg-user {
-    align-self: flex-end;
-    background: var(--color-cinnabar);
-    color: var(--color-ink);
+  .vh-bubble--user {
+    background: rgba(255, 90, 31, 0.1);
+    border: 1px solid rgba(255, 90, 31, 0.25);
+    color: var(--color-bone);
   }
-
-  /* Audio play button */
-  .vh-audio-btn {
+  .vh-bubble-text {
+    flex: 1;
+  }
+  .vh-bubble-play {
     flex-shrink: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     border: 1px solid rgba(255, 90, 31, 0.3);
     background: rgba(255, 90, 31, 0.08);
@@ -643,118 +785,44 @@ img {
     cursor: pointer;
     transition: all 0.2s;
   }
-  .vh-audio-btn:hover {
+  .vh-bubble-play:hover {
     background: rgba(255, 90, 31, 0.2);
     border-color: var(--color-cinnabar);
   }
-  .vh-audio-btn.is-playing {
+  .vh-bubble-play.is-playing {
     background: var(--color-cinnabar);
     color: var(--color-ink);
     border-color: var(--color-cinnabar);
   }
-  .vh-audio-btn.is-disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-  }
-  .vh-audio-btn.is-disabled:hover {
-    background: rgba(255, 90, 31, 0.08);
-    border-color: rgba(255, 90, 31, 0.3);
-  }
 
-  /* Perception signals */
-  .vh-card-signals {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 16px 20px;
-    border-top: 1px solid var(--bone-line);
-  }
-  .vh-signal-label {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.25em;
-    color: var(--color-cinnabar);
-  }
-  .vh-signal-list {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-  .vh-signal {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--color-bone-3);
-    letter-spacing: 0.05em;
-    transition: color 0.3s;
-  }
-  .vh-signal-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--bone-line);
-    transition: all 0.3s;
-    flex-shrink: 0;
-  }
-  .vh-signal.is-active {
-    color: var(--color-bone);
-  }
-  .vh-signal.is-active .vh-signal-dot {
-    background: var(--color-cinnabar);
-    box-shadow: 0 0 8px var(--color-cinnabar);
-  }
-
-  /* 3D placeholder */
-  .vh-placeholder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    padding: 48px 24px;
-  }
-  .vh-placeholder-svg {
-    width: 120px;
-    height: 120px;
-    opacity: 0.6;
-  }
-  .vh-placeholder-body {
-    font-family: var(--font-body);
-    font-size: 13px;
-    color: var(--color-bone-3);
-    text-align: center;
-    max-width: 320px;
-    line-height: 1.6;
-    margin: 0;
-  }
-
-  /* Responsive */
+  /* Responsive: mobile stacked */
   @container page (max-width: 600px) {
-    .vh-cards {
+    .vh-scenes {
+      gap: 72px;
+    }
+    .vh-scene {
+      grid-template-columns: 1fr;
       gap: 32px;
     }
+    .vh-scene--reversed .vh-scene-media {
+      order: 0;
+    }
+    .vh-scene--reversed .vh-scene-content {
+      order: 0;
+    }
     .vh-stage {
+      aspect-ratio: 4 / 3;
       max-height: 320px;
     }
-    .vh-card-chat {
-      padding: 16px;
+    .vh-scene-title {
+      font-size: 24px;
     }
-    .vh-msg {
-      max-width: 95%;
+    .vh-scene-desc {
+      font-size: 14px;
+    }
+    .vh-bubble {
       font-size: 13px;
-      padding: 10px 14px;
-    }
-    .vh-card-signals {
-      padding: 14px 16px;
-    }
-    .vh-signal-list {
-      gap: 10px;
-    }
-    .vh-analysis-ticker {
-      font-size: 9px;
-      padding: 6px 12px;
+      padding: 12px 14px;
     }
   }
 

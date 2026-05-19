@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Volume2, Pause } from 'lucide-react';
 
 interface SceneMessage {
@@ -9,10 +9,12 @@ interface SceneMessage {
 
 export interface Scene {
   key: string;
-  label: string;
-  tag: string;
+  title: string;
+  description: string;
   greeting: SceneMessage[];
-  signals: string[];
+  videoMp4?: string;
+  videoWebm?: string;
+  perceptionLabels?: string[];
 }
 
 interface Props {
@@ -20,35 +22,23 @@ interface Props {
   imgSrc: string;
   imgSrcSmile: string;
   imgSrcThinking: string;
-  ui: {
-    perceptionLabel: string;
-    placeholder3dTitle: string;
-    placeholder3dBody: string;
-    analysisTexts: string[];
-  };
 }
 
 let activeAudio: HTMLAudioElement | null = null;
 
-export default function VirtualHumanShowcase({ scenes, imgSrc, imgSrcSmile, imgSrcThinking, ui }: Props) {
+export default function VirtualHumanShowcase({ scenes, imgSrc, imgSrcSmile, imgSrcThinking }: Props) {
   return (
-    <div className="vh-cards">
-      {scenes.map((scene) => (
-        <SceneCard
+    <div className="vh-scenes">
+      {scenes.map((scene, idx) => (
+        <SceneSection
           key={scene.key}
           scene={scene}
+          reversed={idx % 2 === 1}
           imgSrc={imgSrc}
           imgSrcSmile={imgSrcSmile}
           imgSrcThinking={imgSrcThinking}
-          analysisTexts={ui.analysisTexts}
-          perceptionLabel={ui.perceptionLabel}
         />
       ))}
-
-      <Placeholder3DCard
-        title={ui.placeholder3dTitle}
-        body={ui.placeholder3dBody}
-      />
 
       <style>{`
         @keyframes vhScan {
@@ -57,80 +47,48 @@ export default function VirtualHumanShowcase({ scenes, imgSrc, imgSrcSmile, imgS
           90% { opacity: 1; }
           100% { transform: translateY(110%); opacity: 0; }
         }
-        @keyframes vhPulse {
-          0%, 100% { opacity: 0.4; transform: scale(0.9); }
-          50% { opacity: 1; transform: scale(1.15); }
-        }
       `}</style>
     </div>
   );
 }
 
 /* ============================================================
-   SceneCard — one full card per scenario
+   SceneSection — alternating left/right layout per scene
    ============================================================ */
-function SceneCard({
+function SceneSection({
   scene,
+  reversed,
   imgSrc,
   imgSrcSmile,
   imgSrcThinking,
-  analysisTexts,
-  perceptionLabel,
 }: {
   scene: Scene;
+  reversed: boolean;
   imgSrc: string;
   imgSrcSmile: string;
   imgSrcThinking: string;
-  analysisTexts: string[];
-  perceptionLabel: string;
 }) {
-  const [tickIdx, setTickIdx] = useState(0);
-
-  useEffect(() => {
-    const id = setInterval(() => setTickIdx((i) => i + 1), 1800);
-    return () => clearInterval(id);
-  }, []);
-
   return (
-    <div className="vh-card">
-      <div className="vh-card-header">
-        <span className="vh-card-tag">{scene.tag}</span>
-        <span className="vh-card-label">{scene.label}</span>
+    <div className={`vh-scene ${reversed ? 'vh-scene--reversed' : ''}`}>
+      <div className="vh-scene-media">
+        <VideoStage
+          videoMp4={scene.videoMp4}
+          videoWebm={scene.videoWebm}
+          imgSrc={imgSrc}
+          imgSrcSmile={imgSrcSmile}
+          imgSrcThinking={imgSrcThinking}
+          perceptionLabels={scene.perceptionLabels}
+        />
       </div>
 
-      <CharacterStage
-        imgSrc={imgSrc}
-        imgSrcSmile={imgSrcSmile}
-        imgSrcThinking={imgSrcThinking}
-        analysisTexts={analysisTexts}
-      />
+      <div className="vh-scene-content">
+        <h3 className="vh-scene-title">{scene.title}</h3>
+        <p className="vh-scene-desc">{scene.description}</p>
 
-      <div className="vh-card-chat">
-        {scene.greeting.map((msg, i) => (
-          <div key={i} className={`vh-msg vh-msg-${msg.from}`}>
-            <span className="vh-msg-text">{msg.text}</span>
-            {msg.from === 'vh' && (
-              <AudioPlayButton src={msg.audio || ''} />
-            )}
-          </div>
-        ))}
-      </div>
-
-      <div className="vh-card-signals">
-        <span className="vh-signal-label">{perceptionLabel}</span>
-        <div className="vh-signal-list">
-          {scene.signals.map((s, i) => {
-            const active = i === tickIdx % scene.signals.length;
-            return (
-              <span
-                key={`${scene.key}-${i}`}
-                className={`vh-signal ${active ? 'is-active' : ''}`}
-              >
-                <span className="vh-signal-dot" />
-                {s}
-              </span>
-            );
-          })}
+        <div className="vh-scene-chat">
+          {scene.greeting.map((msg, i) => (
+            <ChatBubble key={i} msg={msg} />
+          ))}
         </div>
       </div>
     </div>
@@ -138,14 +96,14 @@ function SceneCard({
 }
 
 /* ============================================================
-   AudioPlayButton — play/pause a single audio clip
+   ChatBubble — single message with optional audio play button
    ============================================================ */
-function AudioPlayButton({ src }: { src: string }) {
+function ChatBubble({ msg }: { msg: SceneMessage }) {
   const [playing, setPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const toggle = () => {
-    if (!src || !audioRef.current) return;
+    if (!msg.audio || !audioRef.current) return;
 
     if (playing) {
       audioRef.current.pause();
@@ -156,98 +114,96 @@ function AudioPlayButton({ src }: { src: string }) {
         activeAudio.currentTime = 0;
       }
       activeAudio = audioRef.current;
-      audioRef.current.play();
+      audioRef.current.play().catch(() => {});
       setPlaying(true);
     }
   };
 
   return (
-    <button
-      type="button"
-      className={`vh-audio-btn ${!src ? 'is-disabled' : ''} ${playing ? 'is-playing' : ''}`}
-      onClick={toggle}
-      disabled={!src}
-      aria-label="Play voice"
-    >
-      <audio
-        ref={audioRef}
-        src={src || undefined}
-        onEnded={() => setPlaying(false)}
-        preload="none"
-      />
-      {playing ? <Pause size={14} /> : <Volume2 size={14} />}
-    </button>
+    <div className={`vh-bubble vh-bubble--${msg.from}`}>
+      <span className="vh-bubble-text">{msg.text}</span>
+      {msg.from === 'vh' && msg.audio && (
+        <>
+          <button
+            type="button"
+            className={`vh-bubble-play ${playing ? 'is-playing' : ''}`}
+            onClick={toggle}
+            aria-label="Play voice"
+          >
+            {playing ? <Pause size={14} /> : <Volume2 size={14} />}
+          </button>
+          <audio
+            ref={audioRef}
+            src={msg.audio}
+            onEnded={() => setPlaying(false)}
+            preload="none"
+          />
+        </>
+      )}
+    </div>
   );
 }
 
 /* ============================================================
-   CharacterStage — character image + CV overlay
+   VideoStage — video loop (or image fallback) + overlays
    ============================================================ */
-function CharacterStage({
+function VideoStage({
+  videoMp4,
+  videoWebm,
   imgSrc,
   imgSrcSmile,
   imgSrcThinking,
-  analysisTexts,
+  perceptionLabels,
 }: {
+  videoMp4?: string;
+  videoWebm?: string;
   imgSrc: string;
   imgSrcSmile: string;
   imgSrcThinking: string;
-  analysisTexts: string[];
+  perceptionLabels?: string[];
 }) {
+  const hasVideo = !!(videoWebm || videoMp4);
   const [activeIdx, setActiveIdx] = useState(0);
-  const [textIdx, setTextIdx] = useState(0);
   const images = [imgSrc, imgSrcSmile, imgSrcThinking];
 
-  useEffect(() => {
-    const id = setInterval(() => setActiveIdx((i) => (i + 1) % images.length), 3500);
-    return () => clearInterval(id);
-  }, []);
-
-  useEffect(() => {
-    const id = setInterval(() => setTextIdx((i) => (i + 1) % analysisTexts.length), 2000);
-    return () => clearInterval(id);
-  }, []);
+  if (!hasVideo) {
+    setTimeout(() => {
+      const id = setInterval(() => setActiveIdx((i) => (i + 1) % images.length), 3500);
+      return () => clearInterval(id);
+    }, 0);
+  }
 
   return (
     <div className="vh-stage">
-      {[
-        { top: 12, left: 12 },
-        { top: 12, right: 12 },
-        { bottom: 12, left: 12 },
-        { bottom: 12, right: 12 },
-      ].map((p, i) => (
-        <span
-          key={i}
-          className="vh-bracket"
-          style={{
-            ...p,
-            borderTop: i < 2 ? '1.5px solid var(--color-cinnabar)' : 'none',
-            borderBottom: i >= 2 ? '1.5px solid var(--color-cinnabar)' : 'none',
-            borderLeft: i === 0 || i === 2 ? '1.5px solid var(--color-cinnabar)' : 'none',
-            borderRight: i === 1 || i === 3 ? '1.5px solid var(--color-cinnabar)' : 'none',
-          }}
-        />
-      ))}
+      {hasVideo ? (
+        <video
+          className="vh-character-video"
+          autoPlay
+          loop
+          muted
+          playsInline
+        >
+          {videoWebm && <source src={videoWebm} type="video/webm" />}
+          {videoMp4 && <source src={videoMp4} type="video/mp4" />}
+        </video>
+      ) : (
+        images.map((src, i) => (
+          <img
+            key={src}
+            src={src}
+            alt={i === 0 ? 'MIYAKIEN virtual human' : ''}
+            className="vh-character-img"
+            style={{
+              opacity: activeIdx === i ? 1 : 0,
+              transition: 'opacity 0.6s ease',
+            }}
+          />
+        ))
+      )}
 
-      {images.map((src, i) => (
-        <img
-          key={src}
-          src={src}
-          alt={i === 0 ? 'MIYAKIEN virtual human' : ''}
-          className="vh-character-img"
-          style={{
-            opacity: activeIdx === i ? 1 : 0,
-            transition: 'opacity 0.6s ease',
-          }}
-        />
-      ))}
-
-      <div className="vh-analysis-ticker">
-        <span className="vh-analysis-dot" />
-        <span key={textIdx} className="vh-analysis-text">
-          {analysisTexts[textIdx]}
-        </span>
-      </div>
+      {perceptionLabels && perceptionLabels.length > 0 && (
+        <PerceptionLabels labels={perceptionLabels} />
+      )}
 
       <div className="vh-scan-line" />
       <div className="vh-grid-bg" />
@@ -256,28 +212,23 @@ function CharacterStage({
 }
 
 /* ============================================================
-   Placeholder3DCard — coming soon placeholder
+   PerceptionLabels — floating AI perception HUD overlays
    ============================================================ */
-function Placeholder3DCard({ title, body }: { title: string; body: string }) {
+function PerceptionLabels({ labels }: { labels: string[] }) {
+  const [visibleIdx, setVisibleIdx] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setVisibleIdx((i) => (i + 1) % labels.length);
+    }, 2800);
+    return () => clearInterval(id);
+  }, [labels.length]);
+
   return (
-    <div className="vh-card vh-card-3d">
-      <div className="vh-card-header">
-        <span className="vh-card-tag">3D</span>
-        <span className="vh-card-label">{title}</span>
-      </div>
-      <div className="vh-placeholder">
-        <svg viewBox="0 0 100 100" className="vh-placeholder-svg">
-          <g stroke="rgba(255,90,31,0.5)" strokeWidth="0.5" fill="none">
-            <polygon points="30,30 70,30 70,70 30,70" />
-            <polygon points="40,20 80,20 80,60 40,60" />
-            <line x1="30" y1="30" x2="40" y2="20" />
-            <line x1="70" y1="30" x2="80" y2="20" />
-            <line x1="70" y1="70" x2="80" y2="60" />
-            <line x1="30" y1="70" x2="40" y2="60" />
-          </g>
-        </svg>
-        <p className="vh-placeholder-body">{body}</p>
-      </div>
+    <div className="vh-perception-labels">
+      <span key={visibleIdx} className="vh-perception-label">
+        {labels[visibleIdx]}
+      </span>
     </div>
   );
 }

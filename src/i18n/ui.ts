@@ -113,10 +113,21 @@ export const ui = {
     'vh.mode.3d': '3D',
     'vh.mode.3dPending': '準備中',
 
+    // VH Hero Section
+    'vh.hero.title': '打造你的<br/>AI 數位智能分身',
+    'vh.hero.subtitle': '結合外在形象、智慧大腦與全球語音，一站式創造能看、能想、能說的虛擬人。',
+    'vh.hero.tab.persona': 'Digital Persona',
+    'vh.hero.tab.brain': 'Core Brain',
+    'vh.hero.tab.acoustics': 'Global Acoustics',
+
     // Scene toggle label
     'vh.scene.label': 'SCENE',
+    'vh.scenes.title': '可以用在什麼地方？',
+    'vh.scenes.subtitle': '從精品零售到企業銷售、品牌代言，AI 虛擬人已經準備好為你的商業場景服務。',
 
     // Scene 1: 精品店員 (Luxury boutique)
+    'vh.scene.boutique.title': '貼心專屬 AI 導購',
+    'vh.scene.boutique.desc': '虛擬店員除了解決人力以及陪訓費時的問題之外，更能確實的記住顧客的過往資料，並結合商家的最新情報，為顧客做最合適的推薦！',
     'vh.scene.boutique.label': '精品店員',
     'vh.scene.boutique.tag': 'BOUTIQUE',
     'vh.scene.boutique.g1': '真開心又看到你！我看到你拿的是上次買的紅色側背包，和你今天的穿著很搭配哦。今天要來看看同色系的零錢包嗎？',
@@ -132,11 +143,13 @@ export const ui = {
     'vh.scene.boutique.s5': '情緒 · 愉悅',
 
     // Scene 2: 企業發言人 (Corporate spokesperson)
+    'vh.scene.corporate.title': '企業智慧銷售員',
+    'vh.scene.corporate.desc': '化身為真實的業務銷售，讓他看一眼你的名片便能記住你的資訊，進而給你量身打造的企業解決方案！',
     'vh.scene.corporate.label': '企業接待',
     'vh.scene.corporate.tag': 'CORPORATE',
     'vh.scene.corporate.g1': '您好，我們有針對企業提供許多 AI 解決方案。要不要與我玩個小遊戲互相認識一下？告訴我您的公司資訊，或讓我看看您的名片，我來幫您做介紹。',
-    'vh.scene.corporate.g2': '好，那我來說一下。',
-    'vh.scene.corporate.g3': '太好了。我會根據您分享的內容，整理出最適合的方案組合。先從產業類型開始──您主要在做哪一塊呢？',
+    'vh.scene.corporate.g2': '[ AI 辨識名片中... ]',
+    'vh.scene.corporate.g3': '哦！是來自橘子集團原創中心的周先生！我發現貴集團近期也非常積極的投入AI相關領域呢！我們可以來聊聊娛樂遊戲面向的方案哦。',
     'vh.scene.corporate.r1': '您這產業我們有不少合作經驗，等等可以分享相似的案例給您。',
     'vh.scene.corporate.r2': '那我來幫您匹配──如果預算範圍方便透露一下，我可以更精準推薦。',
     'vh.scene.corporate.r3': '太好了，我把方案精簡版整理出來，五分鐘就能看完。要直接寄到您信箱嗎？',
@@ -147,11 +160,13 @@ export const ui = {
     'vh.scene.corporate.s5': '情緒 · 專注',
 
     // Scene 3: IP 互動 (IP interaction / event / brand)
+    'vh.scene.ip.title': '品牌 IP 虛擬代言人',
+    'vh.scene.ip.desc': '將品牌形象轉化為互動式虛擬角色，甚至開直播與粉絲聊天互動！提升品牌IP的溫度以及話題性！',
     'vh.scene.ip.label': 'IP 導覽互動',
     'vh.scene.ip.tag': 'IP EVENT',
     'vh.scene.ip.g1': '你看起來很疲累的樣子耶，黑眼圈怎麼那麼重？跟你說～這附近有一家評價很高的咖啡店。',
     'vh.scene.ip.g2': '真的假的？',
-    'vh.scene.ip.g3': '真的！他們家的拿鐵超讚。要不要我把店家位置傳給你？順便附上一張今天剛上架的限定甜點照～',
+    'vh.scene.ip.g3': '真的！他們家的拿鐵網路上評價很高哦！這是店家位置資訊給你參考，順便附上一張本週剛上架的限定甜點照～',
     'vh.scene.ip.r1': '對了，等等若你逛累了我再帶你去那家店，他們有靠窗座位很舒服。',
     'vh.scene.ip.r2': '你今天的穿搭蠻好看的耶，是有什麼特別行程嗎？',
     'vh.scene.ip.r3': '這個展區後面的那條走道我推薦你去看看，剛剛有人說那邊很適合拍照。',
@@ -160,6 +175,17 @@ export const ui = {
     'vh.scene.ip.s3': '興趣方向 · 角色',
     'vh.scene.ip.s4': '互動意願 · 高',
     'vh.scene.ip.s5': '情緒 · 興奮',
+
+    // Perception floating labels
+    'vh.label.boutique.1': 'AI 正在觀察你的穿著',
+    'vh.label.boutique.2': '辨識回訪顧客中...',
+    'vh.label.boutique.3': '分析偏好風格',
+    'vh.label.corporate.1': 'AI 正在辨識名片',
+    'vh.label.corporate.2': '分析企業需求中...',
+    'vh.label.corporate.3': '匹配解決方案',
+    'vh.label.ip.1': 'AI 正在辨識你的情緒',
+    'vh.label.ip.2': '偵測疲勞指數中...',
+    'vh.label.ip.3': '推薦附近資源',
 
     // 3D placeholder copy
     'vh.placeholder.3d.title': '3D 模型準備中',
@@ -396,9 +422,20 @@ export const ui = {
     'vh.mode.3d': '3D',
     'vh.mode.3dPending': 'Coming Soon',
 
+    // VH Hero Section
+    'vh.hero.title': 'Build Your<br/>AI Digital Twin',
+    'vh.hero.subtitle': 'Combine visual persona, intelligent brain, and global voice — create a virtual human that sees, thinks, and speaks.',
+    'vh.hero.tab.persona': 'Digital Persona',
+    'vh.hero.tab.brain': 'Core Brain',
+    'vh.hero.tab.acoustics': 'Global Acoustics',
+
     'vh.scene.label': 'SCENE',
+    'vh.scenes.title': 'Where can it be used?',
+    'vh.scenes.subtitle': 'From luxury retail to enterprise sales and brand endorsement — AI virtual humans are ready to serve your business scenarios.',
 
     'vh.scene.boutique.label': 'Boutique',
+    'vh.scene.boutique.title': 'Your Dedicated AI Shopping Guide',
+    'vh.scene.boutique.desc': 'Beyond solving staffing and training costs, our virtual assistant truly remembers each customer\'s history and combines it with the latest promotions to deliver perfectly tailored recommendations.',
     'vh.scene.boutique.tag': 'BOUTIQUE',
     'vh.scene.boutique.g1': "So glad to see you again! I noticed you're carrying the red shoulder bag from your last visit — it pairs beautifully with today's outfit. Want to look at coin pouches in the same color?",
     'vh.scene.boutique.g2': "You actually remembered!",
@@ -413,10 +450,12 @@ export const ui = {
     'vh.scene.boutique.s5': 'Emotion · Pleased',
 
     'vh.scene.corporate.label': 'Enterprise Reception',
+    'vh.scene.corporate.title': 'Enterprise AI Sales Rep',
+    'vh.scene.corporate.desc': 'Acts as a real sales representative — just one glance at your business card and it remembers who you are, then delivers a tailor-made enterprise solution just for you.',
     'vh.scene.corporate.tag': 'CORPORATE',
     'vh.scene.corporate.g1': "Hello! We offer many AI solutions for enterprises. Want to play a quick game to get to know each other? Tell me about your company, or show me your business card, and I'll match you with the right options.",
-    'vh.scene.corporate.g2': "OK, here we go.",
-    'vh.scene.corporate.g3': "Perfect. Based on what you share, I'll handpick the most suitable combinations for you. Let's start with your industry — what do you primarily work on?",
+    'vh.scene.corporate.g2': '[ AI scanning business card... ]',
+    'vh.scene.corporate.g3': "Oh! Mr. Zhou from Gamania\'s Original Center! I see your group has been actively investing in AI recently. Let\'s discuss entertainment and gaming solutions together!",
     'vh.scene.corporate.r1': "We've worked with companies in your industry — happy to share similar case studies.",
     'vh.scene.corporate.r2': "Then let me match you up — if you're comfortable sharing your budget range, I can recommend more precisely.",
     'vh.scene.corporate.r3': "Great. I'll prepare a condensed version of the proposal — only a 5-minute read. Shall I send it to your email?",
@@ -427,10 +466,12 @@ export const ui = {
     'vh.scene.corporate.s5': 'Emotion · Focused',
 
     'vh.scene.ip.label': 'IP Tour & Guide',
+    'vh.scene.ip.title': 'Brand IP Virtual Spokesperson',
+    'vh.scene.ip.desc': 'Transform your brand identity into an interactive virtual character that can even livestream and chat with fans! Boost your brand IP\'s warmth and buzz.',
     'vh.scene.ip.tag': 'IP EVENT',
     'vh.scene.ip.g1': "You look exhausted — those dark circles though! Hey, there's a really highly-rated café right around here.",
     'vh.scene.ip.g2': "Really?",
-    'vh.scene.ip.g3': "Yeah! Their lattes are amazing. Want me to send you the address? I'll throw in a photo of the limited dessert they just launched today too.",
+    'vh.scene.ip.g3': "Absolutely! Their lattes have amazing reviews online. Here\'s the location info for you, plus a photo of this week\'s new limited dessert!",
     'vh.scene.ip.r1': "Oh by the way — if you get tired later I'll take you to that café. They've got a great window seat.",
     'vh.scene.ip.r2': "Your outfit today looks really nice — got something special planned?",
     'vh.scene.ip.r3': "I'd recommend the corridor behind this exhibit area — someone just said it's perfect for photos.",
@@ -439,6 +480,17 @@ export const ui = {
     'vh.scene.ip.s3': 'Interest · Characters',
     'vh.scene.ip.s4': 'Engagement · High',
     'vh.scene.ip.s5': 'Emotion · Excited',
+
+    // Perception floating labels
+    'vh.label.boutique.1': 'AI analyzing your outfit',
+    'vh.label.boutique.2': 'Identifying returning customer...',
+    'vh.label.boutique.3': 'Analyzing style preferences',
+    'vh.label.corporate.1': 'AI scanning business card',
+    'vh.label.corporate.2': 'Analyzing enterprise needs...',
+    'vh.label.corporate.3': 'Matching solutions',
+    'vh.label.ip.1': 'AI detecting your emotion',
+    'vh.label.ip.2': 'Measuring fatigue level...',
+    'vh.label.ip.3': 'Recommending nearby resources',
 
     'vh.placeholder.3d.title': '3D Model Coming Soon',
     'vh.placeholder.3d.body': 'Hi-fidelity 3D interactive experience launching in the next release.',
@@ -671,9 +723,20 @@ export const ui = {
     'vh.mode.3d': '3D',
     'vh.mode.3dPending': '準備中',
 
+    // VH Hero Section
+    'vh.hero.title': 'あなたの<br/>AIデジタルツインを構築',
+    'vh.hero.subtitle': '外見・知能・音声をワンストップで統合し、見て・考え・話せるバーチャルヒューマンを創造します。',
+    'vh.hero.tab.persona': 'Digital Persona',
+    'vh.hero.tab.brain': 'Core Brain',
+    'vh.hero.tab.acoustics': 'Global Acoustics',
+
     'vh.scene.label': 'SCENE',
+    'vh.scenes.title': 'どこで活用できる？',
+    'vh.scenes.subtitle': '高級小売から法人営業、ブランド代言まで——AIバーチャルヒューマンがビジネスシーンをサポートします。',
 
     'vh.scene.boutique.label': '精品店員',
+    'vh.scene.boutique.title': '専属AIショッピングガイド',
+    'vh.scene.boutique.desc': '人員確保やトレーニングコストを解決するだけでなく、顧客の過去の情報を確実に記憶し、最新のプロモーションと組み合わせて最適なおすすめを提供します。',
     'vh.scene.boutique.tag': 'BOUTIQUE',
     'vh.scene.boutique.g1': 'またお会いできて嬉しいです。前回お買い上げいただいた赤いショルダーバッグ、今日のお召し物にとても似合っていますね。同系色のコインケースも見てみませんか？',
     'vh.scene.boutique.g2': '覚えてくれてたんですね！',
@@ -688,10 +751,12 @@ export const ui = {
     'vh.scene.boutique.s5': '感情 · 喜び',
 
     'vh.scene.corporate.label': '企業窓口',
+    'vh.scene.corporate.title': '企業AIセールス担当',
+    'vh.scene.corporate.desc': 'リアルな営業担当として、名刺を一目見るだけであなたの情報を記憶し、オーダーメイドの企業ソリューションをご提案します。',
     'vh.scene.corporate.tag': 'CORPORATE',
     'vh.scene.corporate.g1': 'こんにちは。企業様向けにAIソリューションを多数ご用意しています。ちょっとしたゲーム感覚でお互いを知りませんか？貴社の情報や名刺を見せていただければ、ぴったりの提案をいたします。',
-    'vh.scene.corporate.g2': 'はい、お話しします。',
-    'vh.scene.corporate.g3': 'ありがとうございます。お話しいただいた内容を元に、最適な組み合わせをお選びします。まずは業界からお聞きしてもよろしいですか？',
+    'vh.scene.corporate.g2': '[ AI 名刺スキャン中... ]',
+    'vh.scene.corporate.g3': 'おお！ガマニアのオリジナルセンターの周さんですね！御社は最近AIへの投資も積極的ですね。エンタメ・ゲーム向けのソリューションについてお話ししましょう！',
     'vh.scene.corporate.r1': 'その業界、弊社にも実績がございます。後ほど類似事例をお見せできます。',
     'vh.scene.corporate.r2': 'では適切なプランをお選びします──ご予算感を教えていただけると、より具体的にご提案できます。',
     'vh.scene.corporate.r3': 'かしこまりました。要点をまとめた簡易版をご用意します──5分でご覧いただけます。メールでお送りしましょうか？',
@@ -702,10 +767,12 @@ export const ui = {
     'vh.scene.corporate.s5': '感情 · 集中',
 
     'vh.scene.ip.label': 'IPツアーガイド',
+    'vh.scene.ip.title': 'ブランドIP バーチャルスポークスパーソン',
+    'vh.scene.ip.desc': 'ブランドイメージをインタラクティブなバーチャルキャラクターに変え、ライブ配信でファンとチャットすることも！ブランドIPの温かさと話題性を高めます。',
     'vh.scene.ip.tag': 'IP EVENT',
     'vh.scene.ip.g1': 'なんか疲れてそうですね、クマがすごい！実はこの近くに評判の良いカフェがあるんですよ。',
     'vh.scene.ip.g2': '本当に？',
-    'vh.scene.ip.g3': '本当です！特にラテが絶品で。場所を送りましょうか？今日新しく出た限定スイーツの写真もシェアしますね。',
+    'vh.scene.ip.g3': '本当ですよ！あそこのラテはネットの評価もすごく高いんです。場所の情報を送りますね。ついでに今週出たばかりの限定スイーツの写真もどうぞ～',
     'vh.scene.ip.r1': 'そういえば、後で疲れたら例のカフェへ案内しますね。窓際の席がとても気持ちいいですよ。',
     'vh.scene.ip.r2': '今日のコーディネートとても素敵ですね、何か特別な予定でも？',
     'vh.scene.ip.r3': 'この展示の奥にある通路、おすすめですよ。さっき写真映えがすごいって誰かが言ってました。',
@@ -714,6 +781,17 @@ export const ui = {
     'vh.scene.ip.s3': '関心 · キャラクター',
     'vh.scene.ip.s4': 'エンゲージメント · 高',
     'vh.scene.ip.s5': '感情 · 興奮',
+
+    // Perception floating labels
+    'vh.label.boutique.1': 'AI が服装を分析中',
+    'vh.label.boutique.2': 'リピーター顧客を識別中...',
+    'vh.label.boutique.3': 'スタイル嗜好を分析',
+    'vh.label.corporate.1': 'AI が名刺を認識中',
+    'vh.label.corporate.2': '企業ニーズを分析中...',
+    'vh.label.corporate.3': 'ソリューションをマッチング',
+    'vh.label.ip.1': 'AI が感情を検出中',
+    'vh.label.ip.2': '疲労度を測定中...',
+    'vh.label.ip.3': '近くのリソースを推薦',
 
     'vh.placeholder.3d.title': '3Dモデル準備中',
     'vh.placeholder.3d.body': '高精細な3Dインタラクティブ体験は次バージョンで公開予定。',
