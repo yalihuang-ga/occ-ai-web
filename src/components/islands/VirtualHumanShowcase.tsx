@@ -19,14 +19,15 @@ export interface Scene {
 
 interface Props {
   scenes: Scene[];
-  imgSrc: string;
-  imgSrcSmile: string;
-  imgSrcThinking: string;
+  imgSrc?: string;
+  imgSrcSmile?: string;
+  imgSrcThinking?: string;
 }
 
 let activeAudio: HTMLAudioElement | null = null;
 
 export default function VirtualHumanShowcase({ scenes, imgSrc, imgSrcSmile, imgSrcThinking }: Props) {
+  const fallbackImages = [imgSrc, imgSrcSmile, imgSrcThinking].filter(Boolean) as string[];
   return (
     <div className="vh-scenes">
       {scenes.map((scene, idx) => (
@@ -34,9 +35,7 @@ export default function VirtualHumanShowcase({ scenes, imgSrc, imgSrcSmile, imgS
           key={scene.key}
           scene={scene}
           reversed={idx % 2 === 1}
-          imgSrc={imgSrc}
-          imgSrcSmile={imgSrcSmile}
-          imgSrcThinking={imgSrcThinking}
+          fallbackImages={fallbackImages}
         />
       ))}
 
@@ -58,15 +57,11 @@ export default function VirtualHumanShowcase({ scenes, imgSrc, imgSrcSmile, imgS
 function SceneSection({
   scene,
   reversed,
-  imgSrc,
-  imgSrcSmile,
-  imgSrcThinking,
+  fallbackImages,
 }: {
   scene: Scene;
   reversed: boolean;
-  imgSrc: string;
-  imgSrcSmile: string;
-  imgSrcThinking: string;
+  fallbackImages: string[];
 }) {
   return (
     <div className={`vh-scene ${reversed ? 'vh-scene--reversed' : ''}`}>
@@ -74,9 +69,7 @@ function SceneSection({
         <VideoStage
           videoMp4={scene.videoMp4}
           videoWebm={scene.videoWebm}
-          imgSrc={imgSrc}
-          imgSrcSmile={imgSrcSmile}
-          imgSrcThinking={imgSrcThinking}
+          fallbackImages={fallbackImages}
           perceptionLabels={scene.perceptionLabels}
         />
       </div>
@@ -150,21 +143,38 @@ function ChatBubble({ msg }: { msg: SceneMessage }) {
 function VideoStage({
   videoMp4,
   videoWebm,
-  imgSrc,
-  imgSrcSmile,
-  imgSrcThinking,
+  fallbackImages,
   perceptionLabels,
 }: {
   videoMp4?: string;
   videoWebm?: string;
-  imgSrc: string;
-  imgSrcSmile: string;
-  imgSrcThinking: string;
+  fallbackImages: string[];
   perceptionLabels?: string[];
 }) {
   const hasVideo = !!(videoWebm || videoMp4);
   const [activeIdx, setActiveIdx] = useState(0);
-  const images = [imgSrc, imgSrcSmile, imgSrcThinking];
+  const stageRef = useRef<HTMLDivElement>(null);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+  const images = fallbackImages;
+
+  useEffect(() => {
+    if (!hasVideo || shouldLoadVideo) return;
+    const node = stageRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          setShouldLoadVideo(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '360px 0px' },
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [hasVideo, shouldLoadVideo]);
 
   if (!hasVideo) {
     setTimeout(() => {
@@ -174,17 +184,18 @@ function VideoStage({
   }
 
   return (
-    <div className="vh-stage">
+    <div className="vh-stage" ref={stageRef}>
       {hasVideo ? (
         <video
           className="vh-character-video"
-          autoPlay
+          autoPlay={shouldLoadVideo}
           loop
           muted
           playsInline
+          preload="none"
         >
-          {videoWebm && <source src={videoWebm} type="video/webm" />}
-          {videoMp4 && <source src={videoMp4} type="video/mp4" />}
+          {shouldLoadVideo && videoWebm && <source src={videoWebm} type="video/webm" />}
+          {shouldLoadVideo && videoMp4 && <source src={videoMp4} type="video/mp4" />}
         </video>
       ) : (
         images.map((src, i) => (

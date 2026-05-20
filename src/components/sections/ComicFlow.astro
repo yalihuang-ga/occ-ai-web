@@ -1231,20 +1231,6 @@ const t = useTranslations(lang);
     box-shadow: none;
     border-radius: 0;
   }
-  .cf-publish-bar {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 24px;
-    border-top: 1px solid var(--bone-line);
-  }
-  .cf-publish-badge {
-    margin-left: auto;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    color: #4ade80;
-  }
 
   /* ===== Step 1c: Story Progress ===== */
   .cf-progress {
@@ -1420,7 +1406,13 @@ const t = useTranslations(lang);
     .cf-intro-input { font-size: 15px; padding: 14px 16px; }
     .cf-intro-text { font-size: 16px; padding: 16px 20px; }
     .cf-publish { max-height: 320px; }
-    .cf-page { width: 65%; }
+    .cf-page {
+      width: 65%;
+      left: 50%;
+      right: auto;
+      margin-left: calc(65% / -2);
+      transform-origin: top center;
+    }
     .cf-edit-stage { max-height: 460px; }
     .cf-edit-cmd { padding: 10px 12px; }
     .cf-edit-cmd-text { font-size: 11px; }

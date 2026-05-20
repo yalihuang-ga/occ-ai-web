@@ -6,13 +6,19 @@ import type { Lang } from '../i18n/ui';
 interface Props {
   title?: string;
   description?: string;
+  preloadDefaultHeroImages?: boolean;
+  preloadHeroImage?: string;
 }
 
 const lang: Lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const { title = t('site.title'), description = t('site.description') } =
-  Astro.props;
+const {
+  title = t('site.title'),
+  description = t('site.description'),
+  preloadDefaultHeroImages = true,
+  preloadHeroImage,
+} = Astro.props;
 
 // Analytics
 const GA_ID = 'G-T1VMEDD4N5';
@@ -96,6 +102,16 @@ const ogImageUrl = `${SITE}/og-image.png`;
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
 
+    <!-- Force-scroll-to-top on cross-page navigation.
+         Runs synchronously in <head> so it executes before paint. -->
+    <script is:inline>
+      try {
+        if ('scrollRestoration' in history) {
+          history.scrollRestoration = 'manual';
+        }
+      } catch (_) {}
+    </script>
+
     <!-- Theme color (mobile browser chrome) -->
     <meta name="theme-color" content="#0e0b08" />
 
@@ -104,9 +120,22 @@ const ogImageUrl = `${SITE}/og-image.png`;
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
-    <!-- Preload hero images for fast LCP — responsive: mobile gets smaller file -->
-    <link rel="preload" as="image" href="/images/miyaki-full-mobile.webp" fetchpriority="high" media="(max-width: 767px)" />
-    <link rel="preload" as="image" href="/images/miyaki-full.webp" fetchpriority="high" media="(min-width: 768px)" />
+    <!-- Preload home hero images only on pages that use that hero. -->
+    {
+      preloadDefaultHeroImages && (
+        <>
+          <link rel="preload" as="image" href="/images/miyaki-full-mobile.webp" fetchpriority="high" media="(max-width: 767px)" />
+          <link rel="preload" as="image" href="/images/miyaki-full.webp" fetchpriority="high" media="(min-width: 768px)" />
+        </>
+      )
+    }
+
+    <!-- Per-page hero image preload (e.g. virtual-human page). -->
+    {
+      preloadHeroImage && (
+        <link rel="preload" as="image" href={preloadHeroImage} fetchpriority="high" />
+      )
+    }
 
     <!-- Fonts: minimal weights, async (non-render-blocking) load with display=swap -->
     <link
@@ -195,6 +224,21 @@ const ogImageUrl = `${SITE}/og-image.png`;
       document.addEventListener('dragstart', function(e) {
         if (e.target.tagName === 'IMG') e.preventDefault();
       });
+
+      // Cross-page navigation: always start fresh page at the top.
+      // Skips when the URL contains a hash (anchor) so in-page jumps still work.
+      (function () {
+        function scrollTopIfNoHash() {
+          if (!window.location.hash) {
+            window.scrollTo(0, 0);
+          }
+        }
+        scrollTopIfNoHash();
+        window.addEventListener('pageshow', function (event) {
+          // event.persisted === true means the page was restored from bfcache.
+          if (event.persisted) scrollTopIfNoHash();
+        });
+      })();
     </script>
   </body>
 </html>

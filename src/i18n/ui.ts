@@ -114,8 +114,21 @@ export const ui = {
     'vh.mode.3dPending': '準備中',
 
     // VH Hero Section
-    'vh.hero.title': '打造你的<br/>AI 數位智能分身',
-    'vh.hero.subtitle': '結合外在形象、智慧大腦與全球語音，一站式創造能看、能想、能說的虛擬人。',
+    'vh.hero.title':
+      '能感知人心的<br/><span class="title-accent-cinnabar">智慧數據入口</span>',
+    'vh.hero.subtitle':
+      '透過前端鏡頭，將衣著風格、色彩偏好、會員記憶與當下情緒轉化為即時決策，讓虛擬人成為更有溫度的品牌入口。',
+    'vh.hero.features.label': 'AI 虛擬人核心能力',
+    'vh.hero.feature.perception': '多模態實時感知',
+    'vh.hero.feature.perception.body': '辨識性別年齡、衣著風格、色彩偏好與情緒起伏。',
+    'vh.hero.feature.member': '會員體系無縫串接',
+    'vh.hero.feature.member.body': '打破線上線下壁壘，自動識別 VIP 顧客偏好。',
+    'vh.hero.feature.persona': '動態人設調校',
+    'vh.hero.feature.persona.body': '根據顧客狀態，即時修正語氣、策略與回應溫度。',
+    'vh.hero.hud.perception': 'Style / Emotion / Color',
+    'vh.hero.hud.member': 'VIP preference matched',
+    'vh.hero.hud.persona': 'Warm response tuned',
+    'vh.hero.visual.alt': 'Guoya AI virtual human transforming into a digital data grid',
     'vh.hero.tab.persona': 'Digital Persona',
     'vh.hero.tab.brain': 'Core Brain',
     'vh.hero.tab.acoustics': 'Global Acoustics',
@@ -423,8 +436,21 @@ export const ui = {
     'vh.mode.3dPending': 'Coming Soon',
 
     // VH Hero Section
-    'vh.hero.title': 'Build Your<br/>AI Digital Twin',
-    'vh.hero.subtitle': 'Combine visual persona, intelligent brain, and global voice — create a virtual human that sees, thinks, and speaks.',
+    'vh.hero.title':
+      'The intelligent data gateway<br/><span class="title-accent-cinnabar">that senses human intent</span>',
+    'vh.hero.subtitle':
+      'Front-facing perception turns style, color preference, member memory, and real-time emotion into decisions, making the virtual human a warmer brand entry point.',
+    'vh.hero.features.label': 'AI virtual human core capabilities',
+    'vh.hero.feature.perception': 'Real-time multimodal sensing',
+    'vh.hero.feature.perception.body': 'Identify age, gender, outfit style, color preference, and emotional shifts.',
+    'vh.hero.feature.member': 'Seamless member profile sync',
+    'vh.hero.feature.member.body': 'Bridge online and offline data while recognizing VIP customer preferences.',
+    'vh.hero.feature.persona': 'Adaptive persona tuning',
+    'vh.hero.feature.persona.body': 'Adjust tone, strategy, and response warmth based on the customer state.',
+    'vh.hero.hud.perception': 'Style / Emotion / Color',
+    'vh.hero.hud.member': 'VIP preference matched',
+    'vh.hero.hud.persona': 'Warm response tuned',
+    'vh.hero.visual.alt': 'Guoya AI virtual human transforming into a digital data grid',
     'vh.hero.tab.persona': 'Digital Persona',
     'vh.hero.tab.brain': 'Core Brain',
     'vh.hero.tab.acoustics': 'Global Acoustics',
@@ -724,8 +750,21 @@ export const ui = {
     'vh.mode.3dPending': '準備中',
 
     // VH Hero Section
-    'vh.hero.title': 'あなたの<br/>AIデジタルツインを構築',
-    'vh.hero.subtitle': '外見・知能・音声をワンストップで統合し、見て・考え・話せるバーチャルヒューマンを創造します。',
+    'vh.hero.title':
+      '人の心を感知する<br/><span class="title-accent-cinnabar">知的データ入口</span>',
+    'vh.hero.subtitle':
+      'フロントカメラの知覚から、服装・色の好み・会員記憶・感情を即時判断へ変換。バーチャルヒューマンを温かいブランド接点にします。',
+    'vh.hero.features.label': 'AIバーチャルヒューマンの中核機能',
+    'vh.hero.feature.perception': 'マルチモーダル即時感知',
+    'vh.hero.feature.perception.body': '性別・年齢・服装スタイル・色の好み・感情の変化を認識。',
+    'vh.hero.feature.member': '会員システム連携',
+    'vh.hero.feature.member.body': 'オンラインとオフラインをつなぎ、VIP顧客の好みを自動認識。',
+    'vh.hero.feature.persona': '動的人格チューニング',
+    'vh.hero.feature.persona.body': '顧客状態に応じて、語調・戦略・応答の温度を即時調整。',
+    'vh.hero.hud.perception': 'Style / Emotion / Color',
+    'vh.hero.hud.member': 'VIP preference matched',
+    'vh.hero.hud.persona': 'Warm response tuned',
+    'vh.hero.visual.alt': 'デジタルデータグリッドへ変化するGuoya AIバーチャルヒューマン',
     'vh.hero.tab.persona': 'Digital Persona',
     'vh.hero.tab.brain': 'Core Brain',
     'vh.hero.tab.acoustics': 'Global Acoustics',

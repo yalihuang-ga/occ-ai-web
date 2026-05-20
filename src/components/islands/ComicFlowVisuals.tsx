@@ -862,13 +862,6 @@ export function PublishStack({ lang }: VisualProps) {
           );
         })}
       </AnimatePresence>
-      <div className="cf-publish-bar">
-        <span className="cf-dot" />
-        <span className="cf-mono-label">
-          {flippedCount >= lastIdx ? 'COVER' : 'FLIPPING'}
-        </span>
-        <span className="cf-publish-badge">{flippedCount >= lastIdx ? '✓ READY' : `${String(flippedCount + 1).padStart(2, '0')} / ${pages.length}`}</span>
-      </div>
     </div>
   );
 }

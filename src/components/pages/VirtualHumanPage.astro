@@ -11,9 +11,31 @@ interface Props {
 }
 
 const { lang } = Astro.props;
+
+const seo = {
+  'zh-TW': {
+    title: 'AI 虛擬人 | 多模態感知與自適應人設 | Muztrix',
+    description: '虛擬接待員、AI 導購、品牌 IP 代言人。多模態感知顧客特徵，串接會員資料，動態調校人設，讓每一次互動都更有溫度。',
+  },
+  en: {
+    title: 'AI Virtual Human | Multimodal Perception & Adaptive Persona | Muztrix',
+    description: 'Virtual receptionist, AI sales assistant, brand IP avatar. Multimodal perception, member-data sync, and adaptive persona for warmer customer interactions.',
+  },
+  ja: {
+    title: 'AIバーチャルヒューマン | マルチモーダル感知と適応型ペルソナ | Muztrix',
+    description: 'バーチャル受付、AI接客、ブランドIPアバター。マルチモーダル感知と会員データ連携、動的人格チューニングで、温度感のある対話体験を提供します。',
+  },
+};
+
+const { title, description } = seo[lang];
 ---
 
-<BaseLayout>
+<BaseLayout
+  title={title}
+  description={description}
+  preloadDefaultHeroImages={false}
+  preloadHeroImage="/images/guoya/guoya_mixed_clean.webp"
+>
   <div class="mx-root">
     <Header lang={lang} />
     <VHHero lang={lang} />

@@ -24,7 +24,6 @@ type NavItem = { labelKey: UIKey; href: string };
 const homeBase = localeUrls[lang];
 
 const navItems: NavItem[] = [
-  { labelKey: 'nav.solutions', href: `${homeBase}#solutions` },
   { labelKey: 'nav.virtualHuman', href: getLocalizedPath(lang, 'virtual-human') },
   { labelKey: 'nav.game', href: getLocalizedPath(lang, 'game') },
   { labelKey: 'nav.comic', href: getLocalizedPath(lang, 'comic') },
@@ -61,7 +60,7 @@ const navItems: NavItem[] = [
       }
     </nav>
 
-    <div class="flex items-center gap-5">
+    <div class="flex items-center gap-3 sm:gap-5">
       <LangSwitcher lang={lang} pathname={pathname} />
       <a
         href={`${homeBase}#contact`}
@@ -70,12 +69,165 @@ const navItems: NavItem[] = [
       >
         {t('nav.contact')}
       </a>
+
+      <!-- Mobile hamburger trigger -->
+      <button
+        type="button"
+        id="mx-mobile-trigger"
+        class="md:hidden mx-mobile-trigger"
+        aria-label="Open menu"
+        aria-controls="mx-mobile-menu"
+        aria-expanded="false"
+      >
+        <span class="mx-mobile-trigger__bar"></span>
+        <span class="mx-mobile-trigger__bar"></span>
+        <span class="mx-mobile-trigger__bar"></span>
+      </button>
     </div>
+  </div>
+
+  <!-- Mobile slide-down menu -->
+  <div
+    id="mx-mobile-menu"
+    class="mx-mobile-menu md:hidden"
+    aria-hidden="true"
+  >
+    <nav class="mx-mobile-menu__nav">
+      {
+        navItems.map((it) => (
+          <a href={it.href} class="mx-mobile-menu__link">
+            {t(it.labelKey)}
+          </a>
+        ))
+      }
+      <a
+        href={`${homeBase}#contact`}
+        class="mx-mobile-menu__cta shimmer-btn shimmer-btn-primary"
+      >
+        {t('nav.contact')}
+      </a>
+    </nav>
   </div>
 </header>
 
+<style>
+  .mx-mobile-trigger {
+    display: none;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 1px solid rgba(244, 236, 220, 0.16);
+    border-radius: 999px;
+    cursor: pointer;
+    position: relative;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+
+  @media (max-width: 767.98px) {
+    .mx-mobile-trigger {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .mx-mobile-trigger:hover {
+    border-color: rgba(255, 90, 31, 0.5);
+    background: rgba(255, 90, 31, 0.08);
+  }
+
+  .mx-mobile-trigger__bar {
+    position: absolute;
+    left: 50%;
+    width: 18px;
+    height: 1.5px;
+    background: var(--color-bone);
+    border-radius: 2px;
+    transform: translateX(-50%);
+    transition: transform 0.28s ease, opacity 0.2s ease, top 0.28s ease;
+  }
+
+  .mx-mobile-trigger__bar:nth-child(1) { top: 13px; }
+  .mx-mobile-trigger__bar:nth-child(2) { top: 19px; }
+  .mx-mobile-trigger__bar:nth-child(3) { top: 25px; }
+
+  .mx-mobile-trigger.is-open .mx-mobile-trigger__bar:nth-child(1) {
+    top: 19px;
+    transform: translateX(-50%) rotate(45deg);
+  }
+  .mx-mobile-trigger.is-open .mx-mobile-trigger__bar:nth-child(2) {
+    opacity: 0;
+  }
+  .mx-mobile-trigger.is-open .mx-mobile-trigger__bar:nth-child(3) {
+    top: 19px;
+    transform: translateX(-50%) rotate(-45deg);
+  }
+
+  .mx-mobile-menu {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    z-index: 49;
+    padding: 16px 20px 28px;
+    background: rgba(14, 11, 8, 0.92);
+    backdrop-filter: blur(24px) saturate(140%);
+    -webkit-backdrop-filter: blur(24px) saturate(140%);
+    border-bottom: 1px solid var(--bone-line);
+    transform: translateY(-12px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.24s ease, transform 0.24s ease;
+  }
+
+  .mx-mobile-menu.is-open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mx-mobile-menu__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .mx-mobile-menu__link {
+    display: block;
+    padding: 16px 8px;
+    color: var(--color-bone);
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(244, 236, 220, 0.06);
+    transition: color 0.2s ease;
+  }
+
+  .mx-mobile-menu__link:hover,
+  .mx-mobile-menu__link:active {
+    color: var(--color-cinnabar);
+  }
+
+  .mx-mobile-menu__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px;
+    padding: 14px 22px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  body.mx-mobile-menu-open {
+    overflow: hidden;
+  }
+</style>
+
 <script>
-  // Scroll-aware header background
   const header = document.getElementById('site-header');
   if (header) {
     const onScroll = () => {
@@ -94,5 +246,48 @@ const navItems: NavItem[] = [
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+  }
+
+  // Mobile menu toggle
+  const trigger = document.getElementById('mx-mobile-trigger');
+  const menu = document.getElementById('mx-mobile-menu');
+  if (trigger && menu) {
+    const close = () => {
+      trigger.classList.remove('is-open');
+      menu.classList.remove('is-open');
+      trigger.setAttribute('aria-expanded', 'false');
+      menu.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('mx-mobile-menu-open');
+    };
+    const open = () => {
+      trigger.classList.add('is-open');
+      menu.classList.add('is-open');
+      trigger.setAttribute('aria-expanded', 'true');
+      menu.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('mx-mobile-menu-open');
+    };
+
+    trigger.addEventListener('click', () => {
+      if (menu.classList.contains('is-open')) close();
+      else open();
+    });
+
+    // Close menu when a link is clicked (lets navigation happen)
+    menu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => close());
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.classList.contains('is-open')) close();
+    });
+
+    // Close when viewport grows past mobile breakpoint
+    const mq = window.matchMedia('(min-width: 768px)');
+    const onMq = (ev: MediaQueryListEvent | MediaQueryList) => {
+      if (ev.matches) close();
+    };
+    if (mq.addEventListener) mq.addEventListener('change', onMq);
+    else (mq as any).addListener(onMq);
   }
 </script>

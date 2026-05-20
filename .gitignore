@@ -28,3 +28,16 @@ pnpm-debug.log*
 .idea/
 *.swp
 *.swo
+
+# Local reference / source materials (not for production)
+_reference/
+
+# Local-generated outputs
+qr-output.png
+qr-*.png
+
+# Source video originals (only the optimized .mp4s under public/video are committed)
+*.mov
+
+# Backup files
+*.bak

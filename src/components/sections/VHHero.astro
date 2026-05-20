@@ -1,7 +1,7 @@
 ---
 import { useTranslations } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
-import VHHeroConsole from '../islands/VHHeroConsole.tsx';
+import VHDigitalPersonaHero from '../islands/VHDigitalPersonaHero.tsx';
 
 interface Props {
   lang: Lang;
@@ -10,22 +10,68 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
-const tabs = [
-  { key: 'persona', label: t('vh.hero.tab.persona') },
-  { key: 'brain', label: t('vh.hero.tab.brain') },
-  { key: 'acoustics', label: t('vh.hero.tab.acoustics') },
+const features = [
+  {
+    index: '01',
+    title: t('vh.hero.feature.perception'),
+    body: t('vh.hero.feature.perception.body'),
+  },
+  {
+    index: '02',
+    title: t('vh.hero.feature.member'),
+    body: t('vh.hero.feature.member.body'),
+  },
+  {
+    index: '03',
+    title: t('vh.hero.feature.persona'),
+    body: t('vh.hero.feature.persona.body'),
+  },
+];
+
+const hudItems = [
+  { label: 'Multimodal Perception', value: t('vh.hero.hud.perception') },
+  { label: 'VIP Profile Sync', value: t('vh.hero.hud.member') },
+  { label: 'Adaptive Persona', value: t('vh.hero.hud.persona') },
 ];
 ---
 
-<section class="vh-hero">
-  <div class="vh-hero-text">
-    <h1 class="vh-hero-title" set:html={t('virtual.title')} />
-    <p class="vh-hero-subtitle">{t('virtual.body1')}</p>
+<section id="hero" class="vh-hero grain">
+  <div class="vh-hero-bg" aria-hidden="true">
+    <span class="vh-hero-bg-grid"></span>
+    <span class="vh-hero-bg-line vh-hero-bg-line--cyan"></span>
+    <span class="vh-hero-bg-line vh-hero-bg-line--magenta"></span>
   </div>
 
-  <VHHeroConsole tabs={tabs} client:visible />
+  <div class="vh-hero-shell">
+    <div class="vh-hero-copy">
+      <h1 class="vh-hero-title" set:html={t('vh.hero.title')} />
+      <p class="vh-hero-subtitle">{t('vh.hero.subtitle')}</p>
+
+      <div class="vh-hero-feature-list" aria-label={t('vh.hero.features.label')}>
+        {
+          features.map((feature) => (
+            <article class="vh-hero-feature">
+              <span class="vh-hero-feature-index">{feature.index}</span>
+              <span class="vh-hero-feature-copy">
+                <strong>{feature.title}</strong>
+                <span>{feature.body}</span>
+              </span>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+
+    <VHDigitalPersonaHero
+      mixSrc="/images/guoya/guoya_mixed_clean.webp"
+      alt={t('vh.hero.visual.alt')}
+      hudItems={hudItems}
+      client:visible
+    />
+  </div>
 
   <div class="vh-hero-scroll-hint">
-    <span class="vh-hero-arrow">&#8595;</span>
+    <span class="vh-hero-scroll-label">SCROLL</span>
+    <span class="vh-hero-scroll-line"><span></span></span>
   </div>
 </section>
