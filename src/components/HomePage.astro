@@ -5,8 +5,12 @@ import Hero from './sections/Hero.astro';
 import Solutions from './sections/Solutions.astro';
 import About from './sections/About.astro';
 import ProductCards from './sections/ProductCards.astro';
+import ComputexBanner from './sections/ComputexBanner.astro';
+import WhyWarmAI from './sections/WhyWarmAI.astro';
+import HowWarmAI from './sections/HowWarmAI.astro';
 import CTAFooter from './sections/CTAFooter.astro';
 import type { Lang } from '../i18n/ui';
+import { COMPUTEX_LIVE } from '../config/site';
 
 interface Props {
   lang: Lang;
@@ -30,13 +34,75 @@ const seo = {
 };
 
 const { title, description } = seo[lang];
+
+const SITE = 'https://ai.gamaniaocc.org';
+
+const webpageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: title,
+  description,
+  url: lang === 'zh-TW' ? `${SITE}/` : `${SITE}/${lang}/`,
+  inLanguage: lang === 'zh-TW' ? 'zh-Hant-TW' : lang === 'ja' ? 'ja-JP' : 'en',
+  isPartOf: {
+    '@type': 'WebSite',
+    name: 'Muztrix',
+    url: SITE,
+  },
+  about: {
+    '@type': 'Thing',
+    name: 'Warm AI — human-centered virtual interaction',
+  },
+};
+
+const eventSchema = COMPUTEX_LIVE
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'ExhibitionEvent',
+      name: 'Muztrix at COMPUTEX 2026',
+      description:
+        lang === 'zh-TW'
+          ? '原創中心 AI 於 COMPUTEX 2026 展示「讓溫暖延續」的虛擬互動體驗，邀請品牌成為第一個共同驗證的夥伴。'
+          : lang === 'ja'
+            ? 'ガマニア原創中心AIは、COMPUTEX 2026にて「温もりを続ける」バーチャル体験を出展します。'
+            : 'Gamania OCC AI showcases its "Keep warmth alive" virtual interaction at COMPUTEX 2026 — looking for a first pilot partner.',
+      startDate: '2026-06-02',
+      endDate: '2026-06-05',
+      eventStatus: 'https://schema.org/EventScheduled',
+      eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+      location: {
+        '@type': 'Place',
+        name: 'Taipei Nangang Exhibition Hall',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'No. 1, Jingmao 2nd Rd.',
+          addressLocality: 'Nangang District',
+          addressRegion: 'Taipei City',
+          addressCountry: 'TW',
+        },
+      },
+      organizer: {
+        '@type': 'Organization',
+        name: 'Muztrix',
+        url: SITE,
+      },
+    }
+  : null;
 ---
 
 <BaseLayout title={title} description={description}>
+  <Fragment slot="head-extras">
+    <script type="application/ld+json" set:html={JSON.stringify(webpageSchema)} />
+    {eventSchema && <script type="application/ld+json" set:html={JSON.stringify(eventSchema)} />}
+  </Fragment>
+
   <div class="mx-root">
+    {COMPUTEX_LIVE && <ComputexBanner lang={lang} />}
     <Header lang={lang} />
     <Hero lang={lang} />
     <ProductCards lang={lang} />
+    <WhyWarmAI lang={lang} />
+    <HowWarmAI lang={lang} />
     <Solutions lang={lang} />
     <About lang={lang} />
     <CTAFooter lang={lang} />

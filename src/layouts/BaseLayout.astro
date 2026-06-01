@@ -214,6 +214,9 @@ const ogImageUrl = `${SITE}/og-image.png`;
         ],
       })}
     />
+
+    <!-- Page-level structured data (e.g. WebPage / Event) -->
+    <slot name="head-extras" />
   </head>
   <body class="bg-background text-on-background font-body">
     <slot />

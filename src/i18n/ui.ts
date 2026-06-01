@@ -338,6 +338,71 @@ export const ui = {
     'products.comic.summary': '將微小的靈感放大至完稿發布，AI 編輯陪你創造無限篇章！',
     'products.comic.cta': '了解更多',
 
+    // ---- Warm AI manifesto (Booth Deck narrative) ----
+    'warm.banner.eyebrow': 'COMPUTEX 2026',
+    'warm.banner.text': '展期於台北南港展覽館・歡迎走進原創中心 AI 攤位，被記得一次。',
+    'warm.banner.cta': '查看活動資訊',
+
+    'warm.why.eyebrow': 'WHY · 為什麼這件事重要',
+    'warm.why.title':
+      '科技越進步，人越<span class="title-accent-cinnabar">孤獨</span>。',
+    'warm.why.subtitle': '這些事，每天都在發生──',
+    'warm.why.case1.title': '早餐店阿姨',
+    'warm.why.case1.body':
+      '「帥哥，還是蔬菜蛋餅加兩匙辣、配一杯中冰奶嗎？」她不需要你說。她就是知道。讓你每天回去的理由——不是蛋餅特別好吃，是有人記得你。',
+    'warm.why.case2.title': '吃素的人',
+    'warm.why.case2.body':
+      '進每一家新餐廳，都要先說一遍「我吃素」。說了不一定記得。記得了換一個服務生又要重說。不是抱怨，是每次都要重新解釋自己這件事，真的很累。',
+    'warm.why.case3.title': '有過敏需求的人',
+    'warm.why.case3.body':
+      '問了第一個問題，店員去問廚師，回來答了，又有新問題，再去問⋯⋯最後將就點了一個不是真正想吃的東西。不是誰的錯，是每個環節都在消耗人。',
+    'warm.why.closing.lead': '缺工的時代，這些本來就做不到的事只會更難。',
+    'warm.why.closing.body':
+      '但人需要被接住這件事，不會因為缺工就消失。那個記得你的感覺，一旦消失，就很難找回來。',
+    'warm.why.closing.tag':
+      'AI 的溫度，不是來自<span class="title-accent-gold">知識的廣度</span>，是來自<span class="title-accent-cinnabar">記憶的深度</span>。',
+
+    'warm.how.eyebrow': 'HOW · 我們用什麼方法',
+    'warm.how.title': '用技術，<span class="title-accent-gold">讓溫暖延續</span>。',
+    'warm.how.subtitle':
+      '三層架構，讓 AI 不只是回應，而是真的在注意你、記得你、迎接你。',
+    'warm.how.eyes.label': 'EYES · 眼睛',
+    'warm.how.eyes.title': '看見你',
+    'warm.how.eyes.body': '人臉辨識、衣著感知、情緒偵測。',
+    'warm.how.eyes.example':
+      '你今天穿白衣服，它提醒你別點深色飲料──這不是功能，這是有人在注意你。',
+    'warm.how.brain.label': 'BRAIN · 大腦',
+    'warm.how.brain.title': '記得你',
+    'warm.how.brain.body': '會員記憶、習慣累積、跨場域同步。',
+    'warm.how.brain.example':
+      '飯少、少糖去冰、醋飯要溫的──你不需要每次重新解釋自己。',
+    'warm.how.heart.label': 'HEART · 心',
+    'warm.how.heart.title': '主動迎接你',
+    'warm.how.heart.body': '不等你問，它先開口。用你喜歡的語氣，說你在乎的事。',
+    'warm.how.heart.example': '溫度可以調──它記得你是哪種人。',
+
+    'warm.path.eyebrow': 'OUR PATH',
+    'warm.path.title':
+      '如果你也相信，<span class="title-accent-cinnabar">溫度</span>這件事很重要──',
+    'warm.path.step1.tag': 'NOW',
+    'warm.path.step1.title': 'COMPUTEX 2026',
+    'warm.path.step1.body': '真實場域，讓人告訴我們答案。',
+    'warm.path.step2.tag': 'NEXT',
+    'warm.path.step2.title': '第一個 PILOT',
+    'warm.path.step2.body': '一個品牌，用數據說話。',
+    'warm.path.step3.tag': 'THEN',
+    'warm.path.step3.title': '台灣 → 日本',
+    'warm.path.step3.body': '相同的問題，相同的需求──所有需要被接住的場域。',
+    'warm.path.note': '我們正在找第一個相信這件事的品牌，一起用數據說話。',
+
+    'warm.outro.title':
+      'AI made the world <span class="title-accent-gold">smarter</span>.',
+    'warm.outro.title.line2':
+      'You deserve to be <span class="title-accent-cinnabar">remembered</span>.',
+    'warm.outro.body':
+      '如果你也有感──不管你是品牌、夥伴、還是純粹對這件事有感，展覽結束後，我們可以找個時間喝杯咖啡，或是直接去你的店裡走走，看看這件事在你這裡長什麼樣子。',
+    'warm.outro.cta': '聯絡我們',
+
     // legacy / optional kept
     'lang.switcher.label': '語系',
   },
@@ -653,6 +718,71 @@ export const ui = {
     'products.comic.summary': 'From a single spark to published pages — AI walks every panel with you',
     'products.comic.cta': 'Learn more',
 
+    // ---- Warm AI manifesto (Booth Deck narrative) ----
+    'warm.banner.eyebrow': 'COMPUTEX 2026',
+    'warm.banner.text': 'Visit Gamania OCC AI booth at Taipei Nangang — be remembered, just once.',
+    'warm.banner.cta': 'Event details',
+
+    'warm.why.eyebrow': 'WHY · It matters',
+    'warm.why.title':
+      'The smarter the tech, the <span class="title-accent-cinnabar">lonelier</span> we get.',
+    'warm.why.subtitle': 'Small things, every single day —',
+    'warm.why.case1.title': 'The breakfast aunty',
+    'warm.why.case1.body':
+      '"Same as usual? Veggie egg crepe with two scoops of chili, medium iced milk tea?" She just knows. The reason you keep coming back isn\'t the food — it\'s being remembered.',
+    'warm.why.case2.title': 'The vegetarian',
+    'warm.why.case2.body':
+      'Walking into a new restaurant means saying "I\'m vegetarian" again. They might forget. Even if they remember, the next server won\'t. It\'s not a complaint — re-explaining yourself, every time, is exhausting.',
+    'warm.why.case3.title': 'The allergic guest',
+    'warm.why.case3.body':
+      'Ask, the server checks with the chef, comes back, ask again, check again… You end up settling for something you didn\'t really want. No one\'s fault — but every step wears people down.',
+    'warm.why.closing.lead': 'In a labour-shortage era, what was already hard becomes harder.',
+    'warm.why.closing.body':
+      'But the human need to feel held doesn\'t disappear with staffing levels. Once that "being remembered" feeling is gone, it\'s very hard to bring back.',
+    'warm.why.closing.tag':
+      'Warmth in AI doesn\'t come from <span class="title-accent-gold">how much it knows</span> — it comes from <span class="title-accent-cinnabar">how deeply it remembers</span>.',
+
+    'warm.how.eyebrow': 'HOW · Our approach',
+    'warm.how.title': 'Use technology to <span class="title-accent-gold">keep warmth alive</span>.',
+    'warm.how.subtitle':
+      'Three layers — so AI doesn\'t just respond, it notices you, remembers you, welcomes you.',
+    'warm.how.eyes.label': 'EYES',
+    'warm.how.eyes.title': 'See you',
+    'warm.how.eyes.body': 'Face recognition, attire perception, emotion sensing.',
+    'warm.how.eyes.example':
+      'You\'re wearing white today — it gently suggests you skip the dark drink. Not a feature. Someone\'s paying attention.',
+    'warm.how.brain.label': 'BRAIN',
+    'warm.how.brain.title': 'Remember you',
+    'warm.how.brain.body': 'Member memory, habit accumulation, cross-venue sync.',
+    'warm.how.brain.example':
+      'Less rice, less sugar with no ice, vinegar rice slightly warm — you don\'t have to re-explain yourself.',
+    'warm.how.heart.label': 'HEART',
+    'warm.how.heart.title': 'Welcome you',
+    'warm.how.heart.body': 'It speaks first — in your tone, about what you actually care about.',
+    'warm.how.heart.example': 'Warmth is tunable. It remembers what kind of person you are.',
+
+    'warm.path.eyebrow': 'OUR PATH',
+    'warm.path.title':
+      'If you also believe <span class="title-accent-cinnabar">warmth</span> matters —',
+    'warm.path.step1.tag': 'NOW',
+    'warm.path.step1.title': 'COMPUTEX 2026',
+    'warm.path.step1.body': 'A real venue. Let people tell us the answer.',
+    'warm.path.step2.tag': 'NEXT',
+    'warm.path.step2.title': 'First PILOT',
+    'warm.path.step2.body': 'One brand. Let data speak.',
+    'warm.path.step3.tag': 'THEN',
+    'warm.path.step3.title': 'Taiwan → Japan',
+    'warm.path.step3.body': 'Same problems, same needs — anywhere people deserve to be held.',
+    'warm.path.note': 'We\'re looking for the first brand who believes in this — to walk it with us, with data.',
+
+    'warm.outro.title':
+      'AI made the world <span class="title-accent-gold">smarter</span>.',
+    'warm.outro.title.line2':
+      'You deserve to be <span class="title-accent-cinnabar">remembered</span>.',
+    'warm.outro.body':
+      'Brand, partner, or simply someone who feels it — after the show, let\'s grab coffee, or let us walk into your venue and see what this looks like in your world.',
+    'warm.outro.cta': 'Get in touch',
+
     'lang.switcher.label': 'Language',
   },
 
@@ -965,6 +1095,71 @@ export const ui = {
     'products.comic.title': 'AIコミック',
     'products.comic.summary': 'ひらめきから出版まで、AIが全ページを共に歩む',
     'products.comic.cta': '詳しく見る',
+
+    // ---- Warm AI manifesto (Booth Deck narrative) ----
+    'warm.banner.eyebrow': 'COMPUTEX 2026',
+    'warm.banner.text': '台北南港展覧館にて開催。原創中心AIブースで「覚えてもらう」体験を。',
+    'warm.banner.cta': 'イベント情報',
+
+    'warm.why.eyebrow': 'WHY · なぜ大切なのか',
+    'warm.why.title':
+      'テクノロジーが進歩するほど、人は<span class="title-accent-cinnabar">孤独</span>になる。',
+    'warm.why.subtitle': '毎日、こんなことが起きている──',
+    'warm.why.case1.title': '朝食店のおばさん',
+    'warm.why.case1.body':
+      '「いつも通り、辛みダブルの野菜たまごクレープと、中サイズのアイスミルクティでいい？」言わなくても、わかる。毎日また来る理由は、料理の味じゃない。覚えてくれている人がいる、それが理由。',
+    'warm.why.case2.title': 'ベジタリアンの人',
+    'warm.why.case2.body':
+      '新しいお店に入るたび、「ベジタリアンです」と言わなければならない。覚えてくれているとは限らない。覚えてくれていても、店員が変わればまた言い直す。文句じゃなく、毎回自分のことを説明し直すのは、本当に疲れる。',
+    'warm.why.case3.title': 'アレルギーのある人',
+    'warm.why.case3.body':
+      'まず質問。店員は厨房に確認、戻ってきて回答、また新しい疑問、また確認⋯⋯結局、本当に食べたいものではないものを選んでしまう。誰のせいでもない。ただ、すべての過程が人を消耗させる。',
+    'warm.why.closing.lead': '人手不足の時代、もともと難しかったことはさらに難しくなる。',
+    'warm.why.closing.body':
+      'でも、「受け止めてもらいたい」という人の気持ちは、人手不足では消えない。「覚えてくれている」感覚は、一度失われると、取り戻すのが本当に難しい。',
+    'warm.why.closing.tag':
+      'AIの温かさは<span class="title-accent-gold">知識の広さ</span>からではなく、<span class="title-accent-cinnabar">記憶の深さ</span>から生まれる。',
+
+    'warm.how.eyebrow': 'HOW · 私たちのアプローチ',
+    'warm.how.title': 'テクノロジーで、<span class="title-accent-gold">温かさを続ける</span>。',
+    'warm.how.subtitle':
+      '3層の構造で、AIはただ応答するのではなく、あなたに気づき、覚え、迎え入れる。',
+    'warm.how.eyes.label': 'EYES · 目',
+    'warm.how.eyes.title': 'あなたを見る',
+    'warm.how.eyes.body': '顔認識、服装認知、感情検知。',
+    'warm.how.eyes.example':
+      '今日は白い服。だから濃い色のドリンクは控えめに——機能ではない、誰かが気にかけている。',
+    'warm.how.brain.label': 'BRAIN · 脳',
+    'warm.how.brain.title': 'あなたを覚える',
+    'warm.how.brain.body': '会員記憶、習慣の蓄積、店舗間の同期。',
+    'warm.how.brain.example':
+      'ご飯少なめ、糖分控えめで氷なし、酢飯はぬるめ──毎回自分を説明する必要はない。',
+    'warm.how.heart.label': 'HEART · 心',
+    'warm.how.heart.title': 'あなたを迎える',
+    'warm.how.heart.body': '聞かれる前に話しかける。あなたの好きな口調で、気にしていることを。',
+    'warm.how.heart.example': '温度は調整できる──あなたがどんな人かを覚えている。',
+
+    'warm.path.eyebrow': 'OUR PATH',
+    'warm.path.title':
+      '<span class="title-accent-cinnabar">温度</span>が大切だと感じてくださるなら──',
+    'warm.path.step1.tag': 'NOW',
+    'warm.path.step1.title': 'COMPUTEX 2026',
+    'warm.path.step1.body': 'リアルな現場で、人に答えを教えてもらう。',
+    'warm.path.step2.tag': 'NEXT',
+    'warm.path.step2.title': '最初のPILOT',
+    'warm.path.step2.body': 'ひとつのブランドと、データで語る。',
+    'warm.path.step3.tag': 'THEN',
+    'warm.path.step3.title': '台湾 → 日本',
+    'warm.path.step3.body': '同じ課題、同じニーズ──受け止められるべきすべての場所へ。',
+    'warm.path.note': '私たちは、これを信じてくれる最初のブランドを探しています。一緒にデータで語りましょう。',
+
+    'warm.outro.title':
+      'AIは世界を<span class="title-accent-gold">賢く</span>した。',
+    'warm.outro.title.line2':
+      'あなたは<span class="title-accent-cinnabar">覚えられる</span>に値する。',
+    'warm.outro.body':
+      'ブランドでも、パートナーでも、ただこのことに何かを感じた方でも──展覧会のあと、コーヒーでもいかがですか。あるいは直接、あなたの店に伺って、あなたの場所でこれがどう形になるか一緒に見てみたい。',
+    'warm.outro.cta': 'お問い合わせ',
 
     'lang.switcher.label': '言語',
   },
