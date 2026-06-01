@@ -10,9 +10,26 @@ interface Props {
 }
 
 const { lang } = Astro.props;
+
+const seo = {
+  'zh-TW': {
+    title: 'AI 遊戲開發 | 三消關卡設計與 AI 任務生成 | Muztrix',
+    description: '結合 AI 自動化關卡設計與任務生成的三消遊戲開發工具。降低製作門檻、加速內容迭代，讓劇情、任務與 NPC 互動隨玩家行為動態演化。',
+  },
+  en: {
+    title: 'AI Game Development | Match-3 Level Design & AI Quest Generation | Muztrix',
+    description: 'AI-driven match-3 game toolkit with automated level design and adaptive quest generation. Faster iteration, lower production cost, and NPCs that respond to player behaviour.',
+  },
+  ja: {
+    title: 'AIゲーム開発 | マッチ3レベルデザインとAIクエスト生成 | Muztrix',
+    description: 'AIによるレベル自動設計とクエスト生成を備えたマッチ3ゲーム開発ツール。制作コストを抑えつつ高速イテレーションを実現し、NPCがプレイヤーの行動に応じて進化します。',
+  },
+};
+
+const { title, description } = seo[lang];
 ---
 
-<BaseLayout>
+<BaseLayout title={title} description={description}>
   <div class="mx-root">
     <Header lang={lang} />
     <Game lang={lang} />

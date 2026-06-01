@@ -13,9 +13,26 @@ interface Props {
 }
 
 const { lang } = Astro.props;
+
+const seo = {
+  'zh-TW': {
+    title: 'Muztrix | AI 虛擬人、AI 漫畫、AI 遊戲開發整合方案',
+    description: '橘子集團原創內容中心打造的 AI 內容生產平台。整合多模態虛擬人、AI 漫畫工作室、AI 遊戲開發工具，協助品牌打造具備溫度的虛擬互動體驗。',
+  },
+  en: {
+    title: 'Muztrix | AI Virtual Human, Comic Studio & Game Development Platform',
+    description: 'AI-powered content platform by Gamania Original Content Center. Multimodal virtual humans, AI comic studio, and game development tools — helping brands build human-centered virtual experiences.',
+  },
+  ja: {
+    title: 'Muztrix | AIバーチャルヒューマン・AIコミック・AIゲーム開発の統合プラットフォーム',
+    description: 'ガマニアグループ オリジナルコンテンツセンターが提供するAIコンテンツ制作プラットフォーム。マルチモーダル・バーチャルヒューマン、AIコミックスタジオ、AIゲーム開発ツールでブランドの温度感ある仮想体験を実現します。',
+  },
+};
+
+const { title, description } = seo[lang];
 ---
 
-<BaseLayout>
+<BaseLayout title={title} description={description}>
   <div class="mx-root">
     <Header lang={lang} />
     <Hero lang={lang} />
