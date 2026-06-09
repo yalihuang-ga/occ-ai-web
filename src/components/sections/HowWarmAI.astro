@@ -44,19 +44,19 @@ const path = [
     tag: t('warm.path.step1.tag'),
     title: t('warm.path.step1.title'),
     body: t('warm.path.step1.body'),
-    active: true,
+    state: 'done' as const,
   },
   {
     tag: t('warm.path.step2.tag'),
     title: t('warm.path.step2.title'),
     body: t('warm.path.step2.body'),
-    active: false,
+    state: 'active' as const,
   },
   {
     tag: t('warm.path.step3.tag'),
     title: t('warm.path.step3.title'),
     body: t('warm.path.step3.body'),
-    active: false,
+    state: 'next' as const,
   },
 ];
 ---
@@ -116,7 +116,7 @@ const path = [
 
       <ol class="how-path__steps" role="list">
         {path.map((step, idx) => (
-          <li class={`how-path__step ${step.active ? 'is-active' : ''}`}>
+          <li class={`how-path__step is-${step.state}`}>
             <div class="how-path__node" aria-hidden="true">
               <span class="how-path__dot"></span>
               <span class="how-path__index">{String(idx + 1).padStart(2, '0')}</span>
@@ -382,6 +382,11 @@ const path = [
     animation: hpDotPulse 2s ease-in-out infinite;
   }
 
+  .how-path__step.is-done .how-path__dot {
+    background: var(--color-gold);
+    box-shadow: 0 0 0 2px rgba(217, 184, 114, 0.35);
+  }
+
   .how-path__index {
     display: none;
   }
@@ -398,6 +403,10 @@ const path = [
 
   .how-path__step:not(.is-active) .how-path__tag {
     color: var(--color-bone-3);
+  }
+
+  .how-path__step.is-done .how-path__tag {
+    color: var(--color-gold);
   }
 
   .how-path__step-title {

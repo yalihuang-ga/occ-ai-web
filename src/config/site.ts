@@ -4,7 +4,7 @@
  */
 
 /** Show the Computex authentication banner above the Hero. */
-export const COMPUTEX_LIVE = true;
+export const COMPUTEX_LIVE = false;
 
 /** Computex 2026 booth meta — surfaced in banner & event link. */
 export const COMPUTEX_META = {
