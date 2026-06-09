@@ -26,6 +26,14 @@ interface Props {
 
 let activeAudio: HTMLAudioElement | null = null;
 
+/**
+ * Toggle voice playback UI on the chat bubbles. Set to false while
+ * audio assets are not yet ready (currently `public/audio/vh/*.mp3`
+ * does not exist) so we don't surface a non-functional play button.
+ * Flip back to true once the MP3 files are placed under public/audio/vh/.
+ */
+const VH_VOICE_ENABLED = false;
+
 export default function VirtualHumanShowcase({ scenes, imgSrc, imgSrcSmile, imgSrcThinking }: Props) {
   const fallbackImages = [imgSrc, imgSrcSmile, imgSrcThinking].filter(Boolean) as string[];
   return (
@@ -115,7 +123,7 @@ function ChatBubble({ msg }: { msg: SceneMessage }) {
   return (
     <div className={`vh-bubble vh-bubble--${msg.from}`}>
       <span className="vh-bubble-text">{msg.text}</span>
-      {msg.from === 'vh' && msg.audio && (
+      {msg.from === 'vh' && msg.audio && VH_VOICE_ENABLED && (
         <>
           <button
             type="button"

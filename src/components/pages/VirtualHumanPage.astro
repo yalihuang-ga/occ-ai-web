@@ -3,6 +3,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../sections/Header.astro';
 import VHHero from '../sections/VHHero.astro';
 import VirtualHuman from '../sections/VirtualHuman.astro';
+import WhyWarmAI from '../sections/WhyWarmAI.astro';
+import HowWarmAI from '../sections/HowWarmAI.astro';
 import CTAFooter from '../sections/CTAFooter.astro';
 import type { Lang } from '../../i18n/ui';
 
@@ -28,6 +30,29 @@ const seo = {
 };
 
 const { title, description } = seo[lang];
+
+const SITE = 'https://ai.gamaniaocc.org';
+
+const webpageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: title,
+  description,
+  url:
+    lang === 'zh-TW'
+      ? `${SITE}/virtual-human/`
+      : `${SITE}/${lang}/virtual-human/`,
+  inLanguage: lang === 'zh-TW' ? 'zh-Hant-TW' : lang === 'ja' ? 'ja-JP' : 'en',
+  isPartOf: {
+    '@type': 'WebSite',
+    name: 'Muztrix',
+    url: SITE,
+  },
+  about: {
+    '@type': 'Thing',
+    name: 'Warm AI — human-centered virtual interaction',
+  },
+};
 ---
 
 <BaseLayout
@@ -36,10 +61,16 @@ const { title, description } = seo[lang];
   preloadDefaultHeroImages={false}
   preloadHeroImage="/images/guoya/guoya_mixed_clean.webp"
 >
+  <Fragment slot="head-extras">
+    <script type="application/ld+json" set:html={JSON.stringify(webpageSchema)} />
+  </Fragment>
+
   <div class="mx-root">
     <Header lang={lang} />
     <VHHero lang={lang} />
     <VirtualHuman lang={lang} />
+    <WhyWarmAI lang={lang} />
+    <HowWarmAI lang={lang} />
     <CTAFooter lang={lang} />
   </div>
 </BaseLayout>

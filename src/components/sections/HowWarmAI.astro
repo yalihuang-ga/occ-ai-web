@@ -1,5 +1,5 @@
 ---
-import { useTranslations, getLocalizedPath } from '../../i18n/utils';
+import { useTranslations } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
 interface Props {
@@ -8,9 +8,6 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-
-const homeBase = getLocalizedPath(lang);
-const contactHref = `${homeBase}#contact`;
 
 const layers = [
   {
@@ -138,10 +135,6 @@ const path = [
         <span set:html={t('warm.outro.title.line2')} />
       </h3>
       <p class="how-outro__body">{t('warm.outro.body')}</p>
-      <a class="how-outro__cta" href={contactHref}>
-        {t('warm.outro.cta')}
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
     </div>
   </div>
 </section>
@@ -465,29 +458,6 @@ const path = [
     line-height: 1.75;
     color: var(--color-bone-2);
     margin: 0 0 36px;
-  }
-
-  .how-outro__cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 28px;
-    border-radius: 999px;
-    background: var(--color-cinnabar);
-    color: #0e0b08;
-    text-decoration: none;
-    font-family: var(--font-body);
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    transition: gap 0.2s ease, background 0.2s ease, transform 0.2s ease;
-  }
-
-  .how-outro__cta:hover {
-    gap: 12px;
-    background: var(--color-cinnabar-soft);
-    transform: translateY(-1px);
   }
 
   /* ============================================================
