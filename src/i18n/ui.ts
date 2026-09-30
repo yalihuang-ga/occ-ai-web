@@ -26,6 +26,7 @@ export const ui = {
     'nav.virtualHuman': '虛擬人',
     'nav.comic': 'AI 漫畫',
     'nav.game': 'AI 遊戲',
+    'nav.agetech': '樂齡數位',
     'nav.contact': '聯絡我們',
     'nav.connect': '聯絡我們',
 
@@ -402,6 +403,122 @@ export const ui = {
     'warm.outro.body':
       '如果你也有感──不管你是品牌、夥伴、還是純粹對這件事有感，展覽結束後，我們可以找個時間喝杯咖啡，或是直接去你的店裡走走，看看這件事在你這裡長什麼樣子。',
     'warm.outro.cta': '聯絡我們',
+
+    // ---- AgeTech / 樂齡數位 (zh-TW only page: /agetech) ----
+    'agetech.hero.eyebrow': '高齡科技產業－樂齡數位共創推動計畫',
+    'agetech.hero.title': '讓長輩們輕鬆生成漫畫日記',
+    'agetech.hero.lead':
+      '我們的「樂齡漫畫日記」讓長輩在熟悉的 LINE 上選擇今天做了什麼，AI 就把它畫成一則四格漫畫，一鍵傳給親朋好友們。',
+    'agetech.hero.seeking':
+      '我們正在尋找一起做服務驗證的樂齡學習中心、社區照顧關懷據點與長照機構，來提供給長輩們更有趣的體驗。',
+    'agetech.hero.cta.call': '打電話給我們',
+    'agetech.hero.cta.mail': '寄 Email 給我們',
+    'agetech.hero.bubble': '今天做了什麼呀？',
+
+    'agetech.flow.title': '長輩該如何操作呢？',
+    'agetech.flow.lead':
+      '全部在熟悉的 LINE 裡完成，不用下載新的 App、不用記帳號密碼。長輩不必打字，用「點」的就能完成一則漫畫日記。以下是實際操作畫面：',
+    'agetech.flow.step1.title': '從 LINE 一鍵開始',
+    'agetech.flow.step1.body':
+      '點一下就進來，不需要輸入電話、密碼或任何個人資料，長輩用得安心。',
+    'agetech.flow.step1.alt':
+      '產品畫面：歡迎頁寫著「點一下下面的大按鈕，就能把今天的故事變成漫畫，念給家人聽」，下方是「用 LINE 開始建立我的回憶錄」大按鈕，並註明不需要輸入電話、密碼或個人資料。',
+    'agetech.flow.step2.title': '選一種方便的方式',
+    'agetech.flow.step2.body':
+      '「用點的」最簡單，選圖卡就好；想拍張照片，或跟阿咪貓用講的也可以，由長輩自己決定。',
+    'agetech.flow.step2.alt':
+      '產品畫面：「今天想怎麼記？」提供三種方式——用點的（最簡單，選圖卡就好）、用拍的（拍張照片或從相簿選）、用講的（直接跟阿咪說今天的事），其中「用點的」被標示為預設選項。',
+    'agetech.flow.step3.title': '大按鈕一步一步點',
+    'agetech.flow.step3.body':
+      '一個畫面只問一件事：今天心情怎麼樣？去了哪裡？跟誰在一起？都是大字大按鈕，點一下就好。',
+    'agetech.flow.step3.alt':
+      '產品畫面：「叔叔，今天心情怎麼樣？」提供高興、平靜、有點累三個大按鈕，「高興」已被點選並打勾，畫面上方標示第 1 步共 2 步。',
+    'agetech.flow.step4.title': '就這樣，看漫畫',
+    'agetech.flow.step4.body':
+      '按下大按鈕，AI 就把今天畫成一則四格漫畫，還可以一鍵傳給家人。',
+    'agetech.flow.step4.alt':
+      '產品畫面：「今天跟誰在一起呀？」提供孫子孫女、兒女、爸媽、老伴、朋友、自己一個人等大按鈕，下方有「讓阿咪幫我想一段」與「就這樣，看漫畫」兩個大按鈕。',
+
+    'agetech.samples.title': '漫畫日記成品',
+    'agetech.samples.lead':
+      '以下都是 AI 實際生成的四格漫畫日記。每天持續生成，完成集章任務，還可以依喜好選擇更多不同畫風哦。',
+    'agetech.samples.item1.caption': '《今天早起去市場買菜》——上市場、遇到鄰居、散步回家的一天。',
+    'agetech.samples.item1.alt':
+      'AI 生成的四格漫畫「今天早起去市場買菜」：一早去市場買菜青菜好新鮮、遇到隔壁陳太太聊了好久、午後散步回家、泡杯茶休息貓咪也在睡午覺。',
+    'agetech.samples.item2.caption': '《爸爸今天在公園的一天》——打太極、下棋、餵麻雀的充實一天。',
+    'agetech.samples.item2.alt':
+      'AI 生成的四格漫畫「爸爸今天在公園的一天」：早上跟大家一起打太極、和老王在榕樹下下棋又贏一盤、坐在椅子上餵麻雀、傍晚慢慢走回家。',
+    'agetech.samples.item3.caption': '《媽媽種的番茄紅了》——頂樓菜園的小小豐收。',
+    'agetech.samples.item3.alt':
+      'AI 生成的四格漫畫「媽媽種的番茄紅了」：早上澆花發現小番茄紅了、摘了一整籃又紅又甜、分一些給鄰居、晚餐煮番茄炒蛋。',
+    'agetech.samples.item4.caption': '《爸媽學會拍照了》——在社區課學會用手機拍照，傳給家人看。',
+    'agetech.samples.item4.alt':
+      'AI 生成的四格漫畫「爸媽學會拍照了」：去社區上課志工教用手機拍照、路邊的花開得漂亮趕快拍下來、巷口遇到一隻好親人的柴犬、晚上把照片傳給家人。',
+
+    'agetech.partner.title': '合作單位零負擔',
+    'agetech.partner.lead':
+      '這是服務驗證，目標是讓長輩零負擔接觸AI新科技，也讓我們能將產品打磨得更好。 長輩使用是免費的，貴單位不需要負擔任何費用，也不需要額外調派人力。',
+    'agetech.partner.yours.title': '貴單位只需要提供',
+    'agetech.partner.yours.1': '一個可以讓長輩坐下來的活動空間以及網路',
+    'agetech.partner.yours.2': '一個方便的時段，依貴單位既有的課程或活動安排',
+    'agetech.partner.yours.3': '幫我們跟長輩說一聲，邀請有興趣的人來參加',
+    'agetech.partner.ours.title': '其餘都由我們負責',
+    'agetech.partner.ours.1': '我們的人到現場，手把手教長輩如何用手機操作',
+    'agetech.partner.ours.2': '帶足現場需要的設備',
+    'agetech.partner.ours.3': '全程陪在長輩旁邊，帶到成功傳出第一則漫畫為止',
+    'agetech.partner.ours.4': '活動後的技術支援與問題處理',
+    'agetech.partner.ours.5': '活動紀錄與成果整理，可提供貴單位留存',
+    'agetech.partner.note': '場次規模與次數依貴單位安排，我們配合您的行事曆。',
+
+    'agetech.value.title': '對貴單位的價值',
+    'agetech.value.1.title': '這將是長輩能帶得走的數位能力',
+    'agetech.value.1.body':
+      '長輩學會的是「在 LINE 上動手記錄自己的生活」這件事，回家可以自己再做一次。',
+    'agetech.value.2.title': '真的會被家人看到',
+    'agetech.value.2.body':
+      '漫畫直接傳進家族群組。長輩得到的是家人的回應，這是最有效的持續動力。',
+    'agetech.value.3.title': '可以展示的活動成果',
+    'agetech.value.3.body':
+      '每一則漫畫都能列印、能放進成果展或社區布告欄，也能作為課程紀錄。',
+    'agetech.value.4.title': '在地實證的參與紀錄',
+    'agetech.value.4.body':
+      '本服務參與台北市電腦商業同業公會主辦的「高齡科技產業－樂齡數位共創推動計畫」，合作單位將列為服務驗證場域。',
+
+    'agetech.about.title': '我們是誰',
+    'agetech.about.body1':
+      '我們是橘子集團原創中心（Gamania Original Content Center）的 AI 產品開發團隊。橘子集團自 1995 年投入數位娛樂開發，累積三十年的內容製作與線上服務營運經驗。',
+    'agetech.about.collaboration':
+      '2026 年，我們與臺北市政府資訊局合作，提供 AI 漫畫工具，供「生成藝術節」競賽活動使用。',
+    'agetech.about.link.news': '市府新聞稿',
+
+    'agetech.a11y.title': '高齡友善設計與個資保護',
+    'agetech.a11y.1.title': '不用輸入任何個資',
+    'agetech.a11y.1.body':
+      '長輩用 LINE 一鍵登入，不需要填寫任何個人機密資訊，讓長輩們用得放心。',
+    'agetech.a11y.2.title': '看得清楚、點得到',
+    'agetech.a11y.2.body':
+      '文字與背景的對比高於一般網頁標準，按鈕放大到手指容易點中，一個畫面只專注操作一件事，不讓長輩分心。',
+    'agetech.a11y.3.title': '唸給長輩聽',
+    'agetech.a11y.3.body':
+      '貓咪會用可以調整速度的國語朗讀，讓視力或聽力不方便的長輩也能理解畫面內容。',
+    'agetech.a11y.4.title': '對接國際無障礙標準',
+    'agetech.a11y.4.body':
+      '設計依據 WCAG 2.1 與歐盟 EN 301 549，並參考 SS 618:2016 等高齡設計建議。',
+    'agetech.a11y.note':
+      '這一頁的字級、對比與按鈕尺寸，用的就是我們的高齡友善設計標準。您現在看到的就是。',
+
+    'agetech.contact.title': '聯絡資訊',
+    'agetech.contact.name.label': '聯絡人',
+    'agetech.contact.name': '黃雅莉',
+    'agetech.contact.role': '遊戲橘子 原創中心',
+    'agetech.contact.phone.label': '行動電話',
+    'agetech.contact.phone': '0978-501-017',
+    'agetech.contact.office.label': '聯絡電話',
+    'agetech.contact.office': '(02)2658-8866 ext.6213',
+    'agetech.contact.mail.label': '電子信箱',
+    'agetech.contact.mail': 'yalihuang@gamania.com',
+
+    'agetech.footer.back': '回 Muztrix 首頁',
 
     // legacy / optional kept
     'lang.switcher.label': '語系',

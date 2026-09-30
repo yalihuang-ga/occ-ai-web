@@ -8,6 +8,10 @@ interface Props {
   description?: string;
   preloadDefaultHeroImages?: boolean;
   preloadHeroImage?: string;
+  /** Page exists in zh-TW only — skip the en/ja hreflang alternates. */
+  singleLocale?: boolean;
+  /** Mobile browser chrome colour; override on light-background pages. */
+  themeColor?: string;
 }
 
 const lang: Lang = getLangFromUrl(Astro.url);
@@ -18,6 +22,8 @@ const {
   description = t('site.description'),
   preloadDefaultHeroImages = true,
   preloadHeroImage,
+  singleLocale = false,
+  themeColor = '#0e0b08',
 } = Astro.props;
 
 // Analytics
@@ -60,9 +66,10 @@ const ogImageUrl = `${SITE}/og-image.png`;
       content="Z9CWY4f2rifiewbQ8F2bKwxqyhSAZV2NiCJXFyro0Zk"
     />
 
-    <!-- hreflang for multilingual SEO -->
+    <!-- hreflang for multilingual SEO.
+         Single-locale pages only advertise zh-TW; the en/ja URLs do not exist. -->
     {
-      (Object.keys(localeUrls) as Lang[]).map((code) => (
+      (singleLocale ? (['zh-TW'] as Lang[]) : (Object.keys(localeUrls) as Lang[])).map((code) => (
         <link
           rel="alternate"
           hreflang={hreflangMap[code]}
@@ -83,11 +90,12 @@ const ogImageUrl = `${SITE}/og-image.png`;
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content={ogLocaleMap[lang]} />
     {
-      (Object.keys(ogLocaleMap) as Lang[])
-        .filter((c) => c !== lang)
-        .map((c) => (
-          <meta property="og:locale:alternate" content={ogLocaleMap[c]} />
-        ))
+      !singleLocale &&
+        (Object.keys(ogLocaleMap) as Lang[])
+          .filter((c) => c !== lang)
+          .map((c) => (
+            <meta property="og:locale:alternate" content={ogLocaleMap[c]} />
+          ))
     }
 
     <!-- Twitter card -->
@@ -113,7 +121,7 @@ const ogImageUrl = `${SITE}/og-image.png`;
     </script>
 
     <!-- Theme color (mobile browser chrome) -->
-    <meta name="theme-color" content="#0e0b08" />
+    <meta name="theme-color" content={themeColor} />
 
     <!-- Preconnect — reduce handshake latency for critical origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

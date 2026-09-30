@@ -6,9 +6,20 @@ import LangSwitcher from './LangSwitcher.astro';
 
 interface Props {
   lang: Lang;
+  /** `light` renders the header for light-background pages (e.g. /agetech). */
+  variant?: 'dark' | 'light';
+  /** Single-locale pages have no translated siblings to switch to. */
+  hideLangSwitcher?: boolean;
+  /** Override the contact CTA target (defaults to the home page anchor). */
+  contactHref?: string;
 }
 
-const { lang } = Astro.props;
+const {
+  lang,
+  variant = 'dark',
+  hideLangSwitcher = false,
+  contactHref,
+} = Astro.props;
 const t = useTranslations(lang);
 
 const localeUrls: Record<Lang, string> = {
@@ -27,12 +38,20 @@ const navItems: NavItem[] = [
   { labelKey: 'nav.virtualHuman', href: getLocalizedPath(lang, 'virtual-human') },
   { labelKey: 'nav.game', href: getLocalizedPath(lang, 'game') },
   { labelKey: 'nav.comic', href: getLocalizedPath(lang, 'comic') },
+  // The AgeTech programme page exists in zh-TW only.
+  ...(lang === 'zh-TW'
+    ? [{ labelKey: 'nav.agetech' as UIKey, href: getLocalizedPath(lang, 'agetech') }]
+    : []),
   { labelKey: 'nav.about', href: `${homeBase}#about` },
 ];
+
+const ctaHref = contactHref ?? `${homeBase}#contact`;
+const glyphStroke = variant === 'light' ? '#2a2420' : 'var(--color-bone)';
 ---
 
 <header
   id="site-header"
+  data-variant={variant}
   class="fixed top-0 left-0 right-0 z-50 px-5 py-5 transition-all duration-500"
   style="background: transparent;"
 >
@@ -40,7 +59,7 @@ const navItems: NavItem[] = [
     class="flex items-center justify-between max-w-[1440px] mx-auto px-5"
   >
     <a href={localeUrls[lang]} class="wordmark">
-      <MuztrixGlyph size={26} />
+      <MuztrixGlyph size={26} stroke={glyphStroke} />
       <span>Muztrix</span>
     </a>
 
@@ -50,9 +69,6 @@ const navItems: NavItem[] = [
           <a
             href={it.href}
             class="text-[12px] font-medium uppercase transition-colors duration-200"
-            style="letter-spacing: 0.16em; color: var(--color-bone-2); text-decoration: none;"
-            onmouseenter="this.style.color='var(--color-cinnabar)'"
-            onmouseleave="this.style.color='var(--color-bone-2)'"
           >
             {t(it.labelKey)}
           </a>
@@ -61,9 +77,9 @@ const navItems: NavItem[] = [
     </nav>
 
     <div class="flex items-center gap-3 sm:gap-5">
-      <LangSwitcher lang={lang} pathname={pathname} />
+      {!hideLangSwitcher && <LangSwitcher lang={lang} pathname={pathname} />}
       <a
-        href={`${homeBase}#contact`}
+        href={ctaHref}
         class="hidden sm:inline-flex shimmer-btn shimmer-btn-primary"
         style="padding: 12px 22px; font-size: 11px;"
       >
@@ -101,7 +117,7 @@ const navItems: NavItem[] = [
         ))
       }
       <a
-        href={`${homeBase}#contact`}
+        href={ctaHref}
         class="mx-mobile-menu__cta shimmer-btn shimmer-btn-primary"
       >
         {t('nav.contact')}
@@ -111,6 +127,19 @@ const navItems: NavItem[] = [
 </header>
 
 <style>
+  /* Desktop nav links — kept in CSS (not inline handlers) so that the
+     light variant below can override them. */
+  .mx-header-nav a {
+    letter-spacing: 0.16em;
+    color: var(--color-bone-2);
+    text-decoration: none;
+  }
+
+  .mx-header-nav a:hover,
+  .mx-header-nav a:focus-visible {
+    color: var(--color-cinnabar);
+  }
+
   .mx-mobile-trigger {
     display: none;
     width: 40px;
@@ -225,18 +254,91 @@ const navItems: NavItem[] = [
   body.mx-mobile-menu-open {
     overflow: hidden;
   }
+
+  /* ============================================================
+     Light variant — for warm-white pages (e.g. /agetech).
+     Colours are chosen for WCAG AA on a #fdfbf7 background:
+     #4a4540 ≈ 9.2:1, #2a2420 ≈ 13.6:1, #c23f00 ≈ 5.1:1.
+     ============================================================ */
+  header[data-variant='light'] .wordmark {
+    color: #2a2420;
+  }
+
+  header[data-variant='light'] .mx-header-nav a {
+    color: #4a4540;
+  }
+
+  header[data-variant='light'] .mx-header-nav a:hover,
+  header[data-variant='light'] .mx-header-nav a:focus-visible {
+    color: #c23f00;
+  }
+
+  header[data-variant='light'] .mx-mobile-trigger {
+    border-color: rgba(42, 36, 32, 0.28);
+  }
+
+  header[data-variant='light'] .mx-mobile-trigger:hover {
+    border-color: #c23f00;
+    background: rgba(194, 63, 0, 0.08);
+  }
+
+  header[data-variant='light'] .mx-mobile-trigger__bar {
+    background: #2a2420;
+    /* Thicker bars stay legible against a light background. */
+    height: 2px;
+  }
+
+  header[data-variant='light'] .mx-mobile-menu {
+    background: rgba(253, 251, 247, 0.97);
+    border-bottom: 1px solid #e5ddd0;
+  }
+
+  header[data-variant='light'] .mx-mobile-menu__link {
+    color: #2a2420;
+    /* Senior-friendly: larger type and a ≥60px tap target. */
+    font-size: 19px;
+    padding: 20px 8px;
+    border-bottom: 1px solid #e5ddd0;
+  }
+
+  header[data-variant='light'] .mx-mobile-menu__link:hover,
+  header[data-variant='light'] .mx-mobile-menu__link:active {
+    color: #c23f00;
+  }
+
+  /* Solid deep orange instead of the dark-page gradient: white text on
+     #c23f00 clears 4.5:1, while #ff5a00 would only reach ~3:1. */
+  header[data-variant='light'] .shimmer-btn-primary {
+    background: #c23f00;
+    border-color: #a63600;
+    box-shadow: 0 2px 8px rgba(42, 36, 32, 0.18);
+  }
+
+  header[data-variant='light'] .shimmer-btn-primary:hover {
+    background: #a63600;
+    box-shadow: 0 4px 14px rgba(42, 36, 32, 0.24);
+  }
 </style>
 
 <script>
   const header = document.getElementById('site-header');
   if (header) {
+    // Scrolled-state colours differ per variant; see the light block in <style>.
+    const isLight = header.dataset.variant === 'light';
+    const scrolledBackground = isLight
+      ? 'rgba(253,251,247,0.94)'
+      : 'rgba(14,11,8,0.78)';
+    const scrolledBorder = isLight
+      ? '1px solid #e5ddd0'
+      : '1px solid var(--bone-line)';
+
     const onScroll = () => {
       if (window.scrollY > 40) {
-        header.style.background = 'rgba(14,11,8,0.78)';
+        header.style.background = scrolledBackground;
         header.style.backdropFilter = 'blur(20px) saturate(140%)';
         (header.style as any).WebkitBackdropFilter =
           'blur(20px) saturate(140%)';
-        header.style.borderBottom = '1px solid var(--bone-line)';
+        header.style.borderBottom = scrolledBorder;
       } else {
         header.style.background = 'transparent';
         header.style.backdropFilter = 'none';

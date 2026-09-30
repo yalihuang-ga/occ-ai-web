@@ -1,0 +1,1106 @@
+---
+/**
+ * 樂齡數位 — validation-site recruitment page body.
+ *
+ * Deliberately server-rendered only (no React island, no framer-motion):
+ * the audience is community-centre staff on older devices, and the page
+ * doubles as living proof of the senior-friendly design claims it makes.
+ * Local light-theme tokens live in the scoped <style> below so that the
+ * site-wide dark `@theme` in global.css is untouched.
+ */
+import { useTranslations } from '../../i18n/utils';
+import AgetechEventGallery from './AgetechEventGallery.astro';
+
+const t = useTranslations('zh-TW');
+
+const TEL_HREF = 'tel:+886978501017';
+const OFFICE_TEL_HREF = 'tel:+886226588866;ext=6213';
+const MAIL_HREF = 'mailto:yalihuang@gamania.com';
+
+/**
+ * 阿咪貓 mascot art, reused from the agetech-comic product itself so the
+ * page previews the exact character seniors will meet. The source PNGs are
+ * drawn on solid white. The hero blends that white into the page and shows
+ * the full image; the contact card uses a small circular frame.
+ */
+const CAT = {
+  smile: '/images/agetech/cat-smile.webp',
+  normal2: '/images/agetech/cat-normal2.webp',
+};
+
+/**
+ * Real product screenshots (cropped/re-encoded from the running app).
+ * They are content, not decoration — each carries a descriptive alt —
+ * and together they show the tap-first flow: the product deliberately
+ * leads with big buttons rather than free speech input.
+ */
+const flowSteps = [
+  {
+    key: '1',
+    title: t('agetech.flow.step1.title'),
+    body: t('agetech.flow.step1.body'),
+    shot: '/images/agetech/flow-1.webp',
+    alt: t('agetech.flow.step1.alt'),
+    width: 748,
+    height: 398,
+  },
+  {
+    key: '2',
+    title: t('agetech.flow.step2.title'),
+    body: t('agetech.flow.step2.body'),
+    shot: '/images/agetech/flow-2.webp',
+    alt: t('agetech.flow.step2.alt'),
+    width: 707,
+    height: 706,
+  },
+  {
+    key: '3',
+    title: t('agetech.flow.step3.title'),
+    body: t('agetech.flow.step3.body'),
+    shot: '/images/agetech/flow-3.webp',
+    alt: t('agetech.flow.step3.alt'),
+    width: 716,
+    height: 758,
+  },
+  {
+    key: '4',
+    title: t('agetech.flow.step4.title'),
+    body: t('agetech.flow.step4.body'),
+    shot: '/images/agetech/flow-4.webp',
+    alt: t('agetech.flow.step4.alt'),
+    width: 744,
+    height: 723,
+  },
+];
+
+/**
+ * Real AI-generated comics (re-encoded from the product's output).
+ * Four different stories; the captions quote each comic's own title.
+ */
+const samples = [
+  {
+    src: '/images/agetech/sample-1.webp',
+    caption: t('agetech.samples.item1.caption'),
+    alt: t('agetech.samples.item1.alt'),
+    width: 760,
+    height: 932,
+  },
+  {
+    src: '/images/agetech/sample-2.webp',
+    caption: t('agetech.samples.item2.caption'),
+    alt: t('agetech.samples.item2.alt'),
+    width: 567,
+    height: 695,
+  },
+  {
+    src: '/images/agetech/sample-3.webp',
+    caption: t('agetech.samples.item3.caption'),
+    alt: t('agetech.samples.item3.alt'),
+    width: 567,
+    height: 695,
+  },
+  {
+    src: '/images/agetech/sample-4.webp',
+    caption: t('agetech.samples.item4.caption'),
+    alt: t('agetech.samples.item4.alt'),
+    width: 567,
+    height: 695,
+  },
+];
+
+const partnerProvides = [
+  t('agetech.partner.yours.1'),
+  t('agetech.partner.yours.2'),
+  t('agetech.partner.yours.3'),
+];
+
+const weProvide = [
+  t('agetech.partner.ours.1'),
+  t('agetech.partner.ours.2'),
+  t('agetech.partner.ours.3'),
+  t('agetech.partner.ours.4'),
+  t('agetech.partner.ours.5'),
+];
+
+const valueItems = [1, 2, 3, 4].map((n) => ({
+  title: t(`agetech.value.${n}.title` as never),
+  body: t(`agetech.value.${n}.body` as never),
+}));
+
+const a11yItems = [1, 2, 3, 4].map((n) => ({
+  title: t(`agetech.a11y.${n}.title` as never),
+  body: t(`agetech.a11y.${n}.body` as never),
+}));
+---
+
+<div class="ag-page">
+  <a href="#ag-main" class="ag-skip">跳到主要內容</a>
+
+  <main id="ag-main">
+  {/* ============ Hero ============ */}
+  <section class="ag-hero">
+    <div class="ag-wrap ag-hero__inner">
+      <div class="ag-hero__copy">
+      <p class="ag-eyebrow">{t('agetech.hero.eyebrow')}</p>
+      <h1 class="ag-h1">{t('agetech.hero.title')}</h1>
+      <p class="ag-lead">{t('agetech.hero.lead')}</p>
+
+      <p class="ag-seeking">{t('agetech.hero.seeking')}</p>
+
+      <div class="ag-cta-row">
+        <a href={TEL_HREF} class="ag-btn ag-btn--primary">
+          <svg class="ag-btn__icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 6.5 6.5l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.5 5.2A2 2 0 0 1 6.5 3Z"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+          {t('agetech.hero.cta.call')}
+        </a>
+        <a href={MAIL_HREF} class="ag-btn ag-btn--secondary">
+          <svg class="ag-btn__icon" viewBox="0 0 24 24" aria-hidden="true">
+            <rect
+              x="3"
+              y="5"
+              width="18"
+              height="14"
+              rx="2"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"></rect>
+            <path
+              d="M3.5 6.5 12 13l8.5-6.5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+          {t('agetech.hero.cta.mail')}
+        </a>
+      </div>
+      </div>
+
+      {/* Decorative mascot with a friendly opening line for seniors. */}
+      <figure class="ag-mascot">
+        <p class="ag-mascot__bubble">{t('agetech.hero.bubble')}</p>
+        <img
+          class="ag-mascot__img"
+          src={CAT.smile}
+          alt=""
+          width="640"
+          height="640"
+          fetchpriority="high"
+        />
+      </figure>
+    </div>
+  </section>
+
+  {/* ============ What seniors actually do ============ */}
+  <section class="ag-section" aria-labelledby="ag-flow-title">
+    <div class="ag-wrap">
+      <h2 class="ag-h2" id="ag-flow-title">{t('agetech.flow.title')}</h2>
+      <p class="ag-section-lead ag-highlight">{t('agetech.flow.lead')}</p>
+
+      <ol class="ag-flow">
+        {
+          flowSteps.map((step) => (
+            <li class="ag-flow__item">
+              <div class="ag-flow__shot">
+                <img
+                  src={step.shot}
+                  alt={step.alt}
+                  width={step.width}
+                  height={step.height}
+                  loading="lazy"
+                />
+              </div>
+              <div class="ag-flow__text">
+                <h3 class="ag-h3">
+                  <span class="ag-flow__num" aria-hidden="true">{step.key}</span>
+                  {step.title}
+                </h3>
+                <p class="ag-body">{step.body}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  {/* ============ Comic samples ============ */}
+  <section class="ag-section ag-section--tint" aria-labelledby="ag-samples-title">
+    <div class="ag-wrap">
+      <h2 class="ag-h2" id="ag-samples-title">{t('agetech.samples.title')}</h2>
+      <p class="ag-section-lead ag-highlight">{t('agetech.samples.lead')}</p>
+
+      <div class="ag-samples">
+        {
+          samples.map((sample) => (
+            <figure class="ag-sample">
+              <img
+                class="ag-sample__img"
+                src={sample.src}
+                alt={sample.alt}
+                width={sample.width}
+                height={sample.height}
+                loading="lazy"
+              />
+              <figcaption class="ag-sample__caption">{sample.caption}</figcaption>
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {/* ============ Zero burden on the partner ============ */}
+  <section class="ag-section" aria-labelledby="ag-partner-title">
+    <div class="ag-wrap">
+      <h2 class="ag-h2" id="ag-partner-title">{t('agetech.partner.title')}</h2>
+      <p class="ag-section-lead ag-highlight">{t('agetech.partner.lead')}</p>
+
+      <div class="ag-split">
+        <div class="ag-split__col ag-split__col--yours">
+          <h3 class="ag-h3">{t('agetech.partner.yours.title')}</h3>
+          <ul class="ag-list">
+            {partnerProvides.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+        <div class="ag-split__col ag-split__col--ours">
+          <h3 class="ag-h3">{t('agetech.partner.ours.title')}</h3>
+          <ul class="ag-list ag-list--check">
+            {weProvide.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      </div>
+
+      <p class="ag-note ag-highlight ag-highlight--center">{t('agetech.partner.note')}</p>
+    </div>
+  </section>
+
+  {/* ============ Value to the centre ============ */}
+  <section class="ag-section ag-section--tint" aria-labelledby="ag-value-title">
+    <div class="ag-wrap">
+      <h2 class="ag-h2" id="ag-value-title">{t('agetech.value.title')}</h2>
+      <div class="ag-cards">
+        {
+          valueItems.map((item) => (
+            <div class="ag-card">
+              <h3 class="ag-h3">{item.title}</h3>
+              <p class="ag-body">{item.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {/* ============ Who we are ============ */}
+  <section class="ag-section" aria-labelledby="ag-about-title">
+    <div class="ag-wrap">
+      <h2 class="ag-h2" id="ag-about-title">{t('agetech.about.title')}</h2>
+      <p class="ag-body ag-body--wide">{t('agetech.about.body1')}</p>
+      <p class="ag-body ag-body--wide">{t('agetech.about.collaboration')}</p>
+      <p class="ag-inline-links">
+        <a href="https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&sms=72544237BBE4C5F6&s=C7FEA6370E24B30B" target="_blank" rel="noopener noreferrer">{t('agetech.about.link.news')}</a>
+      </p>
+      <AgetechEventGallery />
+    </div>
+  </section>
+
+  {/* ============ Senior-friendly design & privacy ============ */}
+  <section class="ag-section ag-section--tint" aria-labelledby="ag-a11y-title">
+    <div class="ag-wrap">
+      <h2 class="ag-h2" id="ag-a11y-title">{t('agetech.a11y.title')}</h2>
+      <div class="ag-cards">
+        {
+          a11yItems.map((item) => (
+            <div class="ag-card">
+              <h3 class="ag-h3">{item.title}</h3>
+              <p class="ag-body">{item.body}</p>
+            </div>
+          ))
+        }
+      </div>
+      <p class="ag-note ag-note--accent">{t('agetech.a11y.note')}</p>
+    </div>
+  </section>
+
+  {/* ============ Contact ============ */}
+  <section class="ag-section ag-contact" id="contact" aria-labelledby="ag-contact-title">
+    <div class="ag-wrap">
+      <h2 class="ag-h2" id="ag-contact-title">{t('agetech.contact.title')}</h2>
+
+      <div class="ag-contact__card">
+        <img
+          class="ag-contact__cat"
+          src={CAT.normal2}
+          alt=""
+          width="640"
+          height="640"
+          loading="lazy"
+        />
+        <p class="ag-contact__who">
+          <span class="ag-contact__label">{t('agetech.contact.name.label')}</span>
+          <strong class="ag-contact__name">{t('agetech.contact.name')}</strong>
+          <span class="ag-contact__role">{t('agetech.contact.role')}</span>
+        </p>
+
+        <a href={TEL_HREF} class="ag-contact__row">
+          <span class="ag-contact__label">{t('agetech.contact.phone.label')}</span>
+          <span class="ag-contact__value">{t('agetech.contact.phone')}</span>
+        </a>
+
+        <a href={OFFICE_TEL_HREF} class="ag-contact__row">
+          <span class="ag-contact__label">{t('agetech.contact.office.label')}</span>
+          <span class="ag-contact__value ag-contact__value--office">{t('agetech.contact.office')}</span>
+        </a>
+
+        <a href={MAIL_HREF} class="ag-contact__row">
+          <span class="ag-contact__label">{t('agetech.contact.mail.label')}</span>
+          <span class="ag-contact__value ag-contact__value--mail">
+            {t('agetech.contact.mail')}
+          </span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  </main>
+
+  {/* Page footer — a sibling of <main>, not a section footer inside it. */}
+  <footer class="ag-footer">
+    <div class="ag-wrap">
+      <a href="/" class="ag-footer__back">{t('agetech.footer.back')}</a>
+      <p class="ag-footer__legal">© {new Date().getFullYear()} Muztrix · Gamania Original Content Center</p>
+    </div>
+  </footer>
+</div>
+
+{/* The site-wide dark body styling lives in BaseLayout; this page is light.
+    Unlayered rules here outrank the Tailwind utility layer on body. */}
+<style is:global>
+  body {
+    background: #fdfbf7;
+    color: #1a1a1a;
+  }
+</style>
+
+<style>
+  /* ============================================================
+     Local light-theme tokens. Contrast against #fdfbf7:
+       --ag-ink       #1a1a1a  16.8:1
+       --ag-ink-2     #4a4540   9.2:1
+       --ag-accent    #c23f00   5.1:1  (and 5.2:1 for white-on-accent)
+     ============================================================ */
+  .ag-page {
+    --ag-bg: #fdfbf7;
+    --ag-bg-tint: #f6f1e8;
+    --ag-card: #ffffff;
+    --ag-ink: #1a1a1a;
+    --ag-ink-2: #4a4540;
+    --ag-accent: #c23f00;
+    --ag-accent-dark: #a63600;
+    --ag-line: #e5ddd0;
+
+    background: var(--ag-bg);
+    color: var(--ag-ink);
+    /* System CJK faces read better at size than the site's Latin body font. */
+    font-family: "Inter", system-ui, "PingFang TC", "Noto Sans TC",
+      "Microsoft JhengHei", sans-serif;
+    font-size: 18px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .ag-wrap {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* ---------- Skip link ---------- */
+  /* Off-screen rather than display:none, so it stays in the tab order. */
+  .ag-skip {
+    position: fixed;
+    left: -9999px;
+    top: 0;
+    z-index: 100;
+    padding: 16px 24px;
+    background: var(--ag-accent);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 0 0 8px 0;
+  }
+
+  .ag-skip:focus {
+    left: 0;
+  }
+
+  /* ---------- Sections ---------- */
+  .ag-hero {
+    /* Clears the fixed site header. */
+    padding: 132px 0 64px;
+    /* Subtle warm glow behind the mascot column; must stay faint enough
+       not to affect any text-contrast figure quoted above. */
+    background: radial-gradient(
+      circle at 84% 32%,
+      #f7eedd 0%,
+      rgba(253, 251, 247, 0) 55%
+    );
+  }
+
+  .ag-hero__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 48px;
+    align-items: center;
+  }
+
+  /* ---------- Hero mascot (阿咪貓) ---------- */
+  .ag-mascot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin: 0;
+  }
+
+  .ag-mascot__bubble {
+    position: relative;
+    margin: 0;
+    padding: 14px 24px;
+    background: var(--ag-card);
+    border: 2px solid var(--ag-line);
+    border-radius: 20px;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--ag-ink);
+    white-space: nowrap;
+  }
+
+  /* Speech-bubble tail: outer triangle draws the border, inner the fill. */
+  .ag-mascot__bubble::before,
+  .ag-mascot__bubble::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-style: solid;
+  }
+
+  .ag-mascot__bubble::before {
+    border-width: 12px 10px 0;
+    border-color: var(--ag-line) transparent transparent;
+  }
+
+  .ag-mascot__bubble::after {
+    border-width: 9px 7.5px 0;
+    border-color: var(--ag-card) transparent transparent;
+  }
+
+  /* Blend the source's white background into the page without clipping ears or whiskers. */
+  .ag-mascot__img {
+    width: 248px;
+    height: 248px;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+  }
+
+
+  .ag-section {
+    padding: 64px 0;
+    border-top: 1px solid var(--ag-line);
+  }
+
+  .ag-section--tint {
+    background: var(--ag-bg-tint);
+  }
+
+  /* ---------- Type scale ---------- */
+  .ag-eyebrow {
+    margin: 0 0 20px;
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 600;
+    color: var(--ag-accent);
+  }
+
+  .ag-h1 {
+    margin: 0 0 24px;
+    font-size: 44px;
+    line-height: 1.25;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: var(--ag-ink);
+  }
+
+  .ag-h2 {
+    margin: 0 0 20px;
+    font-size: 32px;
+    line-height: 1.35;
+    font-weight: 700;
+    color: var(--ag-ink);
+  }
+
+  .ag-h3 {
+    margin: 0 0 10px;
+    font-size: 21px;
+    line-height: 1.45;
+    font-weight: 700;
+    color: var(--ag-ink);
+  }
+
+  .ag-lead {
+    max-width: 34em;
+    margin: 0 0 28px;
+    font-size: 21px;
+    line-height: 1.75;
+    color: var(--ag-ink);
+  }
+
+  .ag-section-lead,
+  .ag-body {
+    max-width: 38em;
+    margin: 0 0 20px;
+    font-size: 18px;
+    line-height: 1.75;
+    color: var(--ag-ink-2);
+  }
+
+  .ag-body--wide {
+    max-width: 42em;
+  }
+
+  .ag-note {
+    max-width: 38em;
+    margin: 28px 0 0;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ag-ink-2);
+  }
+
+  .ag-highlight {
+    font-size: clamp(22px, 2.4vw, 26px);
+    font-weight: 600;
+    color: var(--ag-accent);
+  }
+
+  .ag-highlight--center {
+    max-width: none;
+    text-align: center;
+  }
+
+  .ag-note--accent {
+    padding: 18px 20px;
+    border-left: 4px solid var(--ag-accent);
+    background: var(--ag-card);
+    color: var(--ag-ink);
+    font-weight: 500;
+  }
+
+  .ag-seeking {
+    max-width: 38em;
+    margin: 0 0 32px;
+    padding: 18px 20px;
+    border-left: 4px solid var(--ag-accent);
+    background: var(--ag-card);
+    font-size: 19px;
+    line-height: 1.7;
+    font-weight: 600;
+    color: var(--ag-ink);
+  }
+
+
+  /* ---------- Buttons: ≥60px tall tap targets ---------- */
+  .ag-cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .ag-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 64px;
+    padding: 16px 30px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.3;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .ag-btn__icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  .ag-btn--primary {
+    background: var(--ag-accent);
+    color: #ffffff;
+    border-color: var(--ag-accent);
+  }
+
+  .ag-btn--primary:hover {
+    background: var(--ag-accent-dark);
+    border-color: var(--ag-accent-dark);
+  }
+
+  .ag-btn--secondary {
+    background: var(--ag-card);
+    color: var(--ag-accent);
+    border-color: var(--ag-accent);
+  }
+
+  .ag-btn--secondary:hover {
+    background: #f7ece5;
+    color: var(--ag-accent-dark);
+    border-color: var(--ag-accent-dark);
+  }
+
+  /* ---------- Four-step flow (real product screenshots) ---------- */
+  .ag-flow {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 36px 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: none;
+  }
+
+  .ag-flow__item {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--ag-card);
+    border: 1px solid var(--ag-line);
+    border-radius: 12px;
+  }
+
+  /* Screenshots are near-square but not identical; a fixed square frame
+     with `contain` on the product's own cream keeps the row heights even
+     without cropping any button out of the picture. */
+  .ag-flow__shot {
+    aspect-ratio: 1 / 1;
+    padding: 14px;
+    background: #fbf6ee;
+    border-bottom: 1px solid var(--ag-line);
+  }
+
+  .ag-flow__shot img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .ag-flow__text {
+    padding: 22px 24px 26px;
+  }
+
+  .ag-flow__text .ag-h3 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .ag-flow__num {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    background: var(--ag-accent);
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .ag-flow__item .ag-body {
+    margin-bottom: 0;
+  }
+
+  /* ---------- Samples ---------- */
+  /* Two columns keep each comic wide enough that the text inside its
+     panels stays readable; the natural portrait ratio is preserved
+     because the panel captions are part of the image. */
+  .ag-samples {
+    display: grid;
+    gap: 32px 28px;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 36px 0 0;
+  }
+
+  .ag-sample {
+    margin: 0;
+  }
+
+  .ag-sample__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    border: 1px solid var(--ag-line);
+    background: #ffffff;
+  }
+
+  .ag-sample__caption {
+    margin: 12px 0 0;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ag-ink-2);
+  }
+
+  /* ---------- Two-column split ---------- */
+  .ag-split {
+    display: grid;
+    gap: 22px;
+    grid-template-columns: 1fr 1.25fr;
+    margin: 36px 0 0;
+  }
+
+  .ag-split__col {
+    padding: 28px 26px;
+    border-radius: 12px;
+    background: var(--ag-card);
+    border: 1px solid var(--ag-line);
+  }
+
+  .ag-split__col--ours {
+    border-color: var(--ag-accent);
+    border-width: 2px;
+  }
+
+  .ag-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ag-list li {
+    position: relative;
+    padding: 12px 0 12px 30px;
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--ag-ink);
+    border-bottom: 1px solid var(--ag-line);
+  }
+
+  .ag-list li:last-child {
+    border-bottom: 0;
+  }
+
+  .ag-list li::before {
+    content: "・";
+    position: absolute;
+    left: 4px;
+    color: var(--ag-ink-2);
+  }
+
+  /* Shape as well as colour carries the "we handle it" meaning. */
+  .ag-list--check li::before {
+    content: "✓";
+    left: 2px;
+    font-weight: 700;
+    color: var(--ag-accent);
+  }
+
+  /* ---------- Card grids ---------- */
+  .ag-cards {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 32px 0 0;
+  }
+
+  .ag-card {
+    padding: 26px 24px;
+    background: var(--ag-card);
+    border: 1px solid var(--ag-line);
+    border-radius: 12px;
+  }
+
+  .ag-card .ag-body {
+    margin-bottom: 0;
+  }
+
+  /* ---------- Inline links ---------- */
+  .ag-inline-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 28px;
+    margin: 24px 0 0;
+  }
+
+  .ag-inline-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ag-accent);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+  }
+
+  .ag-inline-links a:hover {
+    color: var(--ag-accent-dark);
+  }
+
+  /* ---------- Contact ---------- */
+  .ag-contact__card {
+    position: relative;
+    max-width: 560px;
+    /* Extra top margin makes room for the mascot peeking over the border. */
+    margin: 56px 0 0;
+    padding: 8px 26px 20px;
+    background: var(--ag-card);
+    border: 2px solid var(--ag-accent);
+    border-radius: 14px;
+  }
+
+  /* Mascot peeking over the card's top-right corner. */
+  .ag-contact__cat {
+    position: absolute;
+    top: -30px;
+    right: 22px;
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    border: 2px solid var(--ag-accent);
+    background: #ffffff;
+    object-fit: cover;
+  }
+
+  .ag-contact__who {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 14px;
+    margin: 0;
+    padding: 22px 96px 18px 0;
+    border-bottom: 1px solid var(--ag-line);
+  }
+
+  .ag-contact__label {
+    display: block;
+    min-width: 76px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ag-ink-2);
+  }
+
+  .ag-contact__name {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--ag-ink);
+  }
+
+  .ag-contact__role {
+    font-size: 17px;
+    color: var(--ag-ink-2);
+  }
+
+  .ag-contact__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 14px;
+    min-height: 68px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--ag-line);
+    text-decoration: none;
+  }
+
+  .ag-contact__row:last-child {
+    border-bottom: 0;
+  }
+
+  .ag-contact__value {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--ag-accent);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
+    /* Long addresses must wrap rather than overflow on narrow phones. */
+    overflow-wrap: anywhere;
+  }
+
+  .ag-contact__value--mail,
+  .ag-contact__value--office {
+    font-size: 21px;
+  }
+
+  .ag-contact__row:hover .ag-contact__value {
+    color: var(--ag-accent-dark);
+  }
+
+  /* ---------- Footer ---------- */
+  .ag-footer {
+    padding: 44px 0 56px;
+    border-top: 1px solid var(--ag-line);
+    background: var(--ag-bg-tint);
+  }
+
+
+  .ag-footer__back {
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ag-accent);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+  }
+
+  .ag-footer__legal {
+    margin: 14px 0 0;
+    font-size: 15px;
+    color: var(--ag-ink-2);
+  }
+
+  /* ---------- Focus visibility (keyboard users) ---------- */
+  .ag-page a:focus-visible,
+  .ag-page button:focus-visible {
+    outline: 3px solid var(--ag-accent);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    .ag-flow,
+    .ag-samples,
+    .ag-split,
+    .ag-cards {
+      grid-template-columns: 1fr;
+    }
+
+    /* Mascot stacks below the copy and shrinks; the CTA stays above it. */
+    .ag-hero__inner {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .ag-mascot__img {
+      width: 190px;
+      height: 190px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .ag-hero {
+      padding: 112px 0 48px;
+    }
+
+    .ag-section {
+      padding: 48px 0;
+    }
+
+    .ag-h1 {
+      font-size: 33px;
+    }
+
+    .ag-h2 {
+      font-size: 26px;
+    }
+
+    .ag-lead {
+      font-size: 19px;
+    }
+
+    /* Full-width buttons are easier to hit than side-by-side ones. */
+    .ag-cta-row {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .ag-btn {
+      width: 100%;
+    }
+
+    .ag-contact__name {
+      font-size: 25px;
+    }
+
+    .ag-contact__value {
+      font-size: 23px;
+    }
+
+    .ag-contact__value--mail,
+    .ag-contact__value--office {
+      font-size: 19px;
+    }
+  }
+
+  /* ---------- Print: staff print this for their supervisor ---------- */
+  @media print {
+    .ag-page {
+      background: #ffffff;
+      color: #000000;
+      font-size: 12pt;
+    }
+
+    .ag-section,
+    .ag-section--tint,
+    .ag-footer {
+      background: #ffffff;
+      padding: 18pt 0;
+    }
+
+    .ag-hero {
+      padding: 0 0 18pt;
+    }
+
+    /* Decorative mascots waste ink; the flow screenshots and comic
+       samples are content and stay. */
+    .ag-mascot,
+    .ag-contact__cat {
+      display: none;
+    }
+
+    .ag-contact__card {
+      margin-top: 18pt;
+    }
+
+    .ag-contact__who {
+      padding-right: 0;
+    }
+
+    .ag-card,
+    .ag-split__col,
+    .ag-flow__item,
+    .ag-contact__card {
+      break-inside: avoid;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ag-page * {
+      transition: none !important;
+    }
+  }
+</style>

@@ -1,0 +1,84 @@
+---
+/**
+ * 樂齡數位 (/agetech) — zh-TW only.
+ *
+ * Recruitment page for AgeTech Comic Diary validation-site partners
+ * (樂齡學習中心 / 社區照顧關懷據點 / 長照機構). Rendered light-themed on
+ * purpose, and without the dark CTAFooter, because the page itself has to
+ * demonstrate the senior-friendly design standard it describes.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../sections/Header.astro';
+import AgetechRecruit from '../sections/AgetechRecruit.astro';
+
+const title = '樂齡漫畫日記 — 尋找服務驗證場域 | Muztrix';
+const description =
+  '讓長輩在 LINE 上點一點大按鈕，記錄今天做了什麼，AI 就畫成四格漫畫傳給家人。橘子集團原創內容中心尋找樂齡學習中心、社區照顧關懷據點與長照機構合作服務驗證，場地與時段之外全部由我們負責。';
+
+const SITE = 'https://ai.gamaniaocc.org';
+const PAGE_URL = `${SITE}/agetech`;
+
+const webpageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: title,
+  description,
+  url: PAGE_URL,
+  inLanguage: 'zh-Hant-TW',
+  isPartOf: {
+    '@type': 'WebSite',
+    name: 'Muztrix',
+    url: SITE,
+  },
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: '樂齡漫畫日記',
+  serviceType: '高齡友善 AI 內容服務',
+  description:
+    '長輩透過 LINE 以大按鈕點選記錄當天生活（也可拍照或口說），AI 生成四格漫畫並以慢速國/台語朗讀，可一鍵分享至 LINE 家族群組。',
+  provider: {
+    '@type': 'Organization',
+    name: 'Muztrix — Gamania Original Content Center',
+    url: SITE,
+  },
+  areaServed: { '@type': 'Country', name: 'Taiwan' },
+  audience: {
+    '@type': 'Audience',
+    audienceType: '樂齡學習中心、社區照顧關懷據點、長照機構',
+  },
+  url: PAGE_URL,
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  preloadDefaultHeroImages={false}
+  singleLocale
+  themeColor="#fdfbf7"
+>
+  <Fragment slot="head-extras">
+    <script type="application/ld+json" set:html={JSON.stringify(webpageSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  </Fragment>
+
+  <div class="mx-root">
+    <Header
+      lang="zh-TW"
+      variant="light"
+      hideLangSwitcher
+      contactHref="#contact"
+    />
+    <AgetechRecruit />
+  </div>
+</BaseLayout>
+
+<style>
+  .mx-root {
+    container-type: inline-size;
+    container-name: page;
+  }
+</style>
