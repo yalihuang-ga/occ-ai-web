@@ -517,6 +517,8 @@ export const ui = {
     'agetech.contact.office': '(02)2658-8866 ext.6213',
     'agetech.contact.mail.label': '電子信箱',
     'agetech.contact.mail': 'yalihuang@gamania.com',
+    'agetech.contact.line.label': 'LINE',
+    'agetech.contact.line.alt': '黃雅莉的 LINE QR Code',
 
     'agetech.footer.back': '回 Muztrix 首頁',
 

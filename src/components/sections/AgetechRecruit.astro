@@ -385,6 +385,20 @@ const a11yItems = [1, 2, 3, 4].map((n) => ({
             {t('agetech.contact.mail')}
           </span>
         </a>
+
+        <div class="ag-contact__line">
+          <span class="ag-contact__label">{t('agetech.contact.line.label')}</span>
+          <div class="ag-contact__line-content">
+            <img
+              class="ag-contact__line-qr"
+              src="/images/agetech/contact-line-qr.jpg"
+              alt={t('agetech.contact.line.alt')}
+              width="900"
+              height="900"
+              loading="lazy"
+            />
+          </div>
+        </div>
       </div>
 
     </div>
@@ -995,6 +1009,27 @@ const a11yItems = [1, 2, 3, 4].map((n) => ({
     color: var(--ag-accent-dark);
   }
 
+  .ag-contact__line {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 20px 0 4px;
+  }
+
+  .ag-contact__line-content {
+    display: flex;
+    align-items: center;
+  }
+
+  .ag-contact__line-qr {
+    display: block;
+    width: 112px;
+    height: 112px;
+    flex: none;
+    border: 1px solid var(--ag-line);
+    border-radius: 8px;
+  }
+
   /* ---------- Footer ---------- */
   .ag-footer {
     padding: 44px 0 56px;
@@ -1100,6 +1135,20 @@ const a11yItems = [1, 2, 3, 4].map((n) => ({
     .ag-contact__value--mail,
     .ag-contact__value--office {
       font-size: 19px;
+    }
+
+    .ag-contact__line,
+    .ag-contact__line-content {
+      flex-direction: column;
+    }
+
+    .ag-contact__line-content {
+      align-items: flex-start;
+    }
+
+    .ag-contact__line-qr {
+      width: 120px;
+      height: 120px;
     }
   }
 
