@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ai.gamaniaocc.org/sitemap-index.xml
+Sitemap: https://ai.gamaniaocc.com/sitemap-index.xml

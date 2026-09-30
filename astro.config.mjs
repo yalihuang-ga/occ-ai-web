@@ -7,7 +7,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://ai.gamaniaocc.org',
+  site: 'https://ai.gamaniaocc.com',
 
   i18n: {
     defaultLocale: 'zh-TW',
