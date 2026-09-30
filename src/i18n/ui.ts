@@ -413,7 +413,7 @@ export const ui = {
       '我們正在尋找一起做服務驗證的樂齡學習中心、社區照顧關懷據點與長照機構，來提供給長輩們更有趣的體驗。',
     'agetech.hero.cta.call': '打電話給我們',
     'agetech.hero.cta.mail': '寄 Email 給我們',
-    'agetech.hero.bubble': '今天做了什麼呀？',
+    'agetech.hero.bubble': '把今天發生的事變成漫畫吧！',
 
     'agetech.flow.title': '長輩該如何操作呢？',
     'agetech.flow.lead':
