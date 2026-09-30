@@ -199,6 +199,24 @@ const a11yItems = [1, 2, 3, 4].map((n) => ({
     </div>
   </section>
 
+  {/* ============ Product video ============ */}
+  <section class="ag-video-section" aria-label="樂齡漫畫日記宣傳影片">
+    <div class="ag-wrap">
+      <video
+        class="ag-video"
+        controls
+        playsinline
+        preload="metadata"
+        poster="/images/agetech/muztrix-ai-agetech-video-cover.png"
+        aria-label="樂齡漫畫日記宣傳影片"
+      >
+        <source src="/video/muztrix-ai-agetech.mp4" type="video/mp4" />
+        您的瀏覽器無法播放此影片。
+        <a href="/video/muztrix-ai-agetech.mp4">開啟影片</a>
+      </video>
+    </div>
+  </section>
+
   {/* ============ What seniors actually do ============ */}
   <section class="ag-section" aria-labelledby="ag-flow-title">
     <div class="ag-wrap">
@@ -525,6 +543,23 @@ const a11yItems = [1, 2, 3, 4].map((n) => ({
 
   .ag-section--tint {
     background: var(--ag-bg-tint);
+  }
+
+  /* ---------- Standalone product video ---------- */
+  .ag-video-section {
+    padding: 56px 0;
+    border-top: 1px solid var(--ag-line);
+  }
+
+  .ag-video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 1px solid var(--ag-line);
+    border-radius: 14px;
+    background: var(--ag-bg-tint);
+    box-shadow: 0 12px 32px rgba(90, 70, 50, 0.12);
+    object-fit: cover;
   }
 
   /* ---------- Type scale ---------- */
@@ -1018,6 +1053,14 @@ const a11yItems = [1, 2, 3, 4].map((n) => ({
 
     .ag-section {
       padding: 48px 0;
+    }
+
+    .ag-video-section {
+      padding: 40px 0;
+    }
+
+    .ag-video {
+      border-radius: 10px;
     }
 
     .ag-h1 {
