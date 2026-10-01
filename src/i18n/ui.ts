@@ -279,29 +279,6 @@ export const ui = {
 
     'comic.cta': '立即體驗',
 
-    // ---- Game (§ 03) ----
-    'game.section': '§ 03 — AI Game',
-    'game.title':
-      '讓 <span class="title-accent-cinnabar">NPC</span> 真正<span class="title-accent-gold">活著</span>',
-    'game.body':
-      '每個 NPC 都有自己的記憶、目標與情緒。玩家的選擇會留下痕跡──下一次見面，他們記得你做過什麼。',
-    'game.p1': '行為樹 + LLM 混合決策',
-    'game.p2': '自適應難度，依玩家風格調整',
-    'game.p3': '自動化測試覆蓋 95% 對話分支',
-
-    'game.npc1.name': 'Vendor — 李大娘',
-    'game.npc1.state': '巡邏 · 警戒度 0.3',
-    'game.npc1.mood': '鎮定',
-    'game.npc2.name': 'Mage — 元 ─ 七',
-    'game.npc2.state': '對話 · 玩家 #4F3A',
-    'game.npc2.mood': '友善',
-    'game.npc3.name': 'Boss — 黯 影',
-    'game.npc3.state': '戰鬥準備 · 階段 2',
-    'game.npc3.mood': '挑釁',
-    'game.memory1': '玩家在第三章節向我承諾要回來。',
-    'game.memory2': '玩家上次選擇了「正義」結局。',
-    'game.memory3': '玩家偏好戰鬥前先談判。',
-
     // ---- CTA / Footer (§ 06) ----
     'cta.section': '§ 06 — Contact',
     'cta.title':
@@ -779,28 +756,6 @@ export const ui = {
 
     'comic.cta': 'Try It',
 
-    'game.section': '§ 03 — AI Game',
-    'game.title':
-      '<span class="title-accent-cinnabar">NPCs</span> that <span class="title-accent-gold">truly live</span>',
-    'game.body':
-      "Every NPC has memory, goals, and emotion. Player choices leave traces — next time you meet, they remember what you did.",
-    'game.p1': 'Behavior tree + LLM hybrid decisions',
-    'game.p2': 'Adaptive difficulty by play style',
-    'game.p3': 'Automated test coverage on 95% of dialogue branches',
-
-    'game.npc1.name': 'Vendor — Madame Li',
-    'game.npc1.state': 'PATROL · alert 0.3',
-    'game.npc1.mood': 'Calm',
-    'game.npc2.name': 'Mage — Yuan Seven',
-    'game.npc2.state': 'DIALOGUE · player #4F3A',
-    'game.npc2.mood': 'Friendly',
-    'game.npc3.name': 'Boss — The Umbra',
-    'game.npc3.state': 'COMBAT_PREP · phase 2',
-    'game.npc3.mood': 'Provocative',
-    'game.memory1': 'In chapter three, the player promised to return.',
-    'game.memory2': 'Last time, they chose the "Just" ending.',
-    'game.memory3': 'The player prefers to negotiate before combat.',
-
     'cta.section': '§ 06 — Contact',
     'cta.title':
       'Connect with <span class="title-accent-cinnabar">human-centered AI</span> — <span class="title-accent-gold">ignite new business experiences</span>.',
@@ -1156,28 +1111,6 @@ export const ui = {
     'comic.04.m4': 'コミュニティ公開',
 
     'comic.cta': '試してみる',
-
-    'game.section': '§ 03 — AIゲーム',
-    'game.title':
-      '本当に<span class="title-accent-gold">生きている</span><span class="title-accent-cinnabar">NPC</span>',
-    'game.body':
-      '各NPCは記憶・目標・感情を持ちます。プレイヤーの選択は痕跡を残し──次に会うとき、彼らはあなたを覚えています。',
-    'game.p1': 'ビヘイビアツリー + LLM ハイブリッド意思決定',
-    'game.p2': 'プレイヤーのスタイルに合わせた適応的難易度',
-    'game.p3': '対話分岐の95%を自動テスト',
-
-    'game.npc1.name': 'Vendor — 李さん',
-    'game.npc1.state': 'PATROL · 警戒度 0.3',
-    'game.npc1.mood': '冷静',
-    'game.npc2.name': 'Mage — 元 · 七',
-    'game.npc2.state': 'DIALOGUE · プレイヤー #4F3A',
-    'game.npc2.mood': '友好的',
-    'game.npc3.name': 'Boss — 黯影',
-    'game.npc3.state': 'COMBAT_PREP · フェーズ 2',
-    'game.npc3.mood': '挑発的',
-    'game.memory1': '第三章でプレイヤーは戻ると約束した。',
-    'game.memory2': '前回プレイヤーは「正義」エンディングを選んだ。',
-    'game.memory3': 'プレイヤーは戦闘前に交渉を好む。',
 
     'cta.section': '§ 06 — Contact',
     'cta.title':

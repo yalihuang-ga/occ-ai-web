@@ -1,0 +1,1122 @@
+---
+/**
+ * AI Game (/game) — Agentic Game Engine.
+ *
+ * Vision page for the in-development agentic game engine platform
+ * (generate → autonomous playtest → self-repair & optimize → self-publish,
+ * human approval at the gate). Copy is deliberately rich: the page's job is
+ * to attract collaborators, studios and game-dev partnership inquiries while
+ * the platform itself is still being built.
+ *
+ * Static by design — no React islands. The "console" blocks are styled divs;
+ * terminal output stays in English across locales (it mimics tool output),
+ * surrounding copy is localized inline per the ComicFlow convention.
+ */
+import type { Lang } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const copy = {
+  'zh-TW': {
+    heroEyebrow: 'AGENTIC GAME ENGINE',
+    heroStatus: '平台開發中 · 招募合作夥伴',
+    heroTitle:
+      '不只<span class="title-accent-gold">生成</span>，還幫你<span class="title-accent-cinnabar">上架</span>',
+    heroDesc:
+      'AI 已經生成得出遊戲，但從「生成出來」到「真正上架」之間，還隔著測試、修正、優化與合規——這幾步目前全靠人工。我們正在打造一款把自主代理放進核心的遊戲引擎：生成之後，它自己測、自己修、自己把上架準備做完，人只在核准節點出現。',
+    heroCtaPrimary: '洽談合作',
+    heroCtaSecondary: '看看引擎怎麼運作',
+    heroBadges: [
+      { title: '自主測試', desc: '代理自己玩，找出卡關、死結與數值破口，每個缺陷附可重播序列。' },
+      { title: '自主修正與優化', desc: '依重播定位修復、自動回歸，同步檢查效能、資產與敘事一致性。' },
+      { title: '自主上架', desc: '分級自評、AI 內容揭露、內容憑證與多通路打包，一次備齊待核准。' },
+    ],
+    painSection: '§ 01 — The Gap',
+    painTitle: '從「可以編譯」到「可以出貨」，<br />中間是一整段人工',
+    painIntro:
+      '生成式 AI 正快速滲透遊戲開發，AI 生成的內容已從實驗走向量產——但工具鏈沒有跟上。現在的 AI 工具全部停在「幫你編輯」，驗證標準是「沒有錯誤」，而不是「能玩、能上架」。',
+    pains: [
+      {
+        title: '生成得出來，卻玩不了',
+        desc: '公開評測顯示，即使最強的程式代理，在真實引擎中交付「完整可玩」專案的成功率也不到一半。能跑，不等於能玩。',
+      },
+      {
+        title: '一半時間花在人工整合',
+        desc: '實證研究指出，「AI 輔助」開發的時間有超過一半仍花在人工整合——把生成結果對齊、接起來、收拾乾淨。',
+      },
+      {
+        title: '測試是人力黑洞',
+        desc: '每次改版的回歸測試依賴人工試玩；卡牆、死結、數值破口，往往上線後才被玩家發現。',
+      },
+      {
+        title: '上架合規全靠人工',
+        desc: '分級自評、AI 內容揭露、多平台打包規格與內容來源證明，逐項人工整理——出錯就是審核延遲，甚至下架。',
+      },
+    ],
+    pipelineSection: '§ 02 — Three Autonomous Agents',
+    pipelineTitle:
+      '引擎自己走完<span class="title-accent-cinnabar">測試、修正、上架</span>的每一步',
+    pipelineIntro:
+      '迴路閉合在引擎內：生成、測試、修正、再測、上架在同一個執行時裡完成。中間沒有人搬檔案、沒有人切工具。',
+    flowNodes: ['生成', '自主測試', '自主修正與優化', '自主上架', '人工核准'],
+    flowHumanNote: '唯一需要人的節點',
+    agents: [
+      {
+        num: '01',
+        label: 'AUTONOMOUS PLAYTEST',
+        title: '自主測試',
+        desc: '引擎以批次無頭模式同時啟動數百個遊戲實例，代理自主探索每一條路徑：回報不可達關卡、死結、數值破口、感知型缺陷與效能熱點。每個缺陷都附一段可一鍵重播的操作序列——不是「好像有問題」，而是「按這裡重現」。',
+        tags: ['批次無頭玩測', '可達性分析', '缺陷自動分群'],
+      },
+      {
+        num: '02',
+        label: 'SELF-REPAIR & OPTIMIZE',
+        title: '自主修正與優化',
+        desc: '依重播序列定位缺陷、提出修復，修復後自動回歸，確認沒有引入新問題。提交當下同步檢查效能預算（貼圖、面數、粒子）、資產一致性與敘事矛盾——角色狀態、時間線、道具屬性，跨檔案也逃不掉。',
+        tags: ['重播定位', '自動回歸', '敘事一致性檢查'],
+      },
+      {
+        num: '03',
+        label: 'SELF-PUBLISH',
+        title: '自主上架',
+        desc: '自動產出分級自評、AI 內容揭露與內容來源憑證，依目標通路打包並推送到測試通道。所有文件與修改都是草稿，附完整證據鏈，等人核准——責任仍在人，但準備工作不再是人。',
+        tags: ['合規文件自動化', '多通路打包', '證據鏈完整保留'],
+      },
+    ],
+    coreSection: '§ 03 — Engine Core',
+    coreTitle: '為代理<span class="title-accent-gold">重新設計</span>的引擎核心',
+    coreIntro:
+      '現有引擎是為「一個人坐在編輯器前」設計的：狀態藏在編輯器裡、隨機性不可控、一次只能開一個實例。代理要的剛好相反。我們以成熟的開源引擎為基底進行核心改造，維持專案格式完全相容，第一版聚焦四項能力。',
+    cores: [
+      {
+        title: '決定性模擬',
+        desc: '固定時間步、可控隨機種子、輸入序列可錄可放。同一顆種子跑一萬次結果一致——缺陷才能百分之百重現。',
+      },
+      {
+        title: '狀態快照與內省',
+        desc: '任一時間點都能序列化完整遊戲狀態並比對差異。代理讀的是語意狀態，不是對著截圖用猜的。',
+      },
+      {
+        title: '批次無頭執行',
+        desc: '剝除渲染、共用資產，一個程序同時跑數百個實例，讓玩測以規模進行。',
+      },
+      {
+        title: '交易式編輯',
+        desc: '每個代理操作都是原子交易：可整批接受、整批撤回、輸出差異。代理動了什麼，一目了然。',
+      },
+    ],
+    coreLocalTitle: '地端優先的模型路由',
+    coreLocalDesc:
+      '工作室最敏感的資產是未發行的專案。模型路由層支援地端開源模型推論，依成本、延遲與機敏度自動選模；未公開專案可全程不出境，雲端 API 是選項而非前提。',
+    principleSection: '§ 04 — Principles',
+    principleTitle: '三個設計原則',
+    principles: [
+      {
+        title: '驗證標準是「能上架」',
+        desc: '沒有錯誤不算完成。通不過玩測、通不過效能預算、通不過合規檢核，引擎就不放行。',
+      },
+      {
+        title: '迴路閉合在引擎內',
+        desc: '生成、測試、修正、再測、上架在同一個執行時完成，不搬檔案、不切工具。',
+      },
+      {
+        title: '人只在核准節點出現',
+        desc: '所有自動產出的修改與文件皆為草稿，引擎提供完整證據鏈；核准的是人，責任也在人。',
+      },
+    ],
+    joinSection: '§ 05 — Work in Progress',
+    joinTitle: '平台還在打造中，<br />而這正是加入的最好時機',
+    joinBody:
+      '我們不是在發表一個完成品，而是在公開一個正在成形的方向：引擎核心改造與自主測試代理正在開發中，自主修正與上架代理緊接在後。如果這個方向也讓你眼睛一亮——不論你想一起打造它，還是想用它做出你的遊戲——我們都想和你聊聊。',
+    joinCards: [
+      {
+        title: '遊戲開發者與工作室',
+        desc: '成為早期實證夥伴，用真實專案一起驗證自主測試與修正能力，直接影響功能的優先順序。',
+      },
+      {
+        title: '工程師與研究者',
+        desc: '對代理式玩測、決定性模擬、引擎工具鏈有興趣，想把最新研究做成真的能出貨的產品。',
+      },
+      {
+        title: '遊戲開發合作',
+        desc: '想用 AI 加速自家遊戲的製作與發行，或探索共同開發、內容合作的可能。',
+      },
+    ],
+    joinCta: '來信洽談',
+  },
+  en: {
+    heroEyebrow: 'AGENTIC GAME ENGINE',
+    heroStatus: 'IN DEVELOPMENT · LOOKING FOR PARTNERS',
+    heroTitle:
+      'Beyond <span class="title-accent-gold">generation</span> — we get you <span class="title-accent-cinnabar">shipped</span>',
+    heroDesc:
+      'AI can already generate games. But between “generated” and “actually shipped” sit testing, fixing, optimization and compliance — all still done by hand. We are building a game engine with autonomous agents at its core: after generation, it tests itself, repairs itself, and prepares its own release. Humans appear only at the approval gate.',
+    heroCtaPrimary: 'Talk to us',
+    heroCtaSecondary: 'See how it works',
+    heroBadges: [
+      { title: 'Autonomous playtest', desc: 'Agents play the game themselves, finding stuck spots, deadlocks and balance breaches — every defect ships with a replay.' },
+      { title: 'Self-repair & optimize', desc: 'Replay-guided fixes with automatic regression, plus performance, asset and narrative consistency checks.' },
+      { title: 'Self-publish', desc: 'Rating self-assessment, AI content disclosure, provenance credentials and multi-channel packaging — drafted and ready for approval.' },
+    ],
+    painSection: '§ 01 — The Gap',
+    painTitle: 'From “it compiles” to “it ships” —<br />everything in between is manual',
+    painIntro:
+      'Generative AI is sweeping through game development, and AI-generated content has moved from experiment to volume production — but the toolchain hasn’t kept up. Today’s AI tools all stop at “helping you edit”, where the bar is “no errors”, not “playable and shippable”.',
+    pains: [
+      {
+        title: 'Generated, but not playable',
+        desc: 'Public benchmarks show even the strongest coding agents deliver fully playable projects in a real engine less than half the time. Running isn’t playing.',
+      },
+      {
+        title: 'Half the time goes to manual integration',
+        desc: 'Empirical studies find more than half of “AI-assisted” development time is still spent manually integrating, aligning and cleaning up generated output.',
+      },
+      {
+        title: 'Testing is a labor sink',
+        desc: 'Regression testing still means humans replaying the game after every change; stuck walls, deadlocks and balance breaches surface only after players find them.',
+      },
+      {
+        title: 'Store compliance is all manual',
+        desc: 'Rating self-assessments, AI content disclosures, per-platform packaging specs and content provenance — compiled by hand, where one mistake means review delays or delisting.',
+      },
+    ],
+    pipelineSection: '§ 02 — Three Autonomous Agents',
+    pipelineTitle:
+      'The engine walks every step from <span class="title-accent-cinnabar">test to fix to release</span> itself',
+    pipelineIntro:
+      'The loop closes inside the engine: generate, test, fix, retest and publish all happen in one runtime. No one moves files between tools.',
+    flowNodes: ['Generate', 'Autonomous playtest', 'Self-repair & optimize', 'Self-publish', 'Human approval'],
+    flowHumanNote: 'the only human node',
+    agents: [
+      {
+        num: '01',
+        label: 'AUTONOMOUS PLAYTEST',
+        title: 'Autonomous playtest',
+        desc: 'The engine launches hundreds of headless game instances in batch while agents explore every path — reporting unreachable levels, deadlocks, balance breaches, perceptual bugs and performance hotspots. Every defect comes with a one-click replayable input sequence: not “something seems off”, but “press here to reproduce”.',
+        tags: ['Batch headless playtest', 'Reachability analysis', 'Automatic defect clustering'],
+      },
+      {
+        num: '02',
+        label: 'SELF-REPAIR & OPTIMIZE',
+        title: 'Self-repair & optimize',
+        desc: 'Replays pinpoint each defect; the engine proposes a fix and runs automatic regression to confirm nothing new broke. On every commit it also checks performance budgets (textures, polygons, particles), asset consistency and narrative contradictions — character state, timelines, item attributes, across every file.',
+        tags: ['Replay-guided debugging', 'Automatic regression', 'Narrative consistency checks'],
+      },
+      {
+        num: '03',
+        label: 'SELF-PUBLISH',
+        title: 'Self-publish',
+        desc: 'The engine drafts the rating self-assessment, AI content disclosure and content provenance credentials, then packages per target channel and pushes to a test track. Every document and change stays a draft with a full evidence chain, awaiting approval — responsibility stays human; the paperwork no longer does.',
+        tags: ['Automated compliance docs', 'Multi-channel packaging', 'Full evidence chain'],
+      },
+    ],
+    coreSection: '§ 03 — Engine Core',
+    coreTitle: 'An engine core <span class="title-accent-gold">redesigned</span> for agents',
+    coreIntro:
+      'Existing engines were designed for one person sitting at an editor: state hidden in the editor, uncontrolled randomness, one instance at a time. Agents need the exact opposite. We are rebuilding the core on a mature open-source engine, keeping full project-format compatibility, with four capabilities in version one.',
+    cores: [
+      {
+        title: 'Deterministic simulation',
+        desc: 'Fixed timestep, controlled random seeds, recordable and replayable input. The same seed gives the same result ten thousand runs in a row — that’s what makes defects reproducible.',
+      },
+      {
+        title: 'State snapshots & introspection',
+        desc: 'Serialize the full game state at any tick and diff it. Agents read semantic state instead of guessing from screenshots.',
+      },
+      {
+        title: 'Batch headless execution',
+        desc: 'Rendering stripped, assets shared: hundreds of instances in one process, so playtesting happens at scale.',
+      },
+      {
+        title: 'Transactional editing',
+        desc: 'Every agent operation is an atomic transaction — accept in bulk, revert in bulk, diff everything. What the agent touched is always visible.',
+      },
+    ],
+    coreLocalTitle: 'Local-first model routing',
+    coreLocalDesc:
+      'A studio’s most sensitive asset is its unreleased project. The model-routing layer supports on-premise open-model inference, choosing models by cost, latency and sensitivity; unreleased projects never have to leave the building — cloud APIs are an option, not a prerequisite.',
+    principleSection: '§ 04 — Principles',
+    principleTitle: 'Three design principles',
+    principles: [
+      {
+        title: 'The bar is “shippable”',
+        desc: '“No errors” isn’t done. If it fails the playtest, the performance budget or the compliance checks, the engine doesn’t let it through.',
+      },
+      {
+        title: 'The loop closes inside the engine',
+        desc: 'Generate, test, fix, retest and publish in one runtime — no file shuffling, no tool switching.',
+      },
+      {
+        title: 'Humans appear only at approval',
+        desc: 'Every automated change and document is a draft with a full evidence chain. Humans approve; humans stay responsible.',
+      },
+    ],
+    joinSection: '§ 05 — Work in Progress',
+    joinTitle: 'The platform is still being built —<br />which is exactly the best time to join',
+    joinBody:
+      'We’re not unveiling a finished product; we’re opening up a direction that is taking shape. The engine-core rework and the autonomous playtest agent are in development, with the repair and publish agents next. If this direction lights you up too — whether you want to help build it or use it to ship your own game — we’d love to talk.',
+    joinCards: [
+      {
+        title: 'Game developers & studios',
+        desc: 'Become an early validation partner: test autonomous playtesting and repair on real projects, and directly shape the feature roadmap.',
+      },
+      {
+        title: 'Engineers & researchers',
+        desc: 'Into agentic playtesting, deterministic simulation or engine toolchains — and want to turn fresh research into a product that actually ships.',
+      },
+      {
+        title: 'Game-dev partnerships',
+        desc: 'Accelerate your own game’s production and release with AI, or explore co-development and content collaborations.',
+      },
+    ],
+    joinCta: 'Get in touch',
+  },
+  ja: {
+    heroEyebrow: 'AGENTIC GAME ENGINE',
+    heroStatus: '開発中 · パートナー募集',
+    heroTitle:
+      '<span class="title-accent-gold">生成</span>だけじゃない、<span class="title-accent-cinnabar">リリース</span>まで',
+    heroDesc:
+      'AIはすでにゲームを生成できます。しかし「生成できた」と「本当にリリースできた」の間には、テスト・修正・最適化・コンプライアンスが横たわり、現状はすべて人手です。私たちは自律エージェントをコアに組み込んだゲームエンジンを開発しています。生成の後、エンジン自身がテストし、修正し、リリース準備まで整える——人は承認の場面にだけ現れます。',
+    heroCtaPrimary: 'お問い合わせ',
+    heroCtaSecondary: '仕組みを見る',
+    heroBadges: [
+      { title: '自律テスト', desc: 'エージェントが自らプレイし、詰み・デッドロック・バランス崩壊を発見。全欠陥にリプレイ付き。' },
+      { title: '自律修正・最適化', desc: 'リプレイで特定して修復、自動回帰。性能・アセット・物語の一貫性も同時に検査。' },
+      { title: '自律リリース', desc: 'レーティング自己評価、AI開示、来歴証明、マルチチャネルパッケージをドラフトで一括準備。' },
+    ],
+    painSection: '§ 01 — The Gap',
+    painTitle: '「コンパイルできる」から「出荷できる」まで、<br />その間はすべて人手',
+    painIntro:
+      '生成AIはゲーム開発に急速に浸透し、AI生成コンテンツは実験から量産の段階へ移りました。しかしツールチェーンは追いついていません。今のAIツールはすべて「編集を手伝う」止まり——基準は「エラーがない」であり、「遊べる・リリースできる」ではないのです。',
+    pains: [
+      {
+        title: '生成できても、遊べない',
+        desc: '公開ベンチマークでは、最強クラスのコーディングエージェントでも、実エンジンで「完全に遊べる」プロジェクトを届けられる成功率は半分未満。動くことと遊べることは別物です。',
+      },
+      {
+        title: '時間の半分は人手の統合作業',
+        desc: '実証研究によれば、「AI支援」開発の時間の半分以上は、生成結果を人手で統合・整列・後片付けすることに費やされています。',
+      },
+      {
+        title: 'テストは人手のブラックホール',
+        desc: '改版のたびの回帰テストは人のプレイ頼み。壁抜け・デッドロック・バランス崩壊は、リリース後にプレイヤーが見つけることも珍しくありません。',
+      },
+      {
+        title: 'ストア対応はすべて手作業',
+        desc: 'レーティング自己評価、AIコンテンツ開示、プラットフォーム別パッケージ仕様、来歴証明——一つずつ人手で整え、ミスは審査遅延や取り下げに直結します。',
+      },
+    ],
+    pipelineSection: '§ 02 — Three Autonomous Agents',
+    pipelineTitle:
+      '<span class="title-accent-cinnabar">テスト・修正・リリース</span>まで、エンジンが自ら歩き切る',
+    pipelineIntro:
+      'ループはエンジンの中で閉じます。生成・テスト・修正・再テスト・リリースが同一ランタイムで完結し、人がファイルを運ぶことも、ツールを切り替えることもありません。',
+    flowNodes: ['生成', '自律テスト', '自律修正・最適化', '自律リリース', '人の承認'],
+    flowHumanNote: '人が関わる唯一のノード',
+    agents: [
+      {
+        num: '01',
+        label: 'AUTONOMOUS PLAYTEST',
+        title: '自律テスト',
+        desc: 'エンジンはバッチ・ヘッドレスモードで数百のゲームインスタンスを同時起動し、エージェントがあらゆる経路を自律探索。到達不能なレベル、デッドロック、バランス崩壊、知覚系バグ、性能ホットスポットを報告します。全欠陥にワンクリックで再生できる入力シーケンス付き——「何かおかしい気がする」ではなく「ここを押せば再現する」。',
+        tags: ['バッチ・ヘッドレステスト', '到達可能性分析', '欠陥の自動クラスタリング'],
+      },
+      {
+        num: '02',
+        label: 'SELF-REPAIR & OPTIMIZE',
+        title: '自律修正・最適化',
+        desc: 'リプレイで欠陥を特定して修復を提案し、修復後は自動回帰で新たな問題がないことを確認。コミット時に性能予算（テクスチャ・ポリゴン・パーティクル）、アセット一貫性、物語の矛盾——キャラクター状態、タイムライン、アイテム属性——もファイル横断で検査します。',
+        tags: ['リプレイによる特定', '自動回帰', '物語の一貫性検査'],
+      },
+      {
+        num: '03',
+        label: 'SELF-PUBLISH',
+        title: '自律リリース',
+        desc: 'レーティング自己評価、AIコンテンツ開示、コンテンツ来歴証明を自動生成し、ターゲットチャネルごとにパッケージしてテストトラックへプッシュ。すべての文書と変更は証拠チェーン付きのドラフトとして承認を待ちます——責任は人に、事務作業はエンジンに。',
+        tags: ['コンプライアンス文書の自動化', 'マルチチャネルパッケージ', '証拠チェーンの完全保持'],
+      },
+    ],
+    coreSection: '§ 03 — Engine Core',
+    coreTitle: 'エージェントのために<span class="title-accent-gold">再設計</span>したエンジンコア',
+    coreIntro:
+      '既存のエンジンは「一人がエディタの前に座る」前提で設計されています。状態はエディタの中に隠れ、乱数は制御できず、インスタンスは一度に一つ。エージェントが必要とするのは正反対です。成熟したオープンソースエンジンを基盤にコアを改造し、プロジェクト形式の完全互換を保ちながら、第一版では四つの能力に集中します。',
+    cores: [
+      {
+        title: '決定論的シミュレーション',
+        desc: '固定タイムステップ、制御可能な乱数シード、記録・再生できる入力。同じシードなら一万回走らせても同じ結果——だから欠陥を確実に再現できます。',
+      },
+      {
+        title: '状態スナップショットと内省',
+        desc: '任意のティックで完全なゲーム状態をシリアライズして差分比較。エージェントが読むのは意味のある状態であり、スクリーンショットからの推測ではありません。',
+      },
+      {
+        title: 'バッチ・ヘッドレス実行',
+        desc: 'レンダリングを剥がしアセットを共有、一つのプロセスで数百インスタンスを同時実行。テストをスケールさせます。',
+      },
+      {
+        title: 'トランザクション編集',
+        desc: 'エージェントの操作はすべてアトミックなトランザクション。一括承認・一括取り消し・差分出力。エージェントが何を触ったか、常に見えます。',
+      },
+    ],
+    coreLocalTitle: 'ローカル優先のモデルルーティング',
+    coreLocalDesc:
+      'スタジオの最も機微な資産は未発表のプロジェクトです。モデルルーティング層はオンプレミスのオープンモデル推論に対応し、コスト・レイテンシ・機微度で自動選択。未公開プロジェクトは一切外に出さずに完結でき、クラウドAPIは前提ではなく選択肢です。',
+    principleSection: '§ 04 — Principles',
+    principleTitle: '三つの設計原則',
+    principles: [
+      {
+        title: '基準は「リリースできる」',
+        desc: '「エラーがない」は完成ではありません。テストに通らない、性能予算を超える、コンプライアンス検査に落ちる——その場合エンジンは通しません。',
+      },
+      {
+        title: 'ループはエンジン内で閉じる',
+        desc: '生成・テスト・修正・再テスト・リリースを同一ランタイムで。ファイルの持ち運びも、ツールの切り替えもなし。',
+      },
+      {
+        title: '人は承認の場面にだけ現れる',
+        desc: '自動生成された変更と文書はすべてドラフトで、完全な証拠チェーン付き。承認するのは人、責任を持つのも人です。',
+      },
+    ],
+    joinSection: '§ 05 — Work in Progress',
+    joinTitle: 'プラットフォームはまだ建設中——<br />だからこそ、今が参加の好機',
+    joinBody:
+      '私たちが公開しているのは完成品ではなく、いま形になりつつある方向性です。エンジンコアの改造と自律テストエージェントを開発中で、修正・リリースエージェントが続きます。この方向にピンと来たなら——一緒に作りたい方も、これで自分のゲームを作りたい方も——ぜひお話ししましょう。',
+    joinCards: [
+      {
+        title: 'ゲーム開発者・スタジオ',
+        desc: '早期検証パートナーとして、実プロジェクトで自律テストと修正能力を一緒に検証し、機能の優先順位に直接影響を。',
+      },
+      {
+        title: 'エンジニア・研究者',
+        desc: 'エージェントによるプレイテスト、決定論的シミュレーション、エンジンツールチェーンに興味があり、最新研究を本当に出荷できる製品にしたい方。',
+      },
+      {
+        title: 'ゲーム開発パートナーシップ',
+        desc: 'AIで自社ゲームの制作とリリースを加速したい、あるいは共同開発・コンテンツ協業の可能性を探りたい方。',
+      },
+    ],
+    joinCta: 'メールで相談する',
+  },
+} as const;
+
+const c = copy[lang];
+
+/* Terminal mocks — intentionally English in every locale (tool output). */
+const consoles = [
+  {
+    cmd: 'engine playtest --headless --instances 200',
+    lines: [
+      { kind: 'run', text: 'exploring 200 instances · path coverage 94%' },
+      { kind: 'err', text: '[L2] platform gap unreachable — replay #0417' },
+      { kind: 'err', text: '[L2] dash × wall-corner collision lock — replay #0988' },
+      { kind: 'err', text: '[L3] boss clear-rate 8% — balance breach' },
+      { kind: 'ok', text: '3 defects reported · each with replayable input sequence' },
+    ],
+  },
+  {
+    cmd: 'engine repair --from-replays --regress',
+    lines: [
+      { kind: 'ok', text: 'fix: raise L2 platform +12px → regression passed' },
+      { kind: 'ok', text: 'fix: rebuild wall-corner collision shape → regression passed' },
+      { kind: 'ok', text: 'balance: boss HP 300 → 220 · clear-rate 8% → 45%' },
+      { kind: 'run', text: 'perf: L3 particle count over budget → auto-tiered' },
+      { kind: 'warn', text: 'narrative: "last night" vs same-day timeline → flagged for review' },
+    ],
+  },
+  {
+    cmd: 'engine publish --channels steam,cloud --dry-run',
+    lines: [
+      { kind: 'ok', text: 'rating self-assessment → draft ready' },
+      { kind: 'ok', text: 'AI content disclosure (pre-generated / live-generated) → draft ready' },
+      { kind: 'ok', text: 'content provenance credentials → signed' },
+      { kind: 'run', text: 'build: desktop package + cloud container → test channel' },
+      { kind: 'wait', text: 'awaiting human approval …' },
+    ],
+  },
+] as const;
+
+const glyphFor = (kind: string) =>
+  kind === 'err' ? '✗' : kind === 'warn' ? '⚠' : kind === 'wait' ? '…' : kind === 'run' ? '▸' : '✓';
+---
+
+<section id="game" class="ge mx-section">
+  <!-- ============ Hero ============ -->
+  <div class="ge-hero">
+    <div class="ge-hero-bg" aria-hidden="true"></div>
+    <div class="ge-inner ge-hero-inner">
+      <div class="ge-hero-eyebrow-row">
+        <span class="eyebrow">{c.heroEyebrow}</span>
+        <span class="ge-status"><span class="ge-status-dot" aria-hidden="true"></span>{c.heroStatus}</span>
+      </div>
+      <h1 class="h-display ge-hero-title" set:html={c.heroTitle} />
+      <p class="body-lg-v2 ge-hero-desc">{c.heroDesc}</p>
+      <div class="ge-hero-ctas">
+        <a href="#contact" class="shimmer-btn shimmer-btn-primary ge-cta-main">{c.heroCtaPrimary}</a>
+        <a href="#pipeline" class="shimmer-btn shimmer-btn-glass ge-cta-sub">{c.heroCtaSecondary}</a>
+      </div>
+      <div class="ge-hero-badges">
+        {
+          c.heroBadges.map((b, i) => (
+            <div class="ge-hero-badge">
+              <span class="ge-hero-badge-num">{String(i + 1).padStart(2, '0')}</span>
+              <h3 class="ge-hero-badge-title">{b.title}</h3>
+              <p class="ge-hero-badge-desc">{b.desc}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ § 01 Pain ============ -->
+  <div class="ge-block">
+    <div class="ge-inner">
+      <div class="ge-section-head">
+        <span class="num-tag">{c.painSection}</span>
+        <span class="hairline" style="flex:1;"></span>
+      </div>
+      <h2 class="h1-display ge-block-title" set:html={c.painTitle} />
+      <p class="body-lg-v2 ge-block-intro">{c.painIntro}</p>
+      <div class="ge-pain-grid">
+        {
+          c.pains.map((p, i) => (
+            <div class="ge-pain-card">
+              <span class="ge-pain-index">{String(i + 1).padStart(2, '0')}</span>
+              <h3 class="ge-card-title">{p.title}</h3>
+              <p class="ge-card-desc">{p.desc}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ § 02 Pipeline ============ -->
+  <div class="ge-block ge-block--tint" id="pipeline">
+    <div class="ge-inner">
+      <div class="ge-section-head">
+        <span class="num-tag">{c.pipelineSection}</span>
+        <span class="hairline" style="flex:1;"></span>
+      </div>
+      <h2 class="h1-display ge-block-title" set:html={c.pipelineTitle} />
+      <p class="body-lg-v2 ge-block-intro">{c.pipelineIntro}</p>
+
+      <!-- Flow rail -->
+      <div class="ge-flow" role="list">
+        {
+          c.flowNodes.map((n, i) => (
+            <>
+              <div
+                class:list={['ge-flow-node', i === c.flowNodes.length - 1 && 'ge-flow-node--human']}
+                role="listitem"
+              >
+                <span class="ge-flow-node-label">{n}</span>
+                {i === c.flowNodes.length - 1 && <span class="ge-flow-node-note">{c.flowHumanNote}</span>}
+              </div>
+              {i < c.flowNodes.length - 1 && <span class="ge-flow-arrow" aria-hidden="true">→</span>}
+            </>
+          ))
+        }
+      </div>
+
+      <!-- Agent detail rows -->
+      <div class="ge-agents">
+        {
+          c.agents.map((a, i) => (
+            <div class="ge-agent">
+              <div class="ge-agent-copy">
+                <div class="ge-agent-head">
+                  <span class="ge-agent-num">{a.num}</span>
+                  <span class="ge-agent-label">{a.label}</span>
+                </div>
+                <h3 class="h3-display ge-agent-title">{a.title}</h3>
+                <p class="ge-card-desc">{a.desc}</p>
+                <div class="ge-agent-tags">
+                  {a.tags.map((tag) => (
+                    <span class="solution-tag">
+                      <span class="solution-tag-dot" />
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div class="ge-console" aria-hidden="true">
+                <div class="ge-console-bar">
+                  <span class="ge-console-dot" />
+                  <span class="ge-console-dot" />
+                  <span class="ge-console-dot" />
+                </div>
+                <div class="ge-console-body">
+                  <div class="ge-console-line ge-console-line--cmd">
+                    <span class="ge-console-prompt">$</span> {consoles[i].cmd}
+                  </div>
+                  {consoles[i].lines.map((l) => (
+                    <div class:list={['ge-console-line', `ge-console-line--${l.kind}`]}>
+                      <span class="ge-console-glyph">{glyphFor(l.kind)}</span> {l.text}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ § 03 Engine core ============ -->
+  <div class="ge-block">
+    <div class="ge-inner">
+      <div class="ge-section-head">
+        <span class="num-tag">{c.coreSection}</span>
+        <span class="hairline" style="flex:1;"></span>
+      </div>
+      <h2 class="h1-display ge-block-title" set:html={c.coreTitle} />
+      <p class="body-lg-v2 ge-block-intro">{c.coreIntro}</p>
+      <div class="ge-core-grid">
+        {
+          c.cores.map((f) => (
+            <div class="ge-core-card">
+              <h3 class="ge-card-title">{f.title}</h3>
+              <p class="ge-card-desc">{f.desc}</p>
+            </div>
+          ))
+        }
+      </div>
+      <div class="ge-core-local">
+        <div class="ge-core-local-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
+        </div>
+        <div>
+          <h3 class="ge-card-title">{c.coreLocalTitle}</h3>
+          <p class="ge-card-desc">{c.coreLocalDesc}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ § 04 Principles ============ -->
+  <div class="ge-block ge-block--tint">
+    <div class="ge-inner">
+      <div class="ge-section-head">
+        <span class="num-tag">{c.principleSection}</span>
+        <span class="hairline" style="flex:1;"></span>
+      </div>
+      <h2 class="h1-display ge-block-title">{c.principleTitle}</h2>
+      <div class="ge-principles">
+        {
+          c.principles.map((p, i) => (
+            <div class="ge-principle">
+              <span class="ge-principle-num">{String(i + 1).padStart(2, '0')}</span>
+              <div>
+                <h3 class="ge-card-title">{p.title}</h3>
+                <p class="ge-card-desc">{p.desc}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ § 05 Join ============ -->
+  <div class="ge-block ge-join">
+    <div class="ge-inner">
+      <div class="ge-section-head">
+        <span class="num-tag">{c.joinSection}</span>
+        <span class="hairline" style="flex:1;"></span>
+      </div>
+      <h2 class="h1-display ge-block-title" set:html={c.joinTitle} />
+      <p class="body-lg-v2 ge-block-intro">{c.joinBody}</p>
+      <div class="ge-join-grid">
+        {
+          c.joinCards.map((card) => (
+            <div class="ge-join-card">
+              <h3 class="ge-card-title">{card.title}</h3>
+              <p class="ge-card-desc">{card.desc}</p>
+            </div>
+          ))
+        }
+      </div>
+      <div class="ge-join-cta">
+        <a href="#contact" class="shimmer-btn shimmer-btn-primary ge-cta-main">{c.joinCta}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ge {
+    background: var(--color-ink);
+    color: var(--color-bone);
+  }
+  .ge-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ---------- Hero ---------- */
+  .ge-hero {
+    position: relative;
+    padding: 180px 48px 110px;
+    overflow: hidden;
+  }
+  .ge-hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 55% at 70% 0%, rgba(255, 90, 31, 0.14), transparent 65%),
+      radial-gradient(ellipse 60% 45% at 15% 20%, rgba(201, 162, 94, 0.08), transparent 60%),
+      linear-gradient(
+        to right,
+        transparent 0,
+        transparent calc(100% / 6 - 1px),
+        rgba(237, 230, 216, 0.04) calc(100% / 6 - 1px),
+        rgba(237, 230, 216, 0.04) calc(100% / 6)
+      );
+    background-size: 100% 100%, 100% 100%, calc(100% / 6) 100%;
+    pointer-events: none;
+  }
+  .ge-hero-eyebrow-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-bottom: 36px;
+  }
+  .ge-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--color-gold);
+    border: 1px solid rgba(201, 162, 94, 0.35);
+    border-radius: 999px;
+    padding: 7px 16px;
+    background: rgba(201, 162, 94, 0.06);
+  }
+  .ge-status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-gold);
+    animation: ge-pulse 2.2s ease-in-out infinite;
+  }
+  @keyframes ge-pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(201, 162, 94, 0.5); }
+    50% { opacity: 0.55; box-shadow: 0 0 0 5px rgba(201, 162, 94, 0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ge-status-dot { animation: none; }
+  }
+  .ge-hero-title {
+    margin: 0 0 32px;
+    max-width: 20ch;
+    text-wrap: balance;
+  }
+  .ge-hero-desc {
+    max-width: 46em;
+    margin: 0 0 44px;
+    text-wrap: pretty;
+  }
+  .ge-hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-bottom: 88px;
+  }
+  .ge-cta-main {
+    padding: 22px 40px;
+    font-size: 17px;
+  }
+  .ge-cta-sub {
+    padding: 22px 36px;
+    font-size: 16px;
+  }
+  .ge-hero-badges {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--bone-line);
+    border: 1px solid var(--bone-line);
+  }
+  .ge-hero-badge {
+    background: var(--color-ink);
+    padding: 30px 28px 32px;
+  }
+  .ge-hero-badge-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--color-cinnabar);
+  }
+  .ge-hero-badge-title {
+    font-family: var(--font-headline);
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--color-bone);
+    margin: 12px 0 10px;
+  }
+  .ge-hero-badge-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--color-bone-2);
+    margin: 0;
+  }
+
+  /* ---------- Shared block scaffolding ---------- */
+  .ge-block {
+    padding: 130px 48px;
+  }
+  .ge-block--tint {
+    background: linear-gradient(180deg, rgba(255, 90, 31, 0.035), transparent 30%),
+      #0a0805;
+  }
+  .ge-section-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 44px;
+  }
+  .ge-block-title {
+    margin: 0 0 28px;
+    max-width: 24ch;
+    text-wrap: balance;
+  }
+  .ge-block-intro {
+    max-width: 44em;
+    margin: 0 0 64px;
+    text-wrap: pretty;
+  }
+  .ge-card-title {
+    font-family: var(--font-headline);
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--color-bone);
+    margin: 0 0 12px;
+    line-height: 1.4;
+  }
+  .ge-card-desc {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--color-bone-2);
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  /* ---------- § 01 Pain ---------- */
+  .ge-pain-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+  .ge-pain-card {
+    border: 1px solid var(--bone-line);
+    padding: 34px 32px 36px;
+    background: rgba(237, 230, 216, 0.015);
+    transition: border-color 0.3s;
+  }
+  .ge-pain-card:hover {
+    border-color: rgba(255, 90, 31, 0.4);
+  }
+  .ge-pain-index {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--color-cinnabar);
+    margin-bottom: 16px;
+  }
+
+  /* ---------- § 02 Flow rail ---------- */
+  .ge-flow {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 96px;
+  }
+  .ge-flow-node {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    border: 1px solid var(--bone-line);
+    padding: 16px 22px;
+    background: rgba(237, 230, 216, 0.02);
+  }
+  .ge-flow-node-label {
+    font-family: var(--font-headline);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--color-bone);
+    white-space: nowrap;
+  }
+  .ge-flow-node--human {
+    border-color: rgba(201, 162, 94, 0.55);
+    background: rgba(201, 162, 94, 0.07);
+  }
+  .ge-flow-node--human .ge-flow-node-label {
+    color: var(--color-gold);
+  }
+  .ge-flow-node-note {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: rgba(201, 162, 94, 0.75);
+    white-space: nowrap;
+  }
+  .ge-flow-arrow {
+    align-self: center;
+    color: var(--color-cinnabar);
+    font-size: 15px;
+  }
+
+  /* ---------- § 02 Agent rows ---------- */
+  .ge-agents {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+  }
+  .ge-agent {
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: 72px;
+    align-items: center;
+  }
+  .ge-agent:nth-child(even) .ge-agent-copy {
+    order: 2;
+  }
+  .ge-agent-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .ge-agent-num {
+    font-family: var(--font-headline);
+    font-weight: 200;
+    font-size: 44px;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 90, 31, 0.65);
+  }
+  .ge-agent-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--color-bone-3);
+  }
+  .ge-agent-title {
+    margin: 0 0 18px;
+    color: var(--color-bone);
+  }
+  .ge-agent-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 24px;
+  }
+
+  /* Console mock */
+  .ge-console {
+    border: 1px solid var(--bone-line);
+    border-radius: 10px;
+    background: #0c0a07;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+  }
+  .ge-console-bar {
+    display: flex;
+    gap: 7px;
+    padding: 13px 16px;
+    border-bottom: 1px solid var(--bone-line);
+    background: rgba(237, 230, 216, 0.025);
+  }
+  .ge-console-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(237, 230, 216, 0.14);
+  }
+  .ge-console-body {
+    padding: 22px 24px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+  }
+  .ge-console-line {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    line-height: 1.55;
+    letter-spacing: 0.01em;
+    color: var(--color-bone-2);
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+  }
+  .ge-console-glyph,
+  .ge-console-prompt {
+    flex: none;
+    width: 14px;
+  }
+  .ge-console-line--cmd {
+    color: var(--color-bone);
+    margin-bottom: 6px;
+  }
+  .ge-console-prompt {
+    color: var(--color-cinnabar);
+  }
+  .ge-console-line--err .ge-console-glyph { color: var(--color-cinnabar); }
+  .ge-console-line--warn .ge-console-glyph { color: var(--color-gold); }
+  .ge-console-line--warn { color: rgba(201, 162, 94, 0.9); }
+  .ge-console-line--ok .ge-console-glyph { color: #7fae7a; }
+  .ge-console-line--run .ge-console-glyph { color: var(--color-bone-3); }
+  .ge-console-line--wait { color: var(--color-bone-3); font-style: italic; }
+
+  /* ---------- § 03 Engine core ---------- */
+  .ge-core-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--bone-line);
+    border: 1px solid var(--bone-line);
+    margin-bottom: 28px;
+  }
+  .ge-core-card {
+    background: var(--color-ink);
+    padding: 38px 36px 40px;
+  }
+  .ge-core-local {
+    display: flex;
+    gap: 26px;
+    align-items: flex-start;
+    border: 1px solid rgba(201, 162, 94, 0.35);
+    background: rgba(201, 162, 94, 0.05);
+    padding: 34px 36px;
+  }
+  .ge-core-local-icon {
+    flex: none;
+    color: var(--color-gold);
+    margin-top: 2px;
+  }
+
+  /* ---------- § 04 Principles ---------- */
+  .ge-principles {
+    display: flex;
+    flex-direction: column;
+  }
+  .ge-principle {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 36px;
+    padding: 40px 0;
+    border-top: 1px solid var(--bone-line);
+  }
+  .ge-principle:last-child {
+    border-bottom: 1px solid var(--bone-line);
+  }
+  .ge-principle-num {
+    font-family: var(--font-headline);
+    font-weight: 200;
+    font-size: 56px;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(201, 162, 94, 0.5);
+  }
+  .ge-principle .ge-card-title {
+    font-size: 21px;
+  }
+  .ge-principle .ge-card-desc {
+    max-width: 52em;
+  }
+
+  /* ---------- § 05 Join ---------- */
+  .ge-join {
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 100%, rgba(255, 90, 31, 0.1), transparent 65%),
+      var(--color-ink);
+    padding-bottom: 150px;
+  }
+  .ge-join-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-bottom: 64px;
+  }
+  .ge-join-card {
+    border: 1px solid var(--bone-line);
+    padding: 34px 30px 36px;
+    background: rgba(237, 230, 216, 0.015);
+    transition: border-color 0.3s;
+  }
+  .ge-join-card:hover {
+    border-color: rgba(255, 90, 31, 0.4);
+  }
+  .ge-join-cta {
+    display: flex;
+  }
+
+  /* ---------- Responsive ---------- */
+  @container page (max-width: 1024px) {
+    .ge-agent {
+      grid-template-columns: 1fr !important;
+      gap: 40px !important;
+    }
+    .ge-agent:nth-child(even) .ge-agent-copy {
+      order: 0;
+    }
+  }
+  @container page (max-width: 900px) {
+    .ge-hero {
+      padding: 150px 28px 80px;
+    }
+    .ge-block {
+      padding: 90px 28px;
+    }
+    .ge-hero-badges {
+      grid-template-columns: 1fr;
+    }
+    .ge-pain-grid,
+    .ge-core-grid,
+    .ge-join-grid {
+      grid-template-columns: 1fr !important;
+    }
+    .ge-principle {
+      grid-template-columns: 1fr;
+      gap: 14px;
+      padding: 32px 0;
+    }
+    .ge-principle-num {
+      font-size: 40px;
+    }
+    .ge-flow {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .ge-flow-arrow {
+      transform: rotate(90deg);
+      align-self: flex-start;
+      margin-left: 24px;
+    }
+    .ge-agents {
+      gap: 72px;
+    }
+    .ge-console-body {
+      padding: 18px 16px 20px;
+    }
+    .ge-console-line {
+      font-size: 11.5px;
+    }
+  }
+</style>

@@ -1,7 +1,15 @@
 ---
+/**
+ * AI Game (/game) — Agentic Game Engine vision page.
+ *
+ * The platform is in active development; this page pitches the direction
+ * (generate → autonomous playtest → self-repair → self-publish) and recruits
+ * collaborators / game-dev partnership inquiries. Copy lives in
+ * sections/GameEngine.astro.
+ */
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../sections/Header.astro';
-import Game from '../sections/Game.astro';
+import GameEngine from '../sections/GameEngine.astro';
 import CTAFooter from '../sections/CTAFooter.astro';
 import type { Lang } from '../../i18n/ui';
 
@@ -13,26 +21,50 @@ const { lang } = Astro.props;
 
 const seo = {
   'zh-TW': {
-    title: 'AI 遊戲開發 | 三消關卡設計與 AI 任務生成 | Muztrix',
-    description: '結合 AI 自動化關卡設計與任務生成的三消遊戲開發工具。降低製作門檻、加速內容迭代，讓劇情、任務與 NPC 互動隨玩家行為動態演化。',
+    title: 'Agentic Game Engine — 不只生成，還幫你上架 | Muztrix',
+    description:
+      '我們正在打造把自主代理放進核心的遊戲引擎：AI 生成遊戲後，引擎自主測試、自主修正優化、自主完成上架準備，人只在核准節點出現。平台開發中，歡迎遊戲開發者、工作室與研究者洽談合作。',
   },
   en: {
-    title: 'AI Game Development | Match-3 Level Design & AI Quest Generation | Muztrix',
-    description: 'AI-driven match-3 game toolkit with automated level design and adaptive quest generation. Faster iteration, lower production cost, and NPCs that respond to player behaviour.',
+    title: 'Agentic Game Engine — Beyond Generation, We Get You Shipped | Muztrix',
+    description:
+      'We are building a game engine with autonomous agents at its core: after AI generates a game, the engine playtests, repairs, optimizes and prepares the release itself — humans appear only at approval. In development; developers, studios and researchers welcome.',
   },
   ja: {
-    title: 'AIゲーム開発 | マッチ3レベルデザインとAIクエスト生成 | Muztrix',
-    description: 'AIによるレベル自動設計とクエスト生成を備えたマッチ3ゲーム開発ツール。制作コストを抑えつつ高速イテレーションを実現し、NPCがプレイヤーの行動に応じて進化します。',
+    title: 'Agentic Game Engine — 生成だけじゃない、リリースまで | Muztrix',
+    description:
+      '自律エージェントをコアに組み込んだゲームエンジンを開発中。AIがゲームを生成した後、エンジン自身がテスト・修正・最適化・リリース準備を行い、人は承認の場面にだけ現れます。開発者・スタジオ・研究者のご連絡を歓迎します。',
   },
 };
 
 const { title, description } = seo[lang];
+
+const SITE = 'https://ai.gamaniaocc.com';
+const pagePath = lang === 'zh-TW' ? '/game' : `/${lang}/game`;
+
+const webpageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: title,
+  description,
+  url: `${SITE}${pagePath}`,
+  inLanguage: lang === 'zh-TW' ? 'zh-Hant-TW' : lang === 'ja' ? 'ja-JP' : 'en',
+  isPartOf: {
+    '@type': 'WebSite',
+    name: 'Muztrix',
+    url: SITE,
+  },
+};
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} preloadDefaultHeroImages={false}>
+  <Fragment slot="head-extras">
+    <script type="application/ld+json" set:html={JSON.stringify(webpageSchema)} />
+  </Fragment>
+
   <div class="mx-root">
     <Header lang={lang} />
-    <Game lang={lang} />
+    <GameEngine lang={lang} />
     <CTAFooter lang={lang} />
   </div>
 </BaseLayout>
