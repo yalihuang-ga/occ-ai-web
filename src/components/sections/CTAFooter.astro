@@ -14,6 +14,10 @@ const productLinks = [
   { href: getLocalizedPath(lang, 'virtual-human'), label: t('footer.col1.i1') },
   { href: getLocalizedPath(lang, 'comic'), label: t('footer.col1.i2') },
   { href: getLocalizedPath(lang, 'game'), label: t('footer.col1.i3') },
+  // 樂齡數位 is zh-TW only — no en/ja routes exist, so hide it there.
+  ...(lang === 'zh-TW'
+    ? [{ href: getLocalizedPath(lang, 'agetech'), label: t('nav.agetech') }]
+    : []),
 ] as const;
 
 const relatedLinks = [
