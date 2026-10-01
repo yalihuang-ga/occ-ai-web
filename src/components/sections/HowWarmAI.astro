@@ -35,27 +35,6 @@ const layers = [
     icon: 'heart',
   },
 ];
-
-const path = [
-  {
-    tag: t('warm.path.step1.tag'),
-    title: t('warm.path.step1.title'),
-    body: t('warm.path.step1.body'),
-    state: 'done' as const,
-  },
-  {
-    tag: t('warm.path.step2.tag'),
-    title: t('warm.path.step2.title'),
-    body: t('warm.path.step2.body'),
-    state: 'active' as const,
-  },
-  {
-    tag: t('warm.path.step3.tag'),
-    title: t('warm.path.step3.title'),
-    body: t('warm.path.step3.body'),
-    state: 'next' as const,
-  },
-];
 ---
 
 <section class="how-warm" aria-labelledby="how-warm-title">
@@ -104,38 +83,6 @@ const path = [
         </li>
       ))}
     </ul>
-
-    <div class="how-path">
-      <header class="how-path__head">
-        <span class="how-path__eyebrow">{t('warm.path.eyebrow')}</span>
-        <h3 class="how-path__title" set:html={t('warm.path.title')} />
-      </header>
-
-      <ol class="how-path__steps" role="list">
-        {path.map((step, idx) => (
-          <li class={`how-path__step is-${step.state}`}>
-            <div class="how-path__node" aria-hidden="true">
-              <span class="how-path__dot"></span>
-              <span class="how-path__index">{String(idx + 1).padStart(2, '0')}</span>
-            </div>
-            <span class="how-path__tag">{step.tag}</span>
-            <h4 class="how-path__step-title">{step.title}</h4>
-            <p class="how-path__step-body">{step.body}</p>
-          </li>
-        ))}
-      </ol>
-
-      <p class="how-path__note">{t('warm.path.note')}</p>
-    </div>
-
-    <div class="how-outro">
-      <h3 class="how-outro__title">
-        <span set:html={t('warm.outro.title')} />
-        <br />
-        <span set:html={t('warm.outro.title.line2')} />
-      </h3>
-      <p class="how-outro__body">{t('warm.outro.body')}</p>
-    </div>
   </div>
 </section>
 
@@ -222,7 +169,7 @@ const path = [
     gap: 24px;
     list-style: none;
     padding: 0;
-    margin: 0 0 120px;
+    margin: 0;
   }
 
   .how-layer {
@@ -283,191 +230,12 @@ const path = [
   }
 
   /* ============================================================
-     Mini roadmap
-     ============================================================ */
-  .how-path {
-    padding: 64px 0;
-    border-top: 1px solid rgba(244, 236, 220, 0.08);
-    border-bottom: 1px solid rgba(244, 236, 220, 0.08);
-    margin-bottom: 96px;
-  }
-
-  .how-path__head {
-    text-align: center;
-    margin-bottom: 56px;
-  }
-
-  .how-path__eyebrow {
-    display: inline-block;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.3em;
-    color: var(--color-gold);
-    margin-bottom: 16px;
-  }
-
-  .how-path__title {
-    font-family: var(--font-headline);
-    font-size: clamp(24px, 2.6vw, 36px);
-    font-weight: 400;
-    line-height: 1.4;
-    color: var(--color-bone);
-    margin: 0;
-  }
-
-  .how-path__steps {
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .how-path__steps::before {
-    content: '';
-    position: absolute;
-    top: 17px;
-    left: 12%;
-    right: 12%;
-    height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      rgba(255, 90, 31, 0.6) 16%,
-      rgba(255, 90, 31, 0.4) 50%,
-      rgba(244, 236, 220, 0.18) 100%
-    );
-    z-index: 0;
-  }
-
-  .how-path__step {
-    position: relative;
-    padding-top: 50px;
-    text-align: center;
-  }
-
-  .how-path__node {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .how-path__dot {
-    width: 14px;
-    height: 14px;
-    border-radius: 999px;
-    background: rgba(244, 236, 220, 0.18);
-    border: 2px solid #0e0b08;
-    box-shadow: 0 0 0 2px rgba(244, 236, 220, 0.18);
-  }
-
-  .how-path__step.is-active .how-path__dot {
-    background: var(--color-cinnabar);
-    box-shadow: 0 0 0 2px rgba(255, 90, 31, 0.45), 0 0 16px rgba(255, 90, 31, 0.7);
-    animation: hpDotPulse 2s ease-in-out infinite;
-  }
-
-  .how-path__step.is-done .how-path__dot {
-    background: var(--color-gold);
-    box-shadow: 0 0 0 2px rgba(217, 184, 114, 0.35);
-  }
-
-  .how-path__index {
-    display: none;
-  }
-
-  .how-path__tag {
-    display: inline-block;
-    font-family: var(--font-mono);
-    font-size: 10.5px;
-    font-weight: 600;
-    letter-spacing: 0.32em;
-    color: var(--color-cinnabar);
-    margin-bottom: 12px;
-  }
-
-  .how-path__step:not(.is-active) .how-path__tag {
-    color: var(--color-bone-3);
-  }
-
-  .how-path__step.is-done .how-path__tag {
-    color: var(--color-gold);
-  }
-
-  .how-path__step-title {
-    font-family: var(--font-headline);
-    font-size: 22px;
-    font-weight: 500;
-    color: var(--color-bone);
-    margin: 0 0 10px;
-  }
-
-  .how-path__step-body {
-    font-size: 14px;
-    line-height: 1.65;
-    color: var(--color-bone-2);
-    margin: 0;
-    max-width: 240px;
-    margin-inline: auto;
-  }
-
-  .how-path__note {
-    margin: 56px auto 0;
-    max-width: 640px;
-    text-align: center;
-    font-size: 16px;
-    line-height: 1.7;
-    color: var(--color-bone-2);
-    font-style: italic;
-  }
-
-  @keyframes hpDotPulse {
-    0%, 100% { box-shadow: 0 0 0 2px rgba(255, 90, 31, 0.45), 0 0 14px rgba(255, 90, 31, 0.55); }
-    50% { box-shadow: 0 0 0 4px rgba(255, 90, 31, 0.25), 0 0 22px rgba(255, 90, 31, 0.85); }
-  }
-
-  /* ============================================================
-     Closing slogan
-     ============================================================ */
-  .how-outro {
-    text-align: center;
-    max-width: 760px;
-    margin: 0 auto;
-  }
-
-  .how-outro__title {
-    font-family: var(--font-headline);
-    font-size: clamp(32px, 4.4vw, 56px);
-    font-weight: 300;
-    line-height: 1.2;
-    color: var(--color-bone);
-    margin: 0 0 28px;
-    letter-spacing: -0.005em;
-  }
-
-  .how-outro__body {
-    font-size: clamp(15px, 1.4vw, 17px);
-    line-height: 1.75;
-    color: var(--color-bone-2);
-    margin: 0 0 36px;
-  }
-
-  /* ============================================================
      RWD
      ============================================================ */
   @media (max-width: 1023px) {
     .how-layers {
       grid-template-columns: 1fr;
       gap: 16px;
-      margin-bottom: 96px;
     }
   }
 
@@ -483,51 +251,6 @@ const path = [
     }
     .how-layer__title {
       font-size: 24px;
-    }
-    .how-path {
-      padding: 48px 0;
-      margin-bottom: 72px;
-    }
-    .how-path__head {
-      margin-bottom: 40px;
-    }
-    .how-path__steps {
-      grid-template-columns: 1fr;
-      gap: 36px;
-    }
-    .how-path__steps::before {
-      top: 14px;
-      bottom: 14px;
-      left: 50%;
-      right: auto;
-      width: 1px;
-      height: auto;
-      background: linear-gradient(
-        180deg,
-        rgba(255, 90, 31, 0.6) 0%,
-        rgba(255, 90, 31, 0.3) 50%,
-        rgba(244, 236, 220, 0.15) 100%
-      );
-    }
-    .how-path__step {
-      padding-top: 0;
-      padding-left: 56px;
-      text-align: left;
-    }
-    .how-path__node {
-      top: 4px;
-      left: 28px;
-      transform: none;
-    }
-    .how-path__step-body {
-      max-width: none;
-      margin: 0;
-    }
-    .how-path__note {
-      margin-top: 40px;
-    }
-    .how-outro__title {
-      font-size: 30px;
     }
   }
 </style>

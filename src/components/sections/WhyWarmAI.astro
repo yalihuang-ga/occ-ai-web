@@ -50,12 +50,6 @@ const cases = [
         </li>
       ))}
     </ul>
-
-    <div class="why-closing">
-      <p class="why-closing__lead">{t('warm.why.closing.lead')}</p>
-      <p class="why-closing__body">{t('warm.why.closing.body')}</p>
-      <p class="why-closing__tag" set:html={t('warm.why.closing.tag')} />
-    </div>
   </div>
 </section>
 
@@ -139,7 +133,7 @@ const cases = [
     gap: 24px;
     list-style: none;
     padding: 0;
-    margin: 0 0 88px;
+    margin: 0;
   }
 
   .why-case {
@@ -183,43 +177,6 @@ const cases = [
     margin: 0;
   }
 
-  .why-closing {
-    text-align: center;
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 48px 24px 0;
-    border-top: 1px solid rgba(244, 236, 220, 0.08);
-  }
-
-  .why-closing__lead {
-    font-family: var(--font-headline);
-    font-size: clamp(20px, 2.2vw, 28px);
-    font-weight: 300;
-    line-height: 1.5;
-    color: var(--color-bone);
-    margin: 0 0 16px;
-  }
-
-  .why-closing__body {
-    font-size: 16px;
-    line-height: 1.7;
-    color: var(--color-bone-2);
-    margin: 0 0 36px;
-  }
-
-  .why-closing__tag {
-    display: inline-block;
-    font-family: var(--font-headline);
-    font-size: clamp(20px, 2.4vw, 30px);
-    font-weight: 500;
-    line-height: 1.45;
-    color: var(--color-bone);
-    padding: 22px 32px;
-    border: 1px solid rgba(255, 90, 31, 0.35);
-    border-radius: 999px;
-    background: rgba(255, 90, 31, 0.04);
-  }
-
   @media (max-width: 1023px) {
     .why-cases {
       grid-template-columns: 1fr 1fr;
@@ -239,19 +196,12 @@ const cases = [
     .why-cases {
       grid-template-columns: 1fr;
       gap: 16px;
-      margin-bottom: 64px;
     }
     .why-case {
       padding: 28px 24px;
     }
     .why-case:nth-child(3) {
       grid-column: span 1;
-    }
-    .why-closing__tag {
-      font-size: 18px;
-      padding: 18px 22px;
-      border-radius: 22px;
-      display: block;
     }
   }
 </style>
