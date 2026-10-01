@@ -2,15 +2,22 @@
 /**
  * AI Game (/game) — Agentic Game Engine.
  *
- * Vision page for the in-development agentic game engine platform
+ * Vision page for the agentic game engine platform
  * (generate → autonomous playtest → self-repair & optimize → self-publish,
  * human approval at the gate). Copy is deliberately rich: the page's job is
- * to attract collaborators, studios and game-dev partnership inquiries while
- * the platform itself is still being built.
+ * to attract collaborators, studios and game-dev partnership inquiries.
+ * Development status is intentionally NOT spelled out — the page sells the
+ * vision and leaves room for the reader's imagination.
  *
- * Static by design — no React islands. The "console" blocks are styled divs;
- * terminal output stays in English across locales (it mimics tool output),
- * surrounding copy is localized inline per the ComicFlow convention.
+ * 文案都在下方 copy 物件（zh-TW / en / ja 三塊）；SEO 標題與描述在
+ * components/pages/GamePage.astro。
+ *
+ * Static by design — no React islands. Light motion (badge rotation, flow
+ * sweep, scroll reveal, console line stagger) runs in the inline script
+ * below, gated on prefers-reduced-motion. The "console" blocks are styled
+ * divs; terminal output stays in English across locales (it mimics tool
+ * output), surrounding copy is localized inline per the ComicFlow
+ * convention.
  */
 import type { Lang } from '../../i18n/ui';
 
@@ -23,11 +30,11 @@ const { lang } = Astro.props;
 const copy = {
   'zh-TW': {
     heroEyebrow: 'AGENTIC GAME ENGINE',
-    heroStatus: '平台開發中 · 招募合作夥伴',
+    heroStatus: '合作夥伴洽談中',
     heroTitle:
       '不只<span class="title-accent-gold">生成</span>，還幫你<span class="title-accent-cinnabar">上架</span>',
     heroDesc:
-      'AI 已經生成得出遊戲，但從「生成出來」到「真正上架」之間，還隔著測試、修正、優化與合規——這幾步目前全靠人工。我們正在打造一款把自主代理放進核心的遊戲引擎：生成之後，它自己測、自己修、自己把上架準備做完，人只在核准節點出現。',
+      'AI 已經生成得出遊戲，但從「生成出來」到「真正上架」之間，還隔著測試、修正、優化與合規——這幾步目前全靠人工。我們的答案，是把自主代理放進遊戲引擎的核心：生成之後，它自己測、自己修、自己把上架準備做完，人只在核准節點出現。',
     heroCtaPrimary: '洽談合作',
     heroCtaSecondary: '看看引擎怎麼運作',
     heroBadges: [
@@ -90,7 +97,7 @@ const copy = {
     coreSection: '§ 03 — Engine Core',
     coreTitle: '為代理<span class="title-accent-gold">重新設計</span>的引擎核心',
     coreIntro:
-      '現有引擎是為「一個人坐在編輯器前」設計的：狀態藏在編輯器裡、隨機性不可控、一次只能開一個實例。代理要的剛好相反。我們以成熟的開源引擎為基底進行核心改造，維持專案格式完全相容，第一版聚焦四項能力。',
+      '現有引擎是為「一個人坐在編輯器前」設計的：狀態藏在編輯器裡、隨機性不可控、一次只能開一個實例。代理要的剛好相反。我們以成熟的開源引擎為基底進行核心改造，維持專案格式完全相容，聚焦四項能力。',
     cores: [
       {
         title: '決定性模擬',
@@ -128,14 +135,14 @@ const copy = {
         desc: '所有自動產出的修改與文件皆為草稿，引擎提供完整證據鏈；核准的是人，責任也在人。',
       },
     ],
-    joinSection: '§ 05 — Work in Progress',
-    joinTitle: '平台還在打造中，<br />而這正是加入的最好時機',
+    joinSection: '§ 05 — Join Us',
+    joinTitle: '故事才剛開始，<br />正是加入的最好時機',
     joinBody:
-      '我們不是在發表一個完成品，而是在公開一個正在成形的方向：引擎核心改造與自主測試代理正在開發中，自主修正與上架代理緊接在後。如果這個方向也讓你眼睛一亮——不論你想一起打造它，還是想用它做出你的遊戲——我們都想和你聊聊。',
+      '我們相信遊戲引擎的下一步，是從「工具」變成「代理」。如果這個方向也讓你眼睛一亮——不論你想一起打造它，還是想用它做出你的遊戲——我們都想和你聊聊。',
     joinCards: [
       {
         title: '遊戲開發者與工作室',
-        desc: '成為早期實證夥伴，用真實專案一起驗證自主測試與修正能力，直接影響功能的優先順序。',
+        desc: '用真實專案一起驗證自主測試與修正能力，第一手影響功能的優先順序。',
       },
       {
         title: '工程師與研究者',
@@ -150,11 +157,11 @@ const copy = {
   },
   en: {
     heroEyebrow: 'AGENTIC GAME ENGINE',
-    heroStatus: 'IN DEVELOPMENT · LOOKING FOR PARTNERS',
+    heroStatus: 'LOOKING FOR PARTNERS',
     heroTitle:
       'Beyond <span class="title-accent-gold">generation</span> — we get you <span class="title-accent-cinnabar">shipped</span>',
     heroDesc:
-      'AI can already generate games. But between “generated” and “actually shipped” sit testing, fixing, optimization and compliance — all still done by hand. We are building a game engine with autonomous agents at its core: after generation, it tests itself, repairs itself, and prepares its own release. Humans appear only at the approval gate.',
+      'AI can already generate games. But between “generated” and “actually shipped” sit testing, fixing, optimization and compliance — all still done by hand. Our answer is a game engine with autonomous agents at its core: after generation, it tests itself, repairs itself, and prepares its own release. Humans appear only at the approval gate.',
     heroCtaPrimary: 'Talk to us',
     heroCtaSecondary: 'See how it works',
     heroBadges: [
@@ -217,7 +224,7 @@ const copy = {
     coreSection: '§ 03 — Engine Core',
     coreTitle: 'An engine core <span class="title-accent-gold">redesigned</span> for agents',
     coreIntro:
-      'Existing engines were designed for one person sitting at an editor: state hidden in the editor, uncontrolled randomness, one instance at a time. Agents need the exact opposite. We are rebuilding the core on a mature open-source engine, keeping full project-format compatibility, with four capabilities in version one.',
+      'Existing engines were designed for one person sitting at an editor: state hidden in the editor, uncontrolled randomness, one instance at a time. Agents need the exact opposite. We are rebuilding the core on a mature open-source engine, keeping full project-format compatibility, focused on four capabilities.',
     cores: [
       {
         title: 'Deterministic simulation',
@@ -255,14 +262,14 @@ const copy = {
         desc: 'Every automated change and document is a draft with a full evidence chain. Humans approve; humans stay responsible.',
       },
     ],
-    joinSection: '§ 05 — Work in Progress',
-    joinTitle: 'The platform is still being built —<br />which is exactly the best time to join',
+    joinSection: '§ 05 — Join Us',
+    joinTitle: 'The story is just beginning —<br />and this is the best time to join',
     joinBody:
-      'We’re not unveiling a finished product; we’re opening up a direction that is taking shape. The engine-core rework and the autonomous playtest agent are in development, with the repair and publish agents next. If this direction lights you up too — whether you want to help build it or use it to ship your own game — we’d love to talk.',
+      'We believe the next step for game engines is to go from tool to agent. If this direction lights you up too — whether you want to help build it or use it to ship your own game — we’d love to talk.',
     joinCards: [
       {
         title: 'Game developers & studios',
-        desc: 'Become an early validation partner: test autonomous playtesting and repair on real projects, and directly shape the feature roadmap.',
+        desc: 'Validate autonomous playtesting and repair on real projects, and directly shape the feature roadmap.',
       },
       {
         title: 'Engineers & researchers',
@@ -277,11 +284,11 @@ const copy = {
   },
   ja: {
     heroEyebrow: 'AGENTIC GAME ENGINE',
-    heroStatus: '開発中 · パートナー募集',
+    heroStatus: 'パートナー募集',
     heroTitle:
       '<span class="title-accent-gold">生成</span>だけじゃない、<span class="title-accent-cinnabar">リリース</span>まで',
     heroDesc:
-      'AIはすでにゲームを生成できます。しかし「生成できた」と「本当にリリースできた」の間には、テスト・修正・最適化・コンプライアンスが横たわり、現状はすべて人手です。私たちは自律エージェントをコアに組み込んだゲームエンジンを開発しています。生成の後、エンジン自身がテストし、修正し、リリース準備まで整える——人は承認の場面にだけ現れます。',
+      'AIはすでにゲームを生成できます。しかし「生成できた」と「本当にリリースできた」の間には、テスト・修正・最適化・コンプライアンスが横たわり、現状はすべて人手です。私たちの答えは、自律エージェントをコアに組み込んだゲームエンジン。生成の後、エンジン自身がテストし、修正し、リリース準備まで整える——人は承認の場面にだけ現れます。',
     heroCtaPrimary: 'お問い合わせ',
     heroCtaSecondary: '仕組みを見る',
     heroBadges: [
@@ -344,7 +351,7 @@ const copy = {
     coreSection: '§ 03 — Engine Core',
     coreTitle: 'エージェントのために<span class="title-accent-gold">再設計</span>したエンジンコア',
     coreIntro:
-      '既存のエンジンは「一人がエディタの前に座る」前提で設計されています。状態はエディタの中に隠れ、乱数は制御できず、インスタンスは一度に一つ。エージェントが必要とするのは正反対です。成熟したオープンソースエンジンを基盤にコアを改造し、プロジェクト形式の完全互換を保ちながら、第一版では四つの能力に集中します。',
+      '既存のエンジンは「一人がエディタの前に座る」前提で設計されています。状態はエディタの中に隠れ、乱数は制御できず、インスタンスは一度に一つ。エージェントが必要とするのは正反対です。成熟したオープンソースエンジンを基盤にコアを改造し、プロジェクト形式の完全互換を保ちながら、四つの能力に集中します。',
     cores: [
       {
         title: '決定論的シミュレーション',
@@ -382,14 +389,14 @@ const copy = {
         desc: '自動生成された変更と文書はすべてドラフトで、完全な証拠チェーン付き。承認するのは人、責任を持つのも人です。',
       },
     ],
-    joinSection: '§ 05 — Work in Progress',
-    joinTitle: 'プラットフォームはまだ建設中——<br />だからこそ、今が参加の好機',
+    joinSection: '§ 05 — Join Us',
+    joinTitle: '物語は始まったばかり——<br />参加するなら、今',
     joinBody:
-      '私たちが公開しているのは完成品ではなく、いま形になりつつある方向性です。エンジンコアの改造と自律テストエージェントを開発中で、修正・リリースエージェントが続きます。この方向にピンと来たなら——一緒に作りたい方も、これで自分のゲームを作りたい方も——ぜひお話ししましょう。',
+      'ゲームエンジンの次の一歩は、「ツール」から「エージェント」へ。この方向にピンと来たなら——一緒に作りたい方も、これで自分のゲームを作りたい方も——ぜひお話ししましょう。',
     joinCards: [
       {
         title: 'ゲーム開発者・スタジオ',
-        desc: '早期検証パートナーとして、実プロジェクトで自律テストと修正能力を一緒に検証し、機能の優先順位に直接影響を。',
+        desc: '実プロジェクトで自律テストと修正能力を一緒に検証し、機能の優先順位に直接影響を。',
       },
       {
         title: 'エンジニア・研究者',
@@ -442,6 +449,16 @@ const consoles = [
 
 const glyphFor = (kind: string) =>
   kind === 'err' ? '✗' : kind === 'warn' ? '⚠' : kind === 'wait' ? '…' : kind === 'run' ? '▸' : '✓';
+
+/* Hero badge icons — stroke style matches ComicFlow's cf-badge-icon set. */
+const badgeIcons = [
+  /* playtest — play */
+  '<circle cx="12" cy="12" r="9" /><polygon points="10 8.5 16 12 10 15.5 10 8.5" />',
+  /* repair — wrench */
+  '<path d="M14.7 6.3a4.5 4.5 0 0 0-6 6L3 18l3 3 5.7-5.7a4.5 4.5 0 0 0 6-6l-3 3-3-3 3-3z" />',
+  /* publish — upload box */
+  '<path d="M4 14v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5" /><polyline points="8 7 12 3 16 7" /><line x1="12" y1="3" x2="12" y2="15" />',
+] as const;
 ---
 
 <section id="game" class="ge mx-section">
@@ -450,7 +467,7 @@ const glyphFor = (kind: string) =>
     <div class="ge-hero-bg" aria-hidden="true"></div>
     <div class="ge-inner ge-hero-inner">
       <div class="ge-hero-eyebrow-row">
-        <span class="eyebrow">{c.heroEyebrow}</span>
+        <span class="ge-eyebrow">{c.heroEyebrow}</span>
         <span class="ge-status"><span class="ge-status-dot" aria-hidden="true"></span>{c.heroStatus}</span>
       </div>
       <h1 class="h-display ge-hero-title" set:html={c.heroTitle} />
@@ -459,16 +476,33 @@ const glyphFor = (kind: string) =>
         <a href="#contact" class="shimmer-btn shimmer-btn-primary ge-cta-main">{c.heroCtaPrimary}</a>
         <a href="#pipeline" class="shimmer-btn shimmer-btn-glass ge-cta-sub">{c.heroCtaSecondary}</a>
       </div>
-      <div class="ge-hero-badges">
+      <div class="ge-hero-badges" data-badge-rotate>
         {
           c.heroBadges.map((b, i) => (
-            <div class="ge-hero-badge">
-              <span class="ge-hero-badge-num">{String(i + 1).padStart(2, '0')}</span>
+            <div class="ge-hero-badge" data-badge-idx={i}>
+              <div class="ge-badge-icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  set:html={badgeIcons[i]}
+                />
+              </div>
               <h3 class="ge-hero-badge-title">{b.title}</h3>
               <p class="ge-hero-badge-desc">{b.desc}</p>
             </div>
           ))
         }
+      </div>
+      <!-- Scroll indicator (matches comic page) -->
+      <div class="ge-hero-scroll" aria-hidden="true">
+        <span class="ge-hero-scroll-label">SCROLL</span>
+        <span class="ge-hero-scroll-line"><span class="ge-hero-scroll-dot"></span></span>
       </div>
     </div>
   </div>
@@ -485,7 +519,7 @@ const glyphFor = (kind: string) =>
       <div class="ge-pain-grid">
         {
           c.pains.map((p, i) => (
-            <div class="ge-pain-card">
+            <div class="ge-pain-card" data-reveal>
               <span class="ge-pain-index">{String(i + 1).padStart(2, '0')}</span>
               <h3 class="ge-card-title">{p.title}</h3>
               <p class="ge-card-desc">{p.desc}</p>
@@ -507,13 +541,14 @@ const glyphFor = (kind: string) =>
       <p class="body-lg-v2 ge-block-intro">{c.pipelineIntro}</p>
 
       <!-- Flow rail -->
-      <div class="ge-flow" role="list">
+      <div class="ge-flow" role="list" data-flow-sweep>
         {
           c.flowNodes.map((n, i) => (
             <>
               <div
                 class:list={['ge-flow-node', i === c.flowNodes.length - 1 && 'ge-flow-node--human']}
                 role="listitem"
+                data-flow-node={i}
               >
                 <span class="ge-flow-node-label">{n}</span>
                 {i === c.flowNodes.length - 1 && <span class="ge-flow-node-note">{c.flowHumanNote}</span>}
@@ -529,7 +564,7 @@ const glyphFor = (kind: string) =>
         {
           c.agents.map((a, i) => (
             <div class="ge-agent">
-              <div class="ge-agent-copy">
+              <div class="ge-agent-copy" data-reveal>
                 <div class="ge-agent-head">
                   <span class="ge-agent-num">{a.num}</span>
                   <span class="ge-agent-label">{a.label}</span>
@@ -545,7 +580,7 @@ const glyphFor = (kind: string) =>
                   ))}
                 </div>
               </div>
-              <div class="ge-console" aria-hidden="true">
+              <div class="ge-console" aria-hidden="true" data-console>
                 <div class="ge-console-bar">
                   <span class="ge-console-dot" />
                   <span class="ge-console-dot" />
@@ -581,14 +616,14 @@ const glyphFor = (kind: string) =>
       <div class="ge-core-grid">
         {
           c.cores.map((f) => (
-            <div class="ge-core-card">
+            <div class="ge-core-card" data-reveal>
               <h3 class="ge-card-title">{f.title}</h3>
               <p class="ge-card-desc">{f.desc}</p>
             </div>
           ))
         }
       </div>
-      <div class="ge-core-local">
+      <div class="ge-core-local" data-reveal>
         <div class="ge-core-local-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
         </div>
@@ -611,7 +646,7 @@ const glyphFor = (kind: string) =>
       <div class="ge-principles">
         {
           c.principles.map((p, i) => (
-            <div class="ge-principle">
+            <div class="ge-principle" data-reveal>
               <span class="ge-principle-num">{String(i + 1).padStart(2, '0')}</span>
               <div>
                 <h3 class="ge-card-title">{p.title}</h3>
@@ -636,7 +671,7 @@ const glyphFor = (kind: string) =>
       <div class="ge-join-grid">
         {
           c.joinCards.map((card) => (
-            <div class="ge-join-card">
+            <div class="ge-join-card" data-reveal>
               <h3 class="ge-card-title">{card.title}</h3>
               <p class="ge-card-desc">{card.desc}</p>
             </div>
@@ -650,13 +685,94 @@ const glyphFor = (kind: string) =>
   </div>
 </section>
 
+<script>
+  /**
+   * Light, dependency-free motion. Everything is additive: without JS (or
+   * with prefers-reduced-motion) the page renders fully static.
+   */
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!reduced) {
+    const root = document.querySelector('.ge');
+    if (root) {
+      root.classList.add('ge-js');
+
+      /* 1 — Hero badges: rotating highlight every 3s; pause while hovered. */
+      const badgeWrap = root.querySelector('[data-badge-rotate]');
+      if (badgeWrap) {
+        const badges = [...badgeWrap.querySelectorAll('.ge-hero-badge')];
+        let idx = 0;
+        let paused = false;
+        badgeWrap.addEventListener('mouseenter', () => (paused = true));
+        badgeWrap.addEventListener('mouseleave', () => (paused = false));
+        const tick = () => {
+          if (!paused) {
+            badges.forEach((b, i) => b.classList.toggle('ge-hero-badge--active', i === idx));
+            idx = (idx + 1) % badges.length;
+          }
+        };
+        tick();
+        setInterval(tick, 3000);
+      }
+
+      /* 2 — Flow rail: a highlight sweeps through the pipeline nodes. */
+      const flow = root.querySelector('[data-flow-sweep]');
+      if (flow) {
+        const nodes = [...flow.querySelectorAll('[data-flow-node]')];
+        let fi = 0;
+        setInterval(() => {
+          nodes.forEach((n, i) => n.classList.toggle('ge-flow-node--run', i === fi));
+          fi = (fi + 1) % (nodes.length + 1); // one empty beat before looping
+        }, 1100);
+      }
+
+      /* 3 — Scroll reveal: fade-up cards as they enter the viewport. */
+      const revealEls = [...root.querySelectorAll('[data-reveal]')];
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add('ge-in');
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.15, rootMargin: '0px 0px -8% 0px' }
+      );
+      revealEls.forEach((el, i) => {
+        // Stagger siblings inside the same grid.
+        const siblings = el.parentElement ? [...el.parentElement.children] : [];
+        const pos = Math.max(0, siblings.indexOf(el));
+        (el as HTMLElement).style.transitionDelay = `${Math.min(pos, 3) * 90}ms`;
+        io.observe(el);
+      });
+
+      /* 4 — Consoles: lines appear sequentially, like live output. */
+      const cio = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (!e.isIntersecting) return;
+            cio.unobserve(e.target);
+            const lines = [...e.target.querySelectorAll('.ge-console-line')];
+            lines.forEach((line, i) => {
+              window.setTimeout(() => line.classList.add('ge-in'), 150 + i * 260);
+            });
+          });
+        },
+        { threshold: 0.35 }
+      );
+      root.querySelectorAll('[data-console]').forEach((el) => cio.observe(el));
+    }
+  }
+</script>
+
 <style>
   .ge {
     background: var(--color-ink);
     color: var(--color-bone);
   }
   .ge-inner {
-    max-width: 1280px;
+    max-width: 1440px;
     margin: 0 auto;
     position: relative;
     z-index: 1;
@@ -673,15 +789,7 @@ const glyphFor = (kind: string) =>
     inset: 0;
     background:
       radial-gradient(ellipse 80% 55% at 70% 0%, rgba(255, 90, 31, 0.14), transparent 65%),
-      radial-gradient(ellipse 60% 45% at 15% 20%, rgba(201, 162, 94, 0.08), transparent 60%),
-      linear-gradient(
-        to right,
-        transparent 0,
-        transparent calc(100% / 6 - 1px),
-        rgba(237, 230, 216, 0.04) calc(100% / 6 - 1px),
-        rgba(237, 230, 216, 0.04) calc(100% / 6)
-      );
-    background-size: 100% 100%, 100% 100%, calc(100% / 6) 100%;
+      radial-gradient(ellipse 60% 45% at 15% 20%, rgba(201, 162, 94, 0.08), transparent 60%);
     pointer-events: none;
   }
   .ge-hero-eyebrow-row {
@@ -690,6 +798,13 @@ const glyphFor = (kind: string) =>
     flex-wrap: wrap;
     gap: 18px;
     margin-bottom: 36px;
+  }
+  /* Mono eyebrow — matches comic page's cf-eyebrow */
+  .ge-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--color-cinnabar);
   }
   .ge-status {
     display: inline-flex;
@@ -716,7 +831,10 @@ const glyphFor = (kind: string) =>
     50% { opacity: 0.55; box-shadow: 0 0 0 5px rgba(201, 162, 94, 0); }
   }
   @media (prefers-reduced-motion: reduce) {
-    .ge-status-dot { animation: none; }
+    .ge-status-dot,
+    .ge-hero-scroll-dot {
+      animation: none;
+    }
   }
   .ge-hero-title {
     margin: 0 0 32px;
@@ -742,40 +860,108 @@ const glyphFor = (kind: string) =>
     padding: 22px 36px;
     font-size: 16px;
   }
+
+  /* Hero badges — card style matches comic page's cf-hero-badge */
   .ge-hero-badges {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--bone-line);
-    border: 1px solid var(--bone-line);
+    gap: 20px;
   }
   .ge-hero-badge {
-    background: var(--color-ink);
-    padding: 30px 28px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 32px 28px;
+    border: 1px solid var(--bone-line);
+    border-radius: 16px;
+    background: rgba(244, 236, 220, 0.02);
+    color: var(--color-bone);
+    transition:
+      border-color 0.5s ease,
+      background 0.5s ease,
+      transform 0.5s ease;
   }
-  .ge-hero-badge-num {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.2em;
+  .ge-hero-badge--active {
+    border-color: rgba(255, 90, 31, 0.5);
+    background: rgba(255, 90, 31, 0.05);
+    transform: translateY(-4px);
+  }
+  .ge-badge-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: rgba(255, 90, 31, 0.08);
+    border: 1px solid rgba(255, 90, 31, 0.2);
+    transition: box-shadow 0.5s ease;
+  }
+  .ge-badge-icon svg {
     color: var(--color-cinnabar);
+  }
+  .ge-hero-badge--active .ge-badge-icon {
+    box-shadow: 0 0 22px rgba(255, 90, 31, 0.35);
   }
   .ge-hero-badge-title {
     font-family: var(--font-headline);
-    font-size: 19px;
+    font-size: clamp(18px, 2vw, 22px);
     font-weight: 600;
+    letter-spacing: -0.02em;
     color: var(--color-bone);
-    margin: 12px 0 10px;
+    margin: 0;
   }
   .ge-hero-badge-desc {
     font-size: 14px;
     line-height: 1.6;
-    color: var(--color-bone-2);
+    color: var(--color-bone-3);
     margin: 0;
+  }
+
+  /* Scroll indicator — matches comic page */
+  .ge-hero-scroll {
+    margin-top: 72px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    pointer-events: none;
+  }
+  .ge-hero-scroll-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: rgba(244, 236, 220, 0.55);
+    text-transform: uppercase;
+  }
+  .ge-hero-scroll-line {
+    position: relative;
+    width: 1px;
+    height: 56px;
+    background: linear-gradient(to bottom, rgba(244, 236, 220, 0.25) 0%, transparent 100%);
+    overflow: visible;
+  }
+  .ge-hero-scroll-dot {
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    width: 1px;
+    height: 14px;
+    transform: translateX(-50%);
+    background: #ff5a1f;
+    box-shadow: 0 0 6px rgba(255, 90, 31, 0.7), 0 0 14px rgba(255, 90, 31, 0.35);
+    animation: geScrollDot 2.2s cubic-bezier(0.55, 0.05, 0.45, 0.95) infinite;
+  }
+  @keyframes geScrollDot {
+    0% { top: -14px; opacity: 0; }
+    15% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { top: 56px; opacity: 0; }
   }
 
   /* ---------- Shared block scaffolding ---------- */
   .ge-block {
-    padding: 130px 48px;
+    padding: 140px 48px;
   }
   .ge-block--tint {
     background: linear-gradient(180deg, rgba(255, 90, 31, 0.035), transparent 30%),
@@ -813,16 +999,30 @@ const glyphFor = (kind: string) =>
     text-wrap: pretty;
   }
 
+  /* Scroll reveal (only when JS enabled + motion allowed) */
+  .ge-js [data-reveal] {
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .ge-js [data-reveal].ge-in {
+    opacity: 1;
+    transform: none;
+  }
+
   /* ---------- § 01 Pain ---------- */
   .ge-pain-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 28px;
+    gap: 20px;
   }
   .ge-pain-card {
     border: 1px solid var(--bone-line);
+    border-radius: 16px;
     padding: 34px 32px 36px;
-    background: rgba(237, 230, 216, 0.015);
+    background: rgba(244, 236, 220, 0.02);
     transition: border-color 0.3s;
   }
   .ge-pain-card:hover {
@@ -851,8 +1051,13 @@ const glyphFor = (kind: string) =>
     justify-content: center;
     gap: 4px;
     border: 1px solid var(--bone-line);
+    border-radius: 12px;
     padding: 16px 22px;
-    background: rgba(237, 230, 216, 0.02);
+    background: rgba(244, 236, 220, 0.02);
+    transition:
+      border-color 0.45s ease,
+      background 0.45s ease,
+      box-shadow 0.45s ease;
   }
   .ge-flow-node-label {
     font-family: var(--font-headline);
@@ -862,12 +1067,20 @@ const glyphFor = (kind: string) =>
     color: var(--color-bone);
     white-space: nowrap;
   }
+  .ge-flow-node--run {
+    border-color: rgba(255, 90, 31, 0.55);
+    background: rgba(255, 90, 31, 0.06);
+    box-shadow: 0 0 18px rgba(255, 90, 31, 0.18);
+  }
   .ge-flow-node--human {
     border-color: rgba(201, 162, 94, 0.55);
     background: rgba(201, 162, 94, 0.07);
   }
   .ge-flow-node--human .ge-flow-node-label {
     color: var(--color-gold);
+  }
+  .ge-flow-node--human.ge-flow-node--run {
+    box-shadow: 0 0 18px rgba(201, 162, 94, 0.3);
   }
   .ge-flow-node-note {
     font-family: var(--font-mono);
@@ -903,13 +1116,14 @@ const glyphFor = (kind: string) =>
     gap: 14px;
     margin-bottom: 18px;
   }
+  /* Step number — matches comic page's cf-step-num */
   .ge-agent-num {
     font-family: var(--font-headline);
-    font-weight: 200;
-    font-size: 44px;
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 500;
+    color: var(--color-cinnabar);
+    letter-spacing: -0.02em;
     line-height: 1;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(255, 90, 31, 0.65);
   }
   .ge-agent-label {
     font-family: var(--font-mono);
@@ -931,7 +1145,7 @@ const glyphFor = (kind: string) =>
   /* Console mock */
   .ge-console {
     border: 1px solid var(--bone-line);
-    border-radius: 10px;
+    border-radius: 16px;
     background: #0c0a07;
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
     overflow: hidden;
@@ -941,13 +1155,13 @@ const glyphFor = (kind: string) =>
     gap: 7px;
     padding: 13px 16px;
     border-bottom: 1px solid var(--bone-line);
-    background: rgba(237, 230, 216, 0.025);
+    background: rgba(244, 236, 220, 0.025);
   }
   .ge-console-dot {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: rgba(237, 230, 216, 0.14);
+    background: rgba(244, 236, 220, 0.14);
   }
   .ge-console-body {
     padding: 22px 24px 26px;
@@ -964,6 +1178,16 @@ const glyphFor = (kind: string) =>
     display: flex;
     gap: 10px;
     align-items: baseline;
+  }
+  /* Console line stagger (JS + motion allowed only) */
+  .ge-js .ge-console-line {
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+  }
+  .ge-js .ge-console-line.ge-in {
+    opacity: 1;
+    transform: none;
   }
   .ge-console-glyph,
   .ge-console-prompt {
@@ -988,20 +1212,25 @@ const glyphFor = (kind: string) =>
   .ge-core-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
-    background: var(--bone-line);
-    border: 1px solid var(--bone-line);
-    margin-bottom: 28px;
+    gap: 20px;
+    margin-bottom: 20px;
   }
   .ge-core-card {
-    background: var(--color-ink);
+    border: 1px solid var(--bone-line);
+    border-radius: 16px;
+    background: rgba(244, 236, 220, 0.02);
     padding: 38px 36px 40px;
+    transition: border-color 0.3s;
+  }
+  .ge-core-card:hover {
+    border-color: rgba(255, 90, 31, 0.4);
   }
   .ge-core-local {
     display: flex;
     gap: 26px;
     align-items: flex-start;
     border: 1px solid rgba(201, 162, 94, 0.35);
+    border-radius: 16px;
     background: rgba(201, 162, 94, 0.05);
     padding: 34px 36px;
   }
@@ -1028,11 +1257,11 @@ const glyphFor = (kind: string) =>
   }
   .ge-principle-num {
     font-family: var(--font-headline);
-    font-weight: 200;
-    font-size: 56px;
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 500;
+    color: var(--color-cinnabar);
+    letter-spacing: -0.02em;
     line-height: 1;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(201, 162, 94, 0.5);
   }
   .ge-principle .ge-card-title {
     font-size: 21px;
@@ -1051,13 +1280,14 @@ const glyphFor = (kind: string) =>
   .ge-join-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
+    gap: 20px;
     margin-bottom: 64px;
   }
   .ge-join-card {
     border: 1px solid var(--bone-line);
+    border-radius: 16px;
     padding: 34px 30px 36px;
-    background: rgba(237, 230, 216, 0.015);
+    background: rgba(244, 236, 220, 0.02);
     transition: border-color 0.3s;
   }
   .ge-join-card:hover {
@@ -1096,9 +1326,6 @@ const glyphFor = (kind: string) =>
       grid-template-columns: 1fr;
       gap: 14px;
       padding: 32px 0;
-    }
-    .ge-principle-num {
-      font-size: 40px;
     }
     .ge-flow {
       flex-direction: column;
