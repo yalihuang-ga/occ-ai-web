@@ -21,11 +21,11 @@ const relatedLinks = [
     href: 'https://www.gamania.com/',
     label: t('footer.related.gamania'),
   },
-  { href: 'https://mojoin.com/', label: t('footer.related.mojoin') },
   {
     href: 'https://muztrix.gamaniaocc.com/',
     label: t('footer.related.mangacanvas'),
   },
+  { href: 'https://mojoin.com/', label: t('footer.related.mojoin') },
 ] as const;
 
 const linkStyle =
@@ -67,12 +67,6 @@ const ctaMailtoHref = `mailto:${ctaContacts.map((c) => c.email).join(',')}`;
     >
         <div>
         <h2 class="h1-display" style="margin: 0; color: var(--color-bone);" set:html={t('cta.title')} />
-        <p
-          class="body-lg-v2 mx-cta-body"
-          style="margin-top: 36px;"
-        >
-          {t('cta.body')}
-        </p>
       </div>
       <div>
         <a
@@ -217,11 +211,6 @@ const ctaMailtoHref = `mailto:${ctaContacts.map((c) => c.email).join(',')}`;
 <style>
   .mx-footer-muztrix-outlined {
     display: none !important;
-  }
-
-  /* Same column width as .h-display title; pretty wraps for CJK / long lines */
-  .mx-cta-body {
-    text-wrap: pretty;
   }
 
   .mx-cta-contacts {

@@ -283,8 +283,6 @@ export const ui = {
     'cta.section': '§ 06 — Contact',
     'cta.title':
       '觸碰<span class="title-accent-cinnabar">有溫度的 AI</span>，啟動<span class="title-accent-gold">商業新體驗</span>。',
-    'cta.body':
-      '技術合作、產品授權或品牌 IP 打造，讓我們的 AI 引擎成為您最強大的執行動能。',
     'cta.button': '聯絡我們',
     'cta.contact1.role': '技術經理',
     'cta.contact1.name': '周思瑜',
@@ -301,7 +299,7 @@ export const ui = {
     'footer.related.h': '相關網站',
     'footer.related.gamania': '橘子集團',
     'footer.related.mojoin': 'MOJOIN',
-    'footer.related.mangacanvas': 'Muztrix漫畫創作',
+    'footer.related.mangacanvas': 'Muztrix AI故事創作平台',
     'footer.copyright': '© 1995 - 2026 gamania',
     'footer.address': '台灣臺北市內湖區瑞湖街111號',
 
@@ -759,8 +757,6 @@ export const ui = {
     'cta.section': '§ 06 — Contact',
     'cta.title':
       'Connect with <span class="title-accent-cinnabar">human-centered AI</span> — <span class="title-accent-gold">ignite new business experiences</span>.',
-    'cta.body':
-      'Technology partnerships, product licensing, or brand IP — let our AI engine become your most powerful driver of execution.',
     'cta.button': 'Get in Touch',
     'cta.contact1.role': 'Technical Manager',
     'cta.contact1.name': 'Szu-Yu Chou',
@@ -777,7 +773,7 @@ export const ui = {
     'footer.related.h': 'Related Sites',
     'footer.related.gamania': 'Gamania',
     'footer.related.mojoin': 'MOJOIN',
-    'footer.related.mangacanvas': 'Muztrix Comic Studio',
+    'footer.related.mangacanvas': 'Muztrix AI Story Creation Platform',
     'footer.copyright': '© 1995 - 2026 gamania',
     'footer.address': '111 Ruihu Street, Neihu District, Taipei City, Taiwan',
 
@@ -1115,8 +1111,6 @@ export const ui = {
     'cta.section': '§ 06 — Contact',
     'cta.title':
       '温度のある<span class="title-accent-cinnabar">AI</span>に触れ、<span class="title-accent-gold">ビジネス体験を新たに始動</span>。',
-    'cta.body':
-      '技術提携・製品ライセンス・ブランドIPの構築まで、私たちのAIエンジンを、貴社の最強の実行エンジンに。',
     'cta.button': 'お問い合わせ',
     'cta.contact1.role': 'テクニカルマネージャー',
     'cta.contact1.name': '周思瑜',
@@ -1133,7 +1127,7 @@ export const ui = {
     'footer.related.h': '関連サイト',
     'footer.related.gamania': 'ガマニア',
     'footer.related.mojoin': 'MOJOIN',
-    'footer.related.mangacanvas': 'Muztrix コミック',
+    'footer.related.mangacanvas': 'Muztrix AIストーリー創作プラットフォーム',
     'footer.copyright': '© 1995 - 2026 gamania',
     'footer.address': '台湾台北市內湖区瑞湖街111号',
 
