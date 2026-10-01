@@ -27,24 +27,25 @@ export const ui = {
     'nav.comic': 'AI 漫畫',
     'nav.game': 'AI 遊戲',
     'nav.agetech': '樂齡數位',
+    'nav.industries': '產業方案',
     'nav.contact': '聯絡我們',
     'nav.connect': '聯絡我們',
 
     // ---- Hero (kept; legacy keys still in use) ----
     'hero.eyebrow': 'Gamania Original Content Center',
-    'hero.title.line1': '賦予數位生命，',
-    'hero.title.line2': '更有溫度的虛擬視界',
+    'hero.title.line1': '把遊戲開發工藝，',
+    'hero.title.line2': '煉成產業 AI 引擎',
     'hero.desc':
-      'Muztrix 誕生於數位娛樂的實戰現場。不僅僅是追隨技術的躍進，我們要將三十年的內容開發經驗，封裝進 AI 的核心。',
+      'Muztrix 誕生於數位娛樂的實戰現場。我們將三十年的遊戲開發經驗──場景、角色、互動與營運──封裝進同一顆 AI 引擎，從遊戲出發，走進醫療、餐飲與樂齡的真實場域。',
     'hero.cta.secondary': '預約DEMO',
 
     // ---- Solutions (§ 01) ----
     // Section order: Hero · §01 Solutions · §02 Virtual Human · §03 AI Game · §04 AI Comic · §05 About · §06 Contact
     'solutions.section': '§ 01 — Solutions',
     'solutions.title':
-      '從 0 到 1，<span class="title-accent-gold">AI 創作生產線</span>',
+      '從 0 到 1，<span class="title-accent-gold">AI 遊戲開發生產線</span>',
     'solutions.subtitle':
-      '劇本、角色、世界觀，到多模態交付──我們陪你把 0 走到 1。創作者主導，AI 把每一個工序裡不必要的摩擦移除。',
+      '劇本、角色、世界觀，到可玩的多模態世界──我們陪你把 0 走到 1。同一條生產線，也在為真實產業鍛造互動場景。',
 
     'solutions.01.title': '製作劇本',
     'solutions.01.tag': 'Story Engine',
@@ -313,6 +314,74 @@ export const ui = {
     'products.comic.title': 'AI 漫畫',
     'products.comic.summary': '將微小的靈感放大至完稿發布，AI 編輯陪你創造無限篇章！',
     'products.comic.cta': '了解更多',
+    'products.industry.title': '產業 AI 方案',
+    'products.industry.summary': '把遊戲引擎帶進醫療、餐飲與樂齡場域，從 PoC 到全面導入！',
+    'products.industry.cta': '查看方案',
+
+    // ---- Industry AI Solutions (§ 02) ----
+    'industries.section': '§ 02 — Industry AI',
+    'industries.title': '把遊戲引擎，帶進<span class="title-accent-gold">真實產業</span>',
+    'industries.subtitle':
+      '場景生成、角色互動、遊戲化機制與影像感知──同一顆引擎，在不同場域長出不同的解決方案。',
+
+    'industries.resto.tag': 'F&B · AI VISION',
+    'industries.resto.status': 'POC 合作洽詢中',
+    'industries.resto.title': '餐飲 AI 影像智能分析',
+    'industries.resto.desc':
+      '用店內既有的攝影機，把現場畫面轉化為結構化的營運洞察──客群輪廓、空位與翻桌節奏、送餐與用餐速度、突發事件與剩食分析。影像在地端即時處理，輸出的是數據，不是監視畫面。',
+    'industries.resto.m1': 'TA 畫像',
+    'industries.resto.m2': '空位偵測',
+    'industries.resto.m3': '送餐速度',
+    'industries.resto.m4': '用餐節奏',
+    'industries.resto.m5': '突發事件',
+    'industries.resto.m6': '剩食分析',
+    'industries.resto.note': '示意畫面・非真實影像',
+    'industries.resto.privacy': '影像地端處理・不留存個人影像',
+    'industries.resto.cta': '洽談 POC 合作',
+    'industries.resto.box1': '客席 · 使用中',
+    'industries.resto.box2': '空位 · 可帶位',
+    'industries.resto.box3': '送餐中 · 02:41',
+    'industries.resto.box4': '客群 · 2 位',
+    'industries.resto.box5': '出餐口 · 正常',
+
+    'industries.med.tag': 'HEALTHCARE',
+    'industries.med.status': 'PoC 洽談中',
+    'industries.med.title': '互動式醫療遊戲引擎',
+    'industries.med.desc':
+      '一張平面圖生成整間醫院，一句話生成會回話的虛擬病人。用三十年的遊戲化機制，讓病人做完療程、讓學員練完情境。',
+    'industries.med.p1': '問答',
+    'industries.med.p2': '訓練',
+    'industries.med.p3': '陪伴',
+    'industries.med.p4': '復健',
+    'industries.med.cta': '洽談合作',
+
+    'industries.age.tag': 'AGETECH',
+    'industries.age.status': '場域驗證中',
+    'industries.age.title': '樂齡漫畫日記',
+    'industries.age.desc':
+      '長輩在熟悉的 LINE 裡點一點，AI 把今天畫成四格漫畫，一鍵分享給家人。正與樂齡學習中心、長照機構進行服務驗證。',
+    'industries.age.cta': '了解樂齡方案',
+
+    // ---- Engine capabilities (§ 03) ----
+    'engine.section': '§ 03 — Engine',
+    'engine.title': '一顆引擎，<span class="title-accent-cinnabar">五層能力</span>',
+    'engine.subtitle': '三十年遊戲開發沉澱的技術層，模組化組合成每一個產業方案。',
+    'engine.cap1.title': '場景生成',
+    'engine.cap1.body':
+      '一張平面圖、一張照片，生成可行走的 3D 場景，支援 GLB 資產與 USD / glTF 匯出。',
+    'engine.cap2.title': '角色與虛擬人',
+    'engine.cap2.body':
+      '形象、性格、聲音與口型──會回話、記得住人的 AI 角色，從遊戲 NPC 到產業接待。',
+    'engine.cap2.cta': '深入了解',
+    'engine.cap3.title': '遊戲化機制',
+    'engine.cap3.body':
+      '關卡、獎勵循環、自適應難度──讓使用者願意回來，把流程走完。',
+    'engine.cap4.title': '影像感知',
+    'engine.cap4.body':
+      '鏡頭即感測器：人流、動作、情緒與物件辨識，即時轉為結構化數據。',
+    'engine.cap5.title': '地端部署與資安',
+    'engine.cap5.body':
+      'Edge AI 算力與 LLM 地端推論──資料不出境，可對接零信任架構。',
 
     // ---- Warm AI manifesto (Booth Deck narrative) ----
     'warm.banner.eyebrow': 'COMPUTEX 2026',
@@ -514,21 +583,22 @@ export const ui = {
     'nav.virtualHuman': 'Virtual Human',
     'nav.comic': 'AI Comic',
     'nav.game': 'AI Game',
+    'nav.industries': 'Industries',
     'nav.contact': 'Contact',
     'nav.connect': 'Connect',
 
     'hero.eyebrow': 'Gamania Original Content Center',
-    'hero.title.line1': 'Virtually Human, ',
-    'hero.title.line2': 'Truly Warm.',
+    'hero.title.line1': 'Game craft, ',
+    'hero.title.line2': 'forged into AI engines.',
     'hero.desc':
-      'Muztrix was born on the front lines of digital entertainment. More than chasing each technical leap, we pack three decades of content craft into the core of AI.',
+      'Muztrix was born on the front lines of digital entertainment. We pack thirty years of game development — scenes, characters, interaction, live ops — into one AI engine, starting from games and moving into healthcare, F&B, and senior care.',
     'hero.cta.secondary': 'Book a demo',
 
     'solutions.section': '§ 01 — Solutions',
     'solutions.title':
-      'Zero to one — <span class="title-accent-gold">AI creative pipeline</span>',
+      'Zero to one — <span class="title-accent-gold">AI game dev pipeline</span>',
     'solutions.subtitle':
-      "Script · Character · World · Multimodal delivery — we walk you from zero to one. Creator-led, AI removes the friction at every stage.",
+      "Script · Character · World · A playable multimodal world — we walk you from zero to one. The same pipeline forges interactive scenes for real-world industries.",
 
     'solutions.01.title': 'Script',
     'solutions.01.tag': 'Story Engine',
@@ -787,6 +857,74 @@ export const ui = {
     'products.comic.title': 'AI Comic',
     'products.comic.summary': 'From a single spark to published pages — AI walks every panel with you',
     'products.comic.cta': 'Learn more',
+    'products.industry.title': 'Industry AI',
+    'products.industry.summary': 'Bringing the game engine into healthcare, F&B, and senior care — from PoC to rollout',
+    'products.industry.cta': 'Explore',
+
+    // ---- Industry AI Solutions (§ 02) ----
+    'industries.section': '§ 02 — Industry AI',
+    'industries.title': 'Bringing the game engine into <span class="title-accent-gold">real industries</span>',
+    'industries.subtitle':
+      'Scene generation, character interaction, gamification, and vision sensing — one engine growing into different solutions across different venues.',
+
+    'industries.resto.tag': 'F&B · AI VISION',
+    'industries.resto.status': 'Open for POC partners',
+    'industries.resto.title': 'F&B AI Vision Analytics',
+    'industries.resto.desc':
+      'Turn existing in-store cameras into structured operational insight — guest demographics, seat availability and turnover, serving and dining pace, incidents, and food-waste analysis. Footage is processed on-premises in real time: the output is data, never surveillance video.',
+    'industries.resto.m1': 'Guest profile',
+    'industries.resto.m2': 'Seat detection',
+    'industries.resto.m3': 'Serving speed',
+    'industries.resto.m4': 'Dining pace',
+    'industries.resto.m5': 'Incidents',
+    'industries.resto.m6': 'Food waste',
+    'industries.resto.note': 'Illustrative visualization — not real footage',
+    'industries.resto.privacy': 'On-prem processing · no personal footage stored',
+    'industries.resto.cta': 'Discuss a POC',
+    'industries.resto.box1': 'Table · Occupied',
+    'industries.resto.box2': 'Seats · Available',
+    'industries.resto.box3': 'Serving · 02:41',
+    'industries.resto.box4': 'Guests · 2',
+    'industries.resto.box5': 'Pass · Normal',
+
+    'industries.med.tag': 'HEALTHCARE',
+    'industries.med.status': 'In PoC discussions',
+    'industries.med.title': 'Interactive Medical Game Engine',
+    'industries.med.desc':
+      'One floor plan generates a whole hospital; one sentence generates a virtual patient that talks back. Thirty years of gamification keeps patients finishing therapy and trainees finishing scenarios.',
+    'industries.med.p1': 'Q&A',
+    'industries.med.p2': 'Training',
+    'industries.med.p3': 'Companion',
+    'industries.med.p4': 'Rehab',
+    'industries.med.cta': 'Partner with us',
+
+    'industries.age.tag': 'AGETECH',
+    'industries.age.status': 'Field validation',
+    'industries.age.title': 'Senior Comic Diary',
+    'industries.age.desc':
+      'Seniors tap through familiar LINE and AI turns their day into a four-panel comic, shared with family in one tap. Now validating with senior learning centers and care facilities.',
+    'industries.age.cta': 'Learn more',
+
+    // ---- Engine capabilities (§ 03) ----
+    'engine.section': '§ 03 — Engine',
+    'engine.title': 'One engine, <span class="title-accent-cinnabar">five layers</span>',
+    'engine.subtitle': 'Technology layers distilled from thirty years of game development, composed into every industry solution.',
+    'engine.cap1.title': 'Scene Generation',
+    'engine.cap1.body':
+      'A floor plan or a photo becomes a walkable 3D scene — GLB assets, USD / glTF export.',
+    'engine.cap2.title': 'Character & Virtual Human',
+    'engine.cap2.body':
+      'Look, personality, voice, lip sync — AI characters that talk back and remember people, from game NPCs to industry reception.',
+    'engine.cap2.cta': 'Learn more',
+    'engine.cap3.title': 'Gamification',
+    'engine.cap3.body':
+      'Levels, reward loops, adaptive difficulty — keeping users coming back and finishing the flow.',
+    'engine.cap4.title': 'Vision Sensing',
+    'engine.cap4.body':
+      'Cameras as sensors: people flow, motion, emotion, and object recognition — streamed as structured data.',
+    'engine.cap5.title': 'On-prem & Security',
+    'engine.cap5.body':
+      'Edge AI compute and on-prem LLM inference — data stays in-country, zero-trust ready.',
 
     // ---- Warm AI manifesto (Booth Deck narrative) ----
     'warm.banner.eyebrow': 'COMPUTEX 2026',
@@ -869,21 +1007,22 @@ export const ui = {
     'nav.virtualHuman': 'バーチャルヒューマン',
     'nav.comic': 'AIコミック',
     'nav.game': 'AIゲーム',
+    'nav.industries': '産業ソリューション',
     'nav.contact': 'お問い合わせ',
     'nav.connect': 'お問い合わせ',
 
     'hero.eyebrow': 'Gamania Original Content Center',
-    'hero.title.line1': 'デジタルに命を。',
-    'hero.title.line2': '心に温度を。',
+    'hero.title.line1': 'ゲーム開発の工芸を、',
+    'hero.title.line2': '産業AIエンジンへ。',
     'hero.desc':
-      'Muztrixはデジタルエンタメの最前線から生まれました。技術の飛躍を追うだけではなく、三十年のコンテンツ開発の蓄積をAIの核に封じ込めます。',
+      'Muztrixはデジタルエンタメの最前線から生まれました。三十年のゲーム開発経験──シーン、キャラクター、インタラクション、運営──を一つのAIエンジンに封じ込め、ゲームから医療・飲食・シニアケアの現場へ届けます。',
     'hero.cta.secondary': 'デモを予約',
 
     'solutions.section': '§ 01 — ソリューション',
     'solutions.title':
-      'ゼロからイチへ、<span class="title-accent-gold">AIクリエイティブ・パイプライン</span>',
+      'ゼロからイチへ、<span class="title-accent-gold">AIゲーム開発パイプライン</span>',
     'solutions.subtitle':
-      '脚本・キャラ・世界観・マルチモーダルへ──ゼロからイチまでを共に。クリエイター主導、AIが各工程の摩擦を取り除きます。',
+      '脚本・キャラ・世界観から、遊べるマルチモーダル世界へ──ゼロからイチまでを共に。同じパイプラインが、リアル産業のインタラクティブな場面も鍛えています。',
 
     'solutions.01.title': '脚本制作',
     'solutions.01.tag': 'Story Engine',
@@ -1141,6 +1280,74 @@ export const ui = {
     'products.comic.title': 'AIコミック',
     'products.comic.summary': 'ひらめきから出版まで、AIが全ページを共に歩む',
     'products.comic.cta': '詳しく見る',
+    'products.industry.title': '産業AIソリューション',
+    'products.industry.summary': 'ゲームエンジンを医療・飲食・シニア領域へ——PoCから本格導入まで',
+    'products.industry.cta': '詳しく見る',
+
+    // ---- Industry AI Solutions (§ 02) ----
+    'industries.section': '§ 02 — Industry AI',
+    'industries.title': 'ゲームエンジンを、<span class="title-accent-gold">リアル産業へ</span>',
+    'industries.subtitle':
+      'シーン生成・キャラクター対話・ゲーミフィケーション・映像認識──一つのエンジンが、現場ごとに異なるソリューションへ育ちます。',
+
+    'industries.resto.tag': 'F&B · AI VISION',
+    'industries.resto.status': 'POCパートナー募集中',
+    'industries.resto.title': '飲食店向けAI映像分析',
+    'industries.resto.desc':
+      '店内の既存カメラを、構造化された運営インサイトへ──客層プロファイル、空席と回転、提供・食事のペース、突発事象、食品ロス分析。映像はオンプレミスでリアルタイム処理され、出力はデータのみ。監視映像は残しません。',
+    'industries.resto.m1': '客層分析',
+    'industries.resto.m2': '空席検知',
+    'industries.resto.m3': '提供速度',
+    'industries.resto.m4': '食事ペース',
+    'industries.resto.m5': '突発事象',
+    'industries.resto.m6': '食品ロス',
+    'industries.resto.note': 'イメージ画面・実際の映像ではありません',
+    'industries.resto.privacy': 'オンプレ処理・個人映像は保存しません',
+    'industries.resto.cta': 'POCのご相談',
+    'industries.resto.box1': '客席 · 使用中',
+    'industries.resto.box2': '空席 · ご案内可',
+    'industries.resto.box3': '配膳中 · 02:41',
+    'industries.resto.box4': '客層 · 2名',
+    'industries.resto.box5': 'パス · 正常',
+
+    'industries.med.tag': 'HEALTHCARE',
+    'industries.med.status': 'PoC協議中',
+    'industries.med.title': 'インタラクティブ医療ゲームエンジン',
+    'industries.med.desc':
+      '一枚の平面図から病院全体を生成、一言で「会話できる仮想患者」を生成。三十年のゲーミフィケーションが、患者の療程完了と学習者のシナリオ完走を支えます。',
+    'industries.med.p1': '問答',
+    'industries.med.p2': 'トレーニング',
+    'industries.med.p3': '見守り',
+    'industries.med.p4': 'リハビリ',
+    'industries.med.cta': 'ご相談はこちら',
+
+    'industries.age.tag': 'AGETECH',
+    'industries.age.status': 'フィールド検証中',
+    'industries.age.title': 'シニア漫画日記',
+    'industries.age.desc':
+      '使い慣れたLINEでタップするだけで、AIが今日を4コマ漫画に。家族へワンタップで共有。シニア学習センター・介護施設と検証中です。',
+    'industries.age.cta': '詳しく見る',
+
+    // ---- Engine capabilities (§ 03) ----
+    'engine.section': '§ 03 — Engine',
+    'engine.title': '一つのエンジン、<span class="title-accent-cinnabar">五つのレイヤー</span>',
+    'engine.subtitle': '三十年のゲーム開発で蓄積した技術レイヤーを、モジュールとして各産業ソリューションへ。',
+    'engine.cap1.title': 'シーン生成',
+    'engine.cap1.body':
+      '平面図や写真から歩ける3Dシーンを生成。GLBアセット、USD / glTF書き出しに対応。',
+    'engine.cap2.title': 'キャラクター / バーチャルヒューマン',
+    'engine.cap2.body':
+      '外見・性格・声・口パク──会話でき、人を覚えるAIキャラクター。ゲームNPCから産業の受付まで。',
+    'engine.cap2.cta': '詳しく見る',
+    'engine.cap3.title': 'ゲーミフィケーション',
+    'engine.cap3.body':
+      'レベル設計・報酬ループ・自適応難易度──ユーザーが戻ってきて、最後までやり切る仕組み。',
+    'engine.cap4.title': '映像認識',
+    'engine.cap4.body':
+      'カメラをセンサーに：人流・動作・感情・物体認識を、構造化データとしてリアルタイム出力。',
+    'engine.cap5.title': 'オンプレ & セキュリティ',
+    'engine.cap5.body':
+      'Edge AI算力とLLMオンプレ推論──データは国外に出ず、ゼロトラスト対応。',
 
     // ---- Warm AI manifesto (Booth Deck narrative) ----
     'warm.banner.eyebrow': 'COMPUTEX 2026',

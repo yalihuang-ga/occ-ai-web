@@ -3,6 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from './sections/Header.astro';
 import Hero from './sections/Hero.astro';
 import Solutions from './sections/Solutions.astro';
+import IndustrySolutions from './sections/IndustrySolutions.astro';
+import EngineCapabilities from './sections/EngineCapabilities.astro';
 import About from './sections/About.astro';
 import ProductCards from './sections/ProductCards.astro';
 import CTAFooter from './sections/CTAFooter.astro';
@@ -16,16 +18,19 @@ const { lang } = Astro.props;
 
 const seo = {
   'zh-TW': {
-    title: 'Muztrix | AI 虛擬人、AI 漫畫、AI 遊戲開發整合方案',
-    description: '橘子集團原創內容中心打造的 AI 內容生產平台。整合多模態虛擬人、AI 漫畫工作室、AI 遊戲開發工具，協助品牌打造具備溫度的虛擬互動體驗。',
+    title: 'Muztrix | 遊戲開發工藝 × AI — 遊戲、醫療、餐飲、樂齡的互動引擎',
+    description:
+      '橘子集團原創內容中心以三十年遊戲開發經驗打造的 AI 互動引擎。從 AI 遊戲開發、AI 漫畫，到醫療互動訓練、餐飲影像分析與樂齡應用——場景生成、角色互動、遊戲化機制，地端部署可落地。',
   },
   en: {
-    title: 'Muztrix | AI Virtual Human, Comic Studio & Game Development Platform',
-    description: 'AI-powered content platform by Gamania Original Content Center. Multimodal virtual humans, AI comic studio, and game development tools — helping brands build human-centered virtual experiences.',
+    title: 'Muztrix | Game Craft × AI — Interactive Engines for Games, Healthcare, F&B & Senior Care',
+    description:
+      'An AI interaction engine built on thirty years of game development by Gamania Original Content Center. From AI game dev and comics to medical training, F&B vision analytics, and senior care — scene generation, character interaction, and gamification, deployable on-premises.',
   },
   ja: {
-    title: 'Muztrix | AIバーチャルヒューマン・AIコミック・AIゲーム開発の統合プラットフォーム',
-    description: 'ガマニアグループ オリジナルコンテンツセンターが提供するAIコンテンツ制作プラットフォーム。マルチモーダル・バーチャルヒューマン、AIコミックスタジオ、AIゲーム開発ツールでブランドの温度感ある仮想体験を実現します。',
+    title: 'Muztrix | ゲーム開発工芸 × AI — ゲーム・医療・飲食・シニア向けインタラクティブエンジン',
+    description:
+      'ガマニアグループ オリジナルコンテンツセンターが三十年のゲーム開発経験で築いたAIインタラクションエンジン。AIゲーム開発・AIコミックから、医療トレーニング、飲食店向け映像分析、シニア向けサービスまで——シーン生成・キャラクター対話・ゲーミフィケーションをオンプレミスで。',
   },
 };
 
@@ -47,7 +52,7 @@ const webpageSchema = {
   },
   about: {
     '@type': 'Thing',
-    name: 'AI content production — virtual human, comic studio, game development',
+    name: 'AI interactive engine — game development, healthcare training, F&B vision analytics, senior care',
   },
 };
 ---
@@ -62,6 +67,8 @@ const webpageSchema = {
     <Hero lang={lang} />
     <ProductCards lang={lang} />
     <Solutions lang={lang} />
+    <IndustrySolutions lang={lang} />
+    <EngineCapabilities lang={lang} />
     <About lang={lang} />
     <CTAFooter lang={lang} />
   </div>

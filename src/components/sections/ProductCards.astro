@@ -41,22 +41,21 @@ const t = useTranslations(lang);
       </div>
     </div>
 
-    <!-- Virtual Human Card -->
+    <!-- Industry AI Solutions Card -->
     <div class="mx-product-card">
-      <a href={getLocalizedPath(lang, 'virtual-human')} class="mx-product-card__img-link">
-        <div class="mx-product-card__img-wrap mx-product-card__img-wrap--vh">
+      <a href="#industries" class="mx-product-card__img-link">
+        <div class="mx-product-card__img-wrap mx-product-card__img-wrap--industry">
           <div class="mx-brand-grid" aria-hidden="true"></div>
-          <div class="mx-vh-glow" aria-hidden="true"></div>
-          <img src="/images/vh-hero.webp" alt={t('products.vh.title')} loading="lazy" decoding="async" class="mx-vh-img" />
-          <div class="mx-vh-flow" aria-hidden="true"></div>
+          <img src="/images/resto-iso.webp" alt={t('products.industry.title')} loading="lazy" decoding="async" class="mx-industry-img" />
+          <div class="mx-industry-scan" aria-hidden="true"></div>
           <div class="mx-card-gradient" aria-hidden="true"></div>
         </div>
       </a>
       <div class="mx-product-card__body">
-        <h3 class="mx-product-card__title">{t('products.vh.title')}</h3>
-        <p class="mx-product-card__summary">{t('products.vh.summary')}</p>
-        <a href={getLocalizedPath(lang, 'virtual-human')} class="mx-product-card__cta">
-          {t('products.vh.cta')}
+        <h3 class="mx-product-card__title">{t('products.industry.title')}</h3>
+        <p class="mx-product-card__summary">{t('products.industry.summary')}</p>
+        <a href="#industries" class="mx-product-card__cta">
+          {t('products.industry.cta')}
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
@@ -115,7 +114,7 @@ const t = useTranslations(lang);
     overflow: hidden;
   }
 
-  .mx-product-card__img-link:hover .mx-vh-img {
+  .mx-product-card__img-link:hover .mx-industry-img {
     transform: scale(1.06);
   }
 
@@ -231,24 +230,25 @@ const t = useTranslations(lang);
     text-shadow: 0 0 8px rgba(200, 160, 60, 0.3);
   }
 
-  /* --- Virtual Human: character display + flow effect --- */
-  .mx-product-card__img-wrap--vh {
+  /* --- Industry AI: isometric venue + scanning beam --- */
+  .mx-product-card__img-wrap--industry {
     display: flex;
     align-items: center;
     justify-content: center;
     background: radial-gradient(ellipse at center, rgba(30, 20, 12, 1) 0%, #0a0908 70%);
   }
 
-  .mx-vh-glow {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background: radial-gradient(ellipse at 50% 60%, rgba(220, 120, 50, 0.18) 0%, transparent 60%);
-    animation: vhGlow 4s ease-in-out infinite alternate;
-    pointer-events: none;
+  .mx-industry-img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 2;
+    transition: transform 0.4s ease;
   }
 
-  .mx-vh-flow {
+  .mx-industry-scan {
     position: absolute;
     inset: 0;
     z-index: 3;
@@ -256,33 +256,18 @@ const t = useTranslations(lang);
     background: linear-gradient(
       180deg,
       transparent 0%,
-      transparent 30%,
-      rgba(220, 120, 50, 0.06) 55%,
-      rgba(220, 120, 50, 0.1) 75%,
+      transparent 38%,
+      rgba(255, 90, 31, 0.14) 50%,
+      transparent 62%,
       transparent 100%
     );
-    animation: vhFlow 6s ease-in-out infinite;
+    animation: industryScan 5s ease-in-out infinite;
   }
 
-  @keyframes vhGlow {
-    0% { opacity: 0.5; transform: scale(0.95); }
-    100% { opacity: 1; transform: scale(1.05); }
-  }
-
-  @keyframes vhFlow {
-    0% { transform: translateY(10%); opacity: 0.6; }
-    50% { transform: translateY(-10%); opacity: 1; }
-    100% { transform: translateY(10%); opacity: 0.6; }
-  }
-
-  .mx-vh-img {
-    position: relative;
-    width: 80%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 15%;
-    z-index: 2;
-    transition: transform 0.4s ease;
+  @keyframes industryScan {
+    0% { transform: translateY(-45%); opacity: 0.4; }
+    50% { transform: translateY(45%); opacity: 1; }
+    100% { transform: translateY(-45%); opacity: 0.4; }
   }
 
   /* --- AI Comic: 3-image crossfade + halftone --- */

@@ -1,0 +1,160 @@
+---
+import { useTranslations, getLocalizedPath } from '../../i18n/utils';
+import type { Lang, UIKey } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+type Cap = {
+  idx: string;
+  titleKey: UIKey;
+  bodyKey: UIKey;
+  href?: string;
+  ctaKey?: UIKey;
+};
+
+const caps: Cap[] = [
+  { idx: 'L1', titleKey: 'engine.cap1.title', bodyKey: 'engine.cap1.body' },
+  {
+    idx: 'L2',
+    titleKey: 'engine.cap2.title',
+    bodyKey: 'engine.cap2.body',
+    href: getLocalizedPath(lang, 'virtual-human'),
+    ctaKey: 'engine.cap2.cta',
+  },
+  { idx: 'L3', titleKey: 'engine.cap3.title', bodyKey: 'engine.cap3.body' },
+  { idx: 'L4', titleKey: 'engine.cap4.title', bodyKey: 'engine.cap4.body' },
+  { idx: 'L5', titleKey: 'engine.cap5.title', bodyKey: 'engine.cap5.body' },
+];
+---
+
+<section id="engine" class="relative mx-section mx-engine">
+  <div style="max-width: 1440px; margin: 0 auto;">
+    <div class="mx-section-head" style="margin-bottom: 72px;">
+      <div class="eyebrow eyebrow--muted" style="margin-bottom: 20px;">
+        {t('engine.section')}
+      </div>
+      <h2
+        class="h1-display"
+        style="color: var(--color-bone); margin-bottom: 28px;"
+        set:html={t('engine.title')}
+      />
+      <p class="body-lg-v2">{t('engine.subtitle')}</p>
+    </div>
+
+    <div class="eng-grid">
+      {
+        caps.map((c) => (
+          <article class="eng-cell">
+            <div class="eng-idx">{c.idx}</div>
+            <h3 class="eng-title">{t(c.titleKey)}</h3>
+            <p class="eng-body">{t(c.bodyKey)}</p>
+            {c.href && c.ctaKey && (
+              <a href={c.href} class="eng-link">
+                {t(c.ctaKey)}
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            )}
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .mx-engine {
+    padding: 140px 48px;
+  }
+
+  .eng-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--bone-line);
+    border: 1px solid var(--bone-line);
+  }
+
+  .eng-cell {
+    position: relative;
+    background: var(--color-ink);
+    padding: 40px 28px 36px;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.4s ease;
+  }
+  .eng-cell:hover {
+    background: #141009;
+  }
+
+  .eng-idx {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--color-cinnabar);
+    margin-bottom: 22px;
+  }
+
+  .eng-title {
+    font-family: var(--font-headline);
+    font-size: 21px;
+    font-weight: 500;
+    color: var(--color-bone);
+    margin: 0 0 14px;
+    line-height: 1.25;
+    letter-spacing: 0.01em;
+  }
+
+  .eng-body {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--color-bone-2);
+    margin: 0;
+    flex: 1;
+  }
+
+  .eng-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 20px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    text-decoration: none;
+    transition: gap 0.25s ease, color 0.25s ease;
+  }
+  .eng-link:hover {
+    gap: 10px;
+    color: var(--color-bone);
+  }
+
+  @container page (max-width: 1200px) {
+    .eng-grid {
+      grid-template-columns: repeat(3, 1fr) !important;
+    }
+    .eng-cell {
+      min-height: 240px !important;
+    }
+  }
+
+  @container page (max-width: 900px) {
+    .mx-engine {
+      padding: 80px 20px !important;
+    }
+    .eng-grid {
+      grid-template-columns: 1fr !important;
+    }
+    .eng-cell {
+      min-height: 0 !important;
+      padding: 28px 24px !important;
+    }
+  }
+</style>

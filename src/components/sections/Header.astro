@@ -35,9 +35,9 @@ type NavItem = { labelKey: UIKey; href: string };
 const homeBase = localeUrls[lang];
 
 const navItems: NavItem[] = [
-  { labelKey: 'nav.virtualHuman', href: getLocalizedPath(lang, 'virtual-human') },
   { labelKey: 'nav.game', href: getLocalizedPath(lang, 'game') },
   { labelKey: 'nav.comic', href: getLocalizedPath(lang, 'comic') },
+  { labelKey: 'nav.virtualHuman', href: getLocalizedPath(lang, 'virtual-human') },
   // The AgeTech programme page exists in zh-TW only.
   ...(lang === 'zh-TW'
     ? [{ labelKey: 'nav.agetech' as UIKey, href: getLocalizedPath(lang, 'agetech') }]
