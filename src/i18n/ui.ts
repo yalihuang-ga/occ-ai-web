@@ -564,6 +564,8 @@ export const ui = {
     'agetech.contact.line.label': 'LINE',
     'agetech.contact.line.alt': '黃雅莉的 LINE QR Code',
 
+    'agetech.regions.title': '徵求以下區域的合作單位',
+
     'agetech.footer.back': '回 Muztrix 首頁',
 
     // legacy / optional kept
