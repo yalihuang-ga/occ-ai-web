@@ -3,7 +3,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../sections/Header.astro';
 import VHHero from '../sections/VHHero.astro';
 import VirtualHuman from '../sections/VirtualHuman.astro';
-import WhyWarmAI from '../sections/WhyWarmAI.astro';
+import VTuberMiyakien from '../sections/VTuberMiyakien.astro';
+// import WhyWarmAI from '../sections/WhyWarmAI.astro';
 import HowWarmAI from '../sections/HowWarmAI.astro';
 import CTAFooter from '../sections/CTAFooter.astro';
 import type { Lang } from '../../i18n/ui';
@@ -69,8 +70,10 @@ const webpageSchema = {
     <Header lang={lang} />
     <VHHero lang={lang} />
     <VirtualHuman lang={lang} />
-    <WhyWarmAI lang={lang} />
+    {/* Hidden for now: 「科技越進步，人越孤獨」 */}
+    {/* <WhyWarmAI lang={lang} /> */}
     <HowWarmAI lang={lang} />
+    <VTuberMiyakien lang={lang} />
     <CTAFooter lang={lang} />
   </div>
 </BaseLayout>

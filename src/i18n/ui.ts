@@ -202,6 +202,29 @@ export const ui = {
     'vh.label.ip.2': '偵測疲勞指數中...',
     'vh.label.ip.3': '推薦附近資源',
 
+    // AI VTuber 宮祈緣 showcase
+    'vh.vtuber.bridge.eyebrow': 'PROOF · 我們自己先用',
+    'vh.vtuber.bridge.title':
+      '這套技術，我們先用在<span class="title-accent-gold">自己身上</span>。',
+    'vh.vtuber.bridge.body':
+      '我們自己開發、自己經營了一位 AI VTuber——從開台直播、和觀眾聊天，到表演與經營社群，全都靠 AI 完成。',
+    'vh.vtuber.eyebrow': 'MEET MIYAKIEN · 自家 AI VTuber',
+    'vh.vtuber.title':
+      '宮祈緣，正朝著<span class="title-accent-gold">全方位藝人</span>邁進',
+    'vh.vtuber.subtitle':
+      '宮祈緣是我們自家培育的 AI VTuber。她不只是展示用的虛擬角色，而是自己開台直播、和觀眾真實互動的藝人。',
+    'vh.vtuber.live.title': '開直播聊天',
+    'vh.vtuber.live.body': '自己開台、自己讀聊天室，即時接住每一則留言，像朋友一樣和觀眾聊天。',
+    'vh.vtuber.perform.title': '唱歌跳舞',
+    'vh.vtuber.perform.body': '唱歌、跳舞都難不倒她，用表演把直播間的氣氛帶起來。',
+    'vh.vtuber.game.title': '玩遊戲',
+    'vh.vtuber.game.body': '和觀眾一起玩遊戲，邊玩邊聊，一起歡呼也一起哀號。',
+    'vh.vtuber.social.title': '回應社群與時事',
+    'vh.vtuber.social.body': '關注社群動態與時下話題，用自己的觀點回應粉絲、跟上時事。',
+    'vh.vtuber.cta.twitch': '到 Twitch 看直播',
+    'vh.vtuber.cta.ig': '追蹤 Instagram',
+    'vh.vtuber.image.alt': 'AI VTuber 宮祈緣的全身立繪：粉棕短髮、身穿融合東方元素的白色與深藍色服裝，開心地微笑著。',
+
     // 3D placeholder copy
     'vh.placeholder.3d.title': '3D 模型準備中',
     'vh.placeholder.3d.body': '高保真 3D 互動體驗將於下個版本上線。',
@@ -749,6 +772,29 @@ export const ui = {
     'vh.label.ip.2': 'Measuring fatigue level...',
     'vh.label.ip.3': 'Recommending nearby resources',
 
+    // AI VTuber Miyakien showcase
+    'vh.vtuber.bridge.eyebrow': 'PROOF · We use it ourselves',
+    'vh.vtuber.bridge.title':
+      'We put this technology to work <span class="title-accent-gold">on ourselves first</span>.',
+    'vh.vtuber.bridge.body':
+      'We built and run our own AI VTuber in-house — going live, chatting with viewers, performing and running her socials, all powered by AI.',
+    'vh.vtuber.eyebrow': 'MEET MIYAKIEN · OUR OWN AI VTUBER',
+    'vh.vtuber.title':
+      'Miyakien, on her way to becoming an <span class="title-accent-gold">all-round entertainer</span>',
+    'vh.vtuber.subtitle':
+      'Miyakien (宮祈緣) is the AI VTuber we raised in-house. She is not a demo character — she goes live on her own and genuinely connects with her audience.',
+    'vh.vtuber.live.title': 'Live chat',
+    'vh.vtuber.live.body': 'She starts her own streams, reads chat herself, and replies to every message in real time — like talking with a friend.',
+    'vh.vtuber.perform.title': 'Singing & dancing',
+    'vh.vtuber.perform.body': 'She sings and dances, turning performances into the highlight of the stream.',
+    'vh.vtuber.game.title': 'Gaming',
+    'vh.vtuber.game.body': 'She plays games with her viewers, chatting as she goes — cheering and groaning right along with them.',
+    'vh.vtuber.social.title': 'Social & current events',
+    'vh.vtuber.social.body': 'She follows social feeds and trending topics, and responds to fans and the news in her own voice.',
+    'vh.vtuber.cta.twitch': 'Watch on Twitch',
+    'vh.vtuber.cta.ig': 'Follow on Instagram',
+    'vh.vtuber.image.alt': 'Full-body illustration of AI VTuber Miyakien: short pinkish-brown hair, a white and navy outfit with East Asian motifs, smiling happily.',
+
     'vh.placeholder.3d.title': '3D Model Coming Soon',
     'vh.placeholder.3d.body': 'Hi-fidelity 3D interactive experience launching in the next release.',
 
@@ -1172,6 +1218,29 @@ export const ui = {
     'vh.label.ip.1': 'AI が感情を検出中',
     'vh.label.ip.2': '疲労度を測定中...',
     'vh.label.ip.3': '近くのリソースを推薦',
+
+    // AI VTuber 宮祈緣 showcase
+    'vh.vtuber.bridge.eyebrow': 'PROOF · まず自分たちで',
+    'vh.vtuber.bridge.title':
+      'この技術を、まず<span class="title-accent-gold">自分たち自身</span>で使っています。',
+    'vh.vtuber.bridge.body':
+      '私たちは AI VTuber を自社で開発し、自社で運営しています。配信の開始、視聴者とのトーク、パフォーマンスから SNS 運営まで、すべて AI が担っています。',
+    'vh.vtuber.eyebrow': 'MEET MIYAKIEN · 自社 AI VTuber',
+    'vh.vtuber.title':
+      '宮祈緣、<span class="title-accent-gold">マルチタレント</span>への道を歩む',
+    'vh.vtuber.subtitle':
+      '宮祈緣（ミヤキエン）は、私たちが自社で育てている AI VTuber です。デモ用のキャラクターではなく、自ら配信を行い、視聴者と本当に交流するタレントです。',
+    'vh.vtuber.live.title': 'ライブ配信トーク',
+    'vh.vtuber.live.body': '自分で配信を始め、自分でチャットを読み、一つひとつのコメントにリアルタイムで応えます。まるで友達のように。',
+    'vh.vtuber.perform.title': '歌とダンス',
+    'vh.vtuber.perform.body': '歌もダンスもこなし、パフォーマンスで配信を盛り上げます。',
+    'vh.vtuber.game.title': 'ゲーム実況',
+    'vh.vtuber.game.body': '視聴者と一緒にゲームをプレイ。おしゃべりしながら、一緒に喜んだり悔しがったり。',
+    'vh.vtuber.social.title': 'SNS・時事への反応',
+    'vh.vtuber.social.body': 'SNS の動きや話題のトピックをキャッチし、自分の視点でファンや時事に応えます。',
+    'vh.vtuber.cta.twitch': 'Twitch で配信を見る',
+    'vh.vtuber.cta.ig': 'Instagram をフォロー',
+    'vh.vtuber.image.alt': 'AI VTuber 宮祈緣の全身イラスト。ピンクブラウンのショートヘアに、東洋的なモチーフの白と紺の衣装を着て、楽しそうに笑っている。',
 
     'vh.placeholder.3d.title': '3Dモデル準備中',
     'vh.placeholder.3d.body': '高精細な3Dインタラクティブ体験は次バージョンで公開予定。',
